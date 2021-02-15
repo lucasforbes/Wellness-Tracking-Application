@@ -40,12 +40,12 @@ public class WellnessApplication implements CommandLineRunner {
         // fetch an individual customer
         System.out.println("Customer found with findByFirstName('Alice'):");
         System.out.println("--------------------------------");
-        System.out.println(udb.findByName("Bob"));
+        System.out.println(udb.findByName("Bob").printUser());
 
         System.out.println("Customers found with findByLastName('Smith'):");
         System.out.println("--------------------------------");
         for (User customer : udb.findByState("MI")) {
-            System.out.println(customer);
+            System.out.println(customer.printUser());
         }
     }
 

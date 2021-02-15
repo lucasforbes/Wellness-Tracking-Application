@@ -1,6 +1,5 @@
 package com.wellnessapp.demo;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
@@ -56,5 +55,10 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public String printUser() {
+        String r = "User: " + getName() + ", Email: " + getEmail() + ", State: " + getState();
+        return r;
     }
 }
