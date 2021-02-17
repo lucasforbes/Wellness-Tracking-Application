@@ -5,6 +5,7 @@ import {TextField} from '@material-ui/core/';
 
 export default function Login(props){
 
+
     const [username,setUsername] = useState();
     const [password,setPassword] = useState();
     const [isLoggedIn,setisLoggedIn] = useState(false);
@@ -25,8 +26,10 @@ export default function Login(props){
 
             { !isLoggedIn ?
 
+
                 <center>
-                 <div class='card' style={{alignItems:'center'}}>
+
+                    <div class='card' style={{alignItems:'center'}}>
 
 
 
@@ -64,8 +67,15 @@ export default function Login(props){
 
                                 <Button type="button" variant="success" onClick={()=>{
                                     setisLoggedIn(true)
+
                                     props.history.push('/about')
                                 }}> Login </Button>
+
+                                <br/>
+
+                                <p onClick={()=> props.history.push('/signup')}>
+                                    New User Sign Up Here
+                                </p>
 
                             </Card.Body>
                         </Card>
