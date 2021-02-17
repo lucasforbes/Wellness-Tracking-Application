@@ -14,7 +14,7 @@ public class LogIn {
         this.authKey = authKey;
     }
 
-    public Boolean signIn(){
+    public boolean signIn(){
         // check if userID / password / authkey are in database and provide response
         return true;
     }

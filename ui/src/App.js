@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Placeholder from "./components/placeholder";
 
 import Login from "./components/registeration/login";
+import Signup from "./components/registeration/signup";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
               <Route path="/" exact component={Placeholder}/>
               <Route path="/login" exact component={Login}/>
               <Route path="/about" exact component={Placeholder}/>
+              <Route path="/signup" exact component={Signup}/>
+
 
 
 
