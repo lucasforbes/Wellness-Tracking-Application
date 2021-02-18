@@ -13,38 +13,19 @@ public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
-    private String username;
     private String password;
     private String email;
-    //    Possible way to store profile pictures?
-    private GridFsObject profilePic;
     private String firstName;
     private String lastName;
-//    private String gender;
-//    // get city/state from coords in registration or manual entry
-//    private String city;
-//    private String state;
     private String phone;
-//    private Date signUpTime;
-//    //    state of user: Online/Offline
-//    private Boolean online;
-//    private Boolean isDeleted;
 
-    public Admin(int id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String phone) {
+    public Admin(int id, String password, String email,  String firstName, String lastName, String phone) {
         this.id = id;
-        this.username = username;
         this.password = password;
         this.email = email;
-//        this.profilePic = profilePic;
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.gender = gender;
-//        this.city = city;
-//        this.state = state;
         this.phone = phone;
-//        this.signUpTime = signUpTime;
-//        this.online = online;
-//        this.isDeleted = isDeleted;
     }
 
     public Admin() {
@@ -53,7 +34,7 @@ public class Admin {
 
 
     public String printAdmin() {
-        String r = "Username: " + getUsername() + ", Email: " + getEmail() + ", Phone: " + getPhone();
+        String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail() + ", Phone: " + getPhone();
         return r;
     }
 
@@ -63,14 +44,6 @@ public class Admin {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -89,14 +62,6 @@ public class Admin {
         this.email = email;
     }
 
-    public GridFsObject getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(GridFsObject profilePic) {
-        this.profilePic = profilePic;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -113,30 +78,6 @@ public class Admin {
         this.lastName = lastName;
     }
 
-//    public String getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(String gender) {
-//        this.gender = gender;
-//    }
-//
-//    public String getCity() {
-//        return city;
-//    }
-//
-//    public void setCity(String city) {
-//        this.city = city;
-//    }
-//
-//    public String getState() {
-//        return state;
-//    }
-//
-//    public void setState(String state) {
-//        this.state = state;
-//    }
-
     public String getPhone() {
         return phone;
     }
@@ -145,27 +86,4 @@ public class Admin {
         this.phone = phone;
     }
 
-//    public Date getSignUpTime() {
-//        return signUpTime;
-//    }
-//
-//    public void setSignUpTime(Date signUpTime) {
-//        this.signUpTime = signUpTime;
-//    }
-//
-//    public Boolean getOnline() {
-//        return online;
-//    }
-//
-//    public void setOnline(Boolean online) {
-//        this.online = online;
-//    }
-//
-//    public Boolean getDeleted() {
-//        return isDeleted;
-//    }
-//
-//    public void setDeleted(Boolean deleted) {
-//        isDeleted = deleted;
-//    }
 }

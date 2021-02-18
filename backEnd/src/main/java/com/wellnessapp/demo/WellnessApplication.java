@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -40,54 +41,15 @@ public class WellnessApplication implements CommandLineRunner {
         udb.deleteAll();
         adb.deleteAll();
         cdb.deleteAll();
+
         // save a couple of Users
-        udb.save(new User(0, "JimmyJohn", "1234", "jimmy@google.com", "Jimmy", "John", "Male", "Bloomington", "IN", "1234567899", true, false));
-        udb.save(new User(1, "BobBob", "1234", "bob@google.com", "Bob", "Smith", "Male", "Detroit", "MI", "1234567899", true, false));
+        udb.save(new User(0, "1234", "jimmy@google.com", null, "Jimmy", "John", new Date(), "Male", true, false));
+        udb.save(new User(1, "1234", "bob@google.com", null, "Bob", "Smith", new Date(),"Male",  true, false));
         // save a couple of Admins
-        adb.save(new Admin(0, "theBoss", "1234", "theboss@google.com", new GridFsObject() {
-            @Override
-            public Object getFileId() {
-                return null;
-            }
-
-            @Override
-            public String getFilename() {
-                return null;
-            }
-
-            @Override
-            public Object getContent() {
-                return null;
-            }
-
-            @Override
-            public Options getOptions() {
-                return null;
-            }
-        }, "Jim", "Honcho", "1234567899"));
-        adb.save(new Admin(1, "Manager", "1234", "manager@google.com", new GridFsObject() {
-            @Override
-            public Object getFileId() {
-                return null;
-            }
-
-            @Override
-            public String getFilename() {
-                return null;
-            }
-
-            @Override
-            public Object getContent() {
-                return null;
-            }
-
-            @Override
-            public Options getOptions() {
-                return null;
-            }
-        }, "Jess", "Jawns", "9876543210"));
+        adb.save(new Admin(0, "1234", "theboss@google.com",  "Jim", "Honcho", "0123456789"));
+        adb.save(new Admin(1, "1234", "manager@google.com",  "Jess", "Jawns", "9876543210"));
         // save a couple of Creators
-        cdb.save(new Creator(0, "FitCoach", "1234", "fitCoach@google.com", new GridFsObject() {
+        cdb.save(new Creator(0, "1234", "fitCoach@google.com", new GridFsObject() {
             @Override
             public Object getFileId() {
                 return null;
@@ -107,8 +69,8 @@ public class WellnessApplication implements CommandLineRunner {
             public Options getOptions() {
                 return null;
             }
-        }, "Joe", "Buff", "Male", "Bloomington", "IN", 5, "1234567899", new Date(), true, false));
-        cdb.save(new Creator(1, "WellnessCoach", "1234", "wellnessCoach@google.com", new GridFsObject() {
+        }, "Joe", "Buff", new Date(), true,false, "Male", true, false));
+        cdb.save(new Creator(1, "1234", "wellnessCoach@google.com", new GridFsObject() {
             @Override
             public Object getFileId() {
                 return null;
@@ -128,28 +90,29 @@ public class WellnessApplication implements CommandLineRunner {
             public Options getOptions() {
                 return null;
             }
-        }, "Sally", "Fit", "Female", "Bloomington", "IN", 3, "1234567899", new Date(), true, false));
+        }, "Sally", "Fit", new Date(), false, true,  "Female",  true, false));
         // fetch all users
         System.out.println("Users found with findAll():");
         System.out.println("-------------------------------");
         for (User user : udb.findAll()) {
-            System.out.println(user.getUsername());
+            System.out.println(user.getFirstName()+ " " +  user.getLastName());
         }
         System.out.println();
     // fetch all Admins
         System.out.println("Admins found with findAll():");
         System.out.println("-------------------------------");
         for (Admin admin : adb.findAll()) {
-            System.out.println(admin.getUsername());
+            System.out.println(admin.getFirstName()+ " " +  admin.getLastName());
         }
         System.out.println();
     // fetch all creators
-        System.out.println("Users found with findAll():");
+        System.out.println("Creators found with findAll():");
         System.out.println("-------------------------------");
-        for (Creator c : cdb.findAll()) {
-            System.out.println(c.getUsername());
-        }
-        System.out.println();
+//        for (Creator c : cdb.findAll()) {
+//            System.out.println("ADASF");
+//            System.out.println(c.getFirstName()+ " " +  c.getLastName());
+//        }
+//        System.out.println();
 
     }
 
