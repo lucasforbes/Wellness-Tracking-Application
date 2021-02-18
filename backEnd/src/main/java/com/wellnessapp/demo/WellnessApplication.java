@@ -38,11 +38,13 @@ public class WellnessApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         udb.deleteAll();
+        adb.deleteAll();
+        cdb.deleteAll();
         // save a couple of Users
         udb.save(new User(0, "JimmyJohn", "1234", "jimmy@google.com", "Jimmy", "John", "Male", "Bloomington", "IN", "1234567899", true, false));
         udb.save(new User(1, "BobBob", "1234", "bob@google.com", "Bob", "Smith", "Male", "Detroit", "MI", "1234567899", true, false));
         // save a couple of Admins
-        adb.save(new Admin(Long.valueOf(0), "theBoss", "1234", "theboss@google.com", new GridFsObject() {
+        adb.save(new Admin(0, "theBoss", "1234", "theboss@google.com", new GridFsObject() {
             @Override
             public Object getFileId() {
                 return null;
@@ -63,7 +65,7 @@ public class WellnessApplication implements CommandLineRunner {
                 return null;
             }
         }, "Jim", "Honcho", "1234567899"));
-        adb.save(new Admin(Long.valueOf(1), "Manager", "1234", "manager@google.com", new GridFsObject() {
+        adb.save(new Admin(1, "Manager", "1234", "manager@google.com", new GridFsObject() {
             @Override
             public Object getFileId() {
                 return null;
@@ -85,7 +87,7 @@ public class WellnessApplication implements CommandLineRunner {
             }
         }, "Jess", "Jawns", "9876543210"));
         // save a couple of Creators
-        cdb.save(new Creator(Long.valueOf(0), "FitCoach", "1234", "fitCoach@google.com", new GridFsObject() {
+        cdb.save(new Creator(0, "FitCoach", "1234", "fitCoach@google.com", new GridFsObject() {
             @Override
             public Object getFileId() {
                 return null;
@@ -106,7 +108,7 @@ public class WellnessApplication implements CommandLineRunner {
                 return null;
             }
         }, "Joe", "Buff", "Male", "Bloomington", "IN", 5, "1234567899", new Date(), true, false));
-        cdb.save(new Creator(Long.valueOf(1), "WellnessCoach", "1234", "wellnessCoach@google.com", new GridFsObject() {
+        cdb.save(new Creator(1, "WellnessCoach", "1234", "wellnessCoach@google.com", new GridFsObject() {
             @Override
             public Object getFileId() {
                 return null;

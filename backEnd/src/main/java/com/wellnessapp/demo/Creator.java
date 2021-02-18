@@ -11,7 +11,7 @@ import java.util.Date;
 public class Creator{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -30,7 +30,7 @@ public class Creator{
     private Boolean online;
     private Boolean isDeleted;
 
-    public Creator(Long id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String gender, String city, String state, int level, String phone, Date signUpTime, Boolean online, Boolean isDeleted) {
+    public Creator(int id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String gender, String city, String state, int level, String phone, Date signUpTime, Boolean online, Boolean isDeleted) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -58,11 +58,11 @@ public class Creator{
         return r;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

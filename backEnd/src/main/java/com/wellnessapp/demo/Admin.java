@@ -12,7 +12,7 @@ import java.util.Date;
 public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -30,7 +30,7 @@ public class Admin {
 //    private Boolean online;
 //    private Boolean isDeleted;
 
-    public Admin(Long id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String phone) {
+    public Admin(int id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String phone) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -57,11 +57,11 @@ public class Admin {
         return r;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
