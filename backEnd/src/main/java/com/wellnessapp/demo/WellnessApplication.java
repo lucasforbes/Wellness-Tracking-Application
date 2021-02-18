@@ -49,48 +49,8 @@ public class WellnessApplication implements CommandLineRunner {
         adb.save(new Admin(0, "1234", "theboss@google.com",  "Jim", "Honcho", "0123456789"));
         adb.save(new Admin(1, "1234", "manager@google.com",  "Jess", "Jawns", "9876543210"));
         // save a couple of Creators
-        cdb.save(new Creator(0, "1234", "fitCoach@google.com", new GridFsObject() {
-            @Override
-            public Object getFileId() {
-                return null;
-            }
-
-            @Override
-            public String getFilename() {
-                return null;
-            }
-
-            @Override
-            public Object getContent() {
-                return null;
-            }
-
-            @Override
-            public Options getOptions() {
-                return null;
-            }
-        }, "Joe", "Buff", new Date(), true,false, "Male", true, false));
-        cdb.save(new Creator(1, "1234", "wellnessCoach@google.com", new GridFsObject() {
-            @Override
-            public Object getFileId() {
-                return null;
-            }
-
-            @Override
-            public String getFilename() {
-                return null;
-            }
-
-            @Override
-            public Object getContent() {
-                return null;
-            }
-
-            @Override
-            public Options getOptions() {
-                return null;
-            }
-        }, "Sally", "Fit", new Date(), false, true,  "Female",  true, false));
+        cdb.save(new Creator(0, "1234", "fitCoach@google.com", null, "Joe", "Buff", new Date(), true,false, "Male", true, false));
+        cdb.save(new Creator(1, "1234", "wellnessCoach@google.com", null, "Sally", "Fit", new Date(), false, true,  "Female",  true, false));
         // fetch all users
         System.out.println("Users found with findAll():");
         System.out.println("-------------------------------");
@@ -108,11 +68,10 @@ public class WellnessApplication implements CommandLineRunner {
     // fetch all creators
         System.out.println("Creators found with findAll():");
         System.out.println("-------------------------------");
-//        for (Creator c : cdb.findAll()) {
-//            System.out.println("ADASF");
-//            System.out.println(c.getFirstName()+ " " +  c.getLastName());
-//        }
-//        System.out.println();
+        for (Creator c : cdb.findAll()) {
+            System.out.println(c.getFirstName()+ " " +  c.getLastName());
+        }
+        System.out.println();
 
     }
 
