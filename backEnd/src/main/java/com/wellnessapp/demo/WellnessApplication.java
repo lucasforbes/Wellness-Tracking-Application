@@ -37,50 +37,10 @@ public class WellnessApplication implements CommandLineRunner {
     // testing out databases
     @Override
     public void run(String... args) throws Exception {
-
+        udb.deleteAll();
         // save a couple of Users
-        udb.save(new User(Long.valueOf(0), "JimmyJohn", "1234", "jimmy@google.com", new GridFsObject() {
-            @Override
-            public Object getFileId() {
-                return null;
-            }
-
-            @Override
-            public String getFilename() {
-                return null;
-            }
-
-            @Override
-            public Object getContent() {
-                return null;
-            }
-
-            @Override
-            public Options getOptions() {
-                return null;
-            }
-        }, "Jimmy", "John", "Male", "Bloomington", "IN", "1234567899", new Date(), true, false));
-        udb.save(new User(Long.valueOf(1), "BobBob", "1234", "bob@google.com", new GridFsObject() {
-            @Override
-            public Object getFileId() {
-                return null;
-            }
-
-            @Override
-            public String getFilename() {
-                return null;
-            }
-
-            @Override
-            public Object getContent() {
-                return null;
-            }
-
-            @Override
-            public Options getOptions() {
-                return null;
-            }
-        }, "Bob", "Smith", "Male", "Detroit", "MI", "1234567899", new Date(), true, false));
+        udb.save(new User(0, "JimmyJohn", "1234", "jimmy@google.com", "Jimmy", "John", "Male", "Bloomington", "IN", "1234567899", true, false));
+        udb.save(new User(1, "BobBob", "1234", "bob@google.com", "Bob", "Smith", "Male", "Detroit", "MI", "1234567899", true, false));
         // save a couple of Admins
         adb.save(new Admin(Long.valueOf(0), "theBoss", "1234", "theboss@google.com", new GridFsObject() {
             @Override

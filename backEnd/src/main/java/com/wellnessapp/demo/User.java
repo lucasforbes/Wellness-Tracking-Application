@@ -4,16 +4,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 
 import java.util.Date;
+@Getter
+@Setter
+@ToString
 
-@Document(collection="Users")
+@Document(collection="User")
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -31,7 +38,11 @@ public class User {
     private Boolean online;
     private Boolean isDeleted;
 
-    public User(Long id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String gender, String city, String state, String phone, Date signUpTime, Boolean online, Boolean isDeleted) {
+    // need to figure out picture, for now taking out of constructor:
+//    GridFsObject profilePic,
+    // need to figure out Json to date, for now taking out of constructor
+//    , Date signUpTime
+    public User(int id, String username, String password, String email,  String firstName, String lastName, String gender, String city, String state, String phone, Boolean online, Boolean isDeleted) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -43,7 +54,7 @@ public class User {
         this.city = city;
         this.state = state;
         this.phone = phone;
-        this.signUpTime = signUpTime;
+
         this.online = online;
         this.isDeleted = isDeleted;
     }
@@ -58,11 +69,11 @@ public class User {
         return r;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
