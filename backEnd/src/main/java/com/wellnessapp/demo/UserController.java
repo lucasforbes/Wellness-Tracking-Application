@@ -13,13 +13,12 @@ public class UserController {
     @Autowired
     private UserRepository udb;
 
-//    @PostMapping("/addUser")
-    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST, value = "/addUser")
-    public String saveUser(@RequestBody JsonAlias user){
+    @PostMapping("/addUser")
+    @ResponseBody
+    public String saveUser(@RequestBody User user){
         System.out.println("");
-//        udb.save(user);
-        return "User added to database: " ;
-//                + user.getId();
+        udb.save(user);
+        return "User added to database: " + user.getId();
     }
     @GetMapping("/findAllUsers")
     public List<User> getUsers(){
