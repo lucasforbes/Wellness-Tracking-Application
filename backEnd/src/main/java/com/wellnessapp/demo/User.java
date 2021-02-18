@@ -21,7 +21,6 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-    private String username;
     private String password;
     private String email;
     //    Possible way to store profile pictures?
@@ -29,10 +28,9 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
-    // get city/state from coords in registration or manual entry
-    private String city;
-    private String state;
-    private String phone;
+    private Date birthday;
+    private String userType;
+    private int age;
     private Date signUpTime;
 //    state of user: Online/Offline
     private Boolean online;
@@ -42,19 +40,17 @@ public class User {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public User(int id, String username, String password, String email,  String firstName, String lastName, String gender, String city, String state, String phone, Boolean online, Boolean isDeleted) {
+    public User(int id, String password, String email, GridFsObject profilePic, String firstName, String lastName, Date birthday, String gender,  Boolean online, Boolean isDeleted) {
         this.id = id;
-        this.username = username;
         this.password = password;
         this.email = email;
-//        this.profilePic = profilePic;
+        this.profilePic = profilePic;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthday = birthday;
+        //set up age as a function of now to birthday
+        this.userType = "User";
         this.gender = gender;
-        this.city = city;
-        this.state = state;
-        this.phone = phone;
-
         this.online = online;
         this.isDeleted = isDeleted;
     }
@@ -65,7 +61,7 @@ public class User {
 
 
     public String printUser() {
-        String r = "Username: " + getUsername() + ", Email: " + getEmail() + ", State: " + getState();
+        String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail();
         return r;
     }
 
@@ -77,13 +73,6 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;
@@ -131,30 +120,6 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public Date getSignUpTime() {

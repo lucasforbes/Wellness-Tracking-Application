@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AdminRepository extends MongoRepository<Admin, Integer> {
     // possible functions for querrying the db
-    public Admin findByUsername(String username);
+    public Admin findByEmail(String email);
     public List<Admin> findByPhone(String phone);
 
 }

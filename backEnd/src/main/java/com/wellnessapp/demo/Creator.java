@@ -10,9 +10,8 @@ import java.util.Date;
 @Document(collection = "Creator")
 public class Creator{
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-    private String username;
     private String password;
     private String email;
     //    Possible way to store profile pictures?
@@ -20,30 +19,35 @@ public class Creator{
     private String firstName;
     private String lastName;
     private String gender;
-    // get city/state from coords in registration or manual entry
-    private String city;
-    private String state;
-    private int level;
-    private String phone;
+    private Date birthday;
+    private int age;
     private Date signUpTime;
+    private String userType;
+    private Boolean nutritionist;
+    private Boolean trainer;
+    private int level;
     //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
 
-    public Creator(int id, String username, String password, String email, GridFsObject profilePic, String firstName, String lastName, String gender, String city, String state, int level, String phone, Date signUpTime, Boolean online, Boolean isDeleted) {
+    // need to figure out picture, for now taking out of constructor:
+//    GridFsObject profilePic,
+    // need to figure out Json to date, for now taking out of constructor
+//    , Date signUpTime
+    public Creator(int id, String password, String email, GridFsObject profilePic, String firstName, String lastName, Date birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
         this.id = id;
-        this.username = username;
         this.password = password;
         this.email = email;
-//        this.profilePic = profilePic;
+        this.profilePic = profilePic;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthday = birthday;
+        this.nutritionist = nutritionist;
+        this.trainer = trainer;
+//        set up age as a function of birthday
+        this.userType = "Creator";
+        this.level = 0;
         this.gender = gender;
-        this.city = city;
-        this.state = state;
-        this.level = level;
-        this.phone = phone;
-        this.signUpTime = signUpTime;
         this.online = online;
         this.isDeleted = isDeleted;
     }
@@ -54,24 +58,12 @@ public class Creator{
 
 
     public String printUser() {
-        String r = "Username: " + getUsername() + ", Email: " + getEmail() + ", State: " + getState();
+        String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail();
         return r;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -122,30 +114,6 @@ public class Creator{
         this.gender = gender;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public Date getSignUpTime() {
         return signUpTime;
     }
@@ -168,5 +136,57 @@ public class Creator{
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public Boolean getNutritionist() {
+        return nutritionist;
+    }
+
+    public void setNutritionist(Boolean nutritionist) {
+        this.nutritionist = nutritionist;
+    }
+
+    public Boolean getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Boolean trainer) {
+        this.trainer = trainer;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

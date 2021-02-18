@@ -25,8 +25,16 @@ public class UserController {
         System.out.println("Got users");
         return this.udb.findAll();
     }
-    @GetMapping("/findAllUsers/{id}")
+    @GetMapping("/findUser/{id}")
     public Optional<User> getUsers(@PathVariable int id){
+        System.out.println("Trying to get user with id: " + id);
         return this.udb.findById(id);
     }
+
+    @GetMapping("/findUserByUsername/{email}")
+    public User getUsers(@PathVariable String email){
+        System.out.println("username: " + email);
+        return this.udb.findByEmail(email);
+    }
+
 }
