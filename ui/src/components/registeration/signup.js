@@ -28,20 +28,28 @@ export default function Signup(props){
         }
     })
 
-    const onSignup=()=>{
+    const onSignup=async () => {
 
         if (validator.isEmail(email)) {
-
-            axios.post('http://localhost:8080/addUser',{
-                'password':password,
+            const json = JSON.stringify({
+                'id': 3,
+                'password': password,
                 'email': email,
-                'firstName':firstName,
-                'lastName':lastName,
+                'profilePic': null,
+                'firstName': firstName,
+                'lastName': lastName,
                 'birthday': birthDate,
-                'userType':userType,
-                'gender': gender
-                })
-                .then(function (response) {
+                'userType': userType,
+                'gender': gender,
+                'online': true,
+                'isDeleted': false
+            });
+            const res = axios.post('http://localhost:8080/addUser', json, {
+                headers: {
+                    // Overwrite Axios's automatically set Content-Type
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
                     // handle success
                     console.log(response);
                 })

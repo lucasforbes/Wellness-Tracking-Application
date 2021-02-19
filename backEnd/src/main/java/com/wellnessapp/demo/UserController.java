@@ -16,6 +16,7 @@ public class UserController {
     @PostMapping("/addUser")
     @ResponseBody
     public String saveUser(@RequestBody User user){
+        System.out.println("Trying to add new User");
         System.out.println("");
         udb.save(user);
         return "User added to database: " + user.getId();

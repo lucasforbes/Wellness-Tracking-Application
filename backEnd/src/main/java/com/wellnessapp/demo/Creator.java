@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.gridfs.GridFsObject;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.net.URL;
 import java.util.Date;
 @Document(collection = "Creator")
 public class Creator{
@@ -15,7 +16,7 @@ public class Creator{
     private String password;
     private String email;
     //    Possible way to store profile pictures?
-    private GridFsObject profilePic;
+    private URL profilePic;
     private String firstName;
     private String lastName;
     private String gender;
@@ -34,7 +35,7 @@ public class Creator{
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public Creator(int id, String password, String email, GridFsObject profilePic, String firstName, String lastName, Date birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
+    public Creator(int id, String password, String email, URL profilePic, String firstName, String lastName, Date birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
         this.id = id;
         this.password = password;
         this.email = email;
@@ -82,11 +83,11 @@ public class Creator{
         this.email = email;
     }
 
-    public GridFsObject getProfilePic() {
+    public URL getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(GridFsObject profilePic) {
+    public void setProfilePic(URL profilePic) {
         this.profilePic = profilePic;
     }
 
