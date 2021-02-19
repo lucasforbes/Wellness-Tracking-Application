@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-
+import axios from "axios";
 import {Card,Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
 
@@ -25,8 +25,17 @@ export default function Login(props){
 
     const onLogin=()=>{
 
+        axios.post('http://localhost:27017/login',{
+            User: "vishal",
+            Pass: password
+        })
+            .then((res)=>{
 
-    }
+             }).catch((err)=>{
+
+             })
+
+        }
 
 
 
@@ -83,7 +92,7 @@ export default function Login(props){
 
                                     <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
                                         onLogin()
-                                    }}> Signup </Button>
+                                    }}> Login </Button>
 
                                     <br/>
                                     <br/>
