@@ -2,15 +2,20 @@ import React,{useState,useEffect} from 'react';
 
 import {Card,Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
-
+import axios from "axios";
 import validator from 'validator';
 
 export default function Signup(props){
 
 
-    const [username,setUsername] = useState();
-    const [password,setPassword] = useState();
-    const [email,setEmail] = useState();
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [firstName,setFirstName] = useState("");
+    const [lastName,setLastName] = useState("");
+    // const [age,setAge] = useState(18);
+    const [birthDate,setBirthDate] = useState(new Date().toISOString().split("T")[0]);
+    const [gender,setGender] = useState("male");
+    const [userType,setUserType] = useState("User");
 
     const [isLoggedIn,setisLoggedIn] = useState(false);
 
@@ -18,7 +23,7 @@ export default function Signup(props){
         if ( localStorage.getItem('userName') )
         {
             setisLoggedIn(true)
-            setUsername(localStorage.getItem('userName'))
+            // setUsername(localStorage.getItem('userName'))
             props.history.push('/about')
         }
     })
@@ -26,6 +31,25 @@ export default function Signup(props){
     const onSignup=()=>{
 
         if (validator.isEmail(email)) {
+
+            axios.post('http://localhost:8080/addUser',{
+                'password':password,
+                'email': email,
+                'firstName':firstName,
+                'lastName':lastName,
+                'birthday': birthDate,
+                'userType':userType,
+                'gender': gender
+                })
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+
 
         } else {
             alert("Invalid Email")
@@ -41,7 +65,7 @@ export default function Signup(props){
 
                 <center>
 
-                    <div class='card' style={{alignItems:'center'}}>
+                    <div className='card' style={{alignItems:'center'}}>
 
 
 
@@ -59,51 +83,135 @@ export default function Signup(props){
 
                                   <Card.Body>
 
-                                      <TextField
-                                          required
-                                          style={{backgroundColor: 'white !important'}}
-                                          color={"secondary"}
-                                          label="Email"
-                                          id={"email"}
-                                          // variant="filled"
-                                          value={email}
-                                          onChange={(e)=>setEmail(e.target.value)}
-                                      />
+                                      <div className={"row"}>
 
-                                      <br/>
-                                      <br/>
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{backgroundColor: 'white !important'}}
+                                                  color={"secondary"}
+                                                  label="Email"
+                                                  id={"email"}
+                                                  // variant="filled"
+                                                  value={email}
+                                                  onChange={(e)=>setEmail(e.target.value)}
+                                              />
+                                          </div>
 
-                                      <TextField
-                                          required
-                                          style={{background:'white !important'}}
-                                          color={"secondary"}
-                                          label="Username"
-                                          // variant="filled"
-                                          value={username}
-                                          onChange={(e)=>setUsername(e.target.value)}
-                                      />
 
-                                      <br/>
-                                      <br/>
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{background:'white !important'}}
+                                                  color={"secondary"}
+                                                  label="Password"
+                                                  // variant="filled"
+                                                  type={"password"}
+                                                  value={password}
+                                                  onChange={(e)=>setPassword(e.target.value)}
 
-                                      <TextField
-                                          required
-                                          style={{background:'white !important'}}
-                                          color={"secondary"}
-                                          label="Password"
-                                          // variant="filled"
-                                          type={"password"}
-                                          value={password}
-                                          onChange={(e)=>setPassword(e.target.value)}
+                                              />
+                                          </div>
 
-                                      />
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{backgroundColor: 'white !important'}}
+                                                  color={"secondary"}
+                                                  label="First Name"
+                                                  id={"firstName"}
+                                                  // variant="filled"
+                                                  value={firstName}
+                                                  onChange={(e)=>setFirstName(e.target.value)}
+                                              />
+                                          </div>
 
-                                      <br/>
-                                      <br/>
 
-                                      <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
-                                          onSignup()
-                                      }}> Signup </Button>
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{background:'white !important'}}
+                                                  color={"secondary"}
+                                                  label="Last Name"
+                                                  // variant="filled"
+                                                  type={"text"}
+                                                  value={lastName}
+                                                  onChange={(e)=>setLastName(e.target.value)}
+
+                                              />
+                                          </div>
+
+
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{backgroundColor: 'white !important'}}
+                                                  color={"secondary"}
+                                                  label="Birth Date"
+                                                  id={"birthdate"}
+                                                  type={"date"}
+                                                  // variant="filled"
+                                                  value={birthDate}
+                                                  onChange={(e)=>setBirthDate(e.target.value)}
+                                              />
+                                          </div>
+
+
+                                          {/*<div className={"col-md-6"}>*/}
+                                          {/*    <TextField*/}
+                                          {/*        required*/}
+                                          {/*        style={{background:'white !important'}}*/}
+                                          {/*        color={"secondary"}*/}
+                                          {/*        label="Age"*/}
+                                          {/*        // variant="filled"*/}
+                                          {/*        type={"number"}*/}
+                                          {/*        value={age}*/}
+                                          {/*        onChange={(e)=>setAge(e.target.value)}*/}
+
+                                          {/*    />*/}
+                                          {/*</div>*/}
+
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{backgroundColor: 'white !important'}}
+                                                  color={"secondary"}
+                                                  label="Gender"
+                                                  id={"gender"}
+                                                  // variant="filled"
+                                                  value={gender}
+                                                  onChange={(e)=>setGender(e.target.value)}
+                                              />
+                                          </div>
+
+
+                                          <div className={"col-md-6"}>
+                                              <TextField
+                                                  required
+                                                  style={{background:'white !important'}}
+                                                  color={"secondary"}
+                                                  label="User type"
+                                                  // variant="filled"
+                                                  type={"text"}
+                                                  value={userType}
+                                                  onChange={(e)=>setUserType(e.target.value)}
+
+                                              />
+                                          </div>
+
+
+                                          <div className={"col-md-12"} style={{paddingTop:'10px'}}>
+
+
+
+                                          <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
+                                              onSignup()
+                                          }}> Signup </Button>
+
+                                        </div>
+
+
+                                      </div>
 
                                   </Card.Body>
                               </div>

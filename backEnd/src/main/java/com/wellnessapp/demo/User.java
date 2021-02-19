@@ -10,14 +10,17 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 @Getter
 @Setter
 @ToString
 
+@RestController
 @Document(collection="User")
 public class User {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

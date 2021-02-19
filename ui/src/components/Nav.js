@@ -14,7 +14,12 @@ export default function navigation(){
 
                 <Button variant="outline-primary" > <Link to={"/login"}> Login </Link> </Button> {''}
 
+                <Button variant="outline-primary" > <Link to={"/signup"}> Signup </Link> </Button> {''}
+
+
                 <Button variant="outline-primary"> <Link to={"/about"}> About </Link> </Button> {''}
+
+
 
             </div>
 
