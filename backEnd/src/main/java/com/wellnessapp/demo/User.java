@@ -3,6 +3,7 @@ package com.wellnessapp.demo;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.print.DocFlavor;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URL;
 import java.util.Date;
 @Getter
 @Setter
@@ -27,7 +29,7 @@ public class User {
     private String password;
     private String email;
     //    Possible way to store profile pictures?
-    private GridFsObject profilePic;
+    private URL profilePic;
     private String firstName;
     private String lastName;
     private String gender;
@@ -43,7 +45,7 @@ public class User {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public User(int id, String password, String email, GridFsObject profilePic, String firstName, String lastName, Date birthday, String gender,  Boolean online, Boolean isDeleted) {
+    public User(int id, String password, String email, URL profilePic, String firstName, String lastName, Date birthday, String gender, Boolean online, Boolean isDeleted) {
         this.id = id;
         this.password = password;
         this.email = email;
@@ -93,11 +95,11 @@ public class User {
         this.email = email;
     }
 
-    public GridFsObject getProfilePic() {
+    public URL getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(GridFsObject profilePic) {
+    public void setProfilePic(URL profilePic) {
         this.profilePic = profilePic;
     }
 
