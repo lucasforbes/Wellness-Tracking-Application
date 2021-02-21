@@ -4,6 +4,8 @@ import {Card,Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
 import axios from "axios";
 import validator from 'validator';
+import Alert from 'react-bootstrap/Alert'
+
 
 export default function Signup(props){
 
@@ -16,11 +18,12 @@ export default function Signup(props){
     const [birthDate,setBirthDate] = useState(new Date().toISOString().split("T")[0]);
     const [gender,setGender] = useState("male");
     const [userType,setUserType] = useState("User");
+    const[showAlert,setShowAlert] = useState(false);
 
     const [isLoggedIn,setisLoggedIn] = useState(false);
 
     useEffect(()=>{
-        if ( localStorage.getItem('userName') )
+        if ( localStorage.getItem('email') )
         {
             setisLoggedIn(true)
             // setUsername(localStorage.getItem('userName'))
@@ -47,11 +50,20 @@ export default function Signup(props){
             const res = axios.post('http://localhost:8080/addUser', json, {
                 headers: {
                     // Overwrite Axios's automatically set Content-Type
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 }
             }).then(function (response) {
                     // handle success
-                    console.log(response);
+                    console.log("signup status",response);
+
+                    setShowAlert(true);
+
+                    setTimeout(function(){ setShowAlert(false)
+                        localStorage.setItem('email', setEmail);
+                        setisLoggedIn(true)
+                    }, 3000);
+
                 })
                 .catch(function (error) {
                     // handle error
@@ -73,6 +85,10 @@ export default function Signup(props){
 
                 <center>
 
+                    {showAlert?
+                    <Alert severity="success"> Signup up successfully </Alert>
+                        :null
+                    }
                     <div className='card' style={{alignItems:'center'}}>
 
 

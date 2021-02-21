@@ -14,6 +14,7 @@ public class UserController {
     private UserRepository udb;
 
     @PostMapping("/addUser")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public String saveUser(@RequestBody User user){
         System.out.println("Trying to add new User");
