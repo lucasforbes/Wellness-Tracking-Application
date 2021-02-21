@@ -8,17 +8,17 @@ import validator from 'validator';
 export default function Login(props){
 
 
-    const [username,setUsername] = useState();
+    const [email,setEmail] = useState();
     const [password,setPassword] = useState();
 
 
     const [isLoggedIn,setisLoggedIn] = useState(false);
 
     useEffect(()=>{
-        if ( localStorage.getItem('userName') )
+        if ( localStorage.getItem('email') )
         {
             setisLoggedIn(true)
-            setUsername(localStorage.getItem('userName'))
+            setEmail(localStorage.getItem('email'))
             props.history.push('/about')
         }
     })
@@ -66,10 +66,10 @@ export default function Login(props){
                                         required
                                         style={{background:'white !important'}}
                                         color={"secondary"}
-                                        label="Username"
+                                        label="Email"
                                         // variant="filled"
-                                        value={username}
-                                        onChange={(e)=>setUsername(e.target.value)}
+                                        value={email}
+                                        onChange={(e)=>setEmail(e.target.value)}
                                     />
 
                                     <br/>

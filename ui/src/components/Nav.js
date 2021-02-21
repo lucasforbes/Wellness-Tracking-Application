@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 
 
-export default function navigation(){
+export default function navigation(props){
 
     return (
 
@@ -18,6 +18,17 @@ export default function navigation(){
 
 
                 <Button variant="outline-primary"> <Link to={"/about"}> About </Link> </Button> {''}
+
+                <Button variant="outline-primary" onClick={()=>{
+
+                    alert("Logged out")
+                    setTimeout(function(){
+                        localStorage.removeItem('email');
+                        window.open('/');
+
+                    }, 2000);
+
+                }}>  Logout </Button> {''}
 
 
 
