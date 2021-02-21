@@ -1,15 +1,28 @@
-package com.wellnessapp.demo;
-
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.gridfs.GridFsObject;
+package com.wellnessapp.demo.User;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.print.DocFlavor;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.gridfs.GridFsObject;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.net.URL;
 import java.util.Date;
-@Document(collection = "Creator")
-public class Creator{
+@Getter
+@Setter
+@ToString
+
+@RestController
+@Document(collection="User")
+public class User {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
@@ -21,13 +34,10 @@ public class Creator{
     private String lastName;
     private String gender;
     private Date birthday;
+    private String userType;
     private int age;
     private Date signUpTime;
-    private String userType;
-    private Boolean nutritionist;
-    private Boolean trainer;
-    private int level;
-    //    state of user: Online/Offline
+//    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
 
@@ -35,7 +45,7 @@ public class Creator{
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public Creator(int id, String password, String email, URL profilePic, String firstName, String lastName, Date birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
+    public User(int id, String password, String email, URL profilePic, String firstName, String lastName, Date birthday, String gender, Boolean online, Boolean isDeleted) {
         this.id = id;
         this.password = password;
         this.email = email;
@@ -43,17 +53,14 @@ public class Creator{
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
-        this.nutritionist = nutritionist;
-        this.trainer = trainer;
-//        set up age as a function of birthday
-        this.userType = "Creator";
-        this.level = 0;
+        //set up age as a function of now to birthday
+        this.userType = "User";
         this.gender = gender;
         this.online = online;
         this.isDeleted = isDeleted;
     }
 
-    public Creator() {
+    public User() {
 
     }
 
@@ -66,6 +73,11 @@ public class Creator{
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getPassword() {
         return password;
@@ -137,57 +149,5 @@ public class Creator{
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public Boolean getNutritionist() {
-        return nutritionist;
-    }
-
-    public void setNutritionist(Boolean nutritionist) {
-        this.nutritionist = nutritionist;
-    }
-
-    public Boolean getTrainer() {
-        return trainer;
-    }
-
-    public void setTrainer(Boolean trainer) {
-        this.trainer = trainer;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 }

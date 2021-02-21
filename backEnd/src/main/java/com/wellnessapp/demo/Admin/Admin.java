@@ -1,4 +1,4 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.Admin;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
@@ -18,6 +18,7 @@ public class Admin {
     private String firstName;
     private String lastName;
     private String phone;
+    private String userType;
 
     public Admin(int id, String password, String email,  String firstName, String lastName, String phone) {
         this.id = id;
@@ -26,6 +27,7 @@ public class Admin {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
+        this.userType = "Admin";
     }
 
     public Admin() {
@@ -64,6 +66,14 @@ public class Admin {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public void setFirstName(String firstName) {

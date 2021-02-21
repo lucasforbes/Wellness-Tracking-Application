@@ -1,4 +1,4 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.SignInLogIn;
 
 public class SignInArray {
     private String email;

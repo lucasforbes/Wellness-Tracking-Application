@@ -1,4 +1,4 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.Admin;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
