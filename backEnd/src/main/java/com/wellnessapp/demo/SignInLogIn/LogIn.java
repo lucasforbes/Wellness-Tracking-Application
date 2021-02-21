@@ -1,4 +1,4 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.SignInLogIn;
 
 import org.apache.tomcat.util.json.Token;
 

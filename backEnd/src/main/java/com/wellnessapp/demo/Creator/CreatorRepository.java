@@ -1,8 +1,6 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.Creator;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import java.util.List;
 
 public interface CreatorRepository extends MongoRepository<Creator, Integer> {
     // possible functions for querrying the db

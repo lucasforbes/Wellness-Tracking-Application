@@ -1,10 +1,12 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.SignInLogIn;
 
+import com.wellnessapp.demo.Admin.AdminRepository;
+import com.wellnessapp.demo.Creator.CreatorRepository;
+import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.User.UserRepository;
+import org.h2.util.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class SignInController {
@@ -15,41 +17,45 @@ public class SignInController {
     @Autowired
     private AdminRepository adb;
 
+//    instances of blank users/creator/admins fill in with correct info if email password matches and return
+
     @PostMapping("/signIn")
     @ResponseBody
-    public Boolean signIn(@RequestBody SignInArray signInArray){
+    public ReturnInfo signIn(@RequestBody SignInArray signInArray){
         System.out.println("");
         String email = signInArray.getEmail();
         String password = signInArray.getPassword();
         try{
             String tempPassword = udb.findByEmail(email).getPassword();
             if(tempPassword.compareTo(password) == 0){
-                return true;
+                User currentUser = udb.findByEmail(email);
+                ReturnInfo retInfo  = new ReturnInfo(currentUser);
+                return retInfo;
             }
             else{
-                return false;
+                return new ReturnInfo(0);
             }
         }catch (Exception e){
             try{
                 String tempPassword = cdb.findByEmail(email).getPassword();
                 if(tempPassword.compareTo(password) == 0){
-                    return true;
+                    return new ReturnInfo(cdb.findByEmail(email));
                 }
                 else{
-                    return false;
+                    return new ReturnInfo(0);
                 }
             }
             catch (Exception f){
                 try{
                     String tempPassword = adb.findByEmail(email).getPassword();
                     if(tempPassword.compareTo(password) == 0){
-                        return true;
+                        return new ReturnInfo(adb.findByEmail(email));
                     }
                     else{
-                        return false;
+                        return new ReturnInfo(0);
                     }
                 }catch (Exception g){
-                    return false;
+                    return new ReturnInfo(1);
                 }
             }
         }

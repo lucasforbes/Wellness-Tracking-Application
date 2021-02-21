@@ -1,4 +1,4 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

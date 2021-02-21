@@ -1,4 +1,4 @@
-package com.wellnessapp.demo;
+package com.wellnessapp.demo.SignInLogIn;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Component;

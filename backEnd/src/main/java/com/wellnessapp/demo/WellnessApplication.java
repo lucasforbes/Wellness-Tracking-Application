@@ -1,20 +1,17 @@
 package com.wellnessapp.demo;
 
+import com.wellnessapp.demo.Admin.Admin;
+import com.wellnessapp.demo.Admin.AdminRepository;
+import com.wellnessapp.demo.Creator.Creator;
+import com.wellnessapp.demo.Creator.CreatorRepository;
+import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.data.mongodb.gridfs.GridFsObject;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Query.query;
 
 @SpringBootApplication
 //@RestController
