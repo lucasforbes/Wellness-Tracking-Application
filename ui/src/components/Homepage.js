@@ -1,12 +1,16 @@
 import React from "react";
-import {Card} from 'react-bootstrap';
-//this is a test
-//test test
-//coming frmoo intellij
+import {Card, Form, Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
+import ContactUs from "./registeration/ContactUs";
+import HomePageMainCard from "./registeration/HomePageMainCard";
+
 
 export default function Homepage(){
     return(
+        ContactUs()
+    )
+
+    /*return(
         <Card style = {{ width: '18rem' }} >
             <Card.Header> Homepage</Card.Header>
             <Card.Title>Welcome to our wellness tracker</Card.Title>
@@ -19,5 +23,5 @@ export default function Homepage(){
                 </Card.Text>
             </Card.Body>
         </Card>
-    )
+    )*/
 }
