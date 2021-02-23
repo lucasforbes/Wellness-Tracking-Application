@@ -20,14 +20,12 @@ export default function Signup(props){
     const [userType,setUserType] = useState("User");
     const[showAlert,setShowAlert] = useState(false);
 
-    const [isLoggedIn,setisLoggedIn] = useState(false);
+
 
     useEffect(()=>{
         if ( localStorage.getItem('email') )
         {
-            setisLoggedIn(true)
-            // setUsername(localStorage.getItem('userName'))
-            props.history.push('/about')
+            props.history.push('/dashboard')
         }
     })
 
@@ -59,10 +57,11 @@ export default function Signup(props){
 
                     setShowAlert(true);
 
+                    localStorage.setItem('email', setEmail);
+
                     setTimeout(function(){ setShowAlert(false)
-                        localStorage.setItem('email', setEmail);
-                        setisLoggedIn(true)
-                    }, 3000);
+                        props.history.push('/dashboard');
+                    }, 1500);
 
                 })
                 .catch(function (error) {

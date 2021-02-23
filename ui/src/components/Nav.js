@@ -24,7 +24,7 @@ export default function navigation(props){
                     alert("Logged out")
                     setTimeout(function(){
                         localStorage.removeItem('email');
-                        window.open('/');
+                        window.location.href = "/";
 
                     }, 2000);
 
