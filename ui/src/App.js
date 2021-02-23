@@ -13,6 +13,8 @@ import HomePageMainCard from "./components/registeration/HomePageMainCard";
 import Login from "./components/registeration/login";
 import Signup from "./components/registeration/signup";
 
+import UserDashboard from "./components/customers/UserDashboard";
+
 function App() {
   return (
       <Router>
@@ -24,6 +26,7 @@ function App() {
               <Route path="/login" exact component={Login}/>
               <Route path="/about" exact component={Placeholder}/>
               <Route path="/signup" exact component={Signup}/>
+              <Route path="/dashboard" exact component={UserDashboard}/>
 
 
 

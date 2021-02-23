@@ -11,32 +11,80 @@ export default function Login(props){
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
 
-
-    const [isLoggedIn,setisLoggedIn] = useState(false);
-
     useEffect(()=>{
         if ( localStorage.getItem('email') )
         {
-            setisLoggedIn(true)
-            setEmail(localStorage.getItem('email'))
-            props.history.push('/about')
+            // setEmail(localStorage.getItem('email'))
+            props.history.push('/dashboard')
         }
     })
 
-    const onLogin=()=>{
+    // const onLogin=()=>{
+    //
+    //     axios.post('http://localhost:27017/login',{
+    //         User: "vishal",
+    //         Pass: password
+    //     })
+    //         .then((res)=>{
+    //
+    //          }).catch((err)=>{
+    //
+    //          })
+    //
+    //     }
 
-        axios.post('http://localhost:27017/login',{
-            User: "vishal",
-            Pass: password
-        })
-            .then((res)=>{
 
-             }).catch((err)=>{
+    const onLogin=async () => {
 
-             })
+        if (validator.isEmail(email)) {
+            const json = JSON.stringify({
+                'password': password,
+                'email': email
+            });
+            const res = axios.post('http://localhost:8080/signIn', json, {
+                headers: {
+                    // Overwrite Axios's automatically set Content-Type
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            }).then(function (response) {
+                // handle success
+                console.log("login status",response);
 
+                if(response.data.status){
+                    alert("Successfully logged In");
+
+                    localStorage.setItem('email', response.data.email);
+
+
+                    setTimeout(function(){
+                        props.history.push('/dashboard');
+                    }, 1500);
+                }
+
+                else{
+
+                    alert(response.data.errorMessage)
+
+                }
+
+
+
+
+
+
+            })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+
+
+        } else {
+            alert("Invalid Email")
+            document.getElementById("email").focus();
         }
-
+    }
 
 
     return (

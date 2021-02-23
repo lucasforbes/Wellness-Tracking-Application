@@ -20,6 +20,7 @@ public class SignInController {
 //    instances of blank users/creator/admins fill in with correct info if email password matches and return
 
     @PostMapping("/signIn")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public ReturnInfo signIn(@RequestBody SignInArray signInArray){
         System.out.println("");
