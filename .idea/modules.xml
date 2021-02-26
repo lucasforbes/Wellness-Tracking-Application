@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Wellness-Tracking-Application.iml" filepath="$PROJECT_DIR$/.idea/Wellness-Tracking-Application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backEnd/crudrepositoryex.iml" filepath="$PROJECT_DIR$/backEnd/crudrepositoryex.iml" />
       <module fileurl="file://$PROJECT_DIR$/backEnd/demo.iml" filepath="$PROJECT_DIR$/backEnd/demo.iml" />
     </modules>
   </component>
