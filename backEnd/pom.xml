@@ -18,7 +18,7 @@
 <!--    <name>registration</name>-->
 <!--    <description>backend for registration sprint</description>-->
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -46,7 +46,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -67,16 +66,17 @@
     <build>
         <plugins>
             <plugin>
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>0.5.1</version>
-                <configuration>
-                    <appName>WellnessApplication</appName>
-                </configuration>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+<!--                <groupId>com.heroku.sdk</groupId>-->
+<!--                <artifactId>heroku-maven-plugin</artifactId>-->
+<!--                <version>0.5.1</version>-->
+<!--                <configuration>-->
+<!--                    <appName>WellnessApplication</appName>-->
+<!--                </configuration>-->
             </plugin>
         </plugins>
+        <defaultGoal>compile</defaultGoal>
     </build>
 
 </project>
