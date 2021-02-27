@@ -15,16 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URL;
 import java.util.Date;
+
 @Getter
 @Setter
 @ToString
 
 @RestController
-@Document(collection="User")
+@Document(collection = "User")
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String password;
     private String email;
@@ -37,7 +38,7 @@ public class User {
     private String userType;
     private int age;
     private Date signUpTime;
-//    state of user: Online/Offline
+    //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
 
