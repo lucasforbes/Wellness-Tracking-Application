@@ -19,7 +19,7 @@ function App() {
   return (
       <Router>
 
-          <Nav/>
+          <Nav style={{color: 'black', fontSize: '200%'}}/>
           <Switch>
 
               <Route path="/" exact component={Homepage}/>

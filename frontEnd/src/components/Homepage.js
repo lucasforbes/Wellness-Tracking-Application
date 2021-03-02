@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Card, Form, Button, Container, Row, Col, ModalFooter} from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
 import ContactUs from "./registeration/ContactUs";
@@ -7,12 +7,16 @@ import {CardHeader} from "@material-ui/core";
 
 
 export default function Homepage(){
+
+    const [email,setEmail] = useState();
+    const [message,setMessage] = useState();
+
     return(
         <>
             <Card className="bg-dark text-white">
                 <Card.Img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
                 <Card.ImgOverlay>;
-                    <Card.Title style={{ fontSize: '1000%', border: '2000px', textAlign: 'center', color: 'Blue'}}>Bloom Wellness</Card.Title>
+                    <Card.Title style={{ fontSize: '1000%', border: '2000px', textAlign: 'center', color: 'White'}}>Bloom Wellness</Card.Title>
                     <Card.Text  style={{ fontSize: '200%', textAlign: 'center', color: 'white'}}>
                         Eat well, Train well, Be well
                     </Card.Text>
