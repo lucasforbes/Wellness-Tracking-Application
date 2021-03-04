@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
 
 import {Card,Button} from 'react-bootstrap';
-import {TextField} from '@material-ui/core/';
+import {TextField,Select,FormControl} from '@material-ui/core/';
 import axios from "axios";
 import validator from 'validator';
 import Alert from 'react-bootstrap/Alert'
+import {InputLabel, MenuItem} from "@material-ui/core";
 
 
 export default function Signup(props){
@@ -164,8 +165,10 @@ export default function Signup(props){
                                               />
                                           </div>
 
+                                          <div className={'col-md-12'}> <br/> </div>
 
-                                          <div className={"col-md-6"}>
+
+                                          <div className={"col-md-4"}>
                                               <TextField
                                                   required
                                                   style={{backgroundColor: 'white !important'}}
@@ -180,46 +183,46 @@ export default function Signup(props){
                                           </div>
 
 
-                                          {/*<div className={"col-md-6"}>*/}
-                                          {/*    <TextField*/}
-                                          {/*        required*/}
-                                          {/*        style={{background:'white !important'}}*/}
-                                          {/*        color={"secondary"}*/}
-                                          {/*        label="Age"*/}
-                                          {/*        // variant="filled"*/}
-                                          {/*        type={"number"}*/}
-                                          {/*        value={age}*/}
-                                          {/*        onChange={(e)=>setAge(e.target.value)}*/}
+                                          <div className={"col-md-4"}>
 
-                                          {/*    />*/}
-                                          {/*</div>*/}
+                                              <FormControl>
+                                                  <InputLabel>Gender</InputLabel>
+                                                  <Select
+                                                      value={gender}
+                                                      onChange={(e)=>setGender(e.target.value)}
+                                                      style={{width:'100px'}}
+                                                  >
+                                                      <MenuItem value={"male"}>Male</MenuItem>
+                                                      <MenuItem value={"female"}>Female</MenuItem>
+                                                      <MenuItem value={"other"}>Other</MenuItem>
+                                                  </Select>
+                                              </FormControl>
 
-                                          <div className={"col-md-6"}>
-                                              <TextField
-                                                  required
-                                                  style={{backgroundColor: 'white !important'}}
-                                                  color={"secondary"}
-                                                  label="Gender"
-                                                  id={"gender"}
-                                                  // variant="filled"
-                                                  value={gender}
-                                                  onChange={(e)=>setGender(e.target.value)}
-                                              />
+
                                           </div>
 
 
-                                          <div className={"col-md-6"}>
-                                              <TextField
-                                                  required
-                                                  style={{background:'white !important'}}
-                                                  color={"secondary"}
-                                                  label="User type"
-                                                  // variant="filled"
-                                                  type={"text"}
-                                                  value={userType}
-                                                  onChange={(e)=>setUserType(e.target.value)}
 
-                                              />
+
+
+                                          <div className={"col-md-4"}>
+
+                                              <FormControl>
+                                                  <InputLabel>User Type</InputLabel>
+                                                  <Select
+                                                      value={userType}
+                                                      onChange={(e)=>setUserType(e.target.value)}
+                                                      style={{width:'100px'}}
+                                                  >
+                                                      <MenuItem value={"User"}>User</MenuItem>
+                                                      <MenuItem value={"Professional"}>Professional</MenuItem>
+                                                      <MenuItem value={"Admin"}>Admin</MenuItem>
+                                                  </Select>
+                                              </FormControl>
+
+
+
+
                                           </div>
 
 
