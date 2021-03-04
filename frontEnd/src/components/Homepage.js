@@ -31,21 +31,8 @@ export default function Homepage(){
                 </Row>
                 <Row>
                     <Col>
-                        <Card margin = '500px!important' style={{ width: '18rem', borderWidth: '2px', borderColor: 'Blue'}} bg = 'light'>
-                            <Card.Img variant="top" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.forksoverknives.com%2Fwp-content%2Fuploads%2Fdiet-brain-health1.jpg&f=1&nofb=1" />
-                            <Card.Body>
-                                <Card.Title>Diet Programs</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Eat Well</Card.Subtitle>
-                                <Card.Text>
-                                    Find diet programs here
-                                </Card.Text>
-                                <Card.Link href="#">click here</Card.Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card style={{ width: '18rem',  borderColor: 'red', borderWidth:'2px'}} bg = 'light'>
-                            <Card.Img variant="top" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.nLTQnuDatk12dJ6zXz2yRwHaFS%26pid%3DApi&f=1" />
+                        <Card style={{ width: '350px',  borderColor: 'Red Orange', borderWidth:'2px'}} bg = 'light'>
+                            <Card.Img style= {{height:'300px' }} variant="top" src="Exercise_Icon.jpg" />
                             <Card.Body>
                                 <Card.Title>Exercise Programs</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Train Well</Card.Subtitle>
@@ -57,13 +44,27 @@ export default function Homepage(){
                         </Card>
                     </Col>
                     <Col>
-                        <Card style={{ width: '18rem', borderColor: 'yellow', borderWidth:'2px'}} bg = 'light'>
-                            <Card.Img variant="top" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newhope.com%2Fsites%2Fnewhope360.com%2Ffiles%2Fstyles%2Farticle_featured_retina%2Fpublic%2Fwellness-women.jpg%3Fitok%3DiHY2A9ZR&f=1&nofb=1" />
+
+                        <Card margin = '500px!important' style={{ width: '350px', borderWidth: '2px', borderColor: 'Blue Green'}} bg = 'light'>
+                            <Card.Img style= {{height:'300px' }} variant="top" src="forksandknivesss.jpg" />
                             <Card.Body>
-                                <Card.Title>Bloom Wellness</Card.Title>
+                                <Card.Title>Diet Programs</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">Eat Well</Card.Subtitle>
+                                <Card.Text>
+                                    Find diet programs here
+                                </Card.Text>
+                                <Card.Link href="#">click here</Card.Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card style={{ width: '350px'  , borderColor: 'Purple Blue', borderWidth:'2px'}} bg = 'light'>
+                            <Card.Img style= {{height:'300px' }} variant="top" src="./Wellness_Icon.jpg" />
+                            <Card.Body>
+                                <Card.Title>Mental Wellness Programs</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">Be Well</Card.Subtitle>
                                 <Card.Text>
-                                    Access to diet and exercise programs
+                                    Access to wellness programs
                                 </Card.Text>
                                 <Card.Link href="#">Card Link</Card.Link>
                             </Card.Body>
@@ -118,3 +119,5 @@ export default function Homepage(){
         </Card>
     )*/
 }
+
+
