@@ -2,12 +2,13 @@ import React,{useState,useEffect} from 'react';
 import axios from "axios";
 import {Card,Button} from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
-
+import {useSelector,useDispatch} from 'react-redux';
+import {loginAction,logoutAction} from '../../actions/login';
 import validator from 'validator';
 
 export default function Login(props){
 
-
+    const dispatch = useDispatch();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
 
@@ -41,7 +42,7 @@ export default function Login(props){
                 'password': password,
                 'email': email
             });
-            const res = axios.post('http://localhost:8080/signIn', json, {
+            const res = axios.post('https://bloom-wellness-back.herokuapp.com/signIn', json, {
                 headers: {
                     // Overwrite Axios's automatically set Content-Type
                     'Content-Type': 'application/json',
@@ -55,6 +56,8 @@ export default function Login(props){
                     alert("Successfully logged In");
 
                     localStorage.setItem('email', response.data.email);
+
+                    dispatch(loginAction())
 
 
                     setTimeout(function(){

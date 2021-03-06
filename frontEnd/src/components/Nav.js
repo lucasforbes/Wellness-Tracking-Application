@@ -2,17 +2,20 @@ import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import {useEffect, useState} from "react";
-
+import {useSelector,useDispatch} from 'react-redux';
+import {loginAction,logoutAction} from "../actions/login";
 
 export default function Navigation(props){
 
 
-    const[userLoggedIn,setUserLoggedIn] =  useState(false);
+    const userLoggedIn = useSelector(state => state)
+
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         if ( localStorage.getItem('email') )
         {
-            setUserLoggedIn(true)
+            dispatch(loginAction())
         }
     })
 
@@ -36,7 +39,7 @@ export default function Navigation(props){
 
 
                 {userLoggedIn?
-                <Button variant="outline-primary" onClick={()=>{
+                <Button variant="outline-danger" onClick={()=>{
 
                     alert("Logged out")
                     setTimeout(function(){
