@@ -6,11 +6,12 @@ import axios from "axios";
 import validator from 'validator';
 import Alert from 'react-bootstrap/Alert'
 import {InputLabel, MenuItem} from "@material-ui/core";
-
+import {useSelector,useDispatch} from 'react-redux';
+import {loginAction,logoutAction} from '../../actions/login';
 
 export default function Signup(props){
 
-
+    const dispatch = useDispatch();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [firstName,setFirstName] = useState("");
@@ -46,7 +47,7 @@ export default function Signup(props){
                 'online': true,
                 'isDeleted': false
             });
-            const res = axios.post('http://localhost:8080/addUser', json, {
+            const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', json, {
                 headers: {
                     // Overwrite Axios's automatically set Content-Type
                     'Content-Type': 'application/json',
@@ -59,6 +60,7 @@ export default function Signup(props){
                     setShowAlert(true);
 
                     localStorage.setItem('email', setEmail);
+                    dispatch(loginAction())
 
                     setTimeout(function(){ setShowAlert(false)
                         props.history.push('/dashboard');
