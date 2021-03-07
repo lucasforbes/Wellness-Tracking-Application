@@ -1,0 +1,28 @@
+###
+#* 1. MongoDB configuration
+#* Point to the uri of MongoDB Atlas
+#* 2. Email configuration
+#* Using QQ mail, I cannot access gmail in China, we can change it to gmail afterwards
+####
+#spring.data.mongodb.uri=mongodb+srv://admin:admin@bloom.wpazh.mongodb.net/bloom?retryWrites=true&w=majority
+#spring.data.mongodb.port=27017
+#spring.data.mongodb.database=bloom
+#spring.data.rest.base-path=/api
+#spring.data.mongodb.username=admin
+#spring.data.mongodb.password=chron
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@bloom.wpazh.mongodb.net/bloom?retryWrites=true&w=majority
+  mail:
+    host: smtp.qq.com
+    username: 1072846210@qq.com
+    password: kyxpwrsqqpoabgad
+    properties.mail.smtp.port: 465
+    from: 1072846210@qq.com
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
+    default-encoding: utf-8
+
+
