@@ -67,7 +67,9 @@ export default function Homepage() {
                 <tbody>
                 <Container fluid style={{backgroundColor: 'white'}}>
                     <Row style = {{fontSize: "200%"}}>
-                        Browse our offerings here
+                        <Card style={{}}>
+                            fill
+                        </Card>
                     </Row>
 
 
@@ -121,8 +123,8 @@ export default function Homepage() {
                         <Col></Col>
                     </Row>
 
-                    <Form style={{width: '600px'}}>
-                        <header style={{ fontSize: '200%', color: 'gray'}}>
+                    <Form style={{width: '600px', border: 'solid',borderColor: 'lightgrey', padding: '10px'}}>
+                        <header style={{ fontSize: '200%', color: 'grey'}}>
                             Contact Us
                         </header>
 
