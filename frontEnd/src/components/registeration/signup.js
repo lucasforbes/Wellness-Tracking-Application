@@ -27,7 +27,8 @@ export default function Signup(props){
     useEffect(()=>{
         if ( localStorage.getItem('email') )
         {
-            props.history.push('/dashboard')
+            window.open("/dashboard", "_self")
+            // props.history.push('/dashboard')
         }
     })
 
