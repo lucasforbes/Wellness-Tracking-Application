@@ -16,7 +16,8 @@ export default function Login(props){
         if ( localStorage.getItem('email') )
         {
             // setEmail(localStorage.getItem('email'))
-            props.history.push('/dashboard')
+            window.open("/dashboard", "_self")
+            // props.history.push('/dashboard')
         }
     })
 
@@ -53,15 +54,18 @@ export default function Login(props){
                 console.log("login status",response);
 
                 if(response.data.status){
-                    alert("Successfully logged In");
+                    // alert("Successfully logged In");
 
                     localStorage.setItem('email', response.data.email);
 
                     dispatch(loginAction())
 
-
                     setTimeout(function(){
-                        props.history.push('/dashboard');
+                        // props.history.push('/dashboard');
+                        // window.open("/dashboard", "_self")
+                            window.open("/dashboard", "_self")
+                            localStorage.setItem('userType', response.data.userType);
+
                     }, 1500);
                 }
 
@@ -98,18 +102,14 @@ export default function Login(props){
                 <div class='card' style={{alignItems:'center'}}>
 
 
-
-                    <Card  bgstyle={{ width: '18rem' , border: 'none'}} >
+                    <Card  bgstyle={{ border: 'none'}} >
 
                         <div className={'row'}>
 
-                            <div className={'col-md-7'}>
-                                <img src={process.env.PUBLIC_URL + '/Meditation.PNG'} />
-                            </div>
 
-                            <div className={'col-md-5'}>
+                            <div className={'col-md-12'}>
 
-                                <h3 style={{fontSize:'20px', backgroundColor: 'white !important'}}> <b> <strong> Login </strong></b>  </h3>
+                                <h3 style={{fontSize:'20px', color: 'black !important'}}> <b> <strong>  Login </strong></b>  </h3>
 
                                 <Card.Body>
 
@@ -147,10 +147,6 @@ export default function Login(props){
                                     }}> Login </Button>
 
                                     <br/>
-                                    <br/>
-
-                                    <p onClick={()=>props.history.push('/signup')}> New User Sign Up Here </p>
-
 
                                 </Card.Body>
                             </div>
