@@ -64,7 +64,9 @@ export default function Signup(props){
                     dispatch(loginAction())
 
                     setTimeout(function(){ setShowAlert(false)
-                        props.history.push('/dashboard');
+                        // props.history.push('/dashboard');
+                        window.open("/dashboard", "_self")
+                        localStorage.setItem('userType', response.data.userType);
                     }, 1500);
 
                 })

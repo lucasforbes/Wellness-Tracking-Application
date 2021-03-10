@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from "react";
+import ProfessionalDashboard from "./professional/professionalDashboard";
 
 export default function Maindashboard(){
 
@@ -19,7 +20,7 @@ export default function Maindashboard(){
             Usertype : {" "+userType}
             <br/>
 
-            {userType? <> Dashboard </>
+            {userType == "Professional" ? <><ProfessionalDashboard/> </>
                 : ""}
 
         </>
