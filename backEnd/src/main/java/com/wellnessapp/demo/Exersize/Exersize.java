@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Exersize {
-    int creatorID;
+    int userID;
     List<SingleExersize> allExersizes;
     public Exersize(int creatorID){
-        this.creatorID = creatorID;
+        this.userID = creatorID;
         allExersizes = new List<SingleExersize>() {
             @Override
             public int size() {
