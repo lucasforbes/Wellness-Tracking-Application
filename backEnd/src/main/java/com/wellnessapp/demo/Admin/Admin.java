@@ -1,5 +1,7 @@
 package com.wellnessapp.demo.Admin;
 
+import com.wellnessapp.demo.WellnessApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 
@@ -9,9 +11,10 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Document(collection="Admin")
-public class Admin {
+public class Admin extends WellnessApplication {
+    @Autowired
+    private AdminRepository adb;
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String password;
     private String email;
@@ -20,8 +23,12 @@ public class Admin {
     private String phone;
     private String userType;
 
-    public Admin(int id, String password, String email,  String firstName, String lastName, String phone) {
-        this.id = id;
+    public Admin(String password, String email,  String firstName, String lastName, String phone) {
+        try{
+            this.id = (int) adb.count() + 1;
+        }catch (Exception e){
+            this.id = 0;
+        }
         this.password = password;
         this.email = email;
         this.firstName = firstName;

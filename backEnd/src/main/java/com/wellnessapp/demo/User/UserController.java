@@ -15,6 +15,8 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public String saveUser(@RequestBody User user){
+        int count = udb.findAll().size();
+        user.setId(count);
         System.out.println("Trying to add new User");
         System.out.println("");
         udb.save(user);
