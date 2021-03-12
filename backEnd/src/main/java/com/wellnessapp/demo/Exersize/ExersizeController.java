@@ -20,7 +20,7 @@ public class ExersizeController {
         edb.save(exersize);
         return "Exersize Plan Saved";
     }
-    @GetMapping("/findByUserID/{id, name}")
+    @GetMapping("/findExersizeByUserID/{id, name}")
     public Exersize findByUserID(@PathVariable int id, @PathVariable String name){
         System.out.println("Got All Exersizes");
         return this.edb.findByUserID(id, name);
@@ -30,7 +30,7 @@ public class ExersizeController {
         System.out.println("Got All Exersizes");
         return this.edb.findAll();
     }
-    @GetMapping("/findByUserID/{id}")
+    @GetMapping("/findExersizeByUserID/{id}")
     public Optional<Exersize> getUsers(@PathVariable int id){
         return this.edb.findById(id);
     }

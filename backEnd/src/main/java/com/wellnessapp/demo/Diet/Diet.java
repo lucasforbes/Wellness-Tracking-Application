@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Diet {
-    int userId;
+    int userID;
     List<SingleDiet> allDiets;
     public Diet(int creatorId){
-        this.userId = creatorId;
+        this.userID = creatorId;
         allDiets = new List<SingleDiet>() {
             @Override
             public int size() {

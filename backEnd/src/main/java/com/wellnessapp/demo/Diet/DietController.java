@@ -13,19 +13,19 @@ public class DietController {
     @Autowired
     private DietRepository ddb;
 
-    @PostMapping("/addExersize")
+    @PostMapping("/addDiet")
     @ResponseBody
     public String saveExersize(@RequestBody Diet diet){
         System.out.println("");
         ddb.save(diet);
         return "Exersize Plan Saved";
     }
-    @GetMapping("/findByUserID/{id, name}")
+    @GetMapping("/findDietByUserID/{id, name}")
     public Diet findByUserID(@PathVariable int id, @PathVariable String name){
         System.out.println("Got All Exersizes");
         return this.ddb.findByUserID(id, name);
     }
-    @GetMapping("/findAllExersizes")
+    @GetMapping("/findAllDiets")
     public List<Diet> findByUserID(){
         System.out.println("Got All Diets");
         return this.ddb.findAll();
