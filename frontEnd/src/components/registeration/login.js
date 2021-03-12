@@ -99,24 +99,24 @@ export default function Login(props){
 
             <center>
 
-                <div class='card' style={{alignItems:'center'}}>
+                <div class='card' style={{alignItems:'center', padding: '15px',opacity: '.8' , backgroundColor: 'gray'}}>
 
 
                     <Card  bgstyle={{ border: 'none'}} >
 
-                        <div className={'row'}>
+                        <div className={'row'} >
 
 
                             <div className={'col-md-12'}>
 
-                                <h3 style={{fontSize:'20px', color: 'black !important'}}> <b> <strong>  Login </strong></b>  </h3>
+                                <h3 style={{fontSize:'30px', color: 'black !important'}}> <b> <strong>  Login </strong></b>  </h3>
 
-                                <Card.Body>
+                                <Card.Body style={{backgroundColor: 'lightgrey'}} >
 
                                     <TextField
                                         required
-                                        style={{background:'white !important'}}
-                                        color={"secondary"}
+                                        style={{background:'black !important'}}
+                                        color={"blue"}
                                         label="Email"
                                         // variant="filled"
                                         id={"email"}
