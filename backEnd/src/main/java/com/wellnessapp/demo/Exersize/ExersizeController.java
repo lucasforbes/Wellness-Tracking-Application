@@ -34,6 +34,4 @@ public class ExersizeController {
     public Optional<Exersize> getUsers(@PathVariable int id){
         return this.edb.findById(id);
     }
-
-
 }
