@@ -36,17 +36,23 @@ export default function Homepage() {
                     <Card.ImgOverlay>;
 
                      <div className={'row'}>
+
                          <div className={'col-md-8'}>
-                             <Card.Title style={{ fontSize: '1000%', border: '2000px', textAlign: 'center', color: 'White'}}>Bloom Wellness</Card.Title>
-                             <Card.Text  style={{ fontSize: '200%', textAlign: 'center', color: 'white'}}>
+                             <Card.Title style={{ fontSize: '1000%', border: '2000px', textAlign: 'center', color: 'White', position: 'relative', left: '500px'}}>Bloom Wellness</Card.Title>
+                             <Card.Text  style={{ fontSize: '200%',  textAlign: 'center', color: 'white',  position: 'relative', left: '500px'}}>
                                  Eat well, Train well, Be well
                              </Card.Text>
                          </div>
 
-                         <div className={'col-md-2'} style={{color:'black'}}>
+
+
+
+                     </div>
+
+                     <div className={'row'}>
+                         <div className={'col-md-2'} style={{color:'black', position: 'relative', bottom: '110px', right: '-200px'}}>
                              <Login/>
                          </div>
-
                      </div>
 
                     </Card.ImgOverlay>
@@ -57,16 +63,16 @@ export default function Homepage() {
                 <tbody>
                 <Container fluid style={{backgroundColor: 'white'}}>
                     <Row style = {{fontSize: "200%"}}>
-                        <Card style={{}}>
-                            fill
+                        <Card style={{backgroundColor: 'lightgrey', width: '100%'}}>
+                            /
                         </Card>
                     </Row>
 
 
-                    <Row>
+                    <Row style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '20px'}}>
                         <Col>
                             <Card style={{width: '350px', borderColor: 'Red Orange', borderWidth: '2px'}}>
-                                <Card.Img style={{height: '300px'}} variant="top" src="Exercise_Icon.jpg"/>
+                                <Card.Img style={{height: '19rem'}} variant="top" src="Exercise_Icon.jpg"/>
                                 <Card.Body>
                                     <Card.Title>Exercise Programs</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">Train Well</Card.Subtitle>
@@ -105,6 +111,9 @@ export default function Homepage() {
                                 </Card.Body>
                             </Card>
                         </Col>
+
+
+
                     </Row>
                     <Row>
                         <Col>
