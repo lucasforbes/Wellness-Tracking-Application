@@ -8,6 +8,7 @@ import org.h2.util.json.JSONArray;
 import org.h2.util.json.JSONObject;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.h2.value.Value.JSON;
@@ -24,7 +25,7 @@ public class ReturnInfo {
     private String firstName;
     private String lastName;
     private String gender;
-    private Date birthday;
+    private LocalDate birthday;
     private int age;
     private Date signUpTime;
     private String userType;
@@ -168,11 +169,11 @@ public class ReturnInfo {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

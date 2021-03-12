@@ -40,15 +40,27 @@ public class WellnessApplication implements CommandLineRunner {
         cdb.deleteAll();
 
         // save a couple of Users
-        udb.save(new User(0, "1234", "jimmy@google.com", null, "Jimmy", "John", new Date(), "Male", true, false));
-        udb.save(new User(1, "1234", "bob@google.com", null, "Bob", "Smith", new Date(),"Male",  true, false));
+        User user1 = new User("1234", "jimmy@google.com", null, "Jimmy", "John", "1997-10-21", "Male", true, false);
+        user1.setId(0);
+        udb.save(user1);
+        User user2 = new User("1234", "bob@google.com", null, "Bob", "Smith", "1960-01-06","Male",  true, false);
+        user2.setId(1);
+        udb.save(user2);
         // save a couple of Admins
-        adb.save(new Admin(0, "1234", "theboss@google.com",  "Jim", "Honcho", "0123456789"));
-        adb.save(new Admin(1, "1234", "manager@google.com",  "Jess", "Jawns", "9876543210"));
+        Admin admin1 = new Admin("1234", "theboss@google.com",  "Jim", "Honcho", "0123456789");
+        admin1.setId(0);
+        adb.save(admin1);
+        Admin admin2 = new Admin( "1234", "manager@google.com",  "Jess", "Jawns", "9876543210");
+        admin2.setId(1);
+        adb.save(admin2);
         // save a couple of Creators
-        cdb.save(new Creator(0, "1234", "fitCoach@google.com", null, "Joe", "Buff", new Date(), true,false, "Male", true, false));
-        cdb.save(new Creator(1, "1234", "wellnessCoach@google.com", null, "Sally", "Fit", new Date(), false, true,  "Female",  true, false));
-        // fetch all users
+        Creator creator1 = new Creator("1234", "fitCoach@google.com", null, "Joe", "Buff", "2000-05-12", true,false, "Male", true, false);
+        creator1.setId(0);
+        cdb.save(creator1);
+        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com", null, "Sally", "Fit", "1995-06-06", false, true,  "Female",  true, false);
+        creator2.setId(1);
+        cdb.save(creator2);
+//         fetch all users
         System.out.println("Users found with findAll():");
         System.out.println("-------------------------------");
         for (User user : udb.findAll()) {

@@ -6,15 +6,23 @@ import javax.persistence.Id;
 import javax.print.DocFlavor;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.wellnessapp.demo.WellnessApplication;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
+import java.util.Locale;
 
 @Getter
 @Setter
@@ -23,9 +31,9 @@ import java.util.Date;
 @RestController
 @Document(collection = "User")
 public class User {
-
+    @Autowired
+    private UserRepository udb;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String password;
     private String email;
@@ -34,7 +42,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
-    private Date birthday;
+
+    private LocalDate birthday;
     private String userType;
     private int age;
     private Date signUpTime;
@@ -46,15 +55,19 @@ public class User {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public User(int id, String password, String email, URL profilePic, String firstName, String lastName, Date birthday, String gender, Boolean online, Boolean isDeleted) {
-        this.id = id;
+    public User(String password, String email, URL profilePic, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthday = birthday;
         //set up age as a function of now to birthday
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        this.birthday = LocalDate.parse(birthday);
+        Clock cl = Clock.systemUTC();
+        LocalDate currentDate = LocalDate.now(cl);
+        Period a = Period.between(this.birthday, currentDate);
+        this.age = a.getYears();
         this.userType = "User";
         this.gender = gender;
         this.online = online;
@@ -150,5 +163,29 @@ public class User {
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

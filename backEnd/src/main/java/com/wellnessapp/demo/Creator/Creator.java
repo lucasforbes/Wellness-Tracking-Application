@@ -1,5 +1,7 @@
 package com.wellnessapp.demo.Creator;
 
+import com.wellnessapp.demo.WellnessApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 
@@ -7,11 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.net.URL;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 @Document(collection = "Creator")
-public class Creator{
+public class Creator extends WellnessApplication {
+    @Autowired
+    private CreatorRepository cdb;
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String password;
     private String email;
@@ -20,7 +26,7 @@ public class Creator{
     private String firstName;
     private String lastName;
     private String gender;
-    private Date birthday;
+    private LocalDate birthday;
     private int age;
     private Date signUpTime;
     private String userType;
@@ -35,14 +41,17 @@ public class Creator{
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public Creator(int id, String password, String email, URL profilePic, String firstName, String lastName, Date birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
-        this.id = id;
+    public Creator( String password, String email, URL profilePic, String firstName, String lastName, String birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthday = birthday;
+        this.birthday = LocalDate.parse(birthday);
+        Clock cl = Clock.systemUTC();
+        LocalDate currentDate = LocalDate.now(cl);
+        Period a = Period.between(this.birthday, currentDate);
+        this.age = a.getYears();
         this.nutritionist = nutritionist;
         this.trainer = trainer;
 //        set up age as a function of birthday
@@ -119,6 +128,10 @@ public class Creator{
         return signUpTime;
     }
 
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
     public void setSignUpTime(Date signUpTime) {
         this.signUpTime = signUpTime;
     }
@@ -143,12 +156,8 @@ public class Creator{
         this.id = id;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public int getAge() {
