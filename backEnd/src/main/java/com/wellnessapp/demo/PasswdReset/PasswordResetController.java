@@ -5,16 +5,14 @@ import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.UnifiedReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.Random;
 
-public class PasswordReset {
-    @Autowired
-    private EmailService mailService;
+@RestController
+public class PasswordResetController {
+
     @Autowired
     private UserRepository udb;
 
@@ -40,7 +38,8 @@ public class PasswordReset {
         return null;
     }
 
-    @GetMapping("/sendcode")
+    @GetMapping("sendcode")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public UnifiedReturnValue sendCode(@RequestParam String email){
         StringBuffer newcode = generateCode();
