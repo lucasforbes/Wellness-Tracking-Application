@@ -69,11 +69,16 @@ public class PasswordResetController {
 
             return  new UnifiedReturnValue(false, 404, "no user found", "there is no user's email is： "+email, "PassWordReset", new Date());
         }
-        Boolean emailSentFeedBack = new EmailServiceImpl().sendHttpEmail(email, "Please check the code", newcode.toString());
-        if(emailSentFeedBack == false) {
+        try {
+            Boolean emailSentFeedBack = new EmailServiceImpl().sendHttpEmail(email, "Please check the code", newcode.toString());
+            if (emailSentFeedBack == false) {
+                return new UnifiedReturnValue(false, 404, "Email sent failure", "the email wasn't sent to " + email, "sendCode", new Date());
+            } else {
+                return new UnifiedReturnValue(true, 200, "Email sent successfully", "the email has been sent to the user " + email, "sendCode", new Date());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
             return new UnifiedReturnValue(false, 404, "Email sent failure", "the email wasn't sent to " + email, "sendCode", new Date());
-        }else {
-            return new UnifiedReturnValue(true, 200, "Email sent successfully", "the email has been sent to the user "+email, "sendCode", new Date());
         }
 
     }
