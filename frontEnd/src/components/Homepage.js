@@ -14,8 +14,6 @@ import {
     Image
 } from 'react-bootstrap';
 import {TextField} from '@material-ui/core/';
-import ContactUs from "./registeration/ContactUs";
-import HomePageMainCard from "./registeration/HomePageMainCard";
 import {CardHeader} from "@material-ui/core";
 import Login from "./registeration/login";
 
@@ -40,7 +38,7 @@ export default function Homepage() {
                          <div className={'col-md-8'}>
                              <Card.Title style={{ fontSize: '1000%', border: '2000px', textAlign: 'center', color: 'White', position: 'relative', left: '500px'}}>Bloom Wellness</Card.Title>
                              <Card.Text  style={{ fontSize: '200%',  textAlign: 'center', color: 'white',  position: 'relative', left: '500px'}}>
-                                 Eat well, Train well, Be well
+                                 Eat well, Train wellll, Be well
                              </Card.Text>
                          </div>
 
@@ -98,6 +96,7 @@ export default function Homepage() {
                                 </Card.Body>
                             </Card>
                         </Col>
+
                         <Col>
                             <Card style={{width: '350px', borderColor: 'Purple Blue', borderWidth: '2px'}} bg='light'>
                                 <Card.Img style={{height: '300px'}} variant="top" src="./Wellness_Icon.jpg"/>

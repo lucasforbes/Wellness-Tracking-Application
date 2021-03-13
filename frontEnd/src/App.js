@@ -9,8 +9,8 @@ import MainNavigation from './components/MainNavigation';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Placeholder from "./components/placeholder";
 import Homepage from "./components/Homepage";
-import ContactUs from "./components/registeration/ContactUs";
-import HomePageMainCard from "./components/registeration/HomePageMainCard";
+
+
 
 import Login from "./components/registeration/login";
 import Signup from "./components/registeration/signup";
