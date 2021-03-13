@@ -14,6 +14,7 @@ public class ExersizeController {
     private ExersizeRepository edb;
 
     @PostMapping("/addExersize")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public String saveExersize(@RequestBody Exersize exersize){
         System.out.println("");

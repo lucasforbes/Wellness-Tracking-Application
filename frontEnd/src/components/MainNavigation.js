@@ -24,9 +24,15 @@ export default function MainNavigation(props){
 
         <>
 
-            {userLoggedIn ? <> New Header Placeholder | dashboard | profile |
+            {userLoggedIn ? <>
 
-
+                        <img
+                            alt=""
+                            src="./Wellness_Icon.jpg"
+                            width="40"
+                            height="40"
+                            className="d-inline-block align-top"
+                        />
                         <Button variant="outline-danger" onClick={()=>{
 
 
