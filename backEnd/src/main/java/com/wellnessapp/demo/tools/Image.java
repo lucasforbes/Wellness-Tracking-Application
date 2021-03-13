@@ -2,11 +2,18 @@ package com.wellnessapp.demo.tools;
 
 import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Date;
 
+@RestController
+@Document(collection = "Images")
 public class Image {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name; // the name of the image
     private Date updateDate; // the time the image was updated

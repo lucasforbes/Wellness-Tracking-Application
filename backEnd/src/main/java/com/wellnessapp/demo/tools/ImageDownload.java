@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 public class ImageDownload {
 
@@ -21,7 +23,10 @@ public class ImageDownload {
         Image file = mongoTemplate.findById(id, Image.class);
         if(file != null){
             data = file.getContent().getData();
+            System.out.println(data.toString()+"55555555555555555555555");
+          //  return new UnifiedReturnValue(true, 200, "file download", data.toString(), "image", new Date()).unifiedReturnValue();
         }
+        //return new UnifiedReturnValue(false,404, "file download", "failed", "image", new Date()).unifiedReturnValue();
         return data;
     }
 

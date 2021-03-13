@@ -33,7 +33,7 @@ public class ImageUpdate {
             image.setSize(file.getSize());
 
             Image savedFile = mongoTemplate.save(image);
-            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
+            String url = "http://localhost:8080/file/image/" + savedFile.getId();
 
             return new UnifiedReturnValue(true, 200, "image upload", url, "updateImage", new Date()).unifiedReturnValue();
         } catch (IOException e) {
