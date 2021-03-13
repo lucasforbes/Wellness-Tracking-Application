@@ -18,17 +18,23 @@ public class PasswordReset {
     @Autowired
     private UserRepository udb;
 
-    private UnifiedReturnValue unifiedReturnValue;
-
 
     @GetMapping("/pwdreset")
     @ResponseBody
-    public Object passwdReset(@RequestParam String email, @RequestParam String newPasswd, @RequestParam String code){
+    public UnifiedReturnValue passwdReset(@RequestParam String email, @RequestParam String newPasswd){
         /**
-         * 1. compared the code with the database
+         * 1. check the validation of the code(front page deal with that)
          * 2. if they are the same, change the password for the user; if not, tell user failed.
-         * 3. modify the code state to 0, which means the code is out-dated.
+         * 3. modify the code state to 0, which means the code is out-dated.(implemented in VerifyCodeController)
          */
+        try {
+            User user = udb.findByEmail(email);
+            user.setPassword(newPasswd);
+            udb.save(user);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         return null;
@@ -41,14 +47,14 @@ public class PasswordReset {
         /***
          * 1. storage the code into the database
          *    DB: verifycode(been set)
-         *    column: Number(int, auto increasement)
+         *    column: id(int, auto increase)
          *            Email
          *            Code
          *            State(When send user an email, in 15 min can a user change password, the state should be 1, otherwise 0)
          *    We now don't consider the time, all of state should be 1 and when the passwd reset, change it to 0
          *    the form is like:
          *    {
-         *        Number: "1",
+         *        id: "1",
          *        Email: "jimmy@google.com",
          *        Code: "15s2q6",
          *        State: 1
@@ -61,8 +67,8 @@ public class PasswordReset {
         User user = udb.findByEmail(email);
 
         if(user == null){
-            unifiedReturnValue = new UnifiedReturnValue(false, 404, "no user found", "there is no user's email is： "+email, "PassWordReset", new Date());
-            return unifiedReturnValue;
+
+            return  new UnifiedReturnValue(false, 404, "no user found", "there is no user's email is： "+email, "PassWordReset", new Date());
         }
         Boolean emailSentFeedBack = new EmailServiceImpl().sendHttpEmail(email, "Please check the code", newcode.toString());
         if(emailSentFeedBack == false) {

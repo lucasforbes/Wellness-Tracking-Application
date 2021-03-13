@@ -1,6 +1,7 @@
 package com.wellnessapp.demo.tools;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import org.apache.commons.lang3.ObjectUtils;
 import org.h2.util.json.JSONObject;
 
@@ -62,10 +63,9 @@ public class UnifiedReturnValue {
         toJson.put("date", timestamp);
     }
 
-    public Gson unifiedReturnValue() {
+    public String unifiedReturnValue() {
         Gson gson = new Gson();
-        gson.toJson(toJson);
-        return gson;
+        return gson.toJson(toJson);
 
     }
 
