@@ -25,7 +25,9 @@ public class ImageUpdate {
             return new UnifiedReturnValue(false, 404, "image upload", "no image selected", "updateImage", new Date()).unifiedReturnValue();
         }
         try {
+            int count = mongoTemplate.findAll(Image.class).size();
             Image image = new Image();
+            image.setId(count);
             image.setName(file.getOriginalFilename());
             image.setUpdateDate(new Date());
             image.setContent(new Binary(file.getBytes()));
@@ -33,7 +35,7 @@ public class ImageUpdate {
             image.setSize(file.getSize());
 
             Image savedFile = mongoTemplate.save(image);
-            String url = "http://localhost:8080/file/image/" + savedFile.getId();
+            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
 
             return new UnifiedReturnValue(true, 200, "image upload", url, "updateImage", new Date()).unifiedReturnValue();
         } catch (IOException e) {
