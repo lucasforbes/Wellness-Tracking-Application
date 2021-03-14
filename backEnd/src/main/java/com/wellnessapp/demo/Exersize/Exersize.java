@@ -1,5 +1,6 @@
 package com.wellnessapp.demo.Exersize;
 
+import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.ListIterator;
 
 public class Exersize {
     int userID;
+    @Id
+    int workoutID;
     List<SingleExersize> allExersizes;
     public Exersize(int creatorID){
         this.userID = creatorID;
@@ -130,6 +133,31 @@ public class Exersize {
     public void addExersize(SingleExersize x){
         allExersizes.add(x);
     }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getWorkoutID() {
+        return workoutID;
+    }
+
+    public void setWorkoutID(int workoutID) {
+        this.workoutID = workoutID;
+    }
+
+    public List<SingleExersize> getAllExersizes() {
+        return allExersizes;
+    }
+
+    public void setAllExersizes(List<SingleExersize> allExersizes) {
+        this.allExersizes = allExersizes;
+    }
+
     public void removeExersize(SingleExersize x){
         allExersizes.remove(x);
     }

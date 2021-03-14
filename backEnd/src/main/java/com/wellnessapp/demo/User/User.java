@@ -59,6 +59,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;
+
         this.firstName = firstName;
         this.lastName = lastName;
         //set up age as a function of now to birthday

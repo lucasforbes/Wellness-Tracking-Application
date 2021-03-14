@@ -32,7 +32,8 @@ public class ExersizeController {
         return this.edb.findAll();
     }
     @GetMapping("/findExersizeByUserID/{id}")
-    public Optional<Exersize> getUsers(@PathVariable int id){
+    public Optional<Exersize> findByUserID(@PathVariable int id){
         return this.edb.findById(id);
     }
+
 }

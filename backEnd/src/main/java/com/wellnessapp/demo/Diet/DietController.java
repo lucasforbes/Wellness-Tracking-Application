@@ -31,7 +31,7 @@ public class DietController {
         return this.ddb.findAll();
     }
     @GetMapping("/findDietByUserID/{id}")
-    public Optional<Diet> getUsers(@PathVariable int id){
+    public Optional<Diet> getByUserID(@PathVariable int id){
         return this.ddb.findById(id);
     }
 

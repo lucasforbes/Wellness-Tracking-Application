@@ -14,13 +14,13 @@ public class UserController {
     @PostMapping("/addUser")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public String saveUser(@RequestBody User user){
+    public User saveUser(@RequestBody User user){
         int count = udb.findAll().size();
         user.setId(count);
         System.out.println("Trying to add new User");
         System.out.println("");
         udb.save(user);
-        return "User added to database: " + user.getId();
+        return user;
     }
     @GetMapping("/findAllUsers")
     public List<User> getUsers(){

@@ -54,7 +54,7 @@ public class WellnessApplication implements CommandLineRunner {
         admin2.setId(1);
         adb.save(admin2);
         // save a couple of Creators
-        Creator creator1 = new Creator("1234", "fitCoach@google.com", null, "Joe", "Buff", "2000-05-12", true,false, "Male", true, false);
+        Creator creator1 = new Creator("1234", "vishal@google.com", null, "Joe", "Buff", "2000-05-12", true,false, "Male", true, false);
         creator1.setId(0);
         cdb.save(creator1);
         Creator creator2 = new Creator( "1234", "wellnessCoach@google.com", null, "Sally", "Fit", "1995-06-06", false, true,  "Female",  true, false);
