@@ -17,10 +17,9 @@ export default function Maindashboard(){
         <>
             <br/>
 
-            Usertype : {" "+userType}
-            <br/>
 
-            {userType == "Professional" ? <><ProfessionalDashboard/> </>
+
+            {userType == "Creator" ? <><ProfessionalDashboard/> </>
                 : ""}
 
         </>

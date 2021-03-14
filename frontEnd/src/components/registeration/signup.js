@@ -34,6 +34,9 @@ export default function Signup(props){
 
     const onSignup=async () => {
 
+        localStorage.setItem('userType', userType);
+        localStorage.setItem('userFirstName',firstName);
+
         if (validator.isEmail(email)) {
             const json = JSON.stringify({
                 'id': 3,
@@ -66,7 +69,7 @@ export default function Signup(props){
                     setTimeout(function(){ setShowAlert(false)
                         // props.history.push('/dashboard');
                         window.open("/dashboard", "_self")
-                        localStorage.setItem('userType', response.data.userType);
+
                     }, 1500);
 
                 })
@@ -220,7 +223,7 @@ export default function Signup(props){
                                                       style={{width:'100px'}}
                                                   >
                                                       <MenuItem value={"User"}>User</MenuItem>
-                                                      <MenuItem value={"Professional"}>Professional</MenuItem>
+                                                      <MenuItem value={"Creator"}>Creator</MenuItem>
                                                       <MenuItem value={"Admin"}>Admin</MenuItem>
                                                   </Select>
                                               </FormControl>
