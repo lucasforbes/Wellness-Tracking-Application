@@ -1,5 +1,6 @@
 package com.wellnessapp.demo.tools;
 
+import com.google.gson.JsonArray;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
