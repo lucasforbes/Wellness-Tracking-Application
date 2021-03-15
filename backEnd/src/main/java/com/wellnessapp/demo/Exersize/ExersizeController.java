@@ -18,22 +18,24 @@ public class ExersizeController {
     @ResponseBody
     public String saveExersize(@RequestBody Exersize exersize){
         System.out.println("");
+        int id = edb.findAll().size();
+        exersize.id = (id + 1);
         edb.save(exersize);
         return "Exersize Plan Saved";
     }
-    @GetMapping("/findExersizeByUserID/{id, name}")
-    public Exersize findByUserID(@PathVariable int id, @PathVariable String name){
+    @GetMapping("/findExersizeByCreatorEmail/{email, name}")
+    public Exersize findByUserID(@PathVariable String email, @PathVariable String name){
         System.out.println("Got All Exersizes");
-        return this.edb.findByUserID(id, name);
+        return this.edb.findByEmail(email, name);
     }
     @GetMapping("/findAllExersizes")
-    public List<Exersize> findByUserID(){
+    public List<Exersize> findAllExersizes(){
         System.out.println("Got All Exersizes");
         return this.edb.findAll();
     }
-    @GetMapping("/findExersizeByUserID/{id}")
-    public Optional<Exersize> findByUserID(@PathVariable int id){
-        return this.edb.findById(id);
+    @GetMapping("/findExersizeByCreatorEmail/{email}")
+    public List<Exersize> findByCreatorEmail(@PathVariable String email){
+        return this.edb.findByEmail(email);
     }
 
 }

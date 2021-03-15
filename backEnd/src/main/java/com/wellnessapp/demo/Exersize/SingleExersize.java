@@ -1,33 +1,28 @@
 package com.wellnessapp.demo.Exersize;
 
 public class SingleExersize {
-    String title;
     String picture;
     String videoLink;
-    String description;
-    String[] bodyPartsTargeted;
+    String activityName;
+    String activityDescription;
+    String bodyPartsTargeted;
+    String activitySets;
+    String activityReps;
+    String equiptmentNeeded;
+//    minutes
     int totalDuration;
-    String[] equiptmentNecessary;
-    int reps;
-    int sets;
-    public SingleExersize(String title, String picture, String videoLink, String description, String[] bodyPartsTargeted, int totalDuration, String[] equiptmentNecessary, int reps, int sets) {
-        this.title = title;
+
+    public SingleExersize(String picture, String videoLink, String activityName, String activityDescription, String bodyPartsTargeted, String activitySets, String activityReps, String equiptmentNeeded, int totalDuration) {
         this.picture = picture;
         this.videoLink = videoLink;
-        this.description = description;
+        this.activityName = activityName;
+        this.activityDescription = activityDescription;
         this.bodyPartsTargeted = bodyPartsTargeted;
+        this.activitySets = activitySets;
+        this.activityReps = activityReps;
+        this.equiptmentNeeded = equiptmentNeeded;
         this.totalDuration = totalDuration;
-        this.equiptmentNecessary = equiptmentNecessary;
-        this.reps = reps;
-        this.sets = sets;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        System.out.println("Single Exersize made");
     }
 
     public String getPicture() {
@@ -46,20 +41,52 @@ public class SingleExersize {
         this.videoLink = videoLink;
     }
 
-    public String getDescription() {
-        return description;
+    public String getActivityName() {
+        return activityName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
-    public String[] getBodyPartsTargeted() {
+    public String getActivityDescription() {
+        return activityDescription;
+    }
+
+    public void setActivityDescription(String activityDescription) {
+        this.activityDescription = activityDescription;
+    }
+
+    public String getBodyPartsTargeted() {
         return bodyPartsTargeted;
     }
 
-    public void setBodyPartsTargeted(String[] bodyPartsTargeted) {
+    public void setBodyPartsTargeted(String bodyPartsTargeted) {
         this.bodyPartsTargeted = bodyPartsTargeted;
+    }
+
+    public String getActivitySets() {
+        return activitySets;
+    }
+
+    public void setActivitySets(String activitySets) {
+        this.activitySets = activitySets;
+    }
+
+    public String getActivityReps() {
+        return activityReps;
+    }
+
+    public void setActivityReps(String activityReps) {
+        this.activityReps = activityReps;
+    }
+
+    public String getEquiptmentNeeded() {
+        return equiptmentNeeded;
+    }
+
+    public void setEquiptmentNeeded(String equiptmentNeeded) {
+        this.equiptmentNeeded = equiptmentNeeded;
     }
 
     public int getTotalDuration() {
@@ -68,29 +95,5 @@ public class SingleExersize {
 
     public void setTotalDuration(int totalDuration) {
         this.totalDuration = totalDuration;
-    }
-
-    public String[] getEquiptmentNecessary() {
-        return equiptmentNecessary;
-    }
-
-    public void setEquiptmentNecessary(String[] equiptmentNecessary) {
-        this.equiptmentNecessary = equiptmentNecessary;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-
-    public int getSets() {
-        return sets;
-    }
-
-    public void setSets(int sets) {
-        this.sets = sets;
     }
 }
