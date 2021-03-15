@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.wellnessapp.demo.Admin.Admin;
 import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.tools.Image;
 import org.h2.util.json.JSONArray;
 import org.h2.util.json.JSONObject;
 
@@ -21,7 +22,7 @@ public class ReturnInfo {
     private String password;
     private String email;
     //    Possible way to store profile pictures?
-    private URL profilePic;
+    private String profilePic;
     private String firstName;
     private String lastName;
     private String gender;
@@ -61,7 +62,7 @@ public class ReturnInfo {
         this.id = creator.getId();
         this.password = creator.getPassword();
         this.email = creator.getEmail();
-        this.profilePic = creator.getProfilePic();
+//        this.profilePic = creator.getProfilePic();
         this.firstName = creator.getFirstName();
         this.lastName = creator.getLastName();
         this.gender = creator.getGender();
@@ -137,13 +138,13 @@ public class ReturnInfo {
         this.email = email;
     }
 
-    public URL getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(URL profilePic) {
-        this.profilePic = profilePic;
-    }
+//    public URL getProfilePic() {
+//        return profilePic;
+//    }
+//
+//    public void setProfilePic(URL profilePic) {
+//        this.profilePic = profilePic;
+//    }
 
     public String getFirstName() {
         return firstName;

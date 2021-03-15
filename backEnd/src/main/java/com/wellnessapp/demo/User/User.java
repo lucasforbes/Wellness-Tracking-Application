@@ -7,11 +7,17 @@ import javax.print.DocFlavor;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.wellnessapp.demo.WellnessApplication;
+import com.wellnessapp.demo.tools.Image;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.gridfs.GridFsObject;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,16 +39,18 @@ import java.util.Locale;
 public class User {
     @Autowired
     private UserRepository udb;
+    @Autowired
+    private MongoTemplate mongoTemplate;
     @Id
     private int id;
     private String password;
     private String email;
     //    Possible way to store profile pictures?
-    private URL profilePic;
+    private String profilePic;
     private String firstName;
     private String lastName;
     private String gender;
-
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthday;
     private String userType;
     private int age;
@@ -55,15 +63,14 @@ public class User {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public User(String password, String email, URL profilePic, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
+    public User(String password, String email, String profilePic, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;
-
+        // add picture to image database
         this.firstName = firstName;
         this.lastName = lastName;
-        //set up age as a function of now to birthday
-//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+//        date in YYYY-MM-DD format
         this.birthday = LocalDate.parse(birthday);
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
@@ -110,11 +117,11 @@ public class User {
         this.email = email;
     }
 
-    public URL getProfilePic() {
+    public String getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(URL profilePic) {
+    public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
 
