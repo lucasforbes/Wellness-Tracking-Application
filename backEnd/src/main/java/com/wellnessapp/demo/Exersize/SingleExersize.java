@@ -1,45 +1,45 @@
 package com.wellnessapp.demo.Exersize;
 
 public class SingleExersize {
-    String picture;
-    String videoLink;
+//    String picture;
+//    String videoLink;
     String activityName;
     String activityDescription;
     String bodyPartsTargeted;
     int activitySets;
     int activityReps;
-    String equiptmentNeeded;
+    String equipmentNeeded;
 //    minutes
     int totalDuration;
 
-    public SingleExersize(String picture, String videoLink, String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equiptmentNeeded, int totalDuration) {
-        this.picture = picture;
-        this.videoLink = videoLink;
+    public SingleExersize(String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equipmentNeeded, int totalDuration) {
+//        this.picture = picture;
+//        this.videoLink = videoLink;
         this.activityName = activityName;
         this.activityDescription = activityDescription;
         this.bodyPartsTargeted = bodyPartsTargeted;
         this.activitySets = activitySets;
         this.activityReps = activityReps;
-        this.equiptmentNeeded = equiptmentNeeded;
+        this.equipmentNeeded = equipmentNeeded;
         this.totalDuration = totalDuration;
         System.out.println("Single Exersize made");
     }
 
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public String getVideoLink() {
-        return videoLink;
-    }
-
-    public void setVideoLink(String videoLink) {
-        this.videoLink = videoLink;
-    }
+//    public String getPicture() {
+//        return picture;
+//    }
+//
+//    public void setPicture(String picture) {
+//        this.picture = picture;
+//    }
+//
+//    public String getVideoLink() {
+//        return videoLink;
+//    }
+//
+//    public void setVideoLink(String videoLink) {
+//        this.videoLink = videoLink;
+//    }
 
     public String getActivityName() {
         return activityName;
@@ -82,11 +82,11 @@ public class SingleExersize {
     }
 
     public String getEquiptmentNeeded() {
-        return equiptmentNeeded;
+        return equipmentNeeded;
     }
 
     public void setEquiptmentNeeded(String equiptmentNeeded) {
-        this.equiptmentNeeded = equiptmentNeeded;
+        this.equipmentNeeded = equiptmentNeeded;
     }
 
     public int getTotalDuration() {

@@ -19,7 +19,7 @@ public class Image {
     private String userEmail;
     private int otherDbId;
     private Date updateDate; // the time the image was updated
-    // belongsTo: 0-user profile pic, 1-creator profile pic, 2-creator exersize, 3-creator diet, 4-creator
+    // belongsTo: 0-user profile pic, 1-creator profile pic, 2-creator exersizePic, 3-dietPic
     private int belongsTo;
     private Binary content; //storage the image matrix
     private String contentType; // the type of the image

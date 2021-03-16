@@ -27,7 +27,8 @@ public class Exersize {
     String description;
     SingleExersize[] activityList;
     Boolean paid;
-
+    String picture;
+    String videoLink;
 
     public Exersize(String email, SingleExersize[] activityList, String title, String description, Boolean paid) {
         this.email = email;
@@ -36,6 +37,22 @@ public class Exersize {
         this.paid = paid;
         this.activityList = activityList;
 
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getVideoLink() {
+        return videoLink;
+    }
+
+    public void setVideoLink(String videoLink) {
+        this.videoLink = videoLink;
     }
 
     public String getEmail() {

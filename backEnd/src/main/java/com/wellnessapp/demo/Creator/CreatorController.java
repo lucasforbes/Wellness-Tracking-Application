@@ -44,7 +44,7 @@ public class CreatorController {
         System.out.println(user.getAge());
         System.out.println("Trying to add new User");
         System.out.println("");
-        cdb.save(user);
+
         try{
             MultipartFile file = photo;
             int count2 = idb.findAll().size();
@@ -53,7 +53,7 @@ public class CreatorController {
             image.setName(file.getOriginalFilename());
             image.setUserEmail(user.getEmail());
             image.setOtherDbId(user.getId());
-            image.setBelongsTo(0);
+            image.setBelongsTo(1);
             image.setUpdateDate(new Date());
             image.setContent(new Binary(file.getBytes()));
             image.setContentType(file.getContentType());
@@ -64,6 +64,7 @@ public class CreatorController {
         }catch (IOException e){
             e.printStackTrace();
         }
+        cdb.save(user);
         return user;
     }
     @GetMapping("/findAllCreators")
@@ -92,6 +93,19 @@ public class CreatorController {
     @GetMapping(value = "/findCreatorPic/{email}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable String email) {
         Image file = idb.findByUserEmail(email);
+        byte[] data = null;
+        if (file != null) {
+            data = file.getContent().getData();
+            System.out.println(data.toString() + "55555555555555555555555");
+            //  return new UnifiedReturnValue(true, 200, "file download", data.toString(), "image", new Date()).unifiedReturnValue();
+        }
+        System.out.println("no file found");
+        //return new UnifiedReturnValue(false,404, "file download", "failed", "image", new Date()).unifiedReturnValue();
+        return data;
+    }
+    @GetMapping(value = "/findUserPic/{email, id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    public byte[] getImage(@PathVariable String email, @PathVariable int id) {
+        Image file = idb.findByUserEmail(email, id);
         byte[] data = null;
         if (file != null) {
             data = file.getContent().getData();

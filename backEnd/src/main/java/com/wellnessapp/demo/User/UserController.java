@@ -46,7 +46,6 @@ public class UserController {
         System.out.println(user.getAge());
         System.out.println("Trying to add new User");
         System.out.println("");
-        udb.save(user);
         try{
             MultipartFile file = photo;
             int count2 = idb.findAll().size();
@@ -66,6 +65,7 @@ public class UserController {
         }catch (IOException e){
             e.printStackTrace();
         }
+        udb.save(user);
         return user;
     }
     @GetMapping("/findAllUsers")
