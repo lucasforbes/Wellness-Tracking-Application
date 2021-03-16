@@ -63,7 +63,7 @@ export default function Signup(props){
 
                     setShowAlert(true);
 
-                    localStorage.setItem('email', setEmail);
+                    localStorage.setItem('email', email);
                     dispatch(loginAction())
 
                     setTimeout(function(){ setShowAlert(false)
