@@ -6,13 +6,13 @@ public class SingleExersize {
     String activityName;
     String activityDescription;
     String bodyPartsTargeted;
-    String activitySets;
-    String activityReps;
+    int activitySets;
+    int activityReps;
     String equiptmentNeeded;
 //    minutes
     int totalDuration;
 
-    public SingleExersize(String picture, String videoLink, String activityName, String activityDescription, String bodyPartsTargeted, String activitySets, String activityReps, String equiptmentNeeded, int totalDuration) {
+    public SingleExersize(String picture, String videoLink, String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equiptmentNeeded, int totalDuration) {
         this.picture = picture;
         this.videoLink = videoLink;
         this.activityName = activityName;
@@ -65,19 +65,19 @@ public class SingleExersize {
         this.bodyPartsTargeted = bodyPartsTargeted;
     }
 
-    public String getActivitySets() {
+    public int getActivitySets() {
         return activitySets;
     }
 
-    public void setActivitySets(String activitySets) {
+    public void setActivitySets(int activitySets) {
         this.activitySets = activitySets;
     }
 
-    public String getActivityReps() {
+    public int getActivityReps() {
         return activityReps;
     }
 
-    public void setActivityReps(String activityReps) {
+    public void setActivityReps(int activityReps) {
         this.activityReps = activityReps;
     }
 
