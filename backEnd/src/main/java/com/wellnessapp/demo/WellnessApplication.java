@@ -40,10 +40,10 @@ public class WellnessApplication implements CommandLineRunner {
         cdb.deleteAll();
 
         // save a couple of Users
-        User user1 = new User("1234", "jimmy@google.com", null, "Jimmy", "John", "1997-10-21", "Male", true, false);
+        User user1 = new User("1234", "jimmy@google.com", "Jimmy", "John", "1997-10-21", "Male", true, false);
         user1.setId(0);
         udb.save(user1);
-        User user2 = new User("1234", "bob@google.com", null, "Bob", "Smith", "1960-01-06","Male",  true, false);
+        User user2 = new User("1234", "bob@google.com", "Bob", "Smith", "1960-01-06","Male",  true, false);
         user2.setId(1);
         udb.save(user2);
         // save a couple of Admins
@@ -54,10 +54,10 @@ public class WellnessApplication implements CommandLineRunner {
         admin2.setId(1);
         adb.save(admin2);
         // save a couple of Creators
-        Creator creator1 = new Creator("1234", "vishal@google.com", null, "Joe", "Buff", "2000-05-12", true,false, "Male", true, false);
+        Creator creator1 = new Creator("1234", "vishal@google.com", "Joe", "Buff", "2000-05-12", true,false, "Male", true);
         creator1.setId(0);
         cdb.save(creator1);
-        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com", null, "Sally", "Fit", "1995-06-06", false, true,  "Female",  true, false);
+        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com", "Sally", "Fit", "1995-06-06", false, true,  "Female",  true);
         creator2.setId(1);
         cdb.save(creator2);
 //         fetch all users

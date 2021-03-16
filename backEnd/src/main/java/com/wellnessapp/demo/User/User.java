@@ -39,8 +39,6 @@ import java.util.Locale;
 public class User {
     @Autowired
     private UserRepository udb;
-    @Autowired
-    private MongoTemplate mongoTemplate;
     @Id
     private int id;
     private String password;
@@ -63,7 +61,7 @@ public class User {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public User(String password, String email, String profilePic, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
+    public User(String password, String email, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;

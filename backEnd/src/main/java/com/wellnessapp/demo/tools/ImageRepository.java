@@ -9,5 +9,4 @@ public interface ImageRepository extends MongoRepository<Image, Integer>{
         // possible functions for querying the db
         public Image findByUserEmail(String userEmail);
         public Image findByOtherDbId(int otherDbId);
-
 }

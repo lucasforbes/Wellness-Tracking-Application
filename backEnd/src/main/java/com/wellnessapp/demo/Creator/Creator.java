@@ -1,5 +1,7 @@
 package com.wellnessapp.demo.Creator;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.wellnessapp.demo.WellnessApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,10 +24,11 @@ public class Creator extends WellnessApplication {
     private String password;
     private String email;
     //    Possible way to store profile pictures?
-    private URL profilePic;
+    private String profilePic;
     private String firstName;
     private String lastName;
     private String gender;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthday;
     private int age;
     private Date signUpTime;
@@ -41,7 +44,7 @@ public class Creator extends WellnessApplication {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public Creator( String password, String email, URL profilePic, String firstName, String lastName, String birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online, Boolean isDeleted) {
+    public Creator( String password, String email, String firstName, String lastName, String birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online) {
         this.password = password;
         this.email = email;
         this.profilePic = profilePic;
@@ -59,7 +62,7 @@ public class Creator extends WellnessApplication {
         this.level = 0;
         this.gender = gender;
         this.online = online;
-        this.isDeleted = isDeleted;
+        this.isDeleted = false;
     }
 
     public Creator() {
@@ -92,11 +95,11 @@ public class Creator extends WellnessApplication {
         this.email = email;
     }
 
-    public URL getProfilePic() {
+    public String getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(URL profilePic) {
+    public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
 
@@ -148,8 +151,8 @@ public class Creator extends WellnessApplication {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    public void setDeleted(Boolean isDeletedeleted) {
+        isDeleted = isDeleted;
     }
 
     public void setId(int id) {
