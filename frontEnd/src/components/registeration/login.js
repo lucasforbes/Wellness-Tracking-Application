@@ -103,20 +103,20 @@ export default function Login(props){
                 <div class='card' style={{alignItems:'center', padding: '15px',opacity: '.8' , backgroundColor: 'gray'}}>
 
 
-                    <Card  bgstyle={{ border: 'none'}} >
+                    <Card style={{height:''}}  bgstyle={{ border: 'none'}} >
 
                         <div className={'row'} >
 
 
                             <div className={'col-md-12'}>
 
-                                <h3 style={{fontSize:'30px', color: 'black !important'}}> <b> <strong>  Login </strong></b>  </h3>
+                                <h3 style={{fontSize:'25px', color: 'black !important'}}> <b> <strong>  Login </strong></b>  </h3>
 
                                 <Card.Body style={{backgroundColor: 'lightgrey'}} >
 
                                     <TextField
                                         required
-                                        style={{background:'black !important'}}
+                                        style={{background:'black !important', marginTop: '-11px', height: '1.5vw', position: 'relative', bottom: '1vw'}}
                                         color={"blue"}
                                         label="Email"
                                         // variant="filled"
@@ -130,7 +130,7 @@ export default function Login(props){
 
                                     <TextField
                                         required
-                                        style={{background:'white !important'}}
+                                        style={{background:'white !important', height: '1.5vw', marginTop: '-11px', position: 'relative', bottom: '1vw'}}
                                         color={"secondary"}
                                         label="Password"
                                         // variant="filled"
@@ -143,7 +143,7 @@ export default function Login(props){
                                     <br/>
                                     <br/>
 
-                                    <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
+                                    <Button style={{width:'100px', marginTop: '-12px'}} type="button" variant="success" onClick={()=>{
                                         onLogin()
                                     }}> Login </Button>
 

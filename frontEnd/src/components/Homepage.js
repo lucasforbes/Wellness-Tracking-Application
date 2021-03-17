@@ -25,25 +25,28 @@ export default function Homepage() {
     return (
         <>
 
-            <Row style = {{}}>
-                <Card style = {{width: '100%', height:'100%'}} className="bg-dark text-white">
+            <Row style = {{overflow: 'hidden', minHeight: '325px', backgroundColor: 'lightGreen'}}>
+                <Card style = {{width: '100%', height:'100%', minHeight:'0'}} className="bg-dark text-white">
                     <Card.Img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
                     <Card.ImgOverlay style = {{width: '100%'}}>
 
-                     <div className={'row'} style={{}}>
-                         <div className={'col-md-8'}>
-                             <Card.Title style={{ fontSize: '1000%', textAlign: 'center', color: 'White', position: 'relative', left: '43%',bottom: '-30%'}}>Bloom Wellness</Card.Title>
-                             <Card.Text  style={{ fontSize: '200%',  textAlign: 'center', color: 'white',  position: 'relative', left: '43%', bottom: '-30%'}}>
-                                 Eat well, Train well, Be well
-                             </Card.Text>
-                         </div>
-                     </div>
+                        <div className={'row'}>
+                            <div className={'col'} style = {{}}>
 
-                     <div className={'row'}>
-                         <div className={'col-md-2'} style={{color:'black', position: 'relative', bottom: '30%', right: '-11%'}}>
-                             <Login/>
-                         </div>
-                     </div>
+                                <Card.Title style={{ fontSize: '8vw', textAlign: 'center', color: 'White' ,position: 'relative', bottom: '1vw'}}>Bloom Wellness</Card.Title>
+
+                            </div>
+
+                        </div>
+
+                        <div className={'row'} style ={{minHeight:'900px'}} >
+                            <div className={'col-xs-6'} style = {{ color: 'black', overflow: 'hidden', marginLeft:'auto',marginRight: 'auto', marginTop: '1vw'}}>
+                                <Login/>
+                            </div>
+
+                        </div>
+
+
                     </Card.ImgOverlay>
                 </Card>
             </Row>
