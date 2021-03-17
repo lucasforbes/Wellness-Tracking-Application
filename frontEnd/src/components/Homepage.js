@@ -25,7 +25,7 @@ export default function Homepage() {
     return (
         <>
 
-            <Row style = {{overflow: 'hidden', minHeight: '325px', backgroundColor: 'lightGreen'}}>
+            <Row style = {{overflow: 'hidden', minHeight: '335px', backgroundColor: 'lightGreen'}}>
                 <Card style = {{width: '100%', height:'100%', minHeight:'0'}} className="bg-dark text-white">
                     <Card.Img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
                     <Card.ImgOverlay style = {{width: '100%'}}>
@@ -57,43 +57,46 @@ export default function Homepage() {
                 </Card>
             </Row>
 
-            <Row style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
-                <Col xs = {4}>
-                    <Card style={{width: '80%', borderColor: 'Red Orange', borderWidth: '7px', height:'100%', position: 'relative', left: '9%'}}>
+
+            <div className={'row'} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%', overflow: 'hidden'}}>
+
+                <Col md='4'>
+                    <Card style={{width: '100%', borderColor: 'Red Orange', borderWidth: '7px', height:'100%', position: 'relative', left: ''}}>
                         <Card.Img style={{height: '70%'}} variant="top" src="Exercise_Icon.jpg"/>
                         <Card.Body>
                             <Card.Title>Exercise Programs</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">Train Well</Card.Subtitle>
-                            <Card.Text>Find exercise programs here</Card.Text>
-                            <Card.Link href="#">click here</Card.Link>
+                            <Card.Text>We have workout programs made by trainers. Users can subsribe to free or paid programs.</Card.Text>
+
                         </Card.Body>
                     </Card>
                 </Col>
 
-                <Col xs = {4}>
-                    <Card style={{width: '80%', borderWidth: '7px', borderColor: 'Blue Green', position: 'relative', left: '9%', height: '100%'}} bg='light'>
+                <Col md = '4'>
+                    <Card style={{width: '100%', borderWidth: '7px', borderColor: 'Blue Green', position: 'relative', left: '', height: '100%'}} bg='light'>
                         <Card.Img style={{height: '70%'}} variant="top" src="forksandknivesss.jpg"/>
                         <Card.Body>
                             <Card.Title>Diet Programs</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">Eat Well</Card.Subtitle>
                             <Card.Text>Find diet programs here</Card.Text>
-                            <Card.Link href="#">click here</Card.Link>
+
                         </Card.Body>
                     </Card>
                 </Col>
 
-                <Col xs = {4}>
-                    <Card style={{width: '80%', borderColor: 'Purple Blue', borderWidth: '7px', height:'100%', position: 'relative', left: '9%'}} bg='light'>
+                <div className={'col-md-4'}>
+                    <Card style={{width: '100%', borderColor: 'Purple Blue', borderWidth: '7px', height:'100%', position: 'relative', left: ''}} bg='light'>
                         <Card.Img style={{height: '70%'}} variant="top" src="./Wellness_Icon.jpg"/>
                         <Card.Body>
                             <Card.Title>Mental Wellness Programs</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">Be Well</Card.Subtitle>
                             <Card.Text>Access to wellness programs</Card.Text>
-                            <Card.Link href="#">Card Link</Card.Link>
+
                         </Card.Body>
                     </Card>
-                </Col>
-            </Row>
+                </div>
+
+            </div>
 
             <Row style = {{fontSize: "200%"}}>
                 <Card style={{backgroundColor: 'grey', width: '100%'}}>

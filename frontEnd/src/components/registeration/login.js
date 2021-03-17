@@ -116,7 +116,7 @@ export default function Login(props){
 
                                     <TextField
                                         required
-                                        style={{background:'black !important', marginTop: '-11px', height: '1.5vw', position: 'relative', bottom: '1vw'}}
+                                        style={{background:'black !important', marginTop: '', height: '1.5vw', position: 'relative', bottom: '1vw'}}
                                         color={"blue"}
                                         label="Email"
                                         // variant="filled"
@@ -130,7 +130,7 @@ export default function Login(props){
 
                                     <TextField
                                         required
-                                        style={{background:'white !important', height: '1.5vw', marginTop: '-11px', position: 'relative', bottom: '1vw'}}
+                                        style={{background:'white !important', height: '1.5vw', marginTop: '', position: 'relative', bottom: '1vw'}}
                                         color={"secondary"}
                                         label="Password"
                                         // variant="filled"
@@ -143,7 +143,7 @@ export default function Login(props){
                                     <br/>
                                     <br/>
 
-                                    <Button style={{width:'100px', marginTop: '-12px'}} type="button" variant="success" onClick={()=>{
+                                    <Button style={{width:'100px', marginTop: ''}} type="button" variant="success" onClick={()=>{
                                         onLogin()
                                     }}> Login </Button>
 
