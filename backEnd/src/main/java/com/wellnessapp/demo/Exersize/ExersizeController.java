@@ -62,7 +62,6 @@ public class ExersizeController {
         return exersize;
     }
 
-
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findExersizeByUserID/{id, name}")
     public Optional<Exersize> findByUserID(@PathVariable int id, @PathVariable String name){
