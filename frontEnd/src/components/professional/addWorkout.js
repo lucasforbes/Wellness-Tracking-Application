@@ -9,8 +9,8 @@ export default function AddWorkout(){
 
 
 
-    const [activityList, setActivityList] = useState([{ ActivityName: "", ActivityDescription: "" , BodyPartsTargeted:"", Duration:"",
-        ActivitySets:"", ActibityReps:"", EquipmentNeeded:""}]);
+    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
+        activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
 
     const [workoutTitle,setWorkoutTitle]=useState("");
     const [workoutDescription,setWorkoutDescription]= useState("");
@@ -33,7 +33,8 @@ export default function AddWorkout(){
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setActivityList([...activityList, { ActivityName: "", ActivityDescription: "" , BodyPartsTargeted:"", Duration:"", ActivitySets:"", ActibityReps:"", EquipmentNeeded:""}]);
+        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
+            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
     };
 
 
@@ -46,15 +47,16 @@ export default function AddWorkout(){
         const json = JSON.stringify({
             'email': localStorage.getItem("email"),
             'activityList': activityList,
-            'Title': workoutTitle,
-            'Descriptiom': workoutDescription,
-            'Paid': paid
+            'title': workoutTitle,
+            'description': workoutDescription,
+            'paid': paid
         });
 
 
         axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', json, {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-type': 'multipart/form-data',
+                // 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             }
         }).then(function (response) {
@@ -149,10 +151,10 @@ export default function AddWorkout(){
 
                                         <TextField
                                             required
-                                            name={"ActivityName"}
+                                            name={"activityName"}
                                             style={{background:'black !important'}}
                                             label="Activity Name"
-                                            id={"workoutName"}
+
                                             value={activity.ActivityName}
                                             onChange={e=>handleInputChange(e,i)}
                                         />
@@ -165,7 +167,7 @@ export default function AddWorkout(){
                                      <div>
 
                                          <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
-                                            value={activity.ActivityDescription} name={"ActivityDescription"}
+                                            value={activity.activityDescription} name={"activityDescription"}
                                             onChange={e=>handleInputChange(e,i)}
                                          />
 
@@ -177,8 +179,8 @@ export default function AddWorkout(){
                                         <FormControl>
                                             <InputLabel> Body Parts Targeted </InputLabel>
                                             <Select
-                                                name={"BodyPartsTargeted"}
-                                                value={activity.BodyPartsTargeted}
+                                                name={"bodyPartsTargeted"}
+                                                value={activity.bodyPartsTargeted}
                                                 onChange={e=>handleInputChange(e,i)}
                                                 style={{width:'200px'}}
                                             >
@@ -201,10 +203,10 @@ export default function AddWorkout(){
                                                  }
                                              }}
                                              type={"number"}
-                                             name={"Duration"}
+                                             name={"totalDuration"}
                                              style={{background:'black !important'}}
                                              label="Duration in minutes"
-                                             value={activity.Duration}
+                                             value={activity.totalDuration}
                                              onChange={e=>handleInputChange(e,i)}
                                          />
 
@@ -221,10 +223,10 @@ export default function AddWorkout(){
                                              }
                                          }}
                                          type={"number"}
-                                         name={"ActibityReps"}
+                                         name={"activityReps"}
                                          style={{background:'black !important'}}
                                          label="Reps"
-                                         value={activity.ActibityReps}
+                                         value={activity.activityReps}
                                          onChange={e=>handleInputChange(e,i)}
                                      />
 
@@ -236,10 +238,10 @@ export default function AddWorkout(){
                                              }
                                          }}
                                          type={"number"}
-                                         name={"ActivitySets"}
+                                         name={"activitySets"}
                                          style={{background:'black !important'}}
                                          label="Sets"
-                                         value={activity.ActivitySets}
+                                         value={activity.activitySets}
                                          onChange={e=>handleInputChange(e,i)}
                                      />
 
@@ -249,13 +251,25 @@ export default function AddWorkout(){
                                     <div className={"col-md-12"}>
 
                                         <TextField
-                                            name={"EquipmentNeeded"}
+                                            name={"equipmentNeeded"}
                                             style={{background:'black !important',width: '100 px !important'}}
                                             label="Equipment Needed"
 
-                                            value={activity.EquipmentNeeded}
+                                            value={activity.equipmentNeeded}
                                             onChange={e=>handleInputChange(e,i)}
                                         />
+
+                                        <TextField
+                                            name={"videoLink"}
+                                            style={{background:'black !important',width: '100 px !important'}}
+                                            label="Video Link"
+
+                                            value={activity.videoLink}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
+
+
+
 
                                     </div>
 
@@ -281,6 +295,8 @@ export default function AddWorkout(){
 
                     <div className={"col-md-12"}>
 
+                        <br/>
+                        <br/>
                         <Button variant="success" onClick={workoutSubmit}>Submit </Button>{' '}
 
                     </div>

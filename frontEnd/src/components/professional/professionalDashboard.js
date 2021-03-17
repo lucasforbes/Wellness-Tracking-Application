@@ -8,11 +8,11 @@ export default function ProfessionalDashboard(props){
 
     const { children, value, index, ...other } = props;
 
-    const [email,creatorEmail] = useState("");
+    const [firstName,setFirstName] = useState("");
 
     useEffect(()=>{
 
-        creatorEmail(localStorage.getItem("email"))
+        setFirstName(localStorage.getItem("userFirstName"))
 
 
     })
@@ -24,7 +24,7 @@ export default function ProfessionalDashboard(props){
 
             <br/>
 
-            <h4> Welcome {email?email:""} </h4>
+            <h4> Welcome {firstName?firstName:""} </h4>
 
             <br/>
 

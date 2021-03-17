@@ -39,6 +39,7 @@ export default function MainNavigation(props){
                             setTimeout(function(){
                                 localStorage.removeItem('email');
                                 localStorage.removeItem('userType');
+                                localStorage.removeItem('userFirstName');
                                 window.location.href = "/";
 
                             }, 1000);

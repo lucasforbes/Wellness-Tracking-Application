@@ -57,6 +57,7 @@ export default function Login(props){
                     // alert("Successfully logged In");
 
                     localStorage.setItem('email', response.data.email);
+                    localStorage.setItem('userFirstName',response.data.firstName);
 
                     dispatch(loginAction())
 

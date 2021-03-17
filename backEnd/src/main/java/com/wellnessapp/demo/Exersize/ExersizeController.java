@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +26,8 @@ public class ExersizeController {
     @Autowired
     private ImageRepository idb;
 
-    @PostMapping("/addExersize")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping("/addExersize")
     @ResponseBody
     public Exersize saveExersize(@RequestParam("photo") MultipartFile photo, @RequestPart("exersize") Exersize exersize) throws JsonProcessingException {
         System.out.println("");
@@ -54,16 +55,28 @@ public class ExersizeController {
         edb.save(exersize);
         return exersize;
     }
+
     @GetMapping("/findExersizeByCreatorEmail/{email, name}")
     public Exersize findByUserID(@PathVariable String email, @PathVariable String name){
-        System.out.println("Got All Exersizes");
-        return this.edb.findByEmail(email, name);
+        Exersize exersize = edb.findByEmail(email, name);
+        return exersize;
     }
+
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/findExersizeByUserID/{id, name}")
+    public Optional<Exersize> findByUserID(@PathVariable int id, @PathVariable String name){
+
+        System.out.println("Got All Exersizes");
+        return this.edb.findById(id);
+    }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findAllExersizes")
     public List<Exersize> findAllExersizes(){
         System.out.println("Got All Exersizes");
         return this.edb.findAll();
     }
+
     @GetMapping("/findExersizeByCreatorEmail/{email}")
     public List<Exersize> findByCreatorEmail(@PathVariable String email){
         return this.edb.findByEmail(email);
@@ -82,5 +95,12 @@ public class ExersizeController {
         System.out.println("no file found");
         //return new UnifiedReturnValue(false,404, "file download", "failed", "image", new Date()).unifiedReturnValue();
         return data;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/findExersizeByUserID/{id}")
+    public Optional<Exersize> getUsers(@PathVariable int id){
+        return this.edb.findById(id);
+
     }
 }
