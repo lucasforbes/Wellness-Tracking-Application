@@ -26,11 +26,13 @@ public class SignInController {
         System.out.println("");
         String email = signInArray.getEmail();
         String password = signInArray.getPassword();
+        System.out.println("Trying to Sign In");
         try{
             String tempPassword = udb.findByEmail(email).getPassword();
             if(tempPassword.compareTo(password) == 0){
                 User currentUser = udb.findByEmail(email);
                 ReturnInfo retInfo  = new ReturnInfo(currentUser);
+                System.out.println("Signed In");
                 return retInfo;
             }
             else{
@@ -40,6 +42,7 @@ public class SignInController {
             try{
                 String tempPassword = cdb.findByEmail(email).getPassword();
                 if(tempPassword.compareTo(password) == 0){
+                    System.out.println("Signed In");
                     return new ReturnInfo(cdb.findByEmail(email));
                 }
                 else{
@@ -50,6 +53,7 @@ public class SignInController {
                 try{
                     String tempPassword = adb.findByEmail(email).getPassword();
                     if(tempPassword.compareTo(password) == 0){
+                        System.out.println("Signed In");
                         return new ReturnInfo(adb.findByEmail(email));
                     }
                     else{
