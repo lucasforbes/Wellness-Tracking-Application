@@ -29,8 +29,8 @@ public class UserController {
     @Autowired
     private ImageRepository idb;
 
-    @PostMapping("/addUser")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping("/addUser")
     @ResponseBody
     public User saveUser(@RequestParam("photo") MultipartFile photo, @RequestPart("user") String adUser) throws JsonProcessingException {
         int count = udb.findAll().size();

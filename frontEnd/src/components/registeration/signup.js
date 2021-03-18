@@ -21,6 +21,7 @@ export default function Signup(props){
     const [gender,setGender] = useState("male");
     const [userType,setUserType] = useState("User");
     const[showAlert,setShowAlert] = useState(false);
+    const [userPhoto,setUserPhoto] = useState();
 
 
 
@@ -31,6 +32,12 @@ export default function Signup(props){
             // props.history.push('/dashboard')
         }
     })
+
+    const fileChangedHandler = event => {
+        setUserPhoto(event.target.files[0])
+    }
+
+
 
     const onSignup=async () => {
 
@@ -49,12 +56,14 @@ export default function Signup(props){
                 'userType': userType,
                 'gender': gender,
                 'online': true,
-                'isDeleted': false
+                'isDeleted': false,
+                'photo':userPhoto
             });
             const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', json, {
                 headers: {
                     // Overwrite Axios's automatically set Content-Type
-                    'Content-Type': 'application/json',
+                    // 'Content-Type': 'application/json',
+                    'Content-type': 'multipart/form-data',
                     'Access-Control-Allow-Origin': '*'
                 }
             }).then(function (response) {
@@ -231,6 +240,12 @@ export default function Signup(props){
 
 
 
+                                          </div>
+
+                                          <div className={"col-md-12"}>
+                                              <br/>
+
+                                              <input type="file" onChange={fileChangedHandler}/>
                                           </div>
 
 
