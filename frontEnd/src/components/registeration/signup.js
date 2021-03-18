@@ -45,6 +45,10 @@ export default function Signup(props){
         localStorage.setItem('userFirstName',firstName);
 
         if (validator.isEmail(email)) {
+
+
+            let formData = new FormData();
+
             const json = JSON.stringify({
                 'id': 3,
                 'password': password,
@@ -56,10 +60,13 @@ export default function Signup(props){
                 'userType': userType,
                 'gender': gender,
                 'online': true,
-                'isDeleted': false,
-                'photo':userPhoto
+                'isDeleted': false
             });
-            const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', json, {
+
+            formData.append("photo",userPhoto);
+            formData.append("user",json);
+
+            const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', formData, {
                 headers: {
                     // Overwrite Axios's automatically set Content-Type
                     // 'Content-Type': 'application/json',
