@@ -35,9 +35,9 @@ public class WellnessApplication implements CommandLineRunner {
     // testing out databases
     @Override
     public void run(String... args) throws Exception {
-        udb.deleteAll();
-        adb.deleteAll();
-        cdb.deleteAll();
+//        udb.deleteAll();
+//        adb.deleteAll();
+//        cdb.deleteAll();
 
         // save a couple of Users
         User user1 = new User("1234", "jimmy@google.com", "Jimmy", "John", "1997-10-21", "Male", true, false);
