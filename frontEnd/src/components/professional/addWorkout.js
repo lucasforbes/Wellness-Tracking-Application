@@ -16,6 +16,15 @@ export default function AddWorkout(){
     const [workoutDescription,setWorkoutDescription]= useState("");
     const [paid,setPaid] = useState(false);
 
+
+    //Image upload
+    const [workoutImage,setWorkoutImage] = useState();
+    const fileChangedHandler = event => {
+        setWorkoutImage(event.target.files[0])
+    }
+
+
+
     // handle input change
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
@@ -38,13 +47,16 @@ export default function AddWorkout(){
     };
 
 
+
     const [json,setJson] = useState("");
 
     const workoutSubmit=(e)=>{
 
         e.preventDefault()
 
-        const json = JSON.stringify({
+        let formData = new FormData();
+
+        let json = JSON.stringify({
             'email': localStorage.getItem("email"),
             'activityList': activityList,
             'title': workoutTitle,
@@ -52,23 +64,34 @@ export default function AddWorkout(){
             'paid': paid
         });
 
+        formData.append("photo",workoutImage);
+        formData.append("exersize",json);
 
-        axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', json, {
+
+        axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', formData, {
             headers: {
                 'Content-type': 'multipart/form-data',
-                // 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             }
         }).then(function (response) {
             // handle success
             console.log("status",response);
-
+                json = null;
         })
             .catch(function (error) {
                 console.log(error);
             })
 
-        setJson(json);
+
+        alert("Workout added");
+
+        setWorkoutImage(null);
+        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
+            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}])
+        setWorkoutDescription("")
+        setWorkoutTitle("");
+
+        // setJson(json);
 
     }
 
@@ -112,6 +135,11 @@ export default function AddWorkout(){
 
                             </Select>
                         </FormControl>
+
+                        <div className={"col-md-3"}>
+                            <br/>
+                            <input type="file"  required onChange={fileChangedHandler}/>
+                        </div>
 
                         <br/>
                         <br/>

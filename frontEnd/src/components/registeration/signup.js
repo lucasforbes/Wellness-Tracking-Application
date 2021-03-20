@@ -252,7 +252,7 @@ export default function Signup(props){
                                           <div className={"col-md-12"}>
                                               <br/>
 
-                                              <input type="file" onChange={fileChangedHandler}/>
+                                              <input type="file"  required onChange={fileChangedHandler}/>
                                           </div>
 
 

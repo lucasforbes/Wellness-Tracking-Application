@@ -29,14 +29,14 @@ export default function ProfessionalDashboard(props){
             <br/>
 
 
-            <Tabs defaultActiveKey="profile">
-                <Tab eventKey="home" title="Inventory">
+            <Tabs defaultActiveKey="history">
+                <Tab eventKey="history" title="Inventory">
                     List of added workouts
                 </Tab>
-                <Tab eventKey="profile" title="Add New Workout" align={"left"}>
+                <Tab eventKey="addWorkout" title="Add New Workout" align={"left"}>
                     <AddWorkout/>
                 </Tab>
-                <Tab eventKey="contact" title="Statistics">
+                <Tab eventKey="stats" title="Statistics">
                     Stats
                 </Tab>
             </Tabs>

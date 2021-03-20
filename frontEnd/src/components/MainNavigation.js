@@ -26,6 +26,7 @@ export default function MainNavigation(props){
 
             {userLoggedIn ? <>
 
+                        <div style={{float:'right',paddingRight:'5px'}}>
                         <img
                             alt=""
                             src="./Wellness_Icon.jpg"
@@ -46,6 +47,7 @@ export default function MainNavigation(props){
 
                         }}>  Logout </Button>
 
+                        </div>
 
                 </> :
                 <Navbar bg="dark" variant="dark" sticky={'top'}>

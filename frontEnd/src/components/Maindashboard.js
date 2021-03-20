@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from "react";
 import ProfessionalDashboard from "./professional/professionalDashboard";
+import UserDashboard from "./customers/UserDashboard";
 
 export default function Maindashboard(){
 
@@ -15,12 +16,26 @@ export default function Maindashboard(){
 
     return(
         <>
+            <div style={{paddingLeft:'10px'}}>
             <br/>
 
 
 
             {userType == "Creator" ? <><ProfessionalDashboard/> </>
                 : ""}
+
+            {userType == "User" || userType == "user" ?
+
+                <>
+                <UserDashboard/>
+                </>
+
+                :
+                ""
+            }
+
+            </div>
+
 
         </>
     )
