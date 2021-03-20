@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>test</title>
+  <script type="text/javascript" src="../js/jquery.min.js" ></script>
+</head>
+<body>
+<p id="message"></p>
+<form id="clientChat">
+  <input type="text" style="display: none;" id="userName"  />
+  <input type="text" style="display: none;" id="targetUserName" />
+  <input type="text" id="sendMsg" name="msg"></input>
+  <button type="button" onclick="send()">Send</button>
+</form>
+</body>
+<script>
+  var websocket = null;
+
+  var userId = null;
+
+
+  if('WebSocket' in window){
+    websocket = new WebSocket("ws://127.0.0.1:8080/chat/jimmy@google.com/bob@google.com");
+  } else {
+    alert("Don't support websocket!")
+  }
+
+
+  websocket.onerror = function(){
+    alert("Connect errorsssss!");
+  };
+
+
+  websocket.onopen = function(event){
+    setMessageInnerHTML("connection set up！");
+  }
+
+  websocket.onmessage = function(event){
+    var result = event.data
+    var ob = JSON.parse(result)
+
+
+    if(ob.msg !== undefined){
+      setMessageInnerHTML(ob.msg);
+    }
+  setMessageInnerHTML(result)
+
+  }
+
+
+  websocket.onclose = function(){
+    setMessageInnerHTML("close");
+  }
+
+
+  window.onbeforeunload = function(){
+    websocket.close();
+  }
+
+
+  function setMessageInnerHTML(innerHTML){
+    document.getElementById('message').innerHTML += innerHTML + '<br/>';
+  }
+
+
+  function closeWebSocket(){
+    websocket.close();
+  }
+
+
+  function send(){
+    var sendMsg = document.getElementById("sendMsg").value
+    websocket.send(sendMsg);
+    $("#sendMsg").val("");
+  }
+</script>
+</html>

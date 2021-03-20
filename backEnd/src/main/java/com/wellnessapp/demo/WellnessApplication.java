@@ -10,13 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @SpringBootApplication
-//@RestController
-// implementing CommandLineRunner to run database locally
-// will change once the db is hosted
 public class WellnessApplication implements CommandLineRunner {
     @Autowired
     private UserRepository udb;
