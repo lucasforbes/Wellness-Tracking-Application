@@ -52,7 +52,7 @@ public class User {
     private LocalDate birthday;
     private String userType;
     private int age;
-    private Date signUpTime;
+    private LocalDate signUpTime;
     //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
@@ -78,6 +78,7 @@ public class User {
         this.gender = gender;
         this.online = online;
         this.isDeleted = isDeleted;
+        this.signUpTime = currentDate;
     }
 
     public User() {
@@ -147,11 +148,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Date getSignUpTime() {
+    public LocalDate getSignUpTime() {
         return signUpTime;
     }
 
-    public void setSignUpTime(Date signUpTime) {
+    public void setSignUpTime(LocalDate signUpTime) {
         this.signUpTime = signUpTime;
     }
 

@@ -28,7 +28,7 @@ public class ReturnInfo {
     private String gender;
     private LocalDate birthday;
     private int age;
-    private Date signUpTime;
+    private LocalDate signUpTime;
     private String userType;
     private Boolean nutritionist;
     private Boolean trainer;
@@ -186,11 +186,11 @@ public class ReturnInfo {
         this.age = age;
     }
 
-    public Date getSignUpTime() {
+    public LocalDate getSignUpTime() {
         return signUpTime;
     }
 
-    public void setSignUpTime(Date signUpTime) {
+    public void setSignUpTime(LocalDate signUpTime) {
         this.signUpTime = signUpTime;
     }
 

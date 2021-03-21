@@ -38,7 +38,7 @@ public class CreatorController {
         LocalDate currentDate = LocalDate.now(cl);
         Period a = Period.between(user.getBirthday(), currentDate);
         user.setAge(a.getYears());
-        user.setSignUpTime(new Date());
+        user.setSignUpTime(currentDate);
         user.setUserType("Creator");
         user.setDeleted(false);
         System.out.println(user.getAge());

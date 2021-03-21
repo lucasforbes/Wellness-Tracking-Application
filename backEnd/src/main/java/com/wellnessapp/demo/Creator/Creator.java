@@ -31,7 +31,7 @@ public class Creator extends WellnessApplication {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthday;
     private int age;
-    private Date signUpTime;
+    private LocalDate signUpTime;
     private String userType;
     private Boolean nutritionist;
     private Boolean trainer;
@@ -57,6 +57,7 @@ public class Creator extends WellnessApplication {
         this.age = a.getYears();
         this.nutritionist = nutritionist;
         this.trainer = trainer;
+        this.signUpTime = currentDate;
 //        set up age as a function of birthday
         this.userType = "Creator";
         this.level = 0;
@@ -127,7 +128,7 @@ public class Creator extends WellnessApplication {
         this.gender = gender;
     }
 
-    public Date getSignUpTime() {
+    public LocalDate getSignUpTime() {
         return signUpTime;
     }
 
@@ -135,7 +136,7 @@ public class Creator extends WellnessApplication {
         this.birthday = birthday;
     }
 
-    public void setSignUpTime(Date signUpTime) {
+    public void setSignUpTime(LocalDate signUpTime) {
         this.signUpTime = signUpTime;
     }
 

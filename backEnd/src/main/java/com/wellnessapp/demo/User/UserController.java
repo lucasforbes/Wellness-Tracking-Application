@@ -41,7 +41,7 @@ public class UserController {
         LocalDate currentDate = LocalDate.now(cl);
         Period a = Period.between(user.getBirthday(), currentDate);
         user.setAge(a.getYears());
-        user.setSignUpTime(new Date());
+        user.setSignUpTime(currentDate);
         user.setUserType("User");
         System.out.println(user.getAge());
         System.out.println("Trying to add new User");
@@ -79,9 +79,10 @@ public class UserController {
         return this.udb.findById(id);
     }
 
-    @GetMapping("/findUserByUsername/{email}")
+    @GetMapping("/findUserByEmail/{email}")
     public User getUsers(@PathVariable String email){
         System.out.println("username: " + email);
+        System.out.println(udb.findByEmail(email));
         return this.udb.findByEmail(email);
     }
 //    @GetMapping(value = "/findUserPic/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
