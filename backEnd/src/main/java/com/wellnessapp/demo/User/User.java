@@ -64,7 +64,7 @@ public class User {
     public User(String password, String email, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
         this.password = password;
         this.email = email;
-        this.profilePic = profilePic;
+//        this.profilePic = profilePic;
         // add picture to image database
         this.firstName = firstName;
         this.lastName = lastName;

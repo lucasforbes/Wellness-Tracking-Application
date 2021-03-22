@@ -45,9 +45,11 @@ public class ReturnInfo {
         this.status = true;
         this.id = user.getId();
         this.password = user.getPassword();
+        this.profilePic = user.getProfilePic();
         this.email = user.getEmail();
         this.profilePic = user.getProfilePic();
         this.firstName = user.getFirstName();
+        this.age = user.getAge();
         this.lastName = user.getLastName();
         this.gender = user.getGender();
         this.birthday = user.getBirthday();
@@ -62,11 +64,12 @@ public class ReturnInfo {
         this.id = creator.getId();
         this.password = creator.getPassword();
         this.email = creator.getEmail();
-//        this.profilePic = creator.getProfilePic();
+        this.profilePic = creator.getProfilePic();
         this.firstName = creator.getFirstName();
         this.lastName = creator.getLastName();
         this.gender = creator.getGender();
         this.birthday = creator.getBirthday();
+        this.age = creator.getAge();
         this.nutritionist = creator.getNutritionist();
         this.trainer = creator.getTrainer();
         this.level = creator.getLevel();

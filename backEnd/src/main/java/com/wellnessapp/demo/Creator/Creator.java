@@ -47,7 +47,7 @@ public class Creator extends WellnessApplication {
     public Creator( String password, String email, String firstName, String lastName, String birthday, Boolean nutritionist, Boolean trainer, String gender,  Boolean online) {
         this.password = password;
         this.email = email;
-        this.profilePic = profilePic;
+//        this.profilePic = profilePic;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = LocalDate.parse(birthday);
