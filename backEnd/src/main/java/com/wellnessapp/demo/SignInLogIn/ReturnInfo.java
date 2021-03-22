@@ -21,7 +21,6 @@ public class ReturnInfo {
     private int id;
     private String password;
     private String email;
-    //    Possible way to store profile pictures?
     private String profilePic;
     private String firstName;
     private String lastName;
@@ -47,7 +46,6 @@ public class ReturnInfo {
         this.password = user.getPassword();
         this.profilePic = user.getProfilePic();
         this.email = user.getEmail();
-        this.profilePic = user.getProfilePic();
         this.firstName = user.getFirstName();
         this.age = user.getAge();
         this.lastName = user.getLastName();
@@ -82,6 +80,7 @@ public class ReturnInfo {
     public ReturnInfo(Admin admin){
         this.status = true;
         this.id = admin.getId();
+        this.profilePic = "";
         this.password = admin.getPassword();
         this.email = admin.getEmail();
         this.firstName = admin.getFirstName();
@@ -141,13 +140,13 @@ public class ReturnInfo {
         this.email = email;
     }
 
-//    public URL getProfilePic() {
-//        return profilePic;
-//    }
-//
-//    public void setProfilePic(URL profilePic) {
-//        this.profilePic = profilePic;
-//    }
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
 
     public String getFirstName() {
         return firstName;

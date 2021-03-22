@@ -77,6 +77,22 @@ public class CreatorController {
         return this.cdb.findById(id);
     }
 
+    @GetMapping("/addUserDietSubscription/{email, dietId}")
+    public String setUserDietSubscription(@PathVariable String email, @PathVariable int id){
+        Creator owner = cdb.findByEmail(email);
+        List<Integer> userIdList = owner.getUserIdsToDietsSubscribed();
+        userIdList.add(id);
+        String retState = "Added user to Diet subscriber list";
+        return retState;
+    }
+    @GetMapping("/addUserExersizeSubscription/{email, dietId}")
+    public String setUserExerssizeSubscription(@PathVariable String email, @PathVariable int id){
+        Creator owner = cdb.findByEmail(email);
+        List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
+        userIdList.add(id);
+        String retState = "Added user to Exersize subscriber list";
+        return retState;
+    }
     //    @GetMapping(value = "/findUserPic/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 //    public byte[] getImage(@PathVariable int id){
 //        Image file = idb.findByOtherDbId(id);

@@ -14,7 +14,10 @@ import java.net.URL;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Document(collection = "Creator")
 public class Creator extends WellnessApplication {
     @Autowired
@@ -39,7 +42,8 @@ public class Creator extends WellnessApplication {
     //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
-
+    private List<Integer> userIdsToDietsSubscribed;
+    private List<Integer> userIdsToExersizesSubscribed;
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
@@ -64,6 +68,8 @@ public class Creator extends WellnessApplication {
         this.gender = gender;
         this.online = online;
         this.isDeleted = false;
+        this.userIdsToDietsSubscribed = new ArrayList<>();
+        this.userIdsToExersizesSubscribed = new ArrayList<>();
     }
 
     public Creator() {
@@ -202,5 +208,21 @@ public class Creator extends WellnessApplication {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public List<Integer> getUserIdsToDietsSubscribed() {
+        return userIdsToDietsSubscribed;
+    }
+
+    public void setUserIdsToDietsSubscribed(List<Integer> userIdsToDietsSubscribed) {
+        this.userIdsToDietsSubscribed = userIdsToDietsSubscribed;
+    }
+
+    public List<Integer> getUserIdsToExersizesSubscribed() {
+        return userIdsToExersizesSubscribed;
+    }
+
+    public void setUserIdsToExersizesSubscribed(List<Integer> userIdsToExersizesSubscribed) {
+        this.userIdsToExersizesSubscribed = userIdsToExersizesSubscribed;
     }
 }
