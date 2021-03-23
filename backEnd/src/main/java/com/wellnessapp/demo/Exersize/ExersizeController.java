@@ -56,11 +56,11 @@ public class ExersizeController {
         return exersize;
     }
 
-    @GetMapping("/findExersizeByCreatorEmail/{email, name}")
-    public Exersize findByUserID(@PathVariable String email, @PathVariable String name){
-        Exersize exersize = edb.findByEmail(email, name);
-        return exersize;
-    }
+//    @GetMapping("/findExersizeByCreatorEmail/{email, name}")
+//    public Exersize findByUserID(@PathVariable String email, @PathVariable String name){
+//        Exersize exersize = edb.findByEmail(email, name);
+//        return exersize;
+//    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findExersizeByUserID/{id, name}")
@@ -78,7 +78,8 @@ public class ExersizeController {
 
     @GetMapping("/findExersizeByCreatorEmail/{email}")
     public List<Exersize> findByCreatorEmail(@PathVariable String email){
-        return this.edb.findByEmail(email);
+        List<Exersize> allCreatorWorkouts = this.edb.findByEmail(email);
+        return allCreatorWorkouts;
     }
 
     @GetMapping(value = "/findExersizePic/{exersizeId}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
