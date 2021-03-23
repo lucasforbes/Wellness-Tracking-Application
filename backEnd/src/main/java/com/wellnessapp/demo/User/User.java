@@ -55,6 +55,7 @@ public class User {
     private String userType;
     private int age;
     private LocalDate signUpTime;
+    private String phoneNumber;
     //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
@@ -85,6 +86,7 @@ public class User {
         this.signUpTime = currentDate;
         this.exersizesSubscribed = new ArrayList<>();
         this.dietsSubscribed = new ArrayList<>();
+        this.phoneNumber = "5743397212";
     }
 
     public User() {
@@ -95,6 +97,14 @@ public class User {
     public String printUser() {
         String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail();
         return r;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public List<Integer> getDietsSubscribed() {

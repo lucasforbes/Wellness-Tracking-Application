@@ -30,7 +30,7 @@ public class CreatorController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public Creator saveCreator(@RequestParam("photo") MultipartFile photo, @RequestPart("creator") String adcreator) throws JsonProcessingException {
-        int count = idb.findAll().size();
+        int count = cdb.findAll().size();
         Creator user = new ObjectMapper().readValue(adcreator, Creator.class);
         System.out.println(user.getBirthday());
         user.setId(count);

@@ -42,6 +42,7 @@ public class Creator extends WellnessApplication {
     //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
+    private String phoneNumber;
     private List<Integer> userIdsToDietsSubscribed;
     private List<Integer> userIdsToExersizesSubscribed;
     // need to figure out picture, for now taking out of constructor:
@@ -70,6 +71,7 @@ public class Creator extends WellnessApplication {
         this.isDeleted = false;
         this.userIdsToDietsSubscribed = new ArrayList<>();
         this.userIdsToExersizesSubscribed = new ArrayList<>();
+        this.phoneNumber = "5743397212";
     }
 
     public Creator() {
@@ -80,6 +82,14 @@ public class Creator extends WellnessApplication {
     public String printUser() {
         String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail();
         return r;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {
