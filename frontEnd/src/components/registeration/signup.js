@@ -38,42 +38,55 @@ export default function Signup(props){
     }
 
 
+    const [trainer,setTrainer] = useState(true);
+
+    const [nutritionist,setNutritionist] = useState(false);
+
 
     const onSignup=async () => {
 
         localStorage.setItem('userType', userType);
         localStorage.setItem('userFirstName',firstName);
 
-        if (validator.isEmail(email)) {
+        if(userType == "User" || userType == "user"){
+            if (validator.isEmail(email)) {
 
 
-            let formData = new FormData();
+                let formData = new FormData();
 
-            const json = JSON.stringify({
-                'id': 3,
-                'password': password,
-                'email': email,
-                'profilePic': null,
-                'firstName': firstName,
-                'lastName': lastName,
-                'birthday': birthDate,
-                'userType': userType,
-                'gender': gender,
-                'online': true,
-                'isDeleted': false
-            });
+                const json = JSON.stringify({
+                    // 'id': 3,
+                    'password': password,
+                    'email': email,
+                    'firstName': firstName,
+                    'lastName': lastName,
+                    //yyyy-mm-dd
+                    'birthday': birthDate,
+                    // 'userType': userType,
+                    'gender': gender,
+                    'online': true,
+                    'isDeleted': false
+                });
 
-            formData.append("photo",userPhoto);
-            formData.append("user",json);
+                // for creator
+                // 'boolean': nutritionist
+                // 'boolean': trainer
 
-            const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', formData, {
-                headers: {
-                    // Overwrite Axios's automatically set Content-Type
-                    // 'Content-Type': 'application/json',
-                    'Content-type': 'multipart/form-data',
-                    'Access-Control-Allow-Origin': '*'
-                }
-            }).then(function (response) {
+
+
+                formData.append("photo",userPhoto);
+                formData.append("user",json);
+
+                //addCreator
+
+                const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', formData, {
+                    headers: {
+                        // Overwrite Axios's automatically set Content-Type
+                        // 'Content-Type': 'application/json',
+                        'Content-type': 'multipart/form-data',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }).then(function (response) {
                     // handle success
                     console.log("signup status",response);
 
@@ -89,16 +102,81 @@ export default function Signup(props){
                     }, 1500);
 
                 })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
 
 
-        } else {
-            alert("Invalid Email")
-            document.getElementById("email").focus();
+            } else {
+                alert("Invalid Email")
+                document.getElementById("email").focus();
+            }
         }
+
+
+
+        if(userType == "Creator" || userType == "creator" || userType == "professional"){
+
+            if (validator.isEmail(email)) {
+
+
+                let formData = new FormData();
+
+                const json = JSON.stringify({
+
+                    'password': password,
+                    'email': email,
+                    'firstName': firstName,
+                    'lastName': lastName,
+                    'birthday': birthDate,
+                    'gender': gender,
+                    'online': true,
+                    'nutritionist': nutritionist,
+                    'trainer': trainer
+                });
+
+                formData.append("photo",userPhoto);
+                formData.append("creator",json);
+
+                const res = axios.post('https://bloom-wellness-back.herokuapp.com/addCreator', formData, {
+                    headers: {
+                        // Overwrite Axios's automatically set Content-Type
+                        // 'Content-Type': 'application/json',
+                        'Content-type': 'multipart/form-data',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }).then(function (response) {
+                    // handle success
+                    console.log("signup status for Creator",response);
+
+                    setShowAlert(true);
+
+                    localStorage.setItem('email', email);
+                    dispatch(loginAction())
+
+                    setTimeout(function(){ setShowAlert(false)
+                        // props.history.push('/dashboard');
+                        window.open("/dashboard", "_self")
+
+                    }, 1500);
+
+                })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+
+
+            } else {
+                alert("Invalid Email")
+                document.getElementById("email").focus();
+            }
+
+
+        }
+
+
     }
 
 
@@ -248,6 +326,51 @@ export default function Signup(props){
 
 
                                           </div>
+
+
+                                          {userType == "Creator" || userType=="creator"?
+                                              <>
+                                              <div className={"col-md-6"}>
+
+                                                  <FormControl>
+                                                      <InputLabel>Nutrionist</InputLabel>
+                                                      <Select
+                                                          value={nutritionist}
+                                                          onChange={(e)=>setNutritionist(e.target.value)}
+                                                          style={{width:'100px'}}
+                                                      >
+                                                          <MenuItem value={true}>Yes</MenuItem>
+                                                          <MenuItem value={false}>No</MenuItem>
+                                                      </Select>
+                                                  </FormControl>
+
+                                              </div>
+
+                                              <div className={"col-md-6"}>
+
+                                                  <FormControl>
+                                                      <InputLabel>Trainer</InputLabel>
+                                                      <Select
+                                                          value={trainer}
+                                                          onChange={(e)=>setTrainer(e.target.value)}
+                                                          style={{width:'100px'}}
+                                                      >
+                                                          <MenuItem value={true}>Yes</MenuItem>
+                                                          <MenuItem value={false}>No</MenuItem>
+                                                      </Select>
+                                                  </FormControl>
+
+                                              </div>
+
+                                              </>
+
+
+                                              :
+                                              ""
+
+                                          }
+
+
 
                                           <div className={"col-md-12"}>
                                               <br/>
