@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 
-import {Card,Button} from 'react-bootstrap';
+import {Card, Button, ModalFooter} from 'react-bootstrap';
 import {TextField,Select,FormControl} from '@material-ui/core/';
 import axios from "axios";
 import validator from 'validator';
@@ -35,6 +35,17 @@ export default function Signup(props){
 
     const fileChangedHandler = event => {
         setUserPhoto(event.target.files[0])
+    }
+
+    const s = {
+        root: {
+            background: "black",
+            color: 'white'
+        },
+        input: {
+            width: '1000px',
+            backgroundColor: 'red'
+        }
     }
 
 
@@ -191,35 +202,35 @@ export default function Signup(props){
                     <Alert severity="success"> Signup up successfully </Alert>
                         :null
                     }
-                    <div className='card' style={{alignItems:'center'}}>
+                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px'}}></div>
+                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px'}}></div>
+
+
+                    <div className='box' style={{backgroundSize: 'cover',height: '82vh', alignItems:'center', backgroundImage: 'url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1)'}}>
 
 
 
-                        <Card  bgstyle={{ width: '18rem' , border: 'none'}} >
 
-                          <div className={'row'}>
+                        <Card style =  {{color: '', width: '24rem' ,backgroundColor: 'rgba(255,255,255,.4)', border: 'round', position: 'relative', bottom: '-50px'}} >
 
-                              <div className={'col-md-7'}>
-                                  <img src={process.env.PUBLIC_URL + '/Logo.PNG'} />
-                              </div>
 
-                              <div className={'col-md-5'}>
+                            <Card.Body style = {{fontSize: '',color: ''}}>
+                                <Card.Title> <strong> Signup</strong></Card.Title>
 
-                                  <h3 style={{fontSize:'20px', backgroundColor: 'white !important'}}> <b> <strong>Signup </strong></b>  </h3>
+                                <div className={"row"} >
 
-                                  <Card.Body>
-
-                                      <div className={"row"}>
-
-                                          <div className={"col-md-6"}>
+                                          <div className={"col-md-6"} style={{color: 'white'}}>
                                               <TextField
                                                   required
+
                                                   style={{backgroundColor: 'white !important'}}
                                                   color={"secondary"}
                                                   label="Email"
                                                   id={"email"}
                                                   // variant="filled"
                                                   value={email}
+                                                  InputProps={{className: s.root}}
+
                                                   onChange={(e)=>setEmail(e.target.value)}
                                               />
                                           </div>
@@ -393,16 +404,17 @@ export default function Signup(props){
                                       </div>
 
                                   </Card.Body>
-                              </div>
 
-                          </div>
+
                         </Card>
 
 
-
-
-
                     </div>
+                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px'}}></div>
+
+                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px'}}></div>
+                    <ModalFooter style={{fontSize: '70%', borderColor: 'white', color: 'grey'}}>Copyright group #6</ModalFooter>
+
                 </center>
 
 
