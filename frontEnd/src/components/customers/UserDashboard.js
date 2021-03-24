@@ -49,14 +49,17 @@ export default function UserDashboard(props){
 
         <>
 
-            <br/>
-
-            <h4> Welcome {firstName?firstName:""} </h4>
-
-            <br/>
 
 
-            <Tabs defaultActiveKey="enrolled">
+
+            <div className={'row'} style={ {textAlign: 'center' ,backgroundAttachment: 'fixed' , color:'white',fontSize: '3vw', height: '10vw',margin:'0px', backgroundImage: 'url(./ocean_waves_in_blue-1920x1200.jpg)'}}>
+                <div className={'col-xs-4'} style={{position:"relative",right: '-10vw', bottom: '-2vw'}}>
+                    Welcome {firstName?firstName:""}
+                </div>
+            </div>
+
+
+            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'grey', }}>
 
                 <Tab eventKey="enrolled" title="Enrolled">
 
@@ -64,7 +67,7 @@ export default function UserDashboard(props){
 
                 </Tab>
 
-                <Tab eventKey="market" title="MarketPlace" align={"left"}>
+                <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgrey'}}>
 
                     {allExercises?<AllExercises data={allExercises}/> :<></>}
 
