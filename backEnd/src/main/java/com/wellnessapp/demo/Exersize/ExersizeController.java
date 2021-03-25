@@ -3,6 +3,7 @@ package com.wellnessapp.demo.Exersize;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellnessapp.demo.Admin.Admin;
+import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.Image;
@@ -25,6 +26,8 @@ public class ExersizeController {
     private ExersizeRepository edb;
     @Autowired
     private ImageRepository idb;
+    @Autowired
+    private UserRepository udb;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addExersize")
@@ -62,13 +65,13 @@ public class ExersizeController {
 //        return exersize;
 //    }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/findExersizeByUserID/{id, name}")
-    public Optional<Exersize> findByUserID(@PathVariable int id, @PathVariable String name){
-
-        System.out.println("Got All Exersizes");
-        return this.edb.findById(id);
-    }
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    @GetMapping("/findExersizeByUserID/{id, name}")
+//    public Exersize findByUserID(@PathVariable int id, @PathVariable String name){
+//
+//        System.out.println("Got All Exersizes");
+//        return this.edb.findById(id);
+//    }
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findAllExersizes")
     public List<Exersize> findAllExersizes(){
@@ -80,6 +83,14 @@ public class ExersizeController {
     public List<Exersize> findByCreatorEmail(@PathVariable String email){
         List<Exersize> allCreatorWorkouts = this.edb.findByEmail(email);
         return allCreatorWorkouts;
+    }
+    @GetMapping("/subscribeUserToExersize/{exersizeId, userId}")
+    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
+        Exersize exersize = edb.findById(exersizeId);
+        List subscribers = exersize.getUserIdsToExersizesSubscribed();
+        subscribers.add(userId);
+        String retState = "Added user to Exersize subscriber list";
+        return retState;
     }
 
     @GetMapping(value = "/findExersizePic/{exersizeId}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
@@ -99,7 +110,7 @@ public class ExersizeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findExersizeByUserID/{id}")
-    public Optional<Exersize> getUsers(@PathVariable int id){
+    public Exersize getUsers(@PathVariable int id){
         return this.edb.findById(id);
 
     }

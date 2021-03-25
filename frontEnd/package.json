@@ -23,6 +23,7 @@
     "react-sliding-pane": "^7.0.0",
     "redux": "^4.0.5",
     "styled-components": "^5.2.1",
+    "textbelt": "^0.0.4",
     "validator": "^13.5.2",
     "web-vitals": "^1.1.0"
   },
