@@ -29,7 +29,7 @@ export default function AboutUs(){
                             <Card style={{width: '20vw'}}>
                                 <Card.Img style={{height: '50%'}} variant="top" src="feifan (2).jpg"/>
                                 Feifan
-                            </Card
+                            </Card>
                         </div>
                     </Row>
 
