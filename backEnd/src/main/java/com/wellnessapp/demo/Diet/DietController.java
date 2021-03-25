@@ -78,6 +78,14 @@ public class DietController {
         //return new UnifiedReturnValue(false,404, "file download", "failed", "image", new Date()).unifiedReturnValue();
         return data;
     }
+    @GetMapping("/subscribeUserToDiet/{dietId, userId}")
+    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
+        Diet diet = ddb.findById(exersizeId);
+        List subscribers = diet.getUserIdsToExersizesSubscribed();
+        subscribers.add(userId);
+        String retState = "Added user to Diet subscriber list";
+        return retState;
+    }
     @GetMapping(value = "/findDietPic/{email, id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable String email, @PathVariable int id) {
         Image file = idb.findByUserEmail(email, id);
