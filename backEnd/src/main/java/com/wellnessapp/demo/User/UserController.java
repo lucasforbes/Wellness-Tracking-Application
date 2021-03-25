@@ -86,15 +86,15 @@ public class UserController {
         String retState = "Added diet to diets subscribed to user";
         return retState;
     }
-    @GetMapping("/subscribeExersize/{email, dietId}")
+    @GetMapping("/subscribeExersize/{email, userId, dietId}")
     public String setSubscribedExersizes(@PathVariable String email, @PathVariable int id){
+//        email = creator email, userId = user database, dietId = diet database
         User subscriber = udb.findByEmail(email);
         List<Integer> subscriberExersizeList = subscriber.getExersizesSubscribed();
         subscriberExersizeList.add(id);
         String retState = "Added exersize to exersizes subscribed to user";
         return retState;
     }
-
     @GetMapping("/findUserByEmail/{email}")
     public User getUsers(@PathVariable String email){
         System.out.println("username: " + email);

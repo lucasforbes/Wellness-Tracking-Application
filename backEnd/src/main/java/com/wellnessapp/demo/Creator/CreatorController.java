@@ -93,6 +93,7 @@ public class CreatorController {
         String retState = "Added user to Exersize subscriber list";
         return retState;
     }
+
     //    @GetMapping(value = "/findUserPic/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 //    public byte[] getImage(@PathVariable int id){
 //        Image file = idb.findByOtherDbId(id);

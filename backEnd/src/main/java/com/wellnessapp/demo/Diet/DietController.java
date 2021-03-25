@@ -1,8 +1,12 @@
 package com.wellnessapp.demo.Diet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.wellnessapp.demo.Creator.Creator;
+import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.Exersize.Exersize;
 import com.wellnessapp.demo.Exersize.ExersizeRepository;
+import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.Image;
 import com.wellnessapp.demo.tools.ImageRepository;
 import org.bson.types.Binary;
@@ -12,9 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class DietController {
@@ -22,6 +24,10 @@ public class DietController {
     private DietRepository ddb;
     @Autowired
     private ImageRepository idb;
+    @Autowired
+    private UserRepository udb;
+    @Autowired
+    private CreatorRepository cdb;
 
     @PostMapping("/addDiet")
     @ResponseBody
@@ -79,12 +85,142 @@ public class DietController {
         return data;
     }
     @GetMapping("/subscribeUserToDiet/{dietId, userId}")
-    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
-        Diet diet = ddb.findById(exersizeId);
+    public String setUserDietSubscription(@PathVariable int dietId, @PathVariable int userId){
+        Diet diet = ddb.findById(dietId);
+        Creator owner = cdb.findByEmail(diet.email);
+        List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
+        userIdList.add(userId);
         List subscribers = diet.getUserIdsToExersizesSubscribed();
         subscribers.add(userId);
         String retState = "Added user to Diet subscriber list";
         return retState;
+    }
+    @GetMapping("/getUserDiets/{email}")
+//    email = user email
+    public List<Diet> getUserDiets(@PathVariable String email){
+        User user = udb.findByEmail(email);
+        List<Integer> dietIds = user.getDietsSubscribed();
+        List<Diet> allDiets = new List<Diet>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<Diet> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Diet diet) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Diet> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, Collection<? extends Diet> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Diet get(int index) {
+                return null;
+            }
+
+            @Override
+            public Diet set(int index, Diet element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, Diet element) {
+
+            }
+
+            @Override
+            public Diet remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public ListIterator<Diet> listIterator() {
+                return null;
+            }
+
+            @Override
+            public ListIterator<Diet> listIterator(int index) {
+                return null;
+            }
+
+            @Override
+            public List<Diet> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+        for(int i: dietIds){
+            Diet diet = ddb.findById(i);
+            allDiets.add(diet);
+        }
+        return allDiets;
     }
     @GetMapping(value = "/findDietPic/{email, id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable String email, @PathVariable int id) {
