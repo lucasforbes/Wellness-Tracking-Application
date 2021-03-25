@@ -14,7 +14,7 @@ import Homepage from "./components/Homepage";
 
 import Login from "./components/registeration/login";
 import Signup from "./components/registeration/signup";
-
+import AboutUs from "./components/AboutUs";
 import Maindashboard from "./components/Maindashboard"
 import UserDashboard from "./components/customers/UserDashboard";
 import ProfessionalDashboard from "./components/professional/professionalDashboard";
@@ -28,7 +28,7 @@ function App() {
 
               <Route path="/" exact component={Homepage}/>
               <Route path="/login" exact component={Login}/>
-              <Route path="/about" exact component={Placeholder}/>
+              <Route path="/about" exact component={AboutUs}/>
               <Route path="/signup" exact component={Signup}/>
               <Route path="/dashboard" exact component={Maindashboard}/>
 

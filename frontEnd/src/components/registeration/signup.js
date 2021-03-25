@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 
-import {Card, Button, ModalFooter} from 'react-bootstrap';
+import {Card, Button, ModalFooter, Container, CardImg} from 'react-bootstrap';
 import {TextField,Select,FormControl} from '@material-ui/core/';
 import axios from "axios";
 import validator from 'validator';
@@ -202,218 +202,229 @@ export default function Signup(props){
                     <Alert severity="success"> Signup up successfully </Alert>
                         :null
                     }
-                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px'}}></div>
-                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px'}}></div>
 
+                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '99vw'}}></div>
 
-                    <div className='box' style={{backgroundSize: 'cover',height: '82vh', alignItems:'center', backgroundImage: 'url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1)'}}>
-
-
-
-
-                        <Card style =  {{color: '', width: '24rem' ,backgroundColor: 'rgba(255,255,255,.4)', border: 'round', position: 'relative', bottom: '-50px'}} >
-
-
-                            <Card.Body style = {{fontSize: '',color: ''}}>
-                                <Card.Title> <strong> Signup</strong></Card.Title>
-
-                                <div className={"row"} >
-
-                                          <div className={"col-md-6"} style={{color: 'white'}}>
-                                              <TextField
-                                                  required
-
-                                                  style={{backgroundColor: 'white !important'}}
-                                                  color={"secondary"}
-                                                  label="Email"
-                                                  id={"email"}
-                                                  // variant="filled"
-                                                  value={email}
-                                                  InputProps={{className: s.root}}
-
-                                                  onChange={(e)=>setEmail(e.target.value)}
-                                              />
-                                          </div>
-
-
-                                          <div className={"col-md-6"}>
-                                              <TextField
-                                                  required
-                                                  style={{background:'white !important'}}
-                                                  color={"secondary"}
-                                                  label="Password"
-                                                  // variant="filled"
-                                                  type={"password"}
-                                                  value={password}
-                                                  onChange={(e)=>setPassword(e.target.value)}
-
-                                              />
-                                          </div>
-
-                                          <div className={"col-md-6"}>
-                                              <TextField
-                                                  required
-                                                  style={{backgroundColor: 'white !important'}}
-                                                  color={"secondary"}
-                                                  label="First Name"
-                                                  id={"firstName"}
-                                                  // variant="filled"
-                                                  value={firstName}
-                                                  onChange={(e)=>setFirstName(e.target.value)}
-                                              />
-                                          </div>
-
-
-                                          <div className={"col-md-6"}>
-                                              <TextField
-                                                  required
-                                                  style={{background:'white !important'}}
-                                                  color={"secondary"}
-                                                  label="Last Name"
-                                                  // variant="filled"
-                                                  type={"text"}
-                                                  value={lastName}
-                                                  onChange={(e)=>setLastName(e.target.value)}
-
-                                              />
-                                          </div>
-
-                                          <div className={'col-md-12'}> <br/> </div>
-
-
-                                          <div className={"col-md-4"}>
-                                              <TextField
-                                                  required
-                                                  style={{backgroundColor: 'white !important'}}
-                                                  color={"secondary"}
-                                                  label="Birth Date"
-                                                  id={"birthdate"}
-                                                  type={"date"}
-                                                  // variant="filled"
-                                                  value={birthDate}
-                                                  onChange={(e)=>setBirthDate(e.target.value)}
-                                              />
-                                          </div>
-
-
-                                          <div className={"col-md-4"}>
-
-                                              <FormControl>
-                                                  <InputLabel>Gender</InputLabel>
-                                                  <Select
-                                                      value={gender}
-                                                      onChange={(e)=>setGender(e.target.value)}
-                                                      style={{width:'100px'}}
-                                                  >
-                                                      <MenuItem value={"male"}>Male</MenuItem>
-                                                      <MenuItem value={"female"}>Female</MenuItem>
-                                                      <MenuItem value={"other"}>Other</MenuItem>
-                                                  </Select>
-                                              </FormControl>
-
-
-                                          </div>
+                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '99vw'}}></div>
 
 
 
+                    <Card style={{width: 'auto', border: 'none'}}>
+                        <Card.Img src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
+                        <Card.ImgOverlay style = {{width: '100%'}}>
+
+                            <Card style =  {{color: '', width: '24rem' ,backgroundColor: 'rgba(255,255,255,.4)', border: 'round', position: 'relative', bottom: '-50px'}} >
 
 
-                                          <div className={"col-md-4"}>
+                                <Card.Body style = {{fontSize: '',color: ''}}>
+                                    <Card.Title> <strong> Signup</strong></Card.Title>
 
-                                              <FormControl>
-                                                  <InputLabel>User Type</InputLabel>
-                                                  <Select
-                                                      value={userType}
-                                                      onChange={(e)=>setUserType(e.target.value)}
-                                                      style={{width:'100px'}}
-                                                  >
-                                                      <MenuItem value={"User"}>User</MenuItem>
-                                                      <MenuItem value={"Creator"}>Creator</MenuItem>
-                                                      <MenuItem value={"Admin"}>Admin</MenuItem>
-                                                  </Select>
-                                              </FormControl>
+                                    <div className={"row"} >
 
+                                        <div className={"col-md-6"} style={{color: 'white'}}>
+                                            <TextField
+                                                required
 
+                                                style={{backgroundColor: 'white !important'}}
+                                                color={"secondary"}
+                                                label="Email"
+                                                id={"email"}
+                                                // variant="filled"
+                                                value={email}
+                                                InputProps={{className: s.root}}
 
-
-                                          </div>
-
-
-                                          {userType == "Creator" || userType=="creator"?
-                                              <>
-                                              <div className={"col-md-6"}>
-
-                                                  <FormControl>
-                                                      <InputLabel>Nutrionist</InputLabel>
-                                                      <Select
-                                                          value={nutritionist}
-                                                          onChange={(e)=>setNutritionist(e.target.value)}
-                                                          style={{width:'100px'}}
-                                                      >
-                                                          <MenuItem value={true}>Yes</MenuItem>
-                                                          <MenuItem value={false}>No</MenuItem>
-                                                      </Select>
-                                                  </FormControl>
-
-                                              </div>
-
-                                              <div className={"col-md-6"}>
-
-                                                  <FormControl>
-                                                      <InputLabel>Trainer</InputLabel>
-                                                      <Select
-                                                          value={trainer}
-                                                          onChange={(e)=>setTrainer(e.target.value)}
-                                                          style={{width:'100px'}}
-                                                      >
-                                                          <MenuItem value={true}>Yes</MenuItem>
-                                                          <MenuItem value={false}>No</MenuItem>
-                                                      </Select>
-                                                  </FormControl>
-
-                                              </div>
-
-                                              </>
+                                                onChange={(e)=>setEmail(e.target.value)}
+                                            />
+                                        </div>
 
 
-                                              :
-                                              ""
+                                        <div className={"col-md-6"}>
+                                            <TextField
+                                                required
+                                                style={{background:'white !important'}}
+                                                color={"secondary"}
+                                                label="Password"
+                                                // variant="filled"
+                                                type={"password"}
+                                                value={password}
+                                                onChange={(e)=>setPassword(e.target.value)}
 
-                                          }
+                                            />
+                                        </div>
+
+                                        <div className={"col-md-6"}>
+                                            <TextField
+                                                required
+                                                style={{backgroundColor: 'white !important'}}
+                                                color={"secondary"}
+                                                label="First Name"
+                                                id={"firstName"}
+                                                // variant="filled"
+                                                value={firstName}
+                                                onChange={(e)=>setFirstName(e.target.value)}
+                                            />
+                                        </div>
 
 
+                                        <div className={"col-md-6"}>
+                                            <TextField
+                                                required
+                                                style={{background:'white !important'}}
+                                                color={"secondary"}
+                                                label="Last Name"
+                                                // variant="filled"
+                                                type={"text"}
+                                                value={lastName}
+                                                onChange={(e)=>setLastName(e.target.value)}
 
-                                          <div className={"col-md-12"}>
-                                              <br/>
+                                            />
+                                        </div>
 
-                                              <input type="file"  required onChange={fileChangedHandler}/>
-                                          </div>
-
-
-                                          <div className={"col-md-12"} style={{paddingTop:'10px'}}>
+                                        <div className={'col-md-12'}> <br/> </div>
 
 
+                                        <div className={"col-md-4"}>
+                                            <TextField
+                                                required
+                                                style={{backgroundColor: 'white !important'}}
+                                                color={"secondary"}
+                                                label="Birth Date"
+                                                id={"birthdate"}
+                                                type={"date"}
+                                                // variant="filled"
+                                                value={birthDate}
+                                                onChange={(e)=>setBirthDate(e.target.value)}
+                                            />
+                                        </div>
 
-                                          <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
-                                              onSignup()
-                                          }}> Signup </Button>
+
+                                        <div className={"col-md-4"}>
+
+                                            <FormControl>
+                                                <InputLabel>Gender</InputLabel>
+                                                <Select
+                                                    value={gender}
+                                                    onChange={(e)=>setGender(e.target.value)}
+                                                    style={{width:'100px'}}
+                                                >
+                                                    <MenuItem value={"male"}>Male</MenuItem>
+                                                    <MenuItem value={"female"}>Female</MenuItem>
+                                                    <MenuItem value={"other"}>Other</MenuItem>
+                                                </Select>
+                                            </FormControl>
+
 
                                         </div>
 
 
-                                      </div>
-
-                                  </Card.Body>
 
 
-                        </Card>
+
+                                        <div className={"col-md-4"}>
+
+                                            <FormControl>
+                                                <InputLabel>User Type</InputLabel>
+                                                <Select
+                                                    value={userType}
+                                                    onChange={(e)=>setUserType(e.target.value)}
+                                                    style={{width:'100px'}}
+                                                >
+                                                    <MenuItem value={"User"}>User</MenuItem>
+                                                    <MenuItem value={"Creator"}>Creator</MenuItem>
+                                                    <MenuItem value={"Admin"}>Admin</MenuItem>
+                                                </Select>
+                                            </FormControl>
 
 
-                    </div>
-                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px'}}></div>
 
-                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px'}}></div>
+
+                                        </div>
+
+
+                                        {userType == "Creator" || userType=="creator"?
+                                            <>
+                                                <div className={"col-md-6"}>
+
+                                                    <FormControl>
+                                                        <InputLabel>Nutrionist</InputLabel>
+                                                        <Select
+                                                            value={nutritionist}
+                                                            onChange={(e)=>setNutritionist(e.target.value)}
+                                                            style={{width:'100px'}}
+                                                        >
+                                                            <MenuItem value={true}>Yes</MenuItem>
+                                                            <MenuItem value={false}>No</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+
+                                                </div>
+
+                                                <div className={"col-md-6"}>
+
+                                                    <FormControl>
+                                                        <InputLabel>Trainer</InputLabel>
+                                                        <Select
+                                                            value={trainer}
+                                                            onChange={(e)=>setTrainer(e.target.value)}
+                                                            style={{width:'100px'}}
+                                                        >
+                                                            <MenuItem value={true}>Yes</MenuItem>
+                                                            <MenuItem value={false}>No</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+
+                                                </div>
+
+                                            </>
+
+
+                                            :
+                                            ""
+
+                                        }
+
+
+
+                                        <div className={"col-md-12"}>
+                                            <br/>
+
+                                            <input type="file"  required onChange={fileChangedHandler}/>
+                                        </div>
+
+
+                                        <div className={"col-md-12"} style={{paddingTop:'10px'}}>
+
+
+
+                                            <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
+                                                onSignup()
+                                            }}> Signup </Button>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </Card.Body>
+
+
+                            </Card>
+
+
+                        </Card.ImgOverlay>
+
+
+
+
+                    </Card>
+                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '99vw'}}></div>
+
+                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '99vw'}}></div>
+
                     <ModalFooter style={{fontSize: '70%', borderColor: 'white', color: 'grey'}}>Copyright group #6</ModalFooter>
+
+
+
 
                 </center>
 
