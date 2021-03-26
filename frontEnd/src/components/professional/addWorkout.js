@@ -43,12 +43,12 @@ export default function AddWorkout(){
     // handle click event of the Add button
     const handleAddClick = () => {
         setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
-            activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}]);
+            activitySets:1, activityReps:1, equipmentNeeded:"", videoLink:""}]);
     };
 
 
 
-    const [json,setJson] = useState("");
+    // const [json,setJson] = useState("");
 
     const validateParamteres=()=>{
 
@@ -107,20 +107,20 @@ export default function AddWorkout(){
         }).then(function (response) {
             // handle success
             console.log("status",response);
-            json = null;
+            // json = null;
         })
-            .catch(function (error) {
-                console.log(error);
-            })
+        .catch(function (error) {
+            console.log(error);
+        })
 
 
-        alert("Workout add request made");
+        // alert("Workout add request made");
 
-        setWorkoutImage(null);
-        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
-            activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
-        setWorkoutDescription("")
-        setWorkoutTitle("");
+        // setWorkoutImage(null);
+        // setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+        //     activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
+        // setWorkoutDescription("")
+        // setWorkoutTitle("");
 
         // setJson(json);
 
@@ -365,7 +365,6 @@ export default function AddWorkout(){
 
                     </div>
 
-                    <div style={{ marginTop: 20 }}>{JSON.stringify(json)}</div>
 
 
 
