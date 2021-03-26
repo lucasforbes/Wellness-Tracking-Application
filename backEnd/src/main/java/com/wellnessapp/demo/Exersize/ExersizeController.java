@@ -1,8 +1,6 @@
 package com.wellnessapp.demo.Exersize;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wellnessapp.demo.Admin.Admin;
 import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.User.User;
@@ -15,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.util.*;
 

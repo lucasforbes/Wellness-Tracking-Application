@@ -1,12 +1,7 @@
 package com.wellnessapp.demo.Diet;
 
-import com.wellnessapp.demo.Exersize.SingleExersize;
-
 import javax.persistence.Id;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class Diet {
     @Id

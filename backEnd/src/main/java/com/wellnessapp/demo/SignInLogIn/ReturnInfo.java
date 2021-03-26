@@ -4,15 +4,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.wellnessapp.demo.Admin.Admin;
 import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.User.User;
-import com.wellnessapp.demo.tools.Image;
-import org.h2.util.json.JSONArray;
-import org.h2.util.json.JSONObject;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-
-import static org.h2.value.Value.JSON;
 
 
 public class ReturnInfo {

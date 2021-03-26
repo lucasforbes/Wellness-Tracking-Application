@@ -21,7 +21,7 @@
 
 
   if('WebSocket' in window){
-    websocket = new WebSocket("ws://127.0.0.1:8080/chat/jimmy@google.com/bob@google.com");
+    websocket = new WebSocket("ws://127.0.0.1:8080/chat/bob@google.com");
   } else {
     alert("Don't support websocket!")
   }
@@ -71,7 +71,12 @@
 
   function send(){
     var sendMsg = document.getElementById("sendMsg").value
-    websocket.send(sendMsg);
+    var message = {
+      "message":sendMsg,
+      "from":"bob@google.com",
+      "to": "jimmy@google.com"
+    };
+    websocket.send(JSON.stringify(message));
     $("#sendMsg").val("");
   }
 </script>

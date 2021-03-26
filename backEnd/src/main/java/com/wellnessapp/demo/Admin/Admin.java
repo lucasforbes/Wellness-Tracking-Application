@@ -3,12 +3,8 @@ package com.wellnessapp.demo.Admin;
 import com.wellnessapp.demo.WellnessApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.gridfs.GridFsObject;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Document(collection="Admin")
 public class Admin extends WellnessApplication {
