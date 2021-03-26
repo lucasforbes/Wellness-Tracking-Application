@@ -88,18 +88,18 @@ public class ExersizeController {
         return allCreatorWorkouts;
     }
 
-    @GetMapping("/subscribeUserToExersize/{exersizeId, userId}")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
-        Exersize exersize = edb.findById(exersizeId);
-        Creator owner = cdb.findByEmail(exersize.email);
-        List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
-        userIdList.add(userId);
-        List subscribers = exersize.getUserIdsToExersizesSubscribed();
-        subscribers.add(userId);
-        String retState = "Added user to Exersize subscriber list";
-        return retState;
-    }
+//    @GetMapping("/subscribeUserToExersize/{exersizeId, userId}")
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
+//        Exersize exersize = edb.findById(exersizeId);
+//        Creator owner = cdb.findByEmail(exersize.email);
+//        List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
+//        userIdList.add(userId);
+//        List subscribers = exersize.getUserIdsToExersizesSubscribed();
+//        subscribers.add(userId);
+//        String retState = "Added user to Exersize subscriber list";
+//        return retState;
+//    }
 
     @GetMapping("/getUserExersizes/{email}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
