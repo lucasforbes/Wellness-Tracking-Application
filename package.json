@@ -16,5 +16,8 @@
     "url": "https://github.com/lucasforbes/Wellness-Tracking-Application/issues"
   },
   "homepage": "https://github.com/lucasforbes/Wellness-Tracking-Application#readme",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "heroku": "^7.51.0"
+  }
 }
