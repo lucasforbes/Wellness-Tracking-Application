@@ -8,7 +8,7 @@ public class SingleExersize {
     String bodyPartsTargeted;
     int activitySets;
     int activityReps;
-    String equipmentNeeded;
+    String equiptmentNeeded;
 //    minutes
     int totalDuration;
 
@@ -20,7 +20,7 @@ public class SingleExersize {
         this.bodyPartsTargeted = bodyPartsTargeted;
         this.activitySets = activitySets;
         this.activityReps = activityReps;
-        this.equipmentNeeded = equipmentNeeded;
+        this.equiptmentNeeded = equipmentNeeded;
         this.totalDuration = totalDuration;
         System.out.println("Single Exersize made");
     }
@@ -82,11 +82,11 @@ public class SingleExersize {
     }
 
     public String getEquiptmentNeeded() {
-        return equipmentNeeded;
+        return equiptmentNeeded;
     }
 
     public void setEquiptmentNeeded(String equiptmentNeeded) {
-        this.equipmentNeeded = equiptmentNeeded;
+        this.equiptmentNeeded = equiptmentNeeded;
     }
 
     public int getTotalDuration() {
