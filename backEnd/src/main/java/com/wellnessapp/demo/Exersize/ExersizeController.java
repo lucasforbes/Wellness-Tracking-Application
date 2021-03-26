@@ -80,12 +80,14 @@ public class ExersizeController {
         return this.edb.findAll();
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findExersizeByCreatorEmail/{email}")
     public List<Exersize> findByCreatorEmail(@PathVariable String email){
         List<Exersize> allCreatorWorkouts = this.edb.findByEmail(email);
         return allCreatorWorkouts;
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/subscribeUserToExersize/{exersizeId, userId}")
     public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
         Exersize exersize = edb.findById(exersizeId);
@@ -97,6 +99,8 @@ public class ExersizeController {
         String retState = "Added user to Exersize subscriber list";
         return retState;
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/getUserExersizes/{email}")
 //    email = user email
     public List<Exersize> getUserExersizes(@PathVariable String email){
@@ -227,6 +231,7 @@ public class ExersizeController {
     }
 
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(value = "/findExersizePic/{exersizeId}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable int exersizeId) {
         System.out.println("adsfasdf");

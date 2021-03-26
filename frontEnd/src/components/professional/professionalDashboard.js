@@ -1,18 +1,32 @@
 import React,{useState,useEffect} from "react";
 import AddWorkout from "./addWorkout";
 import {Row, Card, Col, Container, Tab, Tabs} from "react-bootstrap";
-
-
+import axios from "axios";
 
 export default function ProfessionalDashboard(props){
 
     const { children, value, index, ...other } = props;
 
     const [firstName,setFirstName] = useState("");
+    const [professionalEmail,setProfessionalEmail] = useState("");
+
+    const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
+
 
     useEffect(()=>{
 
         setFirstName(localStorage.getItem("userFirstName"))
+        setProfessionalEmail(localStorage.getItem("email"))
+
+        axios.get("https://bloom-wellness-back.herokuapp.com/findExersizeByCreatorEmail/"+localStorage.getItem("email")).
+            then((res)=>{
+
+                setPreviouslyAddedWorkouts(res.data)
+
+        }).catch((err)=>{
+            console.log(err);
+        })
+
 
 
     })
@@ -33,42 +47,18 @@ export default function ProfessionalDashboard(props){
             <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightgrey'}}>
 
                 <Tab eventKey="history" title="Inventory" style = {{backgroundColor: ''}}>
-                    <header style={{textAlign: 'center'}}> workouts</header>
-                    <Row>
-                        <Col sm = '4'>
-                            <Card style={{margin:'10%'}}>
-                                Workout 1 here
-                            </Card>
-                        </Col>
-                        <Col sm = '4'>
-                            <Card style={{margin:'10%'}}>
-                                Workout 2 here
-                            </Card>
-                        </Col>
-                        <Col sm = '4'>
-                            <Card style={{margin:'10%'}}>
-                                Workout 3 here
-                            </Card>
-                        </Col>
-                    </Row>
 
-                    <Row>
-                        <Col sm = '4'>
-                            <Card style={{margin:'10%'}}>
-                                diet 1 here
-                            </Card>
-                        </Col>
-                        <Col sm = '4'>
-                            <Card style={{margin:'10%'}}>
-                                diet 2 here
-                            </Card>
-                        </Col>
-                        <Col sm = '4'>
-                            <Card style={{margin:'10%'}}>
-                                diett 3 here
-                            </Card>
-                        </Col>
-                    </Row>
+                    <header style={{textAlign: 'center'}}> Workouts</header>
+
+                    {previouslyAddedWorkouts?previouslyAddedWorkouts.map((workouts,index)=>{
+                        return(
+                            <>
+                                {JSON.stringify(workouts)}
+                            </>
+                        )
+                    }):""
+                    }
+
 
 
 
@@ -78,6 +68,7 @@ export default function ProfessionalDashboard(props){
                 <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'grey'}}>
                     <AddWorkout/>
                 </Tab>
+
 
                 <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgrey'}}>
                     Stats
