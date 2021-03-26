@@ -12,7 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="crudrepositoryex" target="11" />
+      <module name="crudrepositoryex" target="1.8" />
       <module name="demo" target="11" />
     </bytecodeTargetLevel>
   </component>
