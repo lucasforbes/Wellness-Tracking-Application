@@ -12,7 +12,7 @@ public class SingleExersize {
 //    minutes
     int totalDuration;
 
-    public SingleExersize(String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equipmentNeeded, int totalDuration, String videoLink) {
+    public SingleExersize(String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equiptmentNeeded, int totalDuration, String videoLink) {
 //        this.picture = picture;
         this.videoLink = videoLink;
         this.activityName = activityName;
@@ -20,7 +20,7 @@ public class SingleExersize {
         this.bodyPartsTargeted = bodyPartsTargeted;
         this.activitySets = activitySets;
         this.activityReps = activityReps;
-        this.equiptmentNeeded = equipmentNeeded;
+        this.equiptmentNeeded = equiptmentNeeded;
         this.totalDuration = totalDuration;
         System.out.println("Single Exersize made");
     }
