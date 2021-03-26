@@ -1,6 +1,7 @@
 package com.wellnessapp.demo.Exersize;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.User.User;
@@ -27,12 +28,14 @@ public class ExersizeController {
     @Autowired
     private CreatorRepository cdb;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @PostMapping("/addExersize")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public Exersize saveExersize(@RequestParam("photo") MultipartFile photo, @RequestPart("exersize") Exersize exersize) throws JsonProcessingException {
+    public Exersize saveExersize(@RequestParam("photo") MultipartFile photo,@RequestPart("exersize") String exersize1) throws JsonProcessingException {
         System.out.println("");
         int id = edb.findAll().size();
+        Exersize exersize = new ObjectMapper().readValue(exersize1, Exersize.class);
         exersize.id = (id + 1);
         try{
             MultipartFile file = photo;
