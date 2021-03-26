@@ -9,8 +9,8 @@ export default function AddWorkout(){
 
 
 
-    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-        activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
+    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+        activitySets:1, activityReps:1, equipmentNeeded:"", videoLink:""}]);
 
     const [workoutTitle,setWorkoutTitle]=useState("");
     const [workoutDescription,setWorkoutDescription]= useState("");
@@ -42,17 +42,48 @@ export default function AddWorkout(){
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
+        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+            activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}]);
     };
 
 
 
     const [json,setJson] = useState("");
 
-    const workoutSubmit=(e)=>{
+    const validateParamteres=()=>{
 
-        e.preventDefault()
+        let flag = true;
+
+        if (workoutTitle != "" && workoutTitle.length >= 1) {
+        }else{
+            flag = false;
+            alert("Add Workout Title");
+            return flag;
+        }
+
+        if (workoutDescription != "" && workoutDescription.length >= 1) {
+
+        }else{
+            flag = false;
+            alert("Add Workout Description");
+            return flag;
+        }
+
+        if (workoutImage != "" && workoutImage!= undefined) {
+
+        }else{
+            flag = false;
+            alert("Add a Workout Image");
+            return flag;
+        }
+
+        return flag;
+    }
+
+    const workoutSubmit=()=>{
+
+
+
 
         let formData = new FormData();
 
@@ -83,11 +114,11 @@ export default function AddWorkout(){
             })
 
 
-        alert("Workout added");
+        alert("Workout add request made");
 
         setWorkoutImage(null);
-        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}])
+        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+            activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
         setWorkoutDescription("")
         setWorkoutTitle("");
 
@@ -105,7 +136,7 @@ export default function AddWorkout(){
 
             >
 
-            <form onSubmit={workoutSubmit}>
+            {/*<form onSubmit={workoutSubmit}>*/}
 
                 <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px"}}>
 
@@ -152,7 +183,7 @@ export default function AddWorkout(){
 
 
                         <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
-
+                                           required
                                           value={workoutDescription}
                                           onChange={(e)=>setWorkoutDescription(e.target.value)}/>
 
@@ -178,7 +209,7 @@ export default function AddWorkout(){
 
 
                                         <TextField
-                                            required
+
                                             name={"activityName"}
                                             style={{background:'black !important'}}
                                             label="Activity Name"
@@ -224,7 +255,7 @@ export default function AddWorkout(){
                                         {"  "}
 
                                          <TextField
-                                             required
+
                                              InputProps={{
                                                  inputProps: {
                                                      min: 1
@@ -244,7 +275,7 @@ export default function AddWorkout(){
                                  <div className={"col-md-12"}>
 
                                      <TextField
-                                         required
+
                                          InputProps={{
                                              inputProps: {
                                                  min: 1
@@ -259,7 +290,7 @@ export default function AddWorkout(){
                                      />
 
                                      <TextField
-                                         required
+
                                          InputProps={{
                                              inputProps: {
                                                  min: 1
@@ -325,7 +356,12 @@ export default function AddWorkout(){
 
                         <br/>
                         <br/>
-                        <Button variant="success" onClick={workoutSubmit}>Submit </Button>{' '}
+                        <Button variant="success" onClick={()=>{
+
+                            if(validateParamteres()){
+                                workoutSubmit()
+                            }
+                        }}>Submit </Button>{' '}
 
                     </div>
 
@@ -336,7 +372,7 @@ export default function AddWorkout(){
 
                 </div>
 
-            </form>
+            {/*</form>*/}
             </Card>
 
 
