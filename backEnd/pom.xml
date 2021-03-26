@@ -76,11 +76,11 @@
             <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-<!--            <version>1.1.15</version>-->
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba</groupId>-->
+<!--            <artifactId>fastjson</artifactId>-->
+<!--&lt;!&ndash;            <version>1.1.15</version>&ndash;&gt;-->
+<!--        </dependency>-->
 
     </dependencies>
 
