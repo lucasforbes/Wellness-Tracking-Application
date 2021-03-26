@@ -28,6 +28,7 @@ public class DietController {
     private CreatorRepository cdb;
 
     @PostMapping("/addDiet")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public Diet saveExersize(@RequestParam("photo") MultipartFile photo, @RequestPart("diet") Diet diet) throws JsonProcessingException {
         System.out.println("");
@@ -56,20 +57,25 @@ public class DietController {
         return diet;
     }
     @GetMapping("/findDietByEmail/{email, name}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Diet findByEmail(@PathVariable String email, @PathVariable String name){
         System.out.println("Got All Exersizes");
         return this.ddb.findByEmail(email, name);
     }
     @GetMapping("/findAllDiets")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Diet> findAllDiets(){
         System.out.println("Got All Diets");
         return this.ddb.findAll();
     }
     @GetMapping("/findDietByEmail/{email}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Diet> getByUserID(@PathVariable String email){
         return this.ddb.findByEmail(email);
     }
+
     @GetMapping(value = "/findDietePic/{email}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public byte[] getImage(@PathVariable String email) {
         Image file = idb.findByUserEmail(email);
         byte[] data = null;
@@ -83,6 +89,7 @@ public class DietController {
         return data;
     }
     @GetMapping("/subscribeUserToDiet/{dietId, userId}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setUserDietSubscription(@PathVariable int dietId, @PathVariable int userId){
         Diet diet = ddb.findById(dietId);
         Creator owner = cdb.findByEmail(diet.email);
@@ -94,7 +101,7 @@ public class DietController {
         return retState;
     }
     @GetMapping("/getUserDiets/{email}")
-//    email = user email
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Diet> getUserDiets(@PathVariable String email){
         User user = udb.findByEmail(email);
         List<Integer> dietIds = user.getDietsSubscribed();
@@ -221,6 +228,7 @@ public class DietController {
         return allDiets;
     }
     @GetMapping(value = "/findDietPic/{email, id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public byte[] getImage(@PathVariable String email, @PathVariable int id) {
         Image file = idb.findByUserEmail(email, id);
         byte[] data = null;

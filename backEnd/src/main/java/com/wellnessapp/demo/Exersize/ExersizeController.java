@@ -70,22 +70,23 @@ public class ExersizeController {
 //        System.out.println("Got All Exersizes");
 //        return this.edb.findById(id);
 //    }
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @GetMapping("/findAllExersizes")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Exersize> findAllExersizes(){
         System.out.println("Got All Exersizes");
         return this.edb.findAll();
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findExersizeByCreatorEmail/{email}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Exersize> findByCreatorEmail(@PathVariable String email){
         List<Exersize> allCreatorWorkouts = this.edb.findByEmail(email);
         return allCreatorWorkouts;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/subscribeUserToExersize/{exersizeId, userId}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
         Exersize exersize = edb.findById(exersizeId);
         Creator owner = cdb.findByEmail(exersize.email);
@@ -97,9 +98,8 @@ public class ExersizeController {
         return retState;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/getUserExersizes/{email}")
-//    email = user email
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Exersize> getUserExersizes(@PathVariable String email){
         User user = udb.findByEmail(email);
         List<Integer> exersizeIds = user.getExersizesSubscribed();
@@ -228,8 +228,9 @@ public class ExersizeController {
     }
 
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @GetMapping(value = "/findExersizePic/{exersizeId}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public byte[] getImage(@PathVariable int exersizeId) {
         System.out.println("adsfasdf");
         Image file = idb.findByOtherDbId(exersizeId);
@@ -244,8 +245,8 @@ public class ExersizeController {
         return data;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/findExersizeByUserID/{id}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Exersize getUsers(@PathVariable int id){
         return this.edb.findById(id);
 
