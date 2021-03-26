@@ -12,11 +12,11 @@
         <version>2.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-<!--    <groupId>com.registrationbackend</groupId>-->
-<!--    <artifactId>demo</artifactId>-->
-<!--    <version>0.0.1-SNAPSHOT</version>-->
-<!--    <name>registration</name>-->
-<!--    <description>backend for registration sprint</description>-->
+    <!--    <groupId>com.registrationbackend</groupId>-->
+    <!--    <artifactId>demo</artifactId>-->
+    <!--    <version>0.0.1-SNAPSHOT</version>-->
+    <!--    <name>registration</name>-->
+    <!--    <description>backend for registration sprint</description>-->
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -33,10 +33,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -67,10 +63,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <dependency>
@@ -83,16 +75,6 @@
             <version>0.0.20131108.vaadin1</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.75</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -100,22 +82,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<!--                <version>4.0.0.RELEASE</version>-->
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
+                <!--                <groupId>com.heroku.sdk</groupId>-->
+                <!--                <artifactId>heroku-maven-plugin</artifactId>-->
+                <!--                <version>0.5.1</version>-->
+                <!--                <configuration>-->
+                <!--                    <appName>WellnessApplication</appName>-->
+                <!--                </configuration>-->
             </plugin>
         </plugins>
         <defaultGoal>compile</defaultGoal>
