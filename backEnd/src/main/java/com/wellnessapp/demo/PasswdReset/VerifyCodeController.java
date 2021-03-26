@@ -1,6 +1,5 @@
 package com.wellnessapp.demo.PasswdReset;
 
-import com.google.gson.Gson;
 import com.wellnessapp.demo.tools.UnifiedReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

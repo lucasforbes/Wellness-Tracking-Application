@@ -4,7 +4,6 @@ import com.wellnessapp.demo.Admin.AdminRepository;
 import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
-import org.h2.util.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

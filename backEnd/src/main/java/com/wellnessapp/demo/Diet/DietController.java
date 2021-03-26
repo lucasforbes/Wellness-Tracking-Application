@@ -3,8 +3,6 @@ package com.wellnessapp.demo.Diet;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.Creator.CreatorRepository;
-import com.wellnessapp.demo.Exersize.Exersize;
-import com.wellnessapp.demo.Exersize.ExersizeRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.Image;

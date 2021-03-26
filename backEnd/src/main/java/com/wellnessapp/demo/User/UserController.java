@@ -6,20 +6,18 @@ import com.wellnessapp.demo.tools.Image;
 import com.wellnessapp.demo.tools.ImageRepository;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.spi.LocaleServiceProvider;
 
 @RestController
 @Document("Images")

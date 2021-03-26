@@ -3,15 +3,10 @@ package com.wellnessapp.demo.Exersize;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Id;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.List;
 
 @Getter
 @Setter
