@@ -24,6 +24,53 @@ export default function Signup(props){
     const [userPhoto,setUserPhoto] = useState();
 
 
+    const validateParamteres=()=>{
+
+        let flag = true;
+
+        if (email != "" && email.length >= 4) {
+
+        }else{
+            flag = false;
+            alert("Email Should be of following format abc@domain.com");
+            return flag;
+        }
+
+        if (password != "" && password.length >= 4) {
+
+        }else{
+            flag = false;
+            alert("Password Should be atleast 4 characters long");
+            return flag;
+        }
+
+        if (firstName != "" && firstName.length >= 1) {
+
+        }else{
+            flag = false;
+            alert("First name should not be blank");
+            return flag;
+        }
+
+        if (lastName != "" && lastName.length >= 1) {
+
+        }else{
+            flag = false;
+            alert("Last name should not be blank");
+            return flag;
+        }
+
+        if (userPhoto != "" && userPhoto!= undefined) {
+
+        }else{
+            flag = false;
+            alert("Add a Profile pic");
+            return flag;
+        }
+
+
+        return flag;
+    }
 
     useEffect(()=>{
         if ( localStorage.getItem('email') )
@@ -213,7 +260,7 @@ export default function Signup(props){
                         <Card.Img src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
                         <Card.ImgOverlay style = {{width: '100%'}}>
 
-                            <Card style =  {{color: '', width: '24rem' ,backgroundColor: 'rgba(255,255,255,.4)', border: 'round', position: 'relative', bottom: '-50px'}} >
+                            <Card style =  {{color: '', width: '28rem' ,backgroundColor: 'rgba(255,255,255,.4)', border: 'round', position: 'relative', bottom: '-50px'}} >
 
 
                                 <Card.Body style = {{fontSize: '',color: ''}}>
@@ -248,7 +295,6 @@ export default function Signup(props){
                                                 type={"password"}
                                                 value={password}
                                                 onChange={(e)=>setPassword(e.target.value)}
-
                                             />
                                         </div>
 
@@ -262,6 +308,7 @@ export default function Signup(props){
                                                 // variant="filled"
                                                 value={firstName}
                                                 onChange={(e)=>setFirstName(e.target.value)}
+                                                minlength="1"
                                             />
                                         </div>
 
@@ -276,29 +323,33 @@ export default function Signup(props){
                                                 type={"text"}
                                                 value={lastName}
                                                 onChange={(e)=>setLastName(e.target.value)}
-
+                                                minLength={"1"}
                                             />
                                         </div>
 
                                         <div className={'col-md-12'}> <br/> </div>
 
 
-                                        <div className={"col-md-4"}>
+                                        <div className={"col-md-6"}>
+                                            <InputLabel>Birth Date</InputLabel>
                                             <TextField
                                                 required
                                                 style={{backgroundColor: 'white !important'}}
                                                 color={"secondary"}
-                                                label="Birth Date"
                                                 id={"birthdate"}
                                                 type={"date"}
                                                 // variant="filled"
+                                                inputProps={{
+                                                    max:  new Date().toISOString().split("T")[0],
+                                                    min: "1900-01-01"
+                                                }}
                                                 value={birthDate}
                                                 onChange={(e)=>setBirthDate(e.target.value)}
                                             />
                                         </div>
 
 
-                                        <div className={"col-md-4"}>
+                                        <div className={"col-md-3"}>
 
                                             <FormControl>
                                                 <InputLabel>Gender</InputLabel>
@@ -320,7 +371,7 @@ export default function Signup(props){
 
 
 
-                                        <div className={"col-md-4"}>
+                                        <div className={"col-md-3"}>
 
                                             <FormControl>
                                                 <InputLabel>User Type</InputLabel>
@@ -396,8 +447,11 @@ export default function Signup(props){
 
 
 
-                                            <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
-                                                onSignup()
+                                            <Button type="submit" style={{width:'100px'}}  variant="success" onClick={()=>{
+
+                                                if(validateParamteres()) {
+                                                    onSignup()
+                                                }
                                             }}> Signup </Button>
 
                                         </div>
