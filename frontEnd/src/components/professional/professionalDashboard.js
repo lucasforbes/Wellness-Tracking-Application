@@ -20,16 +20,13 @@ export default function ProfessionalDashboard(props){
 
         axios.get("https://bloom-wellness-back.herokuapp.com/findExersizeByCreatorEmail/"+localStorage.getItem("email")).
             then((res)=>{
-
                 setPreviouslyAddedWorkouts(res.data)
-
         }).catch((err)=>{
             console.log(err);
         })
 
 
-
-    })
+    },[])
 
 
     return(
@@ -50,13 +47,15 @@ export default function ProfessionalDashboard(props){
 
                     <header style={{textAlign: 'center'}}> Workouts</header>
 
-                    {previouslyAddedWorkouts?previouslyAddedWorkouts.map((workouts,index)=>{
-                        return(
+                    {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
                             <>
                                 {JSON.stringify(workouts)}
                             </>
                         )
-                    }):""
+                    }):
+                    <>
+                    <h4> None previously added Workouts </h4>
+                    </>
                     }
 
 
