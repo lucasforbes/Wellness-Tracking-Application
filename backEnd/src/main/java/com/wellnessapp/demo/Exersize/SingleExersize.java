@@ -2,7 +2,7 @@ package com.wellnessapp.demo.Exersize;
 
 public class SingleExersize {
 //    String picture;
-//    String videoLink;
+    String videoLink;
     String activityName;
     String activityDescription;
     String bodyPartsTargeted;
@@ -12,9 +12,9 @@ public class SingleExersize {
 //    minutes
     int totalDuration;
 
-    public SingleExersize(String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equipmentNeeded, int totalDuration) {
+    public SingleExersize(String activityName, String activityDescription, String bodyPartsTargeted, int activitySets, int activityReps, String equipmentNeeded, int totalDuration, String videoLink) {
 //        this.picture = picture;
-//        this.videoLink = videoLink;
+        this.videoLink = videoLink;
         this.activityName = activityName;
         this.activityDescription = activityDescription;
         this.bodyPartsTargeted = bodyPartsTargeted;
@@ -33,13 +33,13 @@ public class SingleExersize {
 //        this.picture = picture;
 //    }
 //
-//    public String getVideoLink() {
-//        return videoLink;
-//    }
-//
-//    public void setVideoLink(String videoLink) {
-//        this.videoLink = videoLink;
-//    }
+    public String getVideoLink() {
+        return videoLink;
+    }
+
+    public void setVideoLink(String videoLink) {
+        this.videoLink = videoLink;
+    }
 
     public String getActivityName() {
         return activityName;
