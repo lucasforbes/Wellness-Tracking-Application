@@ -9,8 +9,8 @@ export default function AddWorkout(){
 
 
 
-    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-        activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
+    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+        activitySets:1, activityReps:1, equipmentNeeded:"", videoLink:""}]);
 
     const [workoutTitle,setWorkoutTitle]=useState("");
     const [workoutDescription,setWorkoutDescription]= useState("");
@@ -42,17 +42,48 @@ export default function AddWorkout(){
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
+        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+            activitySets:1, activityReps:1, equipmentNeeded:"", videoLink:""}]);
     };
 
 
 
-    const [json,setJson] = useState("");
+    // const [json,setJson] = useState("");
 
-    const workoutSubmit=(e)=>{
+    const validateParamteres=()=>{
 
-        e.preventDefault()
+        let flag = true;
+
+        if (workoutTitle != "" && workoutTitle.length >= 1) {
+        }else{
+            flag = false;
+            alert("Add Workout Title");
+            return flag;
+        }
+
+        if (workoutDescription != "" && workoutDescription.length >= 1) {
+
+        }else{
+            flag = false;
+            alert("Add Workout Description");
+            return flag;
+        }
+
+        if (workoutImage != "" && workoutImage!= undefined) {
+
+        }else{
+            flag = false;
+            alert("Add a Workout Image");
+            return flag;
+        }
+
+        return flag;
+    }
+
+    const workoutSubmit=()=>{
+
+
+
 
         let formData = new FormData();
 
@@ -76,20 +107,20 @@ export default function AddWorkout(){
         }).then(function (response) {
             // handle success
             console.log("status",response);
-                json = null;
+            // json = null;
         })
-            .catch(function (error) {
-                console.log(error);
-            })
+        .catch(function (error) {
+            console.log(error);
+        })
 
 
-        alert("Workout added");
+        // alert("Workout add request made");
 
-        setWorkoutImage(null);
-        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}])
-        setWorkoutDescription("")
-        setWorkoutTitle("");
+        // setWorkoutImage(null);
+        // setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+        //     activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
+        // setWorkoutDescription("")
+        // setWorkoutTitle("");
 
         // setJson(json);
 
@@ -105,20 +136,20 @@ export default function AddWorkout(){
 
             >
 
-            <form onSubmit={workoutSubmit}>
+                {/*<form onSubmit={workoutSubmit}>*/}
 
                 <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px"}}>
 
 
                     <div className={"col-md-12"}>
 
-                    <TextField
-                        required
-                        style={{background:'black !important'}}
-                        label="Workout Name"
-                        id={"workoutName"}
-                        value={workoutTitle}
-                        onChange={(e)=>setWorkoutTitle(e.target.value)}/>
+                        <TextField
+                            required
+                            style={{background:'black !important'}}
+                            label="Workout Name"
+                            id={"workoutName"}
+                            value={workoutTitle}
+                            onChange={(e)=>setWorkoutTitle(e.target.value)}/>
 
                         {"          "}
 
@@ -152,9 +183,9 @@ export default function AddWorkout(){
 
 
                         <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
-
-                                          value={workoutDescription}
-                                          onChange={(e)=>setWorkoutDescription(e.target.value)}/>
+                                           required
+                                           value={workoutDescription}
+                                           onChange={(e)=>setWorkoutDescription(e.target.value)}/>
 
 
                     </div>
@@ -163,7 +194,7 @@ export default function AddWorkout(){
 
                     <div className={"col-md-12"}>
 
-                       <h4>  Add activity </h4>
+                        <h4>  Add activity </h4>
 
                     </div>
 
@@ -178,7 +209,7 @@ export default function AddWorkout(){
 
 
                                         <TextField
-                                            required
+
                                             name={"activityName"}
                                             style={{background:'black !important'}}
                                             label="Activity Name"
@@ -192,14 +223,14 @@ export default function AddWorkout(){
 
                                     </div>
 
-                                     <div>
+                                    <div>
 
-                                         <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
-                                            value={activity.activityDescription} name={"activityDescription"}
-                                            onChange={e=>handleInputChange(e,i)}
-                                         />
+                                        <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
+                                                           value={activity.activityDescription} name={"activityDescription"}
+                                                           onChange={e=>handleInputChange(e,i)}
+                                        />
 
-                                     </div>
+                                    </div>
 
                                     <div className={"col-md-12"}>
 
@@ -223,58 +254,58 @@ export default function AddWorkout(){
 
                                         {"  "}
 
-                                         <TextField
-                                             required
-                                             InputProps={{
-                                                 inputProps: {
-                                                     min: 1
-                                                 }
-                                             }}
-                                             type={"number"}
-                                             name={"totalDuration"}
-                                             style={{background:'black !important'}}
-                                             label="Duration in minutes"
-                                             value={activity.totalDuration}
-                                             onChange={e=>handleInputChange(e,i)}
-                                         />
+                                        <TextField
+
+                                            InputProps={{
+                                                inputProps: {
+                                                    min: 1
+                                                }
+                                            }}
+                                            type={"number"}
+                                            name={"totalDuration"}
+                                            style={{background:'black !important'}}
+                                            label="Duration in minutes"
+                                            value={activity.totalDuration}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
 
 
-                                 </div>
+                                    </div>
 
-                                 <div className={"col-md-12"}>
+                                    <div className={"col-md-12"}>
 
-                                     <TextField
-                                         required
-                                         InputProps={{
-                                             inputProps: {
-                                                 min: 1
-                                             }
-                                         }}
-                                         type={"number"}
-                                         name={"activityReps"}
-                                         style={{background:'black !important'}}
-                                         label="Reps"
-                                         value={activity.activityReps}
-                                         onChange={e=>handleInputChange(e,i)}
-                                     />
+                                        <TextField
 
-                                     <TextField
-                                         required
-                                         InputProps={{
-                                             inputProps: {
-                                                 min: 1
-                                             }
-                                         }}
-                                         type={"number"}
-                                         name={"activitySets"}
-                                         style={{background:'black !important'}}
-                                         label="Sets"
-                                         value={activity.activitySets}
-                                         onChange={e=>handleInputChange(e,i)}
-                                     />
+                                            InputProps={{
+                                                inputProps: {
+                                                    min: 1
+                                                }
+                                            }}
+                                            type={"number"}
+                                            name={"activityReps"}
+                                            style={{background:'black !important'}}
+                                            label="Reps"
+                                            value={activity.activityReps}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
+
+                                        <TextField
+
+                                            InputProps={{
+                                                inputProps: {
+                                                    min: 1
+                                                }
+                                            }}
+                                            type={"number"}
+                                            name={"activitySets"}
+                                            style={{background:'black !important'}}
+                                            label="Sets"
+                                            value={activity.activitySets}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
 
 
-                                 </div>
+                                    </div>
 
                                     <div className={"col-md-12"}>
 
@@ -302,16 +333,16 @@ export default function AddWorkout(){
                                     </div>
 
 
-                                <div>
-                                    <div className="btn-box">
-                                        <br/>
-                                        <br/>
-                                        {activityList.length !== 1 && <Button
-                                            variant="danger"
-                                            onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}
-                                        {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}
+                                    <div>
+                                        <div className="btn-box">
+                                            <br/>
+                                            <br/>
+                                            {activityList.length !== 1 && <Button
+                                                variant="danger"
+                                                onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}
+                                            {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}
+                                        </div>
                                     </div>
-                                 </div>
 
                                 </>
 
@@ -325,18 +356,22 @@ export default function AddWorkout(){
 
                         <br/>
                         <br/>
-                        <Button variant="success" onClick={workoutSubmit}>Submit </Button>{' '}
+                        <Button variant="success" onClick={()=>{
+
+                            if(validateParamteres()){
+                                workoutSubmit()
+                            }
+                        }}>Submit </Button>{' '}
 
                     </div>
 
-                    <div style={{ marginTop: 20 }}>{JSON.stringify(json)}</div>
 
 
 
 
                 </div>
 
-            </form>
+                {/*</form>*/}
             </Card>
 
 
