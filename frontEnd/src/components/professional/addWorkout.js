@@ -129,13 +129,13 @@ export default function AddWorkout(){
         })
 
 
-        // alert("Workout add request made");
+        alert("Workout add request made");
 
-        // setWorkoutImage(null);
-        // setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
-        //     activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
-        // setWorkoutDescription("")
-        // setWorkoutTitle("");
+        setWorkoutImage(null);
+        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+            activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
+        setWorkoutDescription("")
+        setWorkoutTitle("");
 
         // setJson(json);
 

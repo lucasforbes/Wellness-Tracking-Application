@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
-
+from json import dumps
 
 app = Flask(__name__)
 CORS(app)
@@ -22,6 +22,31 @@ def addExersize():
     exersizeCursor.insert(req_data)
 
     return "Yes"
+
+@app.route('/getAllExersize',methods=['GET'])
+def getAllExersize():
+
+    exersizeCursor = mongo.db.Exersize.find()
+
+    response=list()
+    for elements in exersizeCursor:
+        elements['_id'] = str(elements['_id'])
+        response.append(elements)
+
+    return dumps(response)
+
+@app.route('/getExersizeByEmail',methods=['GET'])
+def getExersizeByEmail():
+
+    creatorEmail = request.args.get('email')
+    exersizeCursor = mongo.db.Exersize.find({"email": creatorEmail})
+    response=list()
+    for elements in exersizeCursor:
+        elements['_id'] = str(elements['_id'])
+        response.append(elements)
+
+    return dumps(response)
+
 
 
 if __name__ == '__main__':
