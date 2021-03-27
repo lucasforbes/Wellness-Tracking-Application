@@ -30,30 +30,31 @@ public class DietController {
     @PostMapping("/addDiet")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public Diet saveExersize(@RequestParam("photo") MultipartFile photo, @RequestPart("diet") Diet diet) throws JsonProcessingException {
+//    @RequestParam("photo") MultipartFile photo,
+    public Diet saveExersize( @RequestPart("diet") Diet diet) throws JsonProcessingException {
         System.out.println("");
         int id = ddb.findAll().size();
         diet.id = (id + 1);
-        try{
-            MultipartFile file = photo;
-            int count2 = idb.findAll().size();
-            Image image = new Image();
-            image.setId(count2);
-            image.setName(file.getOriginalFilename());
-            image.setUserEmail(diet.getEmail());
-            image.setOtherDbId(diet.getId());
-            image.setBelongsTo(3);
-            image.setUpdateDate(new Date());
-            image.setContent(new Binary(file.getBytes()));
-            image.setContentType(file.getContentType());
-            image.setSize(file.getSize());
-            Image savedFile = idb.save(image);
-            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
-            diet.setPicture(url);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        ddb.save(diet);
+//        try{
+//            MultipartFile file = photo;
+//            int count2 = idb.findAll().size();
+//            Image image = new Image();
+//            image.setId(count2);
+//            image.setName(file.getOriginalFilename());
+//            image.setUserEmail(diet.getEmail());
+//            image.setOtherDbId(diet.getId());
+//            image.setBelongsTo(3);
+//            image.setUpdateDate(new Date());
+//            image.setContent(new Binary(file.getBytes()));
+//            image.setContentType(file.getContentType());
+//            image.setSize(file.getSize());
+//            Image savedFile = idb.save(image);
+//            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
+//            diet.setPicture(url);
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+//        ddb.save(diet);
         return diet;
     }
     @GetMapping("/findDietByEmail/{email, name}")
