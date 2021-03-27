@@ -24,19 +24,33 @@ export default function UserDashboard(props){
 
     useEffect(()=>{
 
-    axios.get('https://bloom-wellness-back.herokuapp.com/findAllExersizes', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-    }).then(function (response) {
-        // handle success
-        console.log("allExercises",response);
-        setAllExercises(response.data);
-    })
-        .catch(function (error) {
-            console.log(error);
+    // axios.get('https://bloom-wellness-back.herokuapp.com/findAllExersizes', {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Access-Control-Allow-Origin': '*'
+    //     }
+    // }).then(function (response) {
+    //     // handle success
+    //     console.log("allExercises",response);
+    //     setAllExercises(response.data);
+    // })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     })
+
+        axios.get('http://127.0.0.1:5000/getAllExersize', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("allExercises",response);
+            setAllExercises(response.data);
         })
+            .catch(function (error) {
+                console.log(error);
+            })
 
 
 
@@ -70,6 +84,8 @@ export default function UserDashboard(props){
                 <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgrey'}}>
 
                     {allExercises?<AllExercises data={allExercises}/> :<></>}
+
+
 
                 </Tab>
 
