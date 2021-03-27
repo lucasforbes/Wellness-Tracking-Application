@@ -28,8 +28,8 @@ public class Exersize {
     String picture;
     String videoLink;
     List<Integer> userIdsToExersizesSubscribed;
-
-    public Exersize(String email, SingleExersize[] activityList, String title, String description, Boolean paid) {
+//, SingleExersize[] activityList
+    public Exersize(String email, String title, String description, Boolean paid) {
         this.email = email;
         this.title = title;
         this.description = description;

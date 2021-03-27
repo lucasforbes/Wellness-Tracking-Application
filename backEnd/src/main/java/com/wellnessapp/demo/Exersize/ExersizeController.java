@@ -33,10 +33,10 @@ public class ExersizeController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
 //    @RequestParam("photo") MultipartFile photo,
-    public Exersize saveExersize(@RequestPart("exersize") Exersize exersize) throws JsonProcessingException {
+    public Exersize saveExersize(@RequestPart("exersize") String exersize1) throws JsonProcessingException {
         System.out.println("");
         int id = edb.findAll().size();
-//        Exersize exersize1 = new ObjectMapper().readValue(exersize, Exersize.class);
+        Exersize exersize = new ObjectMapper().readValue(exersize1, Exersize.class);
         exersize.id = (id + 1);
 //        try{
 //            MultipartFile file = photo;
