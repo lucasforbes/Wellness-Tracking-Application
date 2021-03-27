@@ -5,7 +5,7 @@ import axios from "axios";
 import {loginAction} from "../../actions/login";
 
 
-export default function AddWorkout(){
+export default function AddWorkout(props){
 
 
 
@@ -122,6 +122,7 @@ export default function AddWorkout(){
         }).then(function (response) {
             // handle success
             console.log("status",response);
+            props.addedNewWorkout()
             // json = null;
         })
         .catch(function (error) {

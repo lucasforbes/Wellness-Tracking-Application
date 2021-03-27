@@ -1,7 +1,9 @@
+from bson import ObjectId
 from flask import Flask, redirect, url_for, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from json import dumps
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 CORS(app)
@@ -22,6 +24,18 @@ def addExersize():
     exersizeCursor.insert(req_data)
 
     return "Yes"
+
+@app.route('/deleteExercise',methods=['POST'])
+def deleteExercise():
+    req_data = request.get_json(force=True)
+    print("req",req_data)
+    # idToBeDeleted = request.form['id']
+
+    # print("delete id",idToBeDeleted)
+    exersizeCursor = mongo.db.Exersize
+    exersizeCursor.remove({"_id": ObjectId(req_data['id'])});
+
+    return "Deleted"
 
 @app.route('/getAllExersize',methods=['GET'])
 def getAllExersize():
