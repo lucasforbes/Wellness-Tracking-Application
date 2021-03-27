@@ -34,7 +34,7 @@ public class Exersize {
         this.title = title;
         this.description = description;
         this.paid = paid;
-        this.activityList = activityList;
+//        this.activityList = activityList;
         this.userIdsToExersizesSubscribed = new List<Integer>() {
             @Override
             public int size() {
