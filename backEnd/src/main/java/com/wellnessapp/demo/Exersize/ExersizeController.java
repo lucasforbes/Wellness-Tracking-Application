@@ -32,30 +32,31 @@ public class ExersizeController {
     @PostMapping("/addExersize")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public Exersize saveExersize(@RequestParam("photo") MultipartFile photo,@RequestPart("exersize") String exersize) throws JsonProcessingException {
+//    @RequestParam("photo") MultipartFile photo,
+    public Exersize saveExersize(@RequestPart("exersize") String exersize) throws JsonProcessingException {
         System.out.println("");
         int id = edb.findAll().size();
         Exersize exersize1 = new ObjectMapper().readValue(exersize, Exersize.class);
         exersize1.id = (id + 1);
-        try{
-            MultipartFile file = photo;
-            int count2 = idb.findAll().size();
-            Image image = new Image();
-            image.setId(count2);
-            image.setName(file.getOriginalFilename());
-            image.setUserEmail(exersize1.getEmail());
-            image.setOtherDbId(exersize1.getId());
-            image.setBelongsTo(2);
-            image.setUpdateDate(new Date());
-            image.setContent(new Binary(file.getBytes()));
-            image.setContentType(file.getContentType());
-            image.setSize(file.getSize());
-            Image savedFile = idb.save(image);
-            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
-            exersize1.setPicture(url);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+//        try{
+//            MultipartFile file = photo;
+//            int count2 = idb.findAll().size();
+//            Image image = new Image();
+//            image.setId(count2);
+//            image.setName(file.getOriginalFilename());
+//            image.setUserEmail(exersize1.getEmail());
+//            image.setOtherDbId(exersize1.getId());
+//            image.setBelongsTo(2);
+//            image.setUpdateDate(new Date());
+//            image.setContent(new Binary(file.getBytes()));
+//            image.setContentType(file.getContentType());
+//            image.setSize(file.getSize());
+//            Image savedFile = idb.save(image);
+//            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
+//            exersize1.setPicture(url);
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
         edb.save(exersize1);
         return exersize1;
     }
