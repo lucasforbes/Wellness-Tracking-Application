@@ -69,21 +69,18 @@ export default function AddWorkout(){
             return flag;
         }
 
-        if (workoutImage != "" && workoutImage!= undefined) {
-
-        }else{
-            flag = false;
-            alert("Add a Workout Image");
-            return flag;
-        }
+        // if (workoutImage != "" && workoutImage!= undefined) {
+        //
+        // }else{
+        //     flag = false;
+        //     alert("Add a Workout Image");
+        //     return flag;
+        // }
 
         return flag;
     }
 
     const workoutSubmit=()=>{
-
-
-
 
         let formData = new FormData();
 
@@ -95,13 +92,31 @@ export default function AddWorkout(){
             'paid': paid
         });
 
-        formData.append("photo",workoutImage);
-        formData.append("exersize",json);
+        // formData.append("photo",workoutImage);
+        // formData.append("exersize",json);
 
 
-        axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', formData, {
+        // axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', formData, {
+        //     headers: {
+        //         'Content-type': 'multipart/form-data',
+        //
+        //         // 'Content-type': 'application/json',
+        //         'Access-Control-Allow-Origin': '*'
+        //     }
+        // }).then(function (response) {
+        //     // handle success
+        //     console.log("status",response);
+        //     // json = null;
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // })
+
+        axios.post('http://127.0.0.1:5000/addExersize', json, {
             headers: {
-                'Content-type': 'multipart/form-data',
+                // 'Content-type': 'multipart/form-data',
+
+                'Content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             }
         }).then(function (response) {
@@ -167,10 +182,10 @@ export default function AddWorkout(){
                             </Select>
                         </FormControl>
 
-                        <div className={"col-md-3"}>
-                            <br/>
-                            <input type="file"  required onChange={fileChangedHandler}/>
-                        </div>
+                        {/*<div className={"col-md-3"}>*/}
+                        {/*    <br/>*/}
+                        {/*    <input type="file"  required onChange={fileChangedHandler}/>*/}
+                        {/*</div>*/}
 
                         <br/>
                         <br/>

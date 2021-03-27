@@ -18,6 +18,8 @@ import AboutUs from "./components/AboutUs";
 import Maindashboard from "./components/Maindashboard"
 import UserDashboard from "./components/customers/UserDashboard";
 import ProfessionalDashboard from "./components/professional/professionalDashboard";
+import Flaskapp from "./components/flaskApp";
+
 function App() {
   return (
       <Router>
@@ -34,6 +36,7 @@ function App() {
 
               <Route path="/ud" exact component={UserDashboard}/>
               <Route path="/pd" exact component={ProfessionalDashboard}/>
+              <Route path="/flask" exact component={Flaskapp}/>
 
 
 
