@@ -38,6 +38,42 @@ def deleteExercise():
 
     return "Deleted"
 
+@app.route('/subscribe',methods=['POST'])
+def subscribe():
+    req_data = request.get_json(force=True)
+    print("Subscription req",req_data)
+    # idToBeDeleted = request.form['id']
+
+    # print("delete id",idToBeDeleted)
+    exersizeCursor = mongo.db.Exersize
+    exersizeCursor.update({"_id": ObjectId(req_data['id'])},{
+                            '$push': {
+                                'userIdsToExersizesSubscribed': req_data['email']
+                            }
+    }
+    );
+
+    return "Added"
+
+
+@app.route('/getSubscribeByEmail',methods=['GET'])
+def getSubscribeByEmail():
+
+    userEmail = request.args.get('email')
+    print("User",userEmail)
+    exersizeCursor = mongo.db.Exersize
+
+    response = list()
+
+    for docs in exersizeCursor.find():
+        print(docs['userIdsToExersizesSubscribed'])
+        if userEmail in docs['userIdsToExersizesSubscribed']:
+            docs['_id'] = str(docs['_id'])
+            response.append(docs)
+
+    return dumps(response)
+
+
 @app.route('/getAllExersize',methods=['GET'])
 def getAllExersize():
 

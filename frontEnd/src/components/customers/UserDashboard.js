@@ -16,6 +16,8 @@ export default function UserDashboard(props){
     const [firstName,setFirstName] = useState("");
     const [allExercises,setAllExercises] = useState();
 
+    const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
+
     useEffect(()=>{
 
         setFirstName(localStorage.getItem("userFirstName"))
@@ -53,9 +55,58 @@ export default function UserDashboard(props){
             })
 
 
+        axios.get('http://127.0.0.1:5000/getSubscribeByEmail?email='+localStorage.getItem("email"), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("All subscriptions",response);
+            setPreviouslyAddedWorkouts(response.data);
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+
 
     },[])
 
+
+    const [rerenderAllExe,setRerenderAllExercise] = useState(true);
+
+    const subscribedCallback=()=>{
+        axios.get('http://127.0.0.1:5000/getAllExersize', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("allExercises",response);
+            setAllExercises(response.data);
+            setRerenderAllExercise(!rerenderAllExe)
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+        axios.get('http://127.0.0.1:5000/getSubscribeByEmail?email='+localStorage.getItem("email"), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("All subscriptions",response);
+            setPreviouslyAddedWorkouts(response.data);
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
+    }
 
 
 
@@ -79,11 +130,37 @@ export default function UserDashboard(props){
 
                     Your Enrolled Workouts
 
+                    {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
+                            <>
+                                <Card>
+                                    <Card.Body>
+                                        <div className={"row"}>
+                                            <div className={"col-md-8"}>
+                                                <h4>{workouts.title}</h4>
+                                            </div>
+
+                                            <div className={"col-md-12"}>
+                                                <p>{workouts.description}</p>
+                                            </div>
+
+                                            <p></p>
+                                        </div>
+                                    </Card.Body>
+
+                                </Card>
+                            </>
+                        )
+                        }):
+                        <>
+                            <h4> None previously added Workouts </h4>
+                        </>
+                    }
+
                 </Tab>
 
                 <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgrey'}}>
 
-                    {allExercises?<AllExercises data={allExercises}/> :<></>}
+                    {allExercises?<AllExercises key={rerenderAllExe} data={allExercises} callBack={subscribedCallback}/> :<></>}
 
 
 

@@ -89,6 +89,22 @@ export default function AllExercises(props){
         setIsOpen(false);
     }
 
+    const subscribeWorkout=(id)=>{
+        axios.post("http://127.0.0.1:5000/subscribe",{
+            id: id,
+            email: localStorage.getItem('email')
+        }).
+            then((res)=>{
+                alert("Subscribed Successfully")
+                props.callBack()
+        })
+            .catch((err)=>{
+                alert("Error while subscribing")
+                console.log(err);
+            })
+    }
+
+
     return(
 
         <>
@@ -123,7 +139,14 @@ export default function AllExercises(props){
                     </div>
 
                     <div className={"col-md-1"}>
-                        <Button style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+
+                        {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
+
+                        {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
+                            "Already Subscribed":
+                            <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                        }
+
                     </div>
 
 
