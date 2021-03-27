@@ -11,7 +11,7 @@ export default function ProfessionalDashboard(props){
     const [professionalEmail,setProfessionalEmail] = useState("");
 
     const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
-
+    const [stats,setStats] = useState();
 
     useEffect(()=>{
 
@@ -33,6 +33,17 @@ export default function ProfessionalDashboard(props){
         })
 
 
+        axios.get("http://127.0.0.1:5000/getStatsByEmail?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setStats(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+
+
+
+
     },[])
 
 
@@ -51,6 +62,15 @@ export default function ProfessionalDashboard(props){
                     alert("Fetching Workouts")
                     console.log(err);
                 })
+
+                axios.get("http://127.0.0.1:5000/getStatsByEmail?email="+localStorage.getItem("email")).
+                then((res)=>{
+                    setStats(res.data)
+                }).catch((err)=>{
+                    console.log(err);
+                })
+
+
             }).catch((err)=>{
                 alert("Error while trying to delete the value")
             })
@@ -68,6 +88,14 @@ export default function ProfessionalDashboard(props){
             alert("Fetching Workouts")
             console.log(err);
         })
+
+        axios.get("http://127.0.0.1:5000/getStatsByEmail?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setStats(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
     }
 
     return(
@@ -137,6 +165,22 @@ export default function ProfessionalDashboard(props){
 
                 <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgrey'}}>
                     Stats
+
+                    <Card>
+                        <Card.Body>
+
+                            <h5> Total Subscribers {stats? stats.totalUsers:""}
+                            <br/>
+                            <p>
+                                <br/> Total Workouts {" "} {stats ? stats.countWorkouts:""}
+                                <br/>Average users per workout {" "}
+                                {stats ? stats.averageUsers:""}
+                            </p>
+
+                            </h5>
+                        </Card.Body>
+                    </Card>
+
                 </Tab>
 
             </Tabs>

@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 from json import dumps
 from bson.objectid import ObjectId
+from collections import defaultdict
 
 app = Flask(__name__)
 CORS(app)
@@ -61,7 +62,25 @@ def getExersizeByEmail():
 
     return dumps(response)
 
+@app.route('/getStatsByEmail',methods=['GET'])
+def getStatsByEmail():
 
+    creatorEmail = request.args.get('email')
+    exersizeCursor = mongo.db.Exersize.find({"email": creatorEmail})
+    response=defaultdict(int)
+
+    total = 0
+
+    for elements in exersizeCursor:
+        elements['_id'] = str(elements['_id'])
+        response['countWorkouts']+=1
+        for users in elements['userIdsToExersizesSubscribed']:
+            total+=1
+
+    response['totalUsers'] = total
+    response['averageUsers'] = response['totalUsers']/response['countWorkouts']
+
+    return dumps(response)
 
 if __name__ == '__main__':
     app.run(debug=True)
