@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="42aac618-07a3-4ff2-9c72-1cef2bc1ed22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontEnd/src/components/customers/UserDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontEnd/src/components/customers/UserDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +101,8 @@
       <updated>1616870105565</updated>
       <workItem from="1616870123207" duration="1222000" />
       <workItem from="1616871537973" duration="117000" />
-      <workItem from="1616874064331" duration="8635000" />
+      <workItem from="1616874064331" duration="9349000" />
+      <workItem from="1616895387460" duration="43000" />
     </task>
     <servers />
   </component>
@@ -127,28 +126,28 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="788" y="272" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1616874168973" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1616883245792">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1616889326429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616883245792" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1616883245792">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616889326429" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1616889326429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1616883245792" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1616883245792">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1616889326429" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1616889326429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1616883245792" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1616883245792">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1616889326429" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1616889326429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1616883245792" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1616889326429" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1616878014125">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1616878014125" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flaskBackend$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1616883245785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/flaskBackend$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1616883338711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
