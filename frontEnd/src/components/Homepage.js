@@ -58,7 +58,7 @@ export default function Homepage() {
                 {/*    </Card>*/}
                 {/*</Row>*/}
 
-                <div className={"col-md-12"} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
+
 
                     <div className={'col-md-4'}>
                         <Card style={{width: '100%', borderColor: 'Red Orange', borderWidth: '7px', height:'100%', position: 'relative', left: ''}}>
@@ -94,7 +94,7 @@ export default function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                </div>
+                {/*</div>*/}
 
                 <div className={"col-md-12"} style = {{fontSize: "200%"}}>
                     <Card style={{backgroundColor: 'grey', width: '100%'}}>
