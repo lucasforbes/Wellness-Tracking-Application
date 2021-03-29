@@ -203,9 +203,9 @@ export default function Signup(props){
                         :null
                     }
 
-                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '99vw'}}></div>
+                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '100vw'}}></div>
 
-                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '99vw'}}></div>
+                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '100vw'}}></div>
 
 
 
@@ -417,9 +417,9 @@ export default function Signup(props){
 
 
                     </Card>
-                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '99vw'}}></div>
+                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '100vw'}}></div>
 
-                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '99vw'}}></div>
+                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '100vw'}}></div>
 
                     <ModalFooter style={{fontSize: '70%', borderColor: 'white', color: 'grey'}}>Copyright group #6</ModalFooter>
 

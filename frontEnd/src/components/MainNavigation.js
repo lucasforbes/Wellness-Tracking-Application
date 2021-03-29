@@ -26,7 +26,7 @@ export default function MainNavigation(props){
 
             {userLoggedIn ? <>
 
-                        <div style={{float:'right',paddingRight:'5px'}}>
+                    <div style={{float:'right',paddingRight:'5px'}}>
                         <img
                             alt=""
                             src="./Wellness_Icon.jpg"
@@ -47,7 +47,12 @@ export default function MainNavigation(props){
 
                         }}>  Logout </Button>
 
-                        </div>
+                    </div>
+
+
+
+
+
 
                 </> :
                 <Navbar bg="dark" variant="dark" sticky={'top'}>
@@ -66,6 +71,8 @@ export default function MainNavigation(props){
                         <Button variant="dark" ><Link to={""}>Home</Link></Button> {" "}
                         <Button variant="dark" > <Link to={"about"}> About </Link> </Button>
                         <Button variant="dark" > <Link to={"signup"}> Signup </Link> </Button>
+
+
                     </Nav>
 
                 </Navbar>
