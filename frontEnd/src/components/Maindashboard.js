@@ -16,7 +16,7 @@ export default function Maindashboard(){
 
     return(
         <>
-            <div style={{paddingLeft:'10px'}}>
+            <div>
             <br/>
 
 

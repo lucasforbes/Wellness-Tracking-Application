@@ -61,6 +61,7 @@ export default function Homepage() {
 
 
                     <div className={'col-md-4'}>
+                        <br/>
                         <Card style={{width: '100%', borderColor: 'Red Orange', borderWidth: '7px', height:'100%', position: 'relative', left: ''}}>
                             <Card.Img style={{height: '70%'}} variant="top" src="Exercise_Icon.jpg"/>
                             <Card.Body>
@@ -72,6 +73,7 @@ export default function Homepage() {
                         </Card>
                     </div>
                     <div className={'col-md-4'}>
+                        <br/>
                         <Card style={{width: '100%', borderWidth: '7px', borderColor: 'Blue Green', position: 'relative', left: '', height: '100%'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="forksandknivesss.jpg"/>
                             <Card.Body>
@@ -84,6 +86,7 @@ export default function Homepage() {
                     </div>
 
                     <div className={'col-md-4'}>
+                        <br/>
                         <Card style={{width: '100%', borderColor: 'Purple Blue', borderWidth: '7px', height:'100%', position: 'relative', left: ''}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="./Wellness_Icon.jpg"/>
                             <Card.Body>
@@ -94,7 +97,7 @@ export default function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                {/*</div>*/}
+
 
                 <div className={"col-md-12"} style = {{fontSize: "200%"}}>
                     <Card style={{backgroundColor: 'grey', width: '100%'}}>
