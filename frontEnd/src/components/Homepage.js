@@ -17,6 +17,7 @@ import {TextField} from '@material-ui/core/';
 import {CardHeader} from "@material-ui/core";
 import Login from "./registeration/login";
 
+
 export default function Homepage() {
 
     const [email, setEmail] = useState();
@@ -24,10 +25,10 @@ export default function Homepage() {
 //test
     return (
         <>
-            <div className={'container-fluid'}>
-                <Row style = {{width: '',  overflow: 'hidden', minHeight: '335px', backgroundColor: 'lightGreen'}}>
+            <div className={'row'}>
+                <div className={"col-md-12"}>
                     <Card style = {{width: '100%', height:'100%', minHeight:'0'}} className="bg-dark text-white">
-                        <Card.Img src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
+                        <Card.Img src={process.env.PUBLIC_URL + '/Background.PNG'}  alt="Card image" />
                         <Card.ImgOverlay style = {{width: '100%'}}>
 
                             <div className={'row'}>
@@ -49,15 +50,15 @@ export default function Homepage() {
 
                         </Card.ImgOverlay>
                     </Card>
-                </Row>
+                </div>
 
-                <Row style = {{fontSize: "200%"}}>
-                    <Card style={{backgroundColor: 'grey', width: '100%'}}>
-                        /
-                    </Card>
-                </Row>
 
-                <Row style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
+                {/*<Row style = {{fontSize: "200%"}}>*/}
+                {/*    <Card style={{backgroundColor: 'grey', width: '100%'}}>*/}
+                {/*    </Card>*/}
+                {/*</Row>*/}
+
+                <div className={"col-md-12"} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
 
                     <div className={'col-md-4'}>
                         <Card style={{width: '100%', borderColor: 'Red Orange', borderWidth: '7px', height:'100%', position: 'relative', left: ''}}>
@@ -93,15 +94,15 @@ export default function Homepage() {
                             </Card.Body>
                         </Card>
                     </div>
-                </Row>
+                </div>
 
-                <Row style = {{fontSize: "200%"}}>
+                <div className={"col-md-12"} style = {{fontSize: "200%"}}>
                     <Card style={{backgroundColor: 'grey', width: '100%'}}>
                         /
                     </Card>
-                </Row>
+                </div>
 
-                <Row>
+                <div className={"col-md-12"}>
                     <Form style={{width: '600px', border: 'solid',borderColor: 'lightgrey', padding: '2%', margin: '4%'}}>
                         <header style={{ fontSize: '200%', color: 'grey'}}>Contact Us</header>
 
@@ -118,7 +119,7 @@ export default function Homepage() {
 
                         <Button variant="primary" type="submit">Submit</Button>
                     </Form>
-                </Row>
+                </div>
 
 
 
