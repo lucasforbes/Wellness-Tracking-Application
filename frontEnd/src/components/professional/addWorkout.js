@@ -112,7 +112,7 @@ export default function AddWorkout(props){
         //     console.log(error);
         // })
 
-        axios.post('http://127.0.0.1:5000/addExersize', json, {
+        axios.post('https://bloom-flask-app.herokuapp.com/addExersize', json, {
             headers: {
                 // 'Content-type': 'multipart/form-data',
 

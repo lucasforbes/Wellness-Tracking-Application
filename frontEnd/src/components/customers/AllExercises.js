@@ -90,7 +90,7 @@ export default function AllExercises(props){
     }
 
     const subscribeWorkout=(id)=>{
-        axios.post("http://127.0.0.1:5000/subscribe",{
+        axios.post("https://bloom-flask-app.herokuapp.com/subscribe",{
             id: id,
             email: localStorage.getItem('email')
         }).

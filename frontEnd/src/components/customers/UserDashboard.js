@@ -40,7 +40,7 @@ export default function UserDashboard(props){
     //         console.log(error);
     //     })
 
-        axios.get('http://127.0.0.1:5000/getAllExersize', {
+        axios.get('https://bloom-flask-app.herokuapp.com/getAllExersize', {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
@@ -55,7 +55,7 @@ export default function UserDashboard(props){
             })
 
 
-        axios.get('http://127.0.0.1:5000/getSubscribeByEmail?email='+localStorage.getItem("email"), {
+        axios.get('https://bloom-flask-app.herokuapp.com/getSubscribeByEmail?email='+localStorage.getItem("email"), {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
@@ -76,7 +76,7 @@ export default function UserDashboard(props){
     const [rerenderAllExe,setRerenderAllExercise] = useState(true);
 
     const subscribedCallback=()=>{
-        axios.get('http://127.0.0.1:5000/getAllExersize', {
+        axios.get('https://bloom-flask-app.herokuapp.com/getAllExersize', {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
@@ -91,7 +91,7 @@ export default function UserDashboard(props){
                 console.log(error);
             })
 
-        axios.get('http://127.0.0.1:5000/getSubscribeByEmail?email='+localStorage.getItem("email"), {
+        axios.get('https://bloom-flask-app.herokuapp.com/getSubscribeByEmail?email='+localStorage.getItem("email"), {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'

@@ -25,7 +25,7 @@ export default function ProfessionalDashboard(props){
         //     console.log(err);
         // })
 
-        axios.get("http://127.0.0.1:5000/getExersizeByEmail?email="+localStorage.getItem("email")).
+        axios.get("https://bloom-flask-app.herokuapp.com/getExersizeByEmail?email="+localStorage.getItem("email")).
             then((res)=>{
                 setPreviouslyAddedWorkouts(res.data)
         }).catch((err)=>{
@@ -33,7 +33,7 @@ export default function ProfessionalDashboard(props){
         })
 
 
-        axios.get("http://127.0.0.1:5000/getStatsByEmail?email="+localStorage.getItem("email")).
+        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmail?email="+localStorage.getItem("email")).
         then((res)=>{
             setStats(res.data)
         }).catch((err)=>{
@@ -51,11 +51,11 @@ export default function ProfessionalDashboard(props){
 
 
         if (window.confirm("Delete the workout?")) {
-            axios.post("http://127.0.0.1:5000/deleteExercise",{
+            axios.post("https://bloom-flask-app.herokuapp.com/deleteExercise",{
                 id: id
             }).
             then((res)=>{
-                axios.get("http://127.0.0.1:5000/getExersizeByEmail?email="+localStorage.getItem("email")).
+                axios.get("https://bloom-flask-app.herokuapp.com/getExersizeByEmail?email="+localStorage.getItem("email")).
                 then((res)=>{
                     setPreviouslyAddedWorkouts(res.data)
                 }).catch((err)=>{
@@ -63,7 +63,7 @@ export default function ProfessionalDashboard(props){
                     console.log(err);
                 })
 
-                axios.get("http://127.0.0.1:5000/getStatsByEmail?email="+localStorage.getItem("email")).
+                axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmail?email="+localStorage.getItem("email")).
                 then((res)=>{
                     setStats(res.data)
                 }).catch((err)=>{
@@ -81,7 +81,7 @@ export default function ProfessionalDashboard(props){
 
 
     const addedWorkout=()=>{
-        axios.get("http://127.0.0.1:5000/getExersizeByEmail?email="+localStorage.getItem("email")).
+        axios.get("https://bloom-flask-app.herokuapp.com/getExersizeByEmail?email="+localStorage.getItem("email")).
         then((res)=>{
             setPreviouslyAddedWorkouts(res.data)
         }).catch((err)=>{
@@ -89,7 +89,7 @@ export default function ProfessionalDashboard(props){
             console.log(err);
         })
 
-        axios.get("http://127.0.0.1:5000/getStatsByEmail?email="+localStorage.getItem("email")).
+        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmail?email="+localStorage.getItem("email")).
         then((res)=>{
             setStats(res.data)
         }).catch((err)=>{
