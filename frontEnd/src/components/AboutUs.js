@@ -36,13 +36,13 @@ export default function AboutUs(){
                     <Row>
                         <div className={'col-xs-6'}>
                             <Card style={{width: '20vw'}}>
-                                <Card.Img style={{height: '70%'}} variant="top" src="vishal.jpg"/>
+                                <Card.Img style={{height: '70%'}} variant="top" src="Vishal.jpg"/>
                                 Vishal
                             </Card>
                         </div>
                         <div className={'col-xs-6'}>
                             <Card style={{width: '20vw'}}>
-                                <Card.Img style={{height: '70%'}} variant="top" src="lucas.png"/>
+                                <Card.Img style={{height: '70%'}} variant="top" src="Lucas.png"/>
                                 Lucas
                             </Card>
                         </div>

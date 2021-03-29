@@ -19,6 +19,7 @@ import Maindashboard from "./components/Maindashboard"
 import UserDashboard from "./components/customers/UserDashboard";
 import ProfessionalDashboard from "./components/professional/professionalDashboard";
 import Flaskapp from "./components/flaskApp";
+import NewHomepage from "./components/NewHomepage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Switch>
 
               <Route path="/" exact component={Homepage}/>
+              <Route path={"/home"} exact component={NewHomepage}/>
               <Route path="/login" exact component={Login}/>
               <Route path="/about" exact component={AboutUs}/>
               <Route path="/signup" exact component={Signup}/>
