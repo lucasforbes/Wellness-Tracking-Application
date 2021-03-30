@@ -21,7 +21,7 @@
 
 
   if('WebSocket' in window){
-    websocket = new WebSocket("ws://127.0.0.1:8080/chat/jimmy@google.com");
+    websocket = new WebSocket("ws://127.0.0.1:8080/chat/bob@google.com");
   } else {
     alert("Don't support websocket!")
   }
@@ -39,7 +39,15 @@
   websocket.onmessage = function(event){
     var result = event.data
 
+    console.log(result)
     setMessageInnerHTML(result)
+    var ob = JSON.parse(result)
+
+
+    if(ob.msg !== undefined){
+      console.log(ob.msg);
+    }
+  console.log(result)
 
   }
 
@@ -56,7 +64,6 @@
 
   function setMessageInnerHTML(innerHTML){
     document.getElementById('message').innerHTML += innerHTML + '<br/>';
-
   }
 
 
@@ -69,8 +76,8 @@
     var sendMsg = document.getElementById("sendMsg").value
     var message = {
       "time": new Date(),
-      "from":"jimmy@google.com",
-      "to": "bob@google.com",
+      "from":"bob@google.com",
+      "to": "jimmy@google.com",
       "message":sendMsg
     }
     websocket.send(JSON.stringify(message));

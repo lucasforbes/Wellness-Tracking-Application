@@ -45,6 +45,9 @@ public class WellnessApplication implements CommandLineRunner {
         User user2 = new User("1234", "bob@google.com", "Bob", "Smith", "1960-01-06","Male",  true, false);
         user2.setId(1);
         udb.save(user2);
+        User user3 = new User("1234", "1072846210@qq.com", "Feifan", "Wu", "1997-10-21", "Male", true, false);
+        user3.setId(2);
+        udb.save(user3);
         // save a couple of Admins
         Admin admin1 = new Admin("1234", "theboss@google.com",  "Jim", "Honcho", "0123456789");
         admin1.setId(0);

@@ -16,10 +16,13 @@ public class PasswordResetController {
     @Autowired
     private UserRepository udb;
 
+    @Autowired
+    private EmailServiceImpl emailService;
+
 
     @GetMapping("/pwdreset")
     @ResponseBody
-    public UnifiedReturnValue passwdReset(@RequestParam String email, @RequestParam String newPasswd){
+    public UnifiedReturnValue passwdReset(@RequestParam String email, @RequestParam String newPasswd) {
         /**
          * 1. check the validation of the code(front page deal with that)
          * 2. if they are the same, change the password for the user; if not, tell user failed.
@@ -30,7 +33,7 @@ public class PasswordResetController {
             user.setPassword(newPasswd);
             udb.save(user);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -41,7 +44,7 @@ public class PasswordResetController {
     @GetMapping("sendcode")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public UnifiedReturnValue sendCode(@RequestParam String email){
+    public UnifiedReturnValue sendCode(@RequestParam String email) {
         StringBuffer newcode = generateCode();
         /***
          * 1. storage the code into the database
@@ -65,18 +68,18 @@ public class PasswordResetController {
          */
         User user = udb.findByEmail(email);
 
-        if(user == null){
+        if (user == null) {
 
-            return  new UnifiedReturnValue(false, 404, "no user found", "there is no user's email is： "+email, "PassWordReset", new Date());
+            return new UnifiedReturnValue(false, 404, "no user found", "there is no user's email is： " + email, "PassWordReset", new Date());
         }
         try {
-            Boolean emailSentFeedBack = new EmailServiceImpl().sendHttpEmail(email, "Please check the code", newcode.toString());
+            Boolean emailSentFeedBack = emailService.sendHttpEmail(email, "Please check the code", newcode.toString());
             if (emailSentFeedBack == false) {
                 return new UnifiedReturnValue(false, 404, "Email sent failure", "the email wasn't sent to " + email, "sendCode", new Date());
             } else {
                 return new UnifiedReturnValue(true, 200, "Email sent successfully", "the email has been sent to the user " + email, "sendCode", new Date());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return new UnifiedReturnValue(false, 404, "Email sent failure", "the email wasn't sent to " + email, "sendCode", new Date());
         }
@@ -84,19 +87,18 @@ public class PasswordResetController {
     }
 
 
-    public StringBuffer generateCode(){
+    public StringBuffer generateCode() {
         StringBuffer flag = new StringBuffer();
-        for (int i = 0; i <= 100; i++) {
-            String sources = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-            Random rand = new Random();
 
-            for (int j = 0; j < 6; j++) {
-                flag.append(sources.charAt(rand.nextInt(9)));
-            }
+
+
+        for (int j = 0; j < 6; j++) {
+            int a = new Random().nextInt(9);
+            flag.append(a);
         }
+
         return flag;
     }
-
 
 
 }
