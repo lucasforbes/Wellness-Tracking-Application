@@ -32,7 +32,7 @@ export default function ProfessionalDashboard(props){
 
             <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightgrey'}}>
 
-                <Tab eventKey="history" title="Inventory" style = {{backgroundColor: ''}}>
+                <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'blue'}}>
                     <header style={{textAlign: 'center'}}> workouts</header>
                     <Row>
                         <Col sm = '4'>
@@ -75,7 +75,7 @@ export default function ProfessionalDashboard(props){
 
                 </Tab>
 
-                <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'grey'}}>
+                <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'blue'}}>
                     <AddWorkout/>
                 </Tab>
 

@@ -101,13 +101,13 @@ export default function AddWorkout(){
             <Card
                 bg={'Light'.toLowerCase()}
                 text={''}
-                style={{ width: '100%' }}
+                style={{ width: '100%'}}
 
             >
 
-            <form onSubmit={workoutSubmit}>
+            <form   onSubmit={workoutSubmit}>
 
-                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px"}}>
+                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightblue' }}>
 
 
                     <div className={"col-md-12"}>
@@ -123,7 +123,7 @@ export default function AddWorkout(){
                         {"          "}
 
 
-                        <FormControl>
+                        <FormControl style={{}}>
                             <InputLabel>Paid</InputLabel>
                             <Select
                                 value={paid}
@@ -174,7 +174,7 @@ export default function AddWorkout(){
                             return (
 
                                 <>
-                                    <div className={"col-md-12"}>
+                                    <div className={"col-md-12"} style={{backgroundColor: 'lightgreen'}}>
 
 
                                         <TextField
@@ -201,7 +201,7 @@ export default function AddWorkout(){
 
                                      </div>
 
-                                    <div className={"col-md-12"}>
+                                    <div className={"col-md-12"} style={{backgroundColor: 'blue'}}>
 
 
                                         <FormControl>

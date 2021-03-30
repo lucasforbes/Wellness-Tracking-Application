@@ -59,7 +59,7 @@ export default function UserDashboard(props){
             </div>
 
 
-            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'grey', }}>
+            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'blue', }}>
 
                 <Tab eventKey="enrolled" title="Enrolled">
 
