@@ -33,7 +33,7 @@ export default function Homepage() {
                             <div className={'row'}>
                                 <div className={'col'} style = {{}}>
 
-                                    <Card.Title style={{ fontSize: '8vw', textAlign: 'center', color: 'White' ,position: 'relative', bottom: '1vw'}}>Bl00oom Wellness</Card.Title>
+                                    <Card.Title style={{ fontSize: '8vw', textAlign: 'center', color: 'White' ,position: 'relative', bottom: '1vw'}}>Bl0o0oom Wellness</Card.Title>
 
                                 </div>
 
