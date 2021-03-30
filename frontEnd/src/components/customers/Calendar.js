@@ -9,8 +9,6 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
 
-import SimpleReactCalendar from 'simple-react-calendar'
-
 
 export default function Cal() {
      const [value, onChange] = useState(new Date());
