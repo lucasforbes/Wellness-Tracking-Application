@@ -10,6 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
+
+/****
+ * Logic:
+ *
+ *  1. Front end send a request to the back end with url: https://bloom-wellness-back.herokuapp.com/sendcode?email={email}
+ *     It will send an email with random code composite with 6-digit to the user who want to reset his pwd
+ *     It is used GET method
+ *  2. Then Front end send another request to the back end with url: https://bloom-wellness-back.herokuapp.com/findcode/{email}?code={code}&pwd={password}
+ *     It will check the validation of the code and the code state. pwd is the new password that user wants to modify to.
+ *     It is used POST method
+
+ */
 @RestController
 public class PasswordResetController {
 
@@ -19,27 +32,8 @@ public class PasswordResetController {
     @Autowired
     private EmailServiceImpl emailService;
 
-
-    @GetMapping("/pwdreset")
-    @ResponseBody
-    public UnifiedReturnValue passwdReset(@RequestParam String email, @RequestParam String newPasswd) {
-        /**
-         * 1. check the validation of the code(front page deal with that)
-         * 2. if they are the same, change the password for the user; if not, tell user failed.
-         * 3. modify the code state to 0, which means the code is out-dated.(implemented in VerifyCodeController)
-         */
-        try {
-            User user = udb.findByEmail(email);
-            user.setPassword(newPasswd);
-            udb.save(user);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        return null;
-    }
+    @Autowired
+    private VerifyCodeRepository vcdb;
 
     @GetMapping("sendcode")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -73,7 +67,30 @@ public class PasswordResetController {
             return new UnifiedReturnValue(false, 404, "no user found", "there is no user's email is： " + email, "PassWordReset", new Date());
         }
         try {
+            VerifyCode verifyCode = new VerifyCode();
+            verifyCode.setId(vcdb.findAll().size());
+            verifyCode.setEmail(email);
+            verifyCode.setVerifyCode(newcode.toString());
+            verifyCode.setState(1);
             Boolean emailSentFeedBack = emailService.sendHttpEmail(email, "Please check the code", newcode.toString());
+            vcdb.save(verifyCode);
+
+            /***
+             * new thread to deal with 60s invalidate verifyCode
+             */
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        sleep(60000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    verifyCode.setState(0);
+                    vcdb.save(verifyCode);
+                }
+            }).start();
+
+
             if (emailSentFeedBack == false) {
                 return new UnifiedReturnValue(false, 404, "Email sent failure", "the email wasn't sent to " + email, "sendCode", new Date());
             } else {

@@ -1,11 +1,14 @@
 package com.wellnessapp.demo.PasswdReset;
 
 import com.google.gson.Gson;
+import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.UnifiedReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 import static java.lang.Thread.sleep;
 
@@ -14,50 +17,26 @@ import static java.lang.Thread.sleep;
 public class VerifyCodeController{
 
     @Autowired
+    private UserRepository udb;
+    @Autowired
     private VerifyCodeRepository vcdb;
 
     VerifyCode verifyCode = new VerifyCode();
 
-    @GetMapping("/newcode")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @ResponseBody
-    public String saveNewVerifyCode(@RequestParam(name = "email") String email, @RequestParam(name = "code") String code){
-        try {
-
-            verifyCode.setEmail(email);
-            verifyCode.setVerifyCode(code);
-            verifyCode.setState(1);
-            vcdb.save(verifyCode);
 
 
-            /***
-             * new thread to deal with 60s invalidate verifyCode
-             */
-            new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        sleep(60000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    verifyCode.setState(0);
-                    vcdb.save(verifyCode);
-                }
-            }).start();
-        }catch (Exception e){
-            e.printStackTrace();
-            return new UnifiedReturnValue(false, 404, "new verifyCode", "new verifyCode created Failed", "saveNewVerifyCode", new Date()).unifiedReturnValue();
-        }
-        return new UnifiedReturnValue(true, 200, "new verifyCode", "new verifyCode created successfully", "saveNewVerifyCode", new Date()).unifiedReturnValue();
-    }
-
-
-
-    @GetMapping("/findcode/{email}")
-    public String isInvalidCode(@PathVariable String email){
-        VerifyCode verifyCode = vcdb.findByEmail(email);
-        if(verifyCode.getState() == 1){
-            return new UnifiedReturnValue(true, 200, "Has verifyCode", "new verifyCode found successfully", "isInvalidCode", new Date()).unifiedReturnValue();
+    @PostMapping("/findcode/{email}")
+    public String isInvalidCode(@PathVariable String email, @RequestParam("code") String code, @RequestParam("pwd")String password){
+        List<VerifyCode> codeCollection = vcdb.findAllByEmail(email);
+        for(VerifyCode verifyCode: codeCollection) {
+            if (verifyCode.getState() == 1 && code.equals(verifyCode.getVerifyCode())) {
+                User user = udb.findByEmail(email);
+                user.setPassword(password);
+                verifyCode.setState(0);
+                vcdb.save(verifyCode);
+                udb.save(user);
+                return new UnifiedReturnValue(true, 200, "Successfully", "password for "+email + " has been reset", "isInvalidCode", new Date()).unifiedReturnValue();
+            }
         }
         return new UnifiedReturnValue(false, 404, "No verifyCode", "new verifyCode found Failed", "isInvalidCode", new Date()).unifiedReturnValue();
     }

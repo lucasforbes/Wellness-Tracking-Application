@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 @Document(collection = "verifycode")
 public class VerifyCode {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Field("verifyCode")
     private String verifyCode;
