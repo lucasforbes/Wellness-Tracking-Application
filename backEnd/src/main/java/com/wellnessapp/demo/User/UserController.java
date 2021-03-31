@@ -37,11 +37,11 @@ public class UserController {
         User del = udb.findByEmail(email);
         User user = udb.findByEmail(email);
         user.setAge(ud.getAge());
-        user.setFirstName(ud.getFirstName());
-        user.setLastName(ud.getLastName());
-        user.setPhoneNumber(ud.getPhoneNumber());
-        user.setDietsSubscribed(new ArrayList<>());
-        user.setExersizesSubscribed(new ArrayList<>());
+//        user.setFirstName(ud.getFirstName());
+//        user.setLastName(ud.getLastName());
+//        user.setPhoneNumber(ud.getPhoneNumber());
+//        user.setDietsSubscribed(new ArrayList<>());
+//        user.setExersizesSubscribed(new ArrayList<>());
 //        try{
 //            MultipartFile file = photo;
 //            int count2 = idb.findAll().size();
