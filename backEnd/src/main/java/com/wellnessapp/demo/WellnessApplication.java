@@ -39,13 +39,13 @@ public class WellnessApplication implements CommandLineRunner {
         cdb.deleteAll();
 
         // save a couple of Users
-        User user1 = new User("1234", "jimmy@google.com", "Jimmy", "John", "1997-10-21", "Male", true, false);
+        User user1 = new User("1234", "jimmy@google.com");
         user1.setId(0);
         udb.save(user1);
-        User user2 = new User("1234", "bob@google.com", "Bob", "Smith", "1960-01-06","Male",  true, false);
+        User user2 = new User("1234", "bob@google.com");
         user2.setId(1);
         udb.save(user2);
-        User user3 = new User("1234", "1072846210@qq.com", "Feifan", "Wu", "1997-10-21", "Male", true, false);
+        User user3 = new User("1234", "1072846210@qq.com");
         user3.setId(2);
         udb.save(user3);
         // save a couple of Admins

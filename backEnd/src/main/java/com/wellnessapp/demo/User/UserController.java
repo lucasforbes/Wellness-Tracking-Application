@@ -30,22 +30,18 @@ public class UserController {
     private ImageRepository idb;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/addUser")
+    @PostMapping("/addUserDetails")
     @ResponseBody
-    public User saveUser(@RequestParam("photo") MultipartFile photo, @RequestPart("user") String adUser) throws JsonProcessingException {
-        int count = udb.findAll().size();
-        User user = new ObjectMapper().readValue(adUser, User.class);
-        System.out.println(user.getBirthday());
-        user.setId(count);
-        Clock cl = Clock.systemUTC();
-        LocalDate currentDate = LocalDate.now(cl);
-        Period a = Period.between(user.getBirthday(), currentDate);
-        user.setAge(a.getYears());
-        user.setSignUpTime(currentDate);
-        user.setUserType("User");
-        System.out.println(user.getAge());
-        System.out.println("Trying to add new User");
-        System.out.println("");
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("user") String adUser) throws JsonProcessingException {
+//        int count = udb.findAll().size();
+//        User user = new ObjectMapper().readValue(adUser, User.class);
+//        System.out.println(user.getBirthday());
+        User user = udb.findByEmail(email);
+        UserDetails ud = new ObjectMapper().readValue(adUser, UserDetails.class);
+        user.setAge(ud.getAge());
+        user.setFirstName(ud.getFirstName());
+        user.setLastName(ud.getLastName());
+        user.setPhoneNumber(ud.getPhoneNumber());
         try{
             MultipartFile file = photo;
             int count2 = idb.findAll().size();
@@ -65,6 +61,14 @@ public class UserController {
         }catch (IOException e){
             e.printStackTrace();
         }
+        udb.save(user);
+        return user;
+    }
+    @PostMapping("/addUser")
+    public User saveUser(@RequestPart String basicDetails) throws JsonProcessingException {
+        int count = udb.findAll().size();
+        User user = new ObjectMapper().readValue(basicDetails, User.class);
+        user.setId(count);
         udb.save(user);
         return user;
     }
