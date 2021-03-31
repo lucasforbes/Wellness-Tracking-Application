@@ -33,17 +33,18 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addUserDetails")
     @ResponseBody
-    public int addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
         User del = udb.findByEmail(email);
         User user = udb.findByEmail(email);
-        int age = ud.getAge();
-//        user.setAge(23);
-//        user.setAge(ud.getAge());
-//        user.setFirstName(ud.getFirstName());
-//        user.setLastName(ud.getLastName());
-//        user.setPhoneNumber(ud.getPhoneNumber());
-//        user.setDietsSubscribed(new ArrayList<>());
-//        user.setExersizesSubscribed(new ArrayList<>());
+        user.setFirstName(ud.getFirstName());
+        System.out.println("saved name");
+        user.setLastName(ud.getLastName());
+        user.setBirthday(ud.getBirthday());
+        user.setGender(ud.getGender());
+        System.out.println("Saved gender");
+        user.setAge(ud.getAge());
+        user.setPhoneNumber(ud.getPhoneNumber());
+        System.out.println("saved phone");
 //        try{
 //            MultipartFile file = photo;
 //            int count2 = idb.findAll().size();
@@ -65,8 +66,8 @@ public class UserController {
 //        }
 //        udb.delete(del);
 //        udb.save(user);
-        User ret = udb.findByEmail("bob@google.com");
-        return age;
+//        User ret = udb.findByEmail("bob@google.com");
+        return user;
     }
     @PostMapping("/addUser")
     public User saveUser(@RequestPart("user") String basicDetails) throws JsonProcessingException {

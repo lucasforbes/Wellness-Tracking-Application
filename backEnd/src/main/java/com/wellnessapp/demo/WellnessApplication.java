@@ -48,6 +48,7 @@ public class WellnessApplication implements CommandLineRunner {
         u.setFirstName(ud.getFirstName());
         u.setLastName(ud.getLastName());
         u.setBirthday(ud.getBirthday());
+        u.setGender(ud.getGender());
         u.setAge(ud.getAge());
         u.setPhoneNumber(ud.getPhoneNumber());
         udb.delete(user1);
