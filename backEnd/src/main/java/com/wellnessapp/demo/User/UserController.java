@@ -29,11 +29,11 @@ public class UserController {
     private UserRepository udb;
     @Autowired
     private ImageRepository idb;
-
+//, @RequestPart("userDetails") UserDetails ud
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addUserDetails")
     @ResponseBody
-    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestParam("userDetails") UserDetails ud) throws JsonProcessingException {
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email) throws JsonProcessingException {
 //        int count = udb.findAll().size();
 //        User user = new ObjectMapper().readValue(adUser, User.class);
 //        System.out.println(user.getBirthday());
