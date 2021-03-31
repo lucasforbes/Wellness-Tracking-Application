@@ -34,49 +34,37 @@ public class UserController {
     @PostMapping("/addUserDetails")
     @ResponseBody
     public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
-        User del = udb.findByEmail(email.toString());
-        String e = "bob@google.com";
-        System.out.println(udb.count());
-        System.out.println("del user = "+e);
-        System.out.println("trying to get user with email: " + e);
-        User user1 = getUser(e);
-        User user = getUser("bob@google.com");
-        System.out.println("user = "+ user1);
+        String e = email.replace("\"", "");
+        User del = udb.findByEmail(e);
+        User user = udb.findByEmail(e);
+        System.out.println("user: " + e);
         user.setFirstName(ud.getFirstName());
-        System.out.println("saved name");
         user.setLastName(ud.getLastName());
         user.setBirthday(ud.getBirthday());
         user.setGender(ud.getGender());
-        System.out.println("Saved gender");
         user.setAge(ud.getAge());
         user.setPhoneNumber(ud.getPhoneNumber());
-        System.out.println("saved phone");
-//        try{
-//            MultipartFile file = photo;
-//            int count2 = idb.findAll().size();
-//            Image image = new Image();
-//            image.setId(count2);
-//            image.setName(file.getOriginalFilename());
-//            image.setUserEmail(user.getEmail());
-//            image.setOtherDbId(user.getId());
-//            image.setBelongsTo(0);
-//            image.setUpdateDate(new Date());
-//            image.setContent(new Binary(file.getBytes()));
-//            image.setContentType(file.getContentType());
-//            image.setSize(file.getSize());
-//            Image savedFile = idb.save(image);
-//            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
-//            user.setProfilePic(url);
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//        udb.delete(del);
-//        udb.save(user);
-//        User ret = udb.findByEmail("bob@google.com");
-        return user;
-    }
-    public User getUser(String email){
-        User user = udb.findByEmail(email);
+        try{
+            MultipartFile file = photo;
+            int count2 = idb.findAll().size();
+            Image image = new Image();
+            image.setId(count2);
+            image.setName(file.getOriginalFilename());
+            image.setUserEmail(user.getEmail());
+            image.setOtherDbId(user.getId());
+            image.setBelongsTo(0);
+            image.setUpdateDate(new Date());
+            image.setContent(new Binary(file.getBytes()));
+            image.setContentType(file.getContentType());
+            image.setSize(file.getSize());
+            Image savedFile = idb.save(image);
+            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
+            user.setProfilePic(url);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+        udb.delete(del);
+        udb.save(user);
         return user;
     }
     @PostMapping("/addUser")
