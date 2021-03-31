@@ -66,27 +66,28 @@ public class User {
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
 //    , Date signUpTime
-    public User(String password, String email, String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted) {
+//    removed , String firstName, String lastName, String birthday, String gender, Boolean online, Boolean isDeleted from constructer
+    public User(String password, String email) {
         this.password = password;
         this.email = email;
 //        this.profilePic = profilePic;
         // add picture to image database
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = "firstName";
+        this.lastName = "lastName";
 //        date in YYYY-MM-DD format
-        this.birthday = LocalDate.parse(birthday);
+        this.birthday = LocalDate.parse("2021-01-01");
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
         Period a = Period.between(this.birthday, currentDate);
         this.age = a.getYears();
         this.userType = "User";
-        this.gender = gender;
-        this.online = online;
-        this.isDeleted = isDeleted;
+        this.gender = "";
+        this.online = true;
+        this.isDeleted = false;
         this.signUpTime = currentDate;
         this.exersizesSubscribed = new ArrayList<>();
         this.dietsSubscribed = new ArrayList<>();
-        this.phoneNumber = "5743397212";
+        this.phoneNumber = "";
     }
 
     public User() {
