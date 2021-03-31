@@ -38,7 +38,7 @@ public class UserController {
         System.out.println(udb.count());
         System.out.println("del user = "+del);
         System.out.println("trying to get user with email: " + email);
-        User user = getUser(email);
+        User user = getUser("bob@google.com");
         System.out.println("user = "+ user);
         user.setFirstName(ud.getFirstName());
         System.out.println("saved name");
