@@ -44,7 +44,7 @@ public class UserDetails {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -52,7 +52,7 @@ public class UserDetails {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -60,7 +60,7 @@ public class UserDetails {
     }
 
     public String getProfilePic() {
-        return profilePic;
+        return this.profilePic;
     }
 
     public void setProfilePic(String profilePic) {
@@ -68,7 +68,7 @@ public class UserDetails {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -76,7 +76,7 @@ public class UserDetails {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -84,7 +84,7 @@ public class UserDetails {
     }
 
     public String getGender() {
-        return gender;
+        return this.gender;
     }
 
     public void setGender(String gender) {
@@ -92,7 +92,7 @@ public class UserDetails {
     }
 
     public LocalDate getBirthday() {
-        return birthday;
+        return this.birthday;
     }
 
     public void setBirthday(LocalDate birthday) {
@@ -100,7 +100,7 @@ public class UserDetails {
     }
 
     public String getUserType() {
-        return userType;
+        return this.userType;
     }
 
     public void setUserType(String userType) {
@@ -108,7 +108,7 @@ public class UserDetails {
     }
 
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public void setAge(int age) {
@@ -124,7 +124,7 @@ public class UserDetails {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
