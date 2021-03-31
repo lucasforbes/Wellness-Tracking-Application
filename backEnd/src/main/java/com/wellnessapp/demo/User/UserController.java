@@ -29,13 +29,13 @@ public class UserController {
     private UserRepository udb;
     @Autowired
     private ImageRepository idb;
-//, @RequestPart("userDetails") UserDetails ud
+//,  @RequestParam("email") String email,
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addUserDetails")
     @ResponseBody
-    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
-        User del = udb.findByEmail(email);
-        User user = udb.findByEmail(email);
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
+//        User del = udb.findByEmail(email);
+//        User user = udb.findByEmail(email);
 //        user.setAge(ud.getAge());
 //        user.setFirstName(ud.getFirstName());
 //        user.setLastName(ud.getLastName());
@@ -61,8 +61,9 @@ public class UserController {
 //        }catch (IOException e){
 //            e.printStackTrace();
 //        }
-        udb.delete(del);
-        udb.save(user);
+//        udb.delete(del);
+//        udb.save(user);
+        User user = udb.findByEmail("bob@google.com");
         return user;
     }
     @PostMapping("/addUser")
