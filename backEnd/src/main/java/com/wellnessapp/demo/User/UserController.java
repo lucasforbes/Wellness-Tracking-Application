@@ -33,7 +33,7 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addUserDetails")
     @ResponseBody
-    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
 //        User del = udb.findByEmail(email);
 //        User user = udb.findByEmail(email);
 //        user.setAge(ud.getAge());
