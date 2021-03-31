@@ -32,7 +32,7 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addUserDetails")
     @ResponseBody
-    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("user") String adUser) throws JsonProcessingException {
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") String adUser) throws JsonProcessingException {
 //        int count = udb.findAll().size();
 //        User user = new ObjectMapper().readValue(adUser, User.class);
 //        System.out.println(user.getBirthday());
@@ -65,7 +65,7 @@ public class UserController {
         return user;
     }
     @PostMapping("/addUser")
-    public User saveUser(@RequestPart String basicDetails) throws JsonProcessingException {
+    public User saveUser(@RequestPart("user") String basicDetails) throws JsonProcessingException {
         int count = udb.findAll().size();
         User user = new ObjectMapper().readValue(basicDetails, User.class);
         user.setId(count);
