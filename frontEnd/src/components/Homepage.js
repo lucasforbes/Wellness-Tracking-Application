@@ -101,9 +101,9 @@ export default function Homepage() {
                     </Card>
                 </div>
 
-                <div className={'row'} style={ {marginLeft:''}}>
-                    <Form style={{width: '80vw', border: 'solid',borderColor: 'lightgrey', padding: '2%', marginLeft: '10vw', marginTop:'20px' ,fontFamily: 'Cursive'}}>
-                        <header style={{ fontSize: '200%', color: 'grey'}}>Contact Us</header>
+                <div className={'row'} style={ {marginLeft:'', backgroundColor: 'lightgreen'}}>
+                    <Form style={{width: '80vw', border: 'solid',borderColor: 'lightgrey', padding: '2%', marginLeft: '10vw', marginTop:'20px' ,fontFamily: 'Cursive', backgroundColor: 'lightblue'}}>
+                        <header style={{ fontSize: '200%', color: 'black'}}>Contact Us</header>
 
                         <Form.Group  controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
