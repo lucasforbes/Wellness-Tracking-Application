@@ -5,6 +5,7 @@ import com.wellnessapp.demo.Admin.AdminRepository;
 import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.User.UserDetails;
 import com.wellnessapp.demo.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -42,6 +43,15 @@ public class WellnessApplication implements CommandLineRunner {
         User user1 = new User("1234", "jimmy@google.com");
         user1.setId(0);
         udb.save(user1);
+        UserDetails ud = new UserDetails("jimmy","oconner", "1997-10-21", "male", "5743397212");
+        User u = udb.findByEmail("jimmy@google.com");
+        u.setFirstName(ud.getFirstName());
+        u.setLastName(ud.getLastName());
+        u.setBirthday(ud.getBirthday());
+        u.setAge(ud.getAge());
+        u.setPhoneNumber(ud.getPhoneNumber());
+        udb.delete(user1);
+        udb.save(u);
         User user2 = new User("1234", "bob@google.com");
         user2.setId(1);
         udb.save(user2);
@@ -56,10 +66,10 @@ public class WellnessApplication implements CommandLineRunner {
         admin2.setId(1);
         adb.save(admin2);
         // save a couple of Creators
-        Creator creator1 = new Creator("1234", "vishal@google.com", "Joe", "Buff", "2000-05-12", true,false, "Male", true);
+        Creator creator1 = new Creator("1234", "vishal@google.com");
         creator1.setId(0);
         cdb.save(creator1);
-        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com", "Sally", "Fit", "1995-06-06", false, true,  "Female",  true);
+        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com");
         creator2.setId(1);
         cdb.save(creator2);
 //         fetch all users

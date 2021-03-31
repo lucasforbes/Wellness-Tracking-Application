@@ -26,24 +26,24 @@ public class CreatorController {
     @Autowired
     private ImageRepository idb;
 
-    @PostMapping("/addCreator")
+    @PostMapping("/addCreatorDetails")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public Creator saveCreator(@RequestParam("photo") MultipartFile photo, @RequestPart("creator") String adcreator) throws JsonProcessingException {
-        int count = cdb.findAll().size();
-        Creator user = new ObjectMapper().readValue(adcreator, Creator.class);
+    public Creator addCreatorDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestParam("creatorDetails") CreatorDetails cd) throws JsonProcessingException {
+        Creator user = cdb.findByEmail(email);
+        Creator c = cdb.findByEmail(email);
         System.out.println(user.getBirthday());
-        user.setId(count);
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
-        Period a = Period.between(user.getBirthday(), currentDate);
-        user.setAge(a.getYears());
+        user.setAge(cd.getAge());
         user.setSignUpTime(currentDate);
         user.setUserType("Creator");
         user.setDeleted(false);
-        System.out.println(user.getAge());
-        System.out.println("Trying to add new User");
-        System.out.println("");
+        user.setFirstName(cd.getFirstName());
+        user.setLastName(cd.getLastName());
+        user.setBirthday(cd.getBirthday());
+        user.setGender(cd.getGender());
+        user.setPhoneNumber(cd.getPhoneNumber());
 
         try{
             MultipartFile file = photo;
@@ -64,8 +64,17 @@ public class CreatorController {
         }catch (IOException e){
             e.printStackTrace();
         }
+        cdb.delete(c);
         cdb.save(user);
         return user;
+    }
+    @PostMapping("/addCreator")
+    public Creator saveUser(@RequestPart("creator") String basicDetails) throws JsonProcessingException {
+        int count = cdb.findAll().size();
+        Creator creator = new ObjectMapper().readValue(basicDetails, Creator.class);
+        creator.setId(count);
+        cdb.save(creator);
+        return creator;
     }
     @GetMapping("/findAllCreators")
     public List<Creator> getCreators(){

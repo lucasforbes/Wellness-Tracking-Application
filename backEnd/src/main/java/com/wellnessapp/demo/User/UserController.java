@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.io.IOException;
@@ -32,16 +33,19 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addUserDetails")
     @ResponseBody
-    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") String adUser) throws JsonProcessingException {
+    public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestParam("userDetails") UserDetails ud) throws JsonProcessingException {
 //        int count = udb.findAll().size();
 //        User user = new ObjectMapper().readValue(adUser, User.class);
 //        System.out.println(user.getBirthday());
+        User del = udb.findByEmail(email);
         User user = udb.findByEmail(email);
-        UserDetails ud = new ObjectMapper().readValue(adUser, UserDetails.class);
+//        UserDetails ud = new ObjectMapper().readValue(adUser, UserDetails.class);
         user.setAge(ud.getAge());
         user.setFirstName(ud.getFirstName());
         user.setLastName(ud.getLastName());
         user.setPhoneNumber(ud.getPhoneNumber());
+        user.setDietsSubscribed(new ArrayList<>());
+        user.setExersizesSubscribed(new ArrayList<>());
         try{
             MultipartFile file = photo;
             int count2 = idb.findAll().size();
@@ -61,6 +65,7 @@ public class UserController {
         }catch (IOException e){
             e.printStackTrace();
         }
+        udb.delete(del);
         udb.save(user);
         return user;
     }
@@ -69,6 +74,13 @@ public class UserController {
         int count = udb.findAll().size();
         User user = new ObjectMapper().readValue(basicDetails, User.class);
         user.setId(count);
+        user.setUserType("User");
+        user.setIsDeleted(false);
+        user.setOnline(true);
+
+        Clock cl = Clock.systemUTC();
+        LocalDate currentDate = LocalDate.now(cl);
+        user.setSignUpTime(currentDate);
         udb.save(user);
         return user;
     }
