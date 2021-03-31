@@ -29,7 +29,7 @@ export default function MainNavigation(props){
                     <div style={{float:'right',paddingRight:'5px'}}>
                         <img
                             alt=""
-                            src="./Wellness_Icon.jpg"
+                            src="Bloom Wellness Transparent.png"
                             width="40"
                             height="40"
                             className="d-inline-block align-top"
@@ -59,9 +59,9 @@ export default function MainNavigation(props){
                     <Navbar.Brand>
                         <img
                             alt=""
-                            src="./Wellness_Icon.jpg"
-                            width="30"
-                            height="30"
+                            src="Bloom Wellness White Background.jpg"
+                            width="40"
+                            height="40"
                             className="d-inline-block align-top"
                         />
                         Bloom Wellness

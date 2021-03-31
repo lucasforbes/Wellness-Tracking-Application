@@ -100,7 +100,7 @@ export default function Login(props){
 
             <center>
 
-                <div class='card' style={{alignItems:'center', padding: '15px',opacity: '.8' , backgroundColor: 'hotpink', width: '30vw'}}>
+                <div class='card' style={{alignItems:'center', padding: '15px',opacity: '.8' , backgroundColor: 'hotpink', width: '35vw'}}>
 
 
                     <Card style={{height:''}}  bgstyle={{ border: 'none'}} >
@@ -112,7 +112,7 @@ export default function Login(props){
 
                                 <h3 style={{fontSize:'25px', color: 'black !important'}}> <b> <strong>  Login </strong></b>  </h3>
 
-                                <Card.Body style={{backgroundColor: 'lightBlue', width: '25vw'}} >
+                                <Card.Body style={{backgroundColor: 'lightBlue', width: '30vw'}} >
 
                                     <TextField
                                         required

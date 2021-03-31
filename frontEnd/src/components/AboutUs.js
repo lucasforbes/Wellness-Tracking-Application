@@ -9,14 +9,15 @@ import {
 export default function AboutUs(){
     return(
         <>
-            <Row>
+            <div className={'row'} style={{height: '100vh', width:'100vw', overflow: 'hidden', backgroundImage: 'url(Bloom Wellness White Background.jpg)'}}  >
+
+            </div>
+            <div className={'row'}>
+
 
                 <div className={'col-md-6'}>
-                    helo
-                </div>
-                <div className={'col-md-6'}>
                     <div className={'header'} style={{marginRight: 'auto', marginLeft: 'auto'}}> meet the team </div>
-                    <Row>
+                    <div className={'row'}>
                         <div className={'col-xs-6'}>
                             <Card style={{width: '20vw'}}>
                                 <Card.Img style={{}} variant="top" src="austin.jpg"/>
@@ -31,9 +32,9 @@ export default function AboutUs(){
                                 Feifan
                             </Card>
                         </div>
-                    </Row>
+                    </div>
 
-                    <Row>
+                    <div className={'row'}>
                         <div className={'col-xs-6'}>
                             <Card style={{width: '20vw'}}>
                                 <Card.Img style={{height: '70%'}} variant="top" src="vishal.jpg"/>
@@ -46,10 +47,10 @@ export default function AboutUs(){
                                 Lucas
                             </Card>
                         </div>
-                    </Row>
+                    </div>
 
                 </div>
-            </Row>
+            </div>
 
 
 

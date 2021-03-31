@@ -27,7 +27,7 @@ export default function Homepage() {
             <div className={'container-fluid'}>
                 <div className={'row'} style = {{width: '',  overflow: 'hidden', minHeight: '335px', backgroundColor: 'lightGreen'}}>
                     <Card style = {{width: '100%', height:'100%', minHeight:'0'}} className="bg-dark text-white">
-                        <Card.Img src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
+                        <Card.Img variant={'top'} src="lily.jpg" alt="Card image" />
                         <Card.ImgOverlay style = {{width: '100%'}}>
 
                             <div className={'row'}>
@@ -51,31 +51,31 @@ export default function Homepage() {
                     </Card>
                 </div>
 
-                <div className={'row'} style = {{fontSize: "200%"}}>
-                    <Card style={{backgroundColor: 'grey', width: '100%'}}>
-                        /
+                <div className={'row'} style = {{fontSize: "200%",}}>
+                    <Card style={{backgroundColor: 'grey', width: '100%', height: '40px'}}>
+
                     </Card>
                 </div>
 
                 <div className={'row'} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
 
                     <div className={'col-md-4'}>
-                        <Card style={{width: '100%', borderColor: 'Red Orange', borderWidth: '7px', height:'100%', position: 'relative', left: ''}}>
+                        <Card style={{minHeight: '425px' ,overflow: 'hidden',width: '85%', borderColor: 'Red Orange', borderWidth: '7px', height:'85%', marginRight: 'auto',marginLeft: 'auto'}}>
                             <Card.Img style={{height: '70%'}} variant="top" src="Exercise_Icon.jpg"/>
                             <Card.Body>
-                                <Card.Title>Exercise Programs</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Train Well</Card.Subtitle>
+                                <Card.Title style = {{fontSize:'200%'}}>Exercise Programs</Card.Title>
+                                <Card.Subtitle style = {{fontSize:'150%'}}  className="mb-2 text-muted">Train Well</Card.Subtitle>
                                 <Card.Text>Find exercise programs here</Card.Text>
 
                             </Card.Body>
                         </Card>
                     </div>
                     <div className={'col-md-4'}>
-                        <Card style={{width: '100%', borderWidth: '7px', borderColor: 'Blue Green', position: 'relative', left: '', height: '100%'}} bg='light'>
+                        <Card style={{ minHeight: '425px', overflow: 'hidden', width: '85%', borderWidth: '7px', borderColor: 'Blue Green', marginRight: 'auto',marginLeft: 'auto', height: '85%'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="forksandknivesss.jpg"/>
                             <Card.Body>
-                                <Card.Title>Diet Programs</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Eat Well</Card.Subtitle>
+                                <Card.Title style = {{fontSize:'200%'}}>Diet Programs</Card.Title>
+                                <Card.Subtitle style = {{fontSize:'150%'}}  className="mb-2 text-muted">Eat Well</Card.Subtitle>
                                 <Card.Text>Find diet programs here</Card.Text>
 
                             </Card.Body>
@@ -83,11 +83,11 @@ export default function Homepage() {
                     </div>
 
                     <div className={'col-md-4'}>
-                        <Card style={{width: '100%', borderColor: 'Purple Blue', borderWidth: '7px', height:'100%', position: 'relative', left: ''}} bg='light'>
+                        <Card style={{ minHeight: '425px', overflow: 'hidden',width: '85%', borderColor: 'Purple Blue', borderWidth: '7px', height:'85%',  marginRight: 'auto',marginLeft: 'auto'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="./Wellness_Icon.jpg"/>
                             <Card.Body>
-                                <Card.Title>Mental Wellness Programs</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Be Well</Card.Subtitle>
+                                <Card.Title style = {{fontSize:'200%'}}>Wellness Programs</Card.Title>
+                                <Card.Subtitle style = {{fontSize:'150%'}} className="mb-2 text-muted">Be Well</Card.Subtitle>
                                 <Card.Text>Access to wellness programs</Card.Text>
 
                             </Card.Body>
@@ -96,8 +96,8 @@ export default function Homepage() {
                 </div>
 
                 <div className={'row'} style = {{fontSize: "200%"}}>
-                    <Card style={{backgroundColor: 'grey', width: '100%'}}>
-                        /
+                    <Card style={{backgroundColor: 'grey', width: '100%', height: '40px'}}>
+
                     </Card>
                 </div>
 
