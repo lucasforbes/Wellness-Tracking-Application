@@ -61,9 +61,10 @@ public class UserController {
 //        }catch (IOException e){
 //            e.printStackTrace();
 //        }
-        udb.delete(del);
-        udb.save(user);
-        return user;
+//        udb.delete(del);
+//        udb.save(user);
+        User ret = udb.findByEmail("bob@google.com");
+        return ret;
     }
     @PostMapping("/addUser")
     public User saveUser(@RequestPart("user") String basicDetails) throws JsonProcessingException {
