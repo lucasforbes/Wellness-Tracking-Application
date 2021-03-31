@@ -34,36 +34,35 @@ public class UserController {
     @PostMapping("/addUserDetails")
     @ResponseBody
     public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
-//        User del = udb.findByEmail(email);
-//        User user = udb.findByEmail(email);
-//        user.setAge(ud.getAge());
-//        user.setFirstName(ud.getFirstName());
-//        user.setLastName(ud.getLastName());
-//        user.setPhoneNumber(ud.getPhoneNumber());
-//        user.setDietsSubscribed(new ArrayList<>());
-//        user.setExersizesSubscribed(new ArrayList<>());
-//        try{
-//            MultipartFile file = photo;
-//            int count2 = idb.findAll().size();
-//            Image image = new Image();
-//            image.setId(count2);
-//            image.setName(file.getOriginalFilename());
-//            image.setUserEmail(user.getEmail());
-//            image.setOtherDbId(user.getId());
-//            image.setBelongsTo(0);
-//            image.setUpdateDate(new Date());
-//            image.setContent(new Binary(file.getBytes()));
-//            image.setContentType(file.getContentType());
-//            image.setSize(file.getSize());
-//            Image savedFile = idb.save(image);
-//            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
-//            user.setProfilePic(url);
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//        udb.delete(del);
-//        udb.save(user);
-        User user = udb.findByEmail("bob@google.com");
+        User del = udb.findByEmail(email);
+        User user = udb.findByEmail(email);
+        user.setAge(ud.getAge());
+        user.setFirstName(ud.getFirstName());
+        user.setLastName(ud.getLastName());
+        user.setPhoneNumber(ud.getPhoneNumber());
+        user.setDietsSubscribed(new ArrayList<>());
+        user.setExersizesSubscribed(new ArrayList<>());
+        try{
+            MultipartFile file = photo;
+            int count2 = idb.findAll().size();
+            Image image = new Image();
+            image.setId(count2);
+            image.setName(file.getOriginalFilename());
+            image.setUserEmail(user.getEmail());
+            image.setOtherDbId(user.getId());
+            image.setBelongsTo(0);
+            image.setUpdateDate(new Date());
+            image.setContent(new Binary(file.getBytes()));
+            image.setContentType(file.getContentType());
+            image.setSize(file.getSize());
+            Image savedFile = idb.save(image);
+            String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
+            user.setProfilePic(url);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        udb.delete(del);
+        udb.save(user);
         return user;
     }
     @PostMapping("/addUser")
