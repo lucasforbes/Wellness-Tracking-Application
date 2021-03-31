@@ -35,7 +35,9 @@ public class UserController {
     @ResponseBody
     public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
         User del = udb.findByEmail(email);
+        System.out.println("trying to get user");
         User user = udb.findByEmail(email);
+        System.out.println("user = "+ user);
         user.setFirstName(ud.getFirstName());
         System.out.println("saved name");
         user.setLastName(ud.getLastName());
