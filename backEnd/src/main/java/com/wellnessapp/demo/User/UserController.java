@@ -36,7 +36,7 @@ public class UserController {
     public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
         User del = udb.findByEmail(email);
         System.out.println("trying to get user with email: " + email);
-        User user = udb.findByEmail(email);
+        User user = getUser(email);
         System.out.println("user = "+ user);
         user.setFirstName(ud.getFirstName());
         System.out.println("saved name");
@@ -69,6 +69,10 @@ public class UserController {
 //        udb.delete(del);
 //        udb.save(user);
 //        User ret = udb.findByEmail("bob@google.com");
+        return user;
+    }
+    public User getUser(String email){
+        User user = udb.findByEmail(email);
         return user;
     }
     @PostMapping("/addUser")
