@@ -16,10 +16,7 @@ export default function Maindashboard(){
 
     return(
         <>
-            <div style={{paddingLeft:'10px'}}>
-            <br/>
-
-
+            <div style={{}}>
 
             {userType == "Creator" ? <><ProfessionalDashboard/> </>
                 : ""}

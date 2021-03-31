@@ -26,36 +26,43 @@ export default function MainNavigation(props){
 
             {userLoggedIn ? <>
 
-                    <div style={{float:'right',paddingRight:'5px'}}>
-                        <img
-                            alt=""
-                            src="Bloom Wellness Transparent.png"
-                            width="40"
-                            height="40"
-                            className="d-inline-block align-top"
-                        />
-                        <Button variant="outline-danger" onClick={()=>{
+                    <Navbar bg="dark" variant="dark" sticky={'top'} style={{fontFamily: 'Cursive'}}>
+                        <Navbar.Brand>
+                            <img
+                                alt=""
+                                src="Bloom Wellness White Background.jpg"
+                                width="40"
+                                height="40"
+                                className="d-inline-block align-top"
+                            />
+                            Bloom Wellness
+                        </Navbar.Brand>
+
+                        <Nav className="mr-auto">
+                            <Button variant="dark" ><Link to={""}>Home</Link></Button> {" "}
+                            <Button variant="dark" > <Link to={"about"}> About </Link> </Button>
+                            <Button variant="dark" > <Link to={"signup"}> Signup </Link> </Button>
+                            <Button variant="outline-danger" onClick={()=>{
 
 
-                            setTimeout(function(){
-                                localStorage.removeItem('email');
-                                localStorage.removeItem('userType');
-                                localStorage.removeItem('userFirstName');
-                                window.location.href = "/";
+                                setTimeout(function(){
+                                    localStorage.removeItem('email');
+                                    localStorage.removeItem('userType');
+                                    localStorage.removeItem('userFirstName');
+                                    window.location.href = "/";
 
-                            }, 1000);
+                                }, 1000);
 
-                        }}>  Logout </Button>
-
-                    </div>
+                            }}>  Logout </Button>
 
 
+                        </Nav>
 
-
+                    </Navbar>
 
 
                 </> :
-                <Navbar bg="dark" variant="dark" sticky={'top'}>
+                <Navbar bg="dark" variant="dark" sticky={'top'} style={{fontFamily: 'Cursive'}}>
                     <Navbar.Brand>
                         <img
                             alt=""
@@ -71,6 +78,7 @@ export default function MainNavigation(props){
                         <Button variant="dark" ><Link to={""}>Home</Link></Button> {" "}
                         <Button variant="dark" > <Link to={"about"}> About </Link> </Button>
                         <Button variant="dark" > <Link to={"signup"}> Signup </Link> </Button>
+
 
 
                     </Nav>

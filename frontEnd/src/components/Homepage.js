@@ -33,7 +33,7 @@ export default function Homepage() {
                             <div className={'row'}>
                                 <div className={'col'} style = {{}}>
 
-                                    <Card.Title style={{ fontSize: '8vw', textAlign: 'center', color: 'White' ,position: 'relative', bottom: '1vw'}}>Bloom Wellness</Card.Title>
+                                    <Card.Title style={{ fontSize: '8vw', textAlign: 'center', color: 'White' ,position: 'relative', bottom: '1vw',fontFamily: 'Cursive'}}>Bloom Wellness</Card.Title>
 
                                 </div>
 
@@ -60,7 +60,7 @@ export default function Homepage() {
                 <div className={'row'} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
 
                     <div className={'col-md-4'}>
-                        <Card style={{minHeight: '425px' ,overflow: 'hidden',width: '85%', borderColor: 'Red Orange', borderWidth: '7px', height:'85%', marginRight: 'auto',marginLeft: 'auto'}}>
+                        <Card style={{minHeight: '425px' ,overflow: 'hidden',width: '85%', borderColor: 'Red Orange', borderWidth: '7px', height:'85%', marginRight: 'auto',marginLeft: 'auto',fontFamily: 'Cursive'}}>
                             <Card.Img style={{height: '70%'}} variant="top" src="Exercise_Icon.jpg"/>
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Exercise Programs</Card.Title>
@@ -71,7 +71,7 @@ export default function Homepage() {
                         </Card>
                     </div>
                     <div className={'col-md-4'}>
-                        <Card style={{ minHeight: '425px', overflow: 'hidden', width: '85%', borderWidth: '7px', borderColor: 'Blue Green', marginRight: 'auto',marginLeft: 'auto', height: '85%'}} bg='light'>
+                        <Card style={{ minHeight: '425px', overflow: 'hidden', width: '85%', borderWidth: '7px', borderColor: 'Blue Green', marginRight: 'auto',marginLeft: 'auto', height: '85%',fontFamily: 'Cursive'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="forksandknivesss.jpg"/>
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Diet Programs</Card.Title>
@@ -83,7 +83,7 @@ export default function Homepage() {
                     </div>
 
                     <div className={'col-md-4'}>
-                        <Card style={{ minHeight: '425px', overflow: 'hidden',width: '85%', borderColor: 'Purple Blue', borderWidth: '7px', height:'85%',  marginRight: 'auto',marginLeft: 'auto'}} bg='light'>
+                        <Card style={{ minHeight: '425px', overflow: 'hidden',width: '85%', borderColor: 'Purple Blue', borderWidth: '7px', height:'85%',  marginRight: 'auto',marginLeft: 'auto',fontFamily: 'Cursive'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="./Wellness_Icon.jpg"/>
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Wellness Programs</Card.Title>
@@ -102,7 +102,7 @@ export default function Homepage() {
                 </div>
 
                 <div className={'row'} style={ {marginLeft:''}}>
-                    <Form style={{width: '80vw', border: 'solid',borderColor: 'lightgrey', padding: '2%', marginLeft: '10vw', marginTop:'20px' }}>
+                    <Form style={{width: '80vw', border: 'solid',borderColor: 'lightgrey', padding: '2%', marginLeft: '10vw', marginTop:'20px' ,fontFamily: 'Cursive'}}>
                         <header style={{ fontSize: '200%', color: 'grey'}}>Contact Us</header>
 
                         <Form.Group  controlId="formBasicEmail">
