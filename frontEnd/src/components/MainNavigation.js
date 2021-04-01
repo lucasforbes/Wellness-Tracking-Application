@@ -30,12 +30,12 @@ export default function MainNavigation(props){
                         <Navbar.Brand>
                             <img
                                 alt=""
-                                src="Bloom Wellness White Background.jpg"
-                                width="40"
+                                src="Bloom Wellness White Transparent cropped.png"
+                                width="80"
                                 height="40"
                                 className="d-inline-block align-top"
                             />
-                            Bloom Wellness
+
                         </Navbar.Brand>
 
                         <Nav className="mr-auto">
@@ -63,15 +63,15 @@ export default function MainNavigation(props){
 
                 </> :
                 <Navbar bg="dark" variant="dark" sticky={'top'} style={{fontFamily: 'Cursive'}}>
-                    <Navbar.Brand>
+                    <Navbar.Brand style = {{padding: '0px'}}>
                         <img
                             alt=""
-                            src="Bloom Wellness White Background.jpg"
-                            width="40"
+                            src="Bloom Wellness White Transparent cropped.png"
+                            width="80"
                             height="40"
                             className="d-inline-block align-top"
                         />
-                        Bloom Wellness
+
                     </Navbar.Brand>
 
                     <Nav className="mr-auto">

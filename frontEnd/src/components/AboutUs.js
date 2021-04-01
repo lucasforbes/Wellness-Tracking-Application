@@ -10,10 +10,10 @@ import Login from "./registeration/login";
 export default function AboutUs(){
     return(
         <>
-            <div className={'row'} style={{height: '100vh', width:'100vw', overflow: 'hidden', backgroundColor: 'lightgreen'}}  >
+            <div className={'row'} style={{height: '100vh', width:'100vw', overflow: 'hidden', backgroundColor: 'lightblue'}}  >
 
                 <div className={'col-md-6'}>
-                    <Card style = {{marginLeft: 'auto', marginRight:'auto' ,width: '80%', height:'80%', minHeight:'0'}} className="bg-dark text-white">
+                    <Card style = {{marginLeft: 'auto', marginRight:'auto' ,width: '80%', height:'80%', minHeight:'0', border:'solid', borderColor: 'lightblue'}} className="bg-dark text-white">
                         <Card.Img variant={'top'} src="Bloom Wellness White Background.jpg" alt="Card image" />
                         <Card.ImgOverlay style = {{width: '100%'}}>
 
@@ -28,7 +28,7 @@ export default function AboutUs(){
 
                     <div className={'row'} style={{ marginRight: 'auto', marginLeft: 'auto'}}>
                         <div className={'col-xs-6'} style={{ marginRight: 'auto', marginLeft: 'auto'}}>
-                            <Card style={{width: '20vw'}}>
+                            <Card style={{width: '20vw', border:'solid', borderColor: 'lightgreen'}}>
                                 <Card.Img style={{}} variant="top" src="austin.jpg"/>
                                 Austin
 
@@ -36,7 +36,7 @@ export default function AboutUs(){
                             </Card>
                         </div>
                         <div className={'col-xs-6'} style={{ marginRight: 'auto', marginLeft: 'auto'}}>
-                            <Card style={{width: '20vw'}}>
+                            <Card style={{width: '20vw', border:'solid', borderColor: 'lightgreen'}}>
                                 <Card.Img style={{height: '50%'}} variant="top" src="feifan (2).jpg"/>
                                 Feifan
                             </Card>
@@ -45,13 +45,13 @@ export default function AboutUs(){
 
                     <div className={'row'} style={{ marginRight: 'auto', marginLeft: 'auto'}}>
                         <div className={'col-xs-6'} style={{ marginRight: 'auto', marginLeft: 'auto'}}>
-                            <Card style={{width: '20vw'}}>
+                            <Card style={{width: '20vw', border:'solid', borderColor: 'lightgreen', padding: '10px'}}>
                                 <Card.Img style={{height: '70%'}} variant="top" src="vishal.jpg"/>
                                 Vishal
                             </Card>
                         </div>
                         <div className={'col-xs-6'} style={{ marginRight: 'auto', marginLeft: 'auto'}}>
-                            <Card style={{width: '20vw'}}>
+                            <Card style={{width: '20vw', border:'solid', borderColor: 'lightgreen'}}>
                                 <Card.Img style={{height: '70%'}} variant="top" src="lucas.png"/>
                                 Lucas
                             </Card>

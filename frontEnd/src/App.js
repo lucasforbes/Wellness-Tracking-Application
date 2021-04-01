@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
+import {Button, ModalFooter} from 'react-bootstrap';
 
 import Nav from './components/Nav';
 import MainNavigation from './components/MainNavigation';
@@ -19,6 +19,7 @@ import Maindashboard from "./components/Maindashboard"
 import UserDashboard from "./components/customers/UserDashboard";
 import ProfessionalDashboard from "./components/professional/professionalDashboard";
 import Cal from "./components/customers/Calendar";
+import React from "react";
 function App() {
   return (
       <Router>
@@ -41,6 +42,8 @@ function App() {
 
 
           </Switch>
+
+          <ModalFooter style={{fontSize: '70%', borderColor: 'white', color: 'grey', backgroundColor: 'lightblue'}}>Copyright group #6 Indiana University CSCI-P 565</ModalFooter>
 
 
       </Router>

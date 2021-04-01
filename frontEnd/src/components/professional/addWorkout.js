@@ -101,13 +101,13 @@ export default function AddWorkout(){
             <Card
                 bg={'Light'.toLowerCase()}
                 text={''}
-                style={{ width: '100%'}}
+                style={{ backgroundColor: 'lightgreen',width: '88%', marginRight: 'auto', marginLeft: 'auto'}}
 
             >
 
             <form   onSubmit={workoutSubmit}>
 
-                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightblue' }}>
+                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightgreen' }}>
 
 
                     <div className={"col-md-12"}>
@@ -201,7 +201,7 @@ export default function AddWorkout(){
 
                                      </div>
 
-                                    <div className={"col-md-12"} style={{backgroundColor: 'blue'}}>
+                                    <div className={"col-md-12"} style={{backgroundColor: 'lightgreen'}}>
 
 
                                         <FormControl>
@@ -311,7 +311,12 @@ export default function AddWorkout(){
                                             onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}
                                         {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}
                                     </div>
+
+
+
+
                                  </div>
+
 
                                 </>
 
@@ -320,14 +325,11 @@ export default function AddWorkout(){
 
                     </div>
 
-
-                    <div className={"col-md-12"}>
-
-                        <br/>
-                        <br/>
+                    <div className={'col-md-3'} style={{position:'relative', bottom: '38px', right: '-400px'}}>
                         <Button variant="success" onClick={workoutSubmit}>Submit </Button>{' '}
-
                     </div>
+
+
 
                     <div style={{ marginTop: 20 }}>{JSON.stringify(json)}</div>
 

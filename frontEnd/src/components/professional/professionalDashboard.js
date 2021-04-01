@@ -22,9 +22,9 @@ export default function ProfessionalDashboard(props){
     return(
 
         <>
-            <div className={'container-fluid'} style={{backgroundColor: 'lightgreen', height: '100vh'}}>
+            <div className={'container-fluid'} style={{backgroundColor: 'lightblue', height: 'auto'}}>
 
-                <div className={'row'} style = {{width: '',  overflow: 'hidden', minHeight: '80px', backgroundColor: 'lightGreen', fontSize:'4vw', fontFamily: 'Cursive'}}>
+                <div className={'row'} style = {{width: '',  overflow: 'hidden', minHeight: '80px', backgroundColor: 'lightgrey', fontSize:'4vw', fontFamily: 'Cursive'}}>
                     <Card style = {{width: '100%', height:'8vw', minHeight:'0'}} className="bg-dark text-white">
                         <Card.Img variant={'top'} src="./ocean_waves_in_blue-1920x1200.jpg" alt="Card image" />
                         <Card.ImgOverlay style = {{width: '100%'}}>
@@ -35,14 +35,14 @@ export default function ProfessionalDashboard(props){
                     </Card>
                 </div>
 
-                <div className={'flex-row'} >
-                    <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightgrey', fontFamily: 'Cursive', marginTop: '10px'}}>
+                <div className={'flex-row'} style={{backgroundColor:''}} >
+                    <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '4px solid lightpink',borderLeft: '5px solid lightgreen', borderRight: '5px solid lightgreen'}}>
 
-                        <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'blue', color: 'red'}}>
+                        <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
                             <header style={{textAlign: 'center'}}> workouts</header>
                         </Tab>
 
-                        <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'blue'}}>
+                        <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'lightpink'}}>
                             <AddWorkout/>
                         </Tab>
 
