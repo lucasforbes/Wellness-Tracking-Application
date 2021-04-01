@@ -52,11 +52,11 @@ public class DietController {
         ddb.save(diet);
         return diet;
     }
-    @GetMapping("/findDietByEmail/{email, name}")
-    public Diet findByEmail(@PathVariable String email, @PathVariable String name){
-        System.out.println("Got All Exersizes");
-        return this.ddb.findByEmail(email, name);
-    }
+//    @GetMapping("/findDietByEmail/{email, name}")
+//    public Diet findByEmail(@PathVariable String email, @PathVariable String name){
+//        System.out.println("Got All Exersizes");
+//        return this.ddb.findByEmail(email, name);
+//    }
     @GetMapping("/findAllDiets")
     public List<Diet> findAllDiets(){
         System.out.println("Got All Diets");
@@ -66,6 +66,7 @@ public class DietController {
     public List<Diet> getByUserID(@PathVariable String email){
         return this.ddb.findByEmail(email);
     }
+
     @GetMapping(value = "/findDietePic/{email}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable String email) {
         Image file = idb.findByUserEmail(email);
