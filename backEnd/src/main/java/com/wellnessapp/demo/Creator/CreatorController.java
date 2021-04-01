@@ -29,20 +29,15 @@ public class CreatorController {
     @PostMapping("/addCreatorDetails")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
-    public Creator addCreatorDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestParam("creatorDetails") CreatorDetails cd) throws JsonProcessingException {
+    public Creator addCreatorDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email1, @RequestParam("creatorDetails") CreatorDetails cd) throws JsonProcessingException {
+        String email = email1.replace("\"", "");
         Creator user = cdb.findByEmail(email);
         Creator c = cdb.findByEmail(email);
-        System.out.println(user.getBirthday());
-        Clock cl = Clock.systemUTC();
-        LocalDate currentDate = LocalDate.now(cl);
-        user.setAge(cd.getAge());
-        user.setSignUpTime(currentDate);
-        user.setUserType("Creator");
-        user.setDeleted(false);
         user.setFirstName(cd.getFirstName());
         user.setLastName(cd.getLastName());
         user.setBirthday(cd.getBirthday());
         user.setGender(cd.getGender());
+        user.setAge(cd.getAge());
         user.setPhoneNumber(cd.getPhoneNumber());
 
         try{

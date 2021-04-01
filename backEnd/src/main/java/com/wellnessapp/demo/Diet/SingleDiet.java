@@ -7,16 +7,16 @@ public class SingleDiet {
     int carbs;
     int calories;
     int protein;
-    String picture;
+//    String picture;
 
-    public SingleDiet(String item, String servingSize, int fat, int carbs, int calories, int protein, String picture) {
+    public SingleDiet(String item, String servingSize, int fat, int carbs, int calories, int protein) {
         this.item = item;
         this.servingSize = servingSize;
         this.fat = fat;
         this.carbs = carbs;
         this.calories = calories;
         this.protein = protein;
-        this.picture = picture;
+//        this.picture = picture;
     }
 
     public String getItem() {
@@ -66,12 +66,12 @@ public class SingleDiet {
     public void setProtein(int protein) {
         this.protein = protein;
     }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+//
+//    public String getPicture() {
+//        return picture;
+//    }
+//
+//    public void setPicture(String picture) {
+//        this.picture = picture;
+//    }
 }
