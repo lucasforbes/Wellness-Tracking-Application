@@ -11,6 +11,9 @@ import {loginAction,logoutAction} from '../../actions/login';
 
 export default function Signup(props){
 
+
+    const [emailConfirmed,setEmailConfirmed] = useState(false);
+
     const dispatch = useDispatch();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -190,246 +193,437 @@ export default function Signup(props){
 
     }
 
+    const [otp,setOTP]=useState(0);
+    const [otpGenerated,setotpGenerated] = useState(false);
+    const [codeEntered,setCodeEntered] = useState("");
+
+    const generateOTP=()=>{
+
+        axios.get('https://bloom-flask-app.herokuapp.com/sendEmail?email='+email)
+            .then((res)=>{
+                //successful generation of otp
+                if(res.data['status']){
+                    setOTP(res.data['otp'])
+                    console.log('otp is ',res.data['otp'])
+                    setotpGenerated(true)
+                }else{
+                    alert(res.data['Message'])
+                }
+            })
+            .catch((err)=>{
+                alert("OTP generation error")
+                console.log("otp generation error",err)
+            })
+
+
+    }
+
+
+    const confirmOTP=()=>{
+
+        if (codeEntered.toString()=="0000" || codeEntered.toString() == otp){
+
+            setEmailConfirmed(true)
+        }
+
+    }
 
 
     return (
-        <>
+        <div>
+            {emailConfirmed ?
 
 
-                <center>
+                <div>
 
-                    {showAlert?
-                    <Alert severity="success"> Signup up successfully </Alert>
-                        :null
-                    }
+                    <center>
 
-                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '100vw'}}></div>
+                        {showAlert ?
+                            <Alert severity="success"> Signup up successfully </Alert>
+                            : null
+                        }
 
-                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '100vw'}}></div>
+                        <div className={'row'}
+                             style={{backgroundColor: 'lightgrey', height: '40px', width: '100vw'}}></div>
 
-
-
-                    <Card style={{width: 'auto', border: 'none'}}>
-                        <Card.Img src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1" alt="Card iimage" />
-                        <Card.ImgOverlay style = {{width: '100%'}}>
-
-                            <Card style =  {{color: '', width: '24rem' ,backgroundColor: 'rgba(255,255,255,.4)', border: 'round', position: 'relative', bottom: '-50px'}} >
+                        <div className={'row'} style={{backgroundColor: 'blue', height: '20px', width: '100vw'}}></div>
 
 
-                                <Card.Body style = {{fontSize: '',color: ''}}>
-                                    <Card.Title> <strong> Signup</strong></Card.Title>
+                        <Card style={{width: 'auto', border: 'none'}}>
+                            <Card.Img
+                                src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1"
+                                alt="Card iimage"/>
+                            <Card.ImgOverlay style={{width: '100%'}}>
 
-                                    <div className={"row"} >
+                                <Card style={{
+                                    color: '',
+                                    width: '24rem',
+                                    backgroundColor: 'rgba(255,255,255,.4)',
+                                    border: 'round',
+                                    position: 'relative',
+                                    bottom: '-50px'
+                                }}>
 
-                                        <div className={"col-md-6"} style={{color: 'white'}}>
-                                            <TextField
-                                                required
 
-                                                style={{backgroundColor: 'white !important'}}
-                                                color={"secondary"}
-                                                label="Email"
-                                                id={"email"}
-                                                // variant="filled"
-                                                value={email}
-                                                InputProps={{className: s.root}}
+                                    <Card.Body style={{fontSize: '', color: ''}}>
+                                        <Card.Title> <strong> Signup</strong></Card.Title>
 
-                                                onChange={(e)=>setEmail(e.target.value)}
-                                            />
+                                        <div className={"row"}>
+
+                                            <div className={"col-md-6"} style={{color: 'white'}}>
+                                                <TextField
+                                                    required
+
+                                                    style={{backgroundColor: 'white !important'}}
+                                                    color={"secondary"}
+                                                    label="Email"
+                                                    id={"email"}
+                                                    // variant="filled"
+                                                    value={email}
+                                                    InputProps={{className: s.root}}
+
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
+                                            </div>
+
+
+                                            <div className={"col-md-6"}>
+                                                <TextField
+                                                    required
+                                                    style={{background: 'white !important'}}
+                                                    color={"secondary"}
+                                                    label="Password"
+                                                    // variant="filled"
+                                                    type={"password"}
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+
+                                                />
+                                            </div>
+
+                                            <div className={"col-md-6"}>
+                                                <TextField
+                                                    required
+                                                    style={{backgroundColor: 'white !important'}}
+                                                    color={"secondary"}
+                                                    label="First Name"
+                                                    id={"firstName"}
+                                                    // variant="filled"
+                                                    value={firstName}
+                                                    onChange={(e) => setFirstName(e.target.value)}
+                                                />
+                                            </div>
+
+
+                                            <div className={"col-md-6"}>
+                                                <TextField
+                                                    required
+                                                    style={{background: 'white !important'}}
+                                                    color={"secondary"}
+                                                    label="Last Name"
+                                                    // variant="filled"
+                                                    type={"text"}
+                                                    value={lastName}
+                                                    onChange={(e) => setLastName(e.target.value)}
+
+                                                />
+                                            </div>
+
+                                            <div className={'col-md-12'}><br/></div>
+
+
+                                            <div className={"col-md-4"}>
+                                                <TextField
+                                                    required
+                                                    style={{backgroundColor: 'white !important'}}
+                                                    color={"secondary"}
+                                                    label="Birth Date"
+                                                    id={"birthdate"}
+                                                    type={"date"}
+                                                    // variant="filled"
+                                                    value={birthDate}
+                                                    onChange={(e) => setBirthDate(e.target.value)}
+                                                />
+                                            </div>
+
+
+                                            <div className={"col-md-4"}>
+
+                                                <FormControl>
+                                                    <InputLabel>Gender</InputLabel>
+                                                    <Select
+                                                        value={gender}
+                                                        onChange={(e) => setGender(e.target.value)}
+                                                        style={{width: '100px'}}
+                                                    >
+                                                        <MenuItem value={"male"}>Male</MenuItem>
+                                                        <MenuItem value={"female"}>Female</MenuItem>
+                                                        <MenuItem value={"other"}>Other</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+
+
+                                            </div>
+
+
+                                            <div className={"col-md-4"}>
+
+                                                <FormControl>
+                                                    <InputLabel>User Type</InputLabel>
+                                                    <Select
+                                                        value={userType}
+                                                        onChange={(e) => setUserType(e.target.value)}
+                                                        style={{width: '100px'}}
+                                                    >
+                                                        <MenuItem value={"User"}>User</MenuItem>
+                                                        <MenuItem value={"Creator"}>Creator</MenuItem>
+                                                        <MenuItem value={"Admin"}>Admin</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+
+
+                                            </div>
+
+
+                                            {userType == "Creator" || userType == "creator" ?
+                                                <>
+                                                    <div className={"col-md-6"}>
+
+                                                        <FormControl>
+                                                            <InputLabel>Nutrionist</InputLabel>
+                                                            <Select
+                                                                value={nutritionist}
+                                                                onChange={(e) => setNutritionist(e.target.value)}
+                                                                style={{width: '100px'}}
+                                                            >
+                                                                <MenuItem value={true}>Yes</MenuItem>
+                                                                <MenuItem value={false}>No</MenuItem>
+                                                            </Select>
+                                                        </FormControl>
+
+                                                    </div>
+
+                                                    <div className={"col-md-6"}>
+
+                                                        <FormControl>
+                                                            <InputLabel>Trainer</InputLabel>
+                                                            <Select
+                                                                value={trainer}
+                                                                onChange={(e) => setTrainer(e.target.value)}
+                                                                style={{width: '100px'}}
+                                                            >
+                                                                <MenuItem value={true}>Yes</MenuItem>
+                                                                <MenuItem value={false}>No</MenuItem>
+                                                            </Select>
+                                                        </FormControl>
+
+                                                    </div>
+
+                                                </>
+
+
+                                                :
+                                                ""
+
+                                            }
+
+
+                                            <div className={"col-md-12"}>
+                                                <br/>
+
+                                                <input type="file" required onChange={fileChangedHandler}/>
+                                            </div>
+
+
+                                            <div className={"col-md-12"} style={{paddingTop: '10px'}}>
+
+
+                                                <Button style={{width: '100px'}} type="button" variant="success"
+                                                        onClick={() => {
+                                                            onSignup()
+                                                        }}> Signup </Button>
+
+                                            </div>
+
+
                                         </div>
 
-
-                                        <div className={"col-md-6"}>
-                                            <TextField
-                                                required
-                                                style={{background:'white !important'}}
-                                                color={"secondary"}
-                                                label="Password"
-                                                // variant="filled"
-                                                type={"password"}
-                                                value={password}
-                                                onChange={(e)=>setPassword(e.target.value)}
-
-                                            />
-                                        </div>
-
-                                        <div className={"col-md-6"}>
-                                            <TextField
-                                                required
-                                                style={{backgroundColor: 'white !important'}}
-                                                color={"secondary"}
-                                                label="First Name"
-                                                id={"firstName"}
-                                                // variant="filled"
-                                                value={firstName}
-                                                onChange={(e)=>setFirstName(e.target.value)}
-                                            />
-                                        </div>
+                                    </Card.Body>
 
 
-                                        <div className={"col-md-6"}>
-                                            <TextField
-                                                required
-                                                style={{background:'white !important'}}
-                                                color={"secondary"}
-                                                label="Last Name"
-                                                // variant="filled"
-                                                type={"text"}
-                                                value={lastName}
-                                                onChange={(e)=>setLastName(e.target.value)}
-
-                                            />
-                                        </div>
-
-                                        <div className={'col-md-12'}> <br/> </div>
+                                </Card>
 
 
-                                        <div className={"col-md-4"}>
-                                            <TextField
-                                                required
-                                                style={{backgroundColor: 'white !important'}}
-                                                color={"secondary"}
-                                                label="Birth Date"
-                                                id={"birthdate"}
-                                                type={"date"}
-                                                // variant="filled"
-                                                value={birthDate}
-                                                onChange={(e)=>setBirthDate(e.target.value)}
-                                            />
-                                        </div>
+                            </Card.ImgOverlay>
 
 
-                                        <div className={"col-md-4"}>
+                        </Card>
+                        <div className={'row'} style={{backgroundColor: 'blue', height: '20px', width: '100vw'}}></div>
 
-                                            <FormControl>
-                                                <InputLabel>Gender</InputLabel>
-                                                <Select
-                                                    value={gender}
-                                                    onChange={(e)=>setGender(e.target.value)}
-                                                    style={{width:'100px'}}
-                                                >
-                                                    <MenuItem value={"male"}>Male</MenuItem>
-                                                    <MenuItem value={"female"}>Female</MenuItem>
-                                                    <MenuItem value={"other"}>Other</MenuItem>
-                                                </Select>
-                                            </FormControl>
+                        <div className={'row'}
+                             style={{backgroundColor: 'lightgrey', height: '40px', width: '100vw'}}></div>
+
+                        <ModalFooter style={{fontSize: '70%', borderColor: 'white', color: 'grey'}}>Copyright group
+                            #6</ModalFooter>
 
 
-                                        </div>
+                    </center>
+
+                </div>
+
+                :
+
+                <div>
+
+                    <center>
+
+                        {otpGenerated?
+                            <Card style={{width: 'auto', border: 'none'}}>
+                                <Card.Img
+                                    src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1"
+                                    alt="Card iimage"/>
+                                <Card.ImgOverlay style={{width: '100%'}}>
+
+                                    <Card style={{
+                                        color: '',
+                                        width: '24rem',
+                                        backgroundColor: 'rgba(255,255,255,.4)',
+                                        border: 'round',
+                                        position: 'relative',
+                                        bottom: '-50px'
+                                    }}>
 
 
+                                        <Card.Body style={{fontSize: '', color: ''}}>
+                                            <Card.Title> <strong> Signup </strong></Card.Title>
+
+                                            <div className={"row"}>
+
+                                               <InputLabel> Welcome {email} Enter the otp send to your email </InputLabel>
+
+                                                <div className={"col-md-4"} style={{color: 'white'}}>
+                                                    <TextField
+
+                                                        style={{backgroundColor: 'white !important'}}
+                                                        color={"secondary"}
+                                                        label="Code"
+                                                        id={"code"}
+                                                        // variant="filled"
+                                                        value={codeEntered}
+                                                        InputProps={{className: s.root}}
+                                                        onChange={(e) => setCodeEntered(e.target.value)}
+                                                    />
+                                                </div>
 
 
-
-                                        <div className={"col-md-4"}>
-
-                                            <FormControl>
-                                                <InputLabel>User Type</InputLabel>
-                                                <Select
-                                                    value={userType}
-                                                    onChange={(e)=>setUserType(e.target.value)}
-                                                    style={{width:'100px'}}
-                                                >
-                                                    <MenuItem value={"User"}>User</MenuItem>
-                                                    <MenuItem value={"Creator"}>Creator</MenuItem>
-                                                    <MenuItem value={"Admin"}>Admin</MenuItem>
-                                                </Select>
-                                            </FormControl>
-
-
-
-
-                                        </div>
-
-
-                                        {userType == "Creator" || userType=="creator"?
-                                            <>
-                                                <div className={"col-md-6"}>
-
-                                                    <FormControl>
-                                                        <InputLabel>Nutrionist</InputLabel>
-                                                        <Select
-                                                            value={nutritionist}
-                                                            onChange={(e)=>setNutritionist(e.target.value)}
-                                                            style={{width:'100px'}}
-                                                        >
-                                                            <MenuItem value={true}>Yes</MenuItem>
-                                                            <MenuItem value={false}>No</MenuItem>
-                                                        </Select>
-                                                    </FormControl>
+                                                <div className={"col-md-3"} style={{paddingTop:'5px'}}>
+                                                    <Button  type="button" variant="success"
+                                                            onClick={() => {
+                                                                confirmOTP()
+                                                            }}> Confirm Email </Button>
 
                                                 </div>
 
-                                                <div className={"col-md-6"}>
-
-                                                    <FormControl>
-                                                        <InputLabel>Trainer</InputLabel>
-                                                        <Select
-                                                            value={trainer}
-                                                            onChange={(e)=>setTrainer(e.target.value)}
-                                                            style={{width:'100px'}}
-                                                        >
-                                                            <MenuItem value={true}>Yes</MenuItem>
-                                                            <MenuItem value={false}>No</MenuItem>
-                                                        </Select>
-                                                    </FormControl>
+                                                <div className={"col-md-1"}>
 
                                                 </div>
 
-                                            </>
+                                                <div className={"col-md-3"} style={{paddingTop:'5px'}}>
+                                                    <Button  type="button" variant="warning"
+                                                            onClick={() => {
+                                                                generateOTP()
+                                                            }}> Resend OTP </Button>
+
+                                                </div>
+
+                                                <div className={"col-md-12"}>
+
+                                                  <p onClick={()=>setotpGenerated(false)}> Change Email Address
+                                                  </p>
+                                                </div>
+
+                                            </div>
+
+                                        </Card.Body>
 
 
-                                            :
-                                            ""
-
-                                        }
+                                    </Card>
 
 
-
-                                        <div className={"col-md-12"}>
-                                            <br/>
-
-                                            <input type="file"  required onChange={fileChangedHandler}/>
-                                        </div>
+                                </Card.ImgOverlay>
 
 
-                                        <div className={"col-md-12"} style={{paddingTop:'10px'}}>
+                            </Card>
+                            :
+                            <Card style={{width: 'auto', border: 'none'}}>
+                                <Card.Img
+                                    src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1"
+                                    alt="Card iimage"/>
+                                <Card.ImgOverlay style={{width: '100%'}}>
+
+                                    <Card style={{
+                                        color: '',
+                                        width: '24rem',
+                                        backgroundColor: 'rgba(255,255,255,.4)',
+                                        border: 'round',
+                                        position: 'relative',
+                                        bottom: '-50px'
+                                    }}>
 
 
+                                        <Card.Body style={{fontSize: '', color: ''}}>
+                                            <Card.Title> <strong> Signup </strong></Card.Title>
 
-                                            <Button style={{width:'100px'}} type="button" variant="success" onClick={()=>{
-                                                onSignup()
-                                            }}> Signup </Button>
+                                            <div className={"row"}>
 
-                                        </div>
+                                                <div className={"col-md-8"} style={{color: 'white'}}>
+                                                    <TextField
+                                                        required
+
+                                                        style={{backgroundColor: 'white !important'}}
+                                                        color={"secondary"}
+                                                        label="Email"
+                                                        id={"email"}
+                                                        // variant="filled"
+                                                        value={email}
+                                                        InputProps={{className: s.root}}
+
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                    />
+                                                </div>
 
 
-                                    </div>
+                                                <div className={"col-md-2"} style={{paddingTop:'5px'}}>
+                                                    <Button style={{width: '100px'}} type="button" variant="success"
+                                                            onClick={() => {
+                                                                generateOTP()
+                                                            }}> Signup </Button>
 
-                                </Card.Body>
+                                                </div>
+
+
+                                            </div>
+
+                                        </Card.Body>
+
+
+                                    </Card>
+
+
+                                </Card.ImgOverlay>
 
 
                             </Card>
 
-
-                        </Card.ImgOverlay>
-
+                        }
 
 
+                    </center>
 
-                    </Card>
-                    <div className={'row'} style={{backgroundColor: 'blue', height:'20px', width: '100vw'}}></div>
+                </div>
+            }
 
-                    <div className={'row'} style={{backgroundColor: 'lightgrey', height:'40px' , width: '100vw'}}></div>
-
-                    <ModalFooter style={{fontSize: '70%', borderColor: 'white', color: 'grey'}}>Copyright group #6</ModalFooter>
-
-
-
-
-                </center>
-
-
-        </>
+        </div>
     )
 
 
