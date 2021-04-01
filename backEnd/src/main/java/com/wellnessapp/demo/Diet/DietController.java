@@ -24,6 +24,7 @@ public class DietController {
     private ImageRepository idb;
 
     @PostMapping("/addDiet")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public Diet saveExersize(@RequestParam("photo") MultipartFile photo, @RequestPart("diet") Diet diet) throws JsonProcessingException {
         System.out.println("");
