@@ -68,10 +68,9 @@ public class UserController {
         return user;
     }
     @PostMapping("/addUser")
-    public User saveUser(@RequestPart("user") String basicDetails) throws JsonProcessingException {
+    public User saveUser(@RequestBody User user) throws JsonProcessingException {
         System.out.println("trying to add user");
         int count = udb.findAll().size();
-        User user = new ObjectMapper().readValue(basicDetails, User.class);
         user.setId(count);
         user.setUserType("User");
         user.setIsDeleted(false);
