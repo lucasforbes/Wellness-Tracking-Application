@@ -62,6 +62,10 @@ public class DietController {
         System.out.println("Got All Diets");
         return this.ddb.findAll();
     }
+    @GetMapping("/findDietById")
+    public Diet findDietById(){
+        return this.ddb.findById(2);
+    }
     @GetMapping("/findDietByEmail/{email}")
     public List<Diet> getByUserID(@PathVariable String email){
         return this.ddb.findByEmail(email);
