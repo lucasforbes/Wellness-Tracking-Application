@@ -7,6 +7,7 @@ import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserDetails;
 import com.wellnessapp.demo.User.UserRepository;
+import com.wellnessapp.demo.tools.WordCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
