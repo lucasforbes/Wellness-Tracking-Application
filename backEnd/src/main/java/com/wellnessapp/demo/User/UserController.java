@@ -69,13 +69,14 @@ public class UserController {
     }
     @PostMapping("/addUser")
     public User saveUser(@RequestPart("user") String basicDetails) throws JsonProcessingException {
+        System.out.println("trying to add user");
         int count = udb.findAll().size();
         User user = new ObjectMapper().readValue(basicDetails, User.class);
         user.setId(count);
         user.setUserType("User");
         user.setIsDeleted(false);
         user.setOnline(true);
-
+        System.out.println("added user info");
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
         user.setSignUpTime(currentDate);
