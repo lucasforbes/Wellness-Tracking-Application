@@ -36,13 +36,13 @@ export default function ProfessionalDashboard(props){
                 </div>
 
                 <div className={'flex-row'} style={{backgroundColor:''}} >
-                    <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '4px solid lightpink',borderLeft: '5px solid lightgreen', borderRight: '5px solid lightgreen'}}>
+                    <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '6px double white',borderLeft: '5px solid white', borderRight: '5px solid white'}}>
 
                         <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
                             <header style={{textAlign: 'center'}}> workouts</header>
                         </Tab>
 
-                        <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'lightpink'}}>
+                        <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
                             <AddWorkout/>
                         </Tab>
 

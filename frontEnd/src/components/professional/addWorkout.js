@@ -8,6 +8,13 @@ import {loginAction} from "../../actions/login";
 export default function AddWorkout(){
 
 
+    const styles = theme => ({
+        multilineColor:{
+            color:'red'
+        }
+    });
+
+
 
     const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
         activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
@@ -101,20 +108,27 @@ export default function AddWorkout(){
             <Card
                 bg={'Light'.toLowerCase()}
                 text={''}
-                style={{ backgroundColor: 'lightgreen',width: '88%', marginRight: 'auto', marginLeft: 'auto'}}
+                style={{ backgroundColor: 'lightgreen',width: '88%', marginRight: 'auto', marginLeft: 'auto', fontFamily: 'Cursive'}}
 
             >
 
             <form   onSubmit={workoutSubmit}>
 
-                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightgreen' }}>
+                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightgreen', fontFamily: 'Cursive' }}>
+
+                    <div className={"col-md-12"}>
+
+                        <h4 style={{color: 'white', marginTop: '20px', fontWeight: '900', textDecoration: 'underline'}}>  New Workout </h4>
+
+                    </div>
 
 
                     <div className={"col-md-12"}>
 
                     <TextField
                         required
-                        style={{background:'black !important'}}
+                        style={{color: 'dodgerblue'}}
+
                         label="Workout Name"
                         id={"workoutName"}
                         value={workoutTitle}
@@ -123,7 +137,7 @@ export default function AddWorkout(){
                         {"          "}
 
 
-                        <FormControl style={{}}>
+                        <FormControl >
                             <InputLabel>Paid</InputLabel>
                             <Select
                                 value={paid}
@@ -151,7 +165,7 @@ export default function AddWorkout(){
                     <div className={"col-md-12"}>
 
 
-                        <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
+                        <TextareaAutosize  style={{backgroundColor: 'white', color: 'dodgerblue'}} rowsMin={4} cols={"80"} placeholder="Workout Description"
 
                                           value={workoutDescription}
                                           onChange={(e)=>setWorkoutDescription(e.target.value)}/>
@@ -163,7 +177,7 @@ export default function AddWorkout(){
 
                     <div className={"col-md-12"}>
 
-                       <h4>  Add activity </h4>
+                       <h4 style={{color: 'White', marginTop: '20px', fontWeight: '900', textDecoration: 'underline'}}>  Add activity </h4>
 
                     </div>
 
@@ -194,7 +208,7 @@ export default function AddWorkout(){
 
                                      <div>
 
-                                         <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
+                                         <TextareaAutosize style={{color: 'dodgerblue'}} rowsMin={3} cols={"50"} placeholder="Activity Description"
                                             value={activity.activityDescription} name={"activityDescription"}
                                             onChange={e=>handleInputChange(e,i)}
                                          />
@@ -227,8 +241,9 @@ export default function AddWorkout(){
                                              required
                                              InputProps={{
                                                  inputProps: {
-                                                     min: 1
-                                                 }
+                                                     min: 1,
+
+                                                                                                    }
                                              }}
                                              type={"number"}
                                              name={"totalDuration"}
