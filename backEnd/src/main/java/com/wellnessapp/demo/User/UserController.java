@@ -30,8 +30,9 @@ public class UserController {
     @Autowired
     private ImageRepository idb;
 //,  @RequestParam("email") String email,
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @PostMapping("/addUserDetails")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public User addUserDetails(@RequestParam("photo") MultipartFile photo, @RequestParam("email") String email, @RequestPart("userDetails") UserDetails ud) throws JsonProcessingException {
         String e = email.replace("\"", "");
@@ -68,7 +69,7 @@ public class UserController {
         return user;
     }
     @PostMapping("/addUser")
-    public User saveUser(@RequestBody User user) throws JsonProcessingException {
+    public User saveUser(@RequestBody User user) {
         System.out.println("trying to add user");
         int count = udb.findAll().size();
         user.setId(count);
