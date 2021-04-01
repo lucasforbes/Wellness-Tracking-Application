@@ -60,26 +60,18 @@ export default function Signup(props){
     const onSignup=async () => {
 
         localStorage.setItem('userType', userType);
-        localStorage.setItem('userFirstName',firstName);
+        // localStorage.setItem('userFirstName',firstName);
 
         if(userType == "User" || userType == "user"){
-            if (validator.isEmail(email)) {
+            // if (validator.isEmail(email)) {
 
 
                 let formData = new FormData();
 
                 const json = JSON.stringify({
-                    // 'id': 3,
+
                     'password': password,
                     'email': email,
-                    'firstName': firstName,
-                    'lastName': lastName,
-                    //yyyy-mm-dd
-                    'birthday': birthDate,
-                    // 'userType': userType,
-                    'gender': gender,
-                    'online': true,
-                    'isDeleted': false
                 });
 
                 // for creator
@@ -88,7 +80,7 @@ export default function Signup(props){
 
 
 
-                formData.append("photo",userPhoto);
+                // formData.append("photo",userPhoto);
                 formData.append("user",json);
 
                 //addCreator
@@ -122,17 +114,17 @@ export default function Signup(props){
                     })
 
 
-            } else {
-                alert("Invalid Email")
-                document.getElementById("email").focus();
-            }
+            // } else {
+            //     alert("Invalid Email")
+            //     document.getElementById("email").focus();
+            // }
         }
 
 
 
         if(userType == "Creator" || userType == "creator" || userType == "professional"){
 
-            if (validator.isEmail(email)) {
+            // if (validator.isEmail(email)) {
 
 
                 let formData = new FormData();
@@ -182,10 +174,10 @@ export default function Signup(props){
                     })
 
 
-            } else {
-                alert("Invalid Email")
-                document.getElementById("email").focus();
-            }
+            // } else {
+            //     alert("Invalid Email")
+            //     document.getElementById("email").focus();
+            // }
 
 
         }
@@ -199,21 +191,27 @@ export default function Signup(props){
 
     const generateOTP=()=>{
 
-        axios.get('https://bloom-flask-app.herokuapp.com/sendEmail?email='+email)
-            .then((res)=>{
-                //successful generation of otp
-                if(res.data['status']){
-                    setOTP(res.data['otp'])
-                    console.log('otp is ',res.data['otp'])
-                    setotpGenerated(true)
-                }else{
-                    alert(res.data['Message'])
-                }
-            })
-            .catch((err)=>{
-                alert("OTP generation error")
-                console.log("otp generation error",err)
-            })
+        if (validator.isEmail(email)) {
+
+            axios.get('https://bloom-flask-app.herokuapp.com/sendEmail?email=' + email)
+                .then((res) => {
+                    //successful generation of otp
+                    if (res.data['status']) {
+                        setOTP(res.data['otp'])
+                        console.log('otp is ', res.data['otp'])
+                        setotpGenerated(true)
+                    } else {
+                        alert(res.data['Message'])
+                    }
+                })
+                .catch((err) => {
+                    alert("OTP generation error")
+                    console.log("otp generation error", err)
+                })
+
+        }else{
+            alert("Invalid Email")
+        }
 
 
     }
@@ -224,6 +222,10 @@ export default function Signup(props){
         if (codeEntered.toString()=="0000" || codeEntered.toString() == otp){
 
             setEmailConfirmed(true)
+            setotpGenerated(false)
+            setCodeEntered("")
+        }else{
+            alert("The code didn't match. Try resending it")
         }
 
     }
@@ -270,10 +272,8 @@ export default function Signup(props){
 
                                         <div className={"row"}>
 
-                                            <div className={"col-md-6"} style={{color: 'white'}}>
+                                            <div className={"col-md-12"} style={{color: 'white'}}>
                                                 <TextField
-                                                    required
-
                                                     style={{backgroundColor: 'white !important'}}
                                                     color={"secondary"}
                                                     label="Email"
@@ -281,13 +281,11 @@ export default function Signup(props){
                                                     // variant="filled"
                                                     value={email}
                                                     InputProps={{className: s.root}}
-
-                                                    onChange={(e) => setEmail(e.target.value)}
                                                 />
                                             </div>
 
 
-                                            <div className={"col-md-6"}>
+                                            <div className={"col-md-12"}>
                                                 <TextField
                                                     required
                                                     style={{background: 'white !important'}}
@@ -297,76 +295,11 @@ export default function Signup(props){
                                                     type={"password"}
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
-
-                                                />
-                                            </div>
-
-                                            <div className={"col-md-6"}>
-                                                <TextField
-                                                    required
-                                                    style={{backgroundColor: 'white !important'}}
-                                                    color={"secondary"}
-                                                    label="First Name"
-                                                    id={"firstName"}
-                                                    // variant="filled"
-                                                    value={firstName}
-                                                    onChange={(e) => setFirstName(e.target.value)}
                                                 />
                                             </div>
 
 
-                                            <div className={"col-md-6"}>
-                                                <TextField
-                                                    required
-                                                    style={{background: 'white !important'}}
-                                                    color={"secondary"}
-                                                    label="Last Name"
-                                                    // variant="filled"
-                                                    type={"text"}
-                                                    value={lastName}
-                                                    onChange={(e) => setLastName(e.target.value)}
-
-                                                />
-                                            </div>
-
-                                            <div className={'col-md-12'}><br/></div>
-
-
-                                            <div className={"col-md-4"}>
-                                                <TextField
-                                                    required
-                                                    style={{backgroundColor: 'white !important'}}
-                                                    color={"secondary"}
-                                                    label="Birth Date"
-                                                    id={"birthdate"}
-                                                    type={"date"}
-                                                    // variant="filled"
-                                                    value={birthDate}
-                                                    onChange={(e) => setBirthDate(e.target.value)}
-                                                />
-                                            </div>
-
-
-                                            <div className={"col-md-4"}>
-
-                                                <FormControl>
-                                                    <InputLabel>Gender</InputLabel>
-                                                    <Select
-                                                        value={gender}
-                                                        onChange={(e) => setGender(e.target.value)}
-                                                        style={{width: '100px'}}
-                                                    >
-                                                        <MenuItem value={"male"}>Male</MenuItem>
-                                                        <MenuItem value={"female"}>Female</MenuItem>
-                                                        <MenuItem value={"other"}>Other</MenuItem>
-                                                    </Select>
-                                                </FormControl>
-
-
-                                            </div>
-
-
-                                            <div className={"col-md-4"}>
+                                            <div className={"col-md-12"}>
 
                                                 <FormControl>
                                                     <InputLabel>User Type</InputLabel>
@@ -426,14 +359,6 @@ export default function Signup(props){
                                                 ""
 
                                             }
-
-
-                                            <div className={"col-md-12"}>
-                                                <br/>
-
-                                                <input type="file" required onChange={fileChangedHandler}/>
-                                            </div>
-
 
                                             <div className={"col-md-12"} style={{paddingTop: '10px'}}>
 
