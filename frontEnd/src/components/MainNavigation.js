@@ -41,7 +41,6 @@ export default function MainNavigation(props){
                         <Nav className="mr-auto">
                             <Button variant="dark" ><Link to={""}>Home</Link></Button> {" "}
                             <Button variant="dark" > <Link to={"about"}> About </Link> </Button>
-                            <Button variant="dark" > <Link to={"signup"}> Signup </Link> </Button>
                             <Button variant="outline-danger" onClick={()=>{
 
 

@@ -57,33 +57,33 @@ export default function Homepage() {
                     </Card>
                 </div>
 
-                <div className={'row'} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%'}}>
+                <div className={'row'} style={{backgroundColor: 'lightgrey', borderStyle: 'square', padding: '3%', fontSize: '90%'}}>
 
                     <div className={'col-md-4'} style={{padding: '40px'}}>
-                        <Card style={{minHeight: '350px' ,overflow: 'hidden',width: '85%', borderColor: 'Red Orange', borderWidth: '7px', height:'85%', marginRight: 'auto',marginLeft: 'auto',fontFamily: 'Cursive'}}>
+                        <Card style={{minHeight: '420px' ,overflow: 'hidden',width: '95%', borderColor: 'Red Orange', borderWidth: '7px', height:'85%', marginRight: 'auto',marginLeft: 'auto',fontFamily: 'Cursive'}}>
                             <Card.Img style={{height: '70%'}} variant="top" src="Exercise_Icon.jpg"/>
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Exercise Programs</Card.Title>
                                 <Card.Subtitle style = {{fontSize:'150%'}}  className="mb-2 text-muted">Train Well</Card.Subtitle>
-                                <Card.Text>Find exercise programs here</Card.Text>
+                                <Card.Text>Access to exercise programs</Card.Text>
 
                             </Card.Body>
                         </Card>
                     </div>
                     <div className={'col-md-4'}  style={{padding: '40px'}}>
-                        <Card style={{ minHeight: '350px', overflow: 'hidden', width: '85%', borderWidth: '7px', borderColor: 'Blue Green', marginRight: 'auto',marginLeft: 'auto', height: '85%',fontFamily: 'Cursive'}} bg='light'>
+                        <Card style={{ minHeight: '420px', overflow: 'hidden', width: '95%', borderWidth: '7px', borderColor: 'Blue Green', marginRight: 'auto',marginLeft: 'auto', height: '85%',fontFamily: 'Cursive'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="forksandknivesss.jpg"/>
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Diet Programs</Card.Title>
                                 <Card.Subtitle style = {{fontSize:'150%'}}  className="mb-2 text-muted">Eat Well</Card.Subtitle>
-                                <Card.Text>Find diet programs here</Card.Text>
+                                <Card.Text>Access to diet programs</Card.Text>
 
                             </Card.Body>
                         </Card>
                     </div>
 
                     <div className={'col-md-4'}  style={{padding: '40px'}}>
-                        <Card style={{ minHeight: '350px', overflow: 'hidden',width: '85%', borderColor: 'Purple Blue', borderWidth: '7px', height:'85%',  marginRight: 'auto',marginLeft: 'auto',fontFamily: 'Cursive'}} bg='light'>
+                        <Card style={{ minHeight: '420px', overflow: 'hidden',width: '95%', borderColor: 'Purple Blue', borderWidth: '7px', height:'85%',  marginRight: 'auto',marginLeft: 'auto',fontFamily: 'Cursive'}} bg='light'>
                             <Card.Img style={{height: '70%'}} variant="top" src="./Wellness_Icon.jpg"/>
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Wellness Programs</Card.Title>
