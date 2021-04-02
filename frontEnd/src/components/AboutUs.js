@@ -10,7 +10,7 @@ import Login from "./registeration/login";
 export default function AboutUs(){
     return(
         <>
-            <div className={'row'} style={{height: '60vh', width:'100vw', overflow: 'hidden', backgroundColor: 'lightblue'}}  >
+            <div className={'row'} style={{height: '100vh', width:'100vw', overflow: 'hidden', backgroundColor: 'lightblue'}}  >
 
                 <div className={'col-md-6'}>
                     <Card style = {{marginLeft: '2vw',marginRight: '2vw',marginTop: '10vh',borderBottom: '5px groove dodgerblue',borderTop: '5px solid white', borderLeft: '5px inset lightgreen', borderRight: '5px inset lightgreen'}} className="bg-dark text-white">
@@ -100,8 +100,8 @@ export default function AboutUs(){
 
             <div className={'row'} style={{backgroundColor: 'lightblue', height: '31.5vh'}}>
 
-                <text  style={{backgroundColor: 'lightblue',fontFamily: 'cursive', position: 'relative', right: '-20vw', color: 'white', fontSize: '3vw'}}>
-                    Here at bloom wellness we love being well
+                <text  style={{backgroundColor: 'lightblue',fontFamily: 'cursive', position: 'relative', right: '-30vw',top:'-350px', color: 'white', fontSize: '3vw'}}>
+                    Live Well, Be Well, Chron Jawns
                 </text>
 
 
