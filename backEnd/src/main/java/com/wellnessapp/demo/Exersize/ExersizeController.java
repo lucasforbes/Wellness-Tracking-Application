@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellnessapp.demo.Admin.Admin;
 import com.wellnessapp.demo.Creator.Creator;
+import com.wellnessapp.demo.Diet.Diet;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.Image;
@@ -16,9 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.text.html.Option;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class ExersizeController {
@@ -84,13 +83,171 @@ public class ExersizeController {
         List<Exersize> allCreatorWorkouts = this.edb.findByEmail(email);
         return allCreatorWorkouts;
     }
-    @GetMapping("/subscribeUserToExersize/{exersizeId, userId}")
-    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable int userId){
+    @GetMapping("/subscribeUserToExersize/{exersizeId, userEmail}")
+    public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
         Exersize exersize = edb.findById(exersizeId);
+        User user = udb.findByEmail(userEmail);
+        int userId = user.getId();
+        List exersizeSubscriptions = user.getExersizesSubscribed();
+        exersizeSubscriptions.add(exersizeId);
         List subscribers = exersize.getUserIdsToExersizesSubscribed();
         subscribers.add(userId);
         String retState = "Added user to Exersize subscriber list";
         return retState;
+    }
+    @GetMapping("/unsubscribeUserToExersize/{exersizeId, userEmail}")
+    public String unsetUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
+        Exersize exersize = edb.findById(exersizeId);
+        User user = udb.findByEmail(userEmail);
+        int userId = user.getId();
+        List exersizeSubscriptions = user.getExersizesSubscribed();
+        exersizeSubscriptions.remove(exersizeId);
+        List subscribers = exersize.getUserIdsToExersizesSubscribed();
+        subscribers.remove(userId);
+        String retState = "Removed user to Exersize subscriber list";
+        return retState;
+    }
+
+    @GetMapping("/findExersizesSubscribed/{email}")
+    public List<Exersize>findExersizesSubscribed(@PathVariable String email){
+        List<Exersize> returnExersizes = new List<Exersize>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<Exersize> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Exersize exersize) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Exersize> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, Collection<? extends Exersize> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                return false;
+            }
+
+            @Override
+            public int hashCode() {
+                return 0;
+            }
+
+            @Override
+            public Exersize get(int index) {
+                return null;
+            }
+
+            @Override
+            public Exersize set(int index, Exersize element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, Exersize element) {
+
+            }
+
+            @Override
+            public Exersize remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public ListIterator<Exersize> listIterator() {
+                return null;
+            }
+
+            @Override
+            public ListIterator<Exersize> listIterator(int index) {
+                return null;
+            }
+
+            @Override
+            public List<Exersize> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+        User user = udb.findByEmail(email);
+        List<Integer> subscriptions = user.getExersizesSubscribed();
+        for (Integer i : subscriptions){
+            try{
+                int x = (int) i;
+                Exersize d = edb.findById(x);
+                returnExersizes.add(d);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return returnExersizes;
     }
 
     @GetMapping(value = "/findExersizePic/{exersizeId}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
