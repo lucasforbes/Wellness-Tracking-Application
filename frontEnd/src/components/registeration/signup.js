@@ -66,30 +66,25 @@ export default function Signup(props){
             // if (validator.isEmail(email)) {
 
 
-                let formData = new FormData();
+                // let formData = new FormData();
 
                 const json = JSON.stringify({
-
-                    'password': password,
                     'email': email,
+                    'password': password
                 });
-
-                // for creator
-                // 'boolean': nutritionist
-                // 'boolean': trainer
 
 
 
                 // formData.append("photo",userPhoto);
-                formData.append("user",json);
+                // formData.append("user",json);
 
                 //addCreator
 
-                const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', formData, {
+                const res = axios.post('https://bloom-wellness-back.herokuapp.com/addUser', json, {
                     headers: {
                         // Overwrite Axios's automatically set Content-Type
-                        // 'Content-Type': 'application/json',
-                        'Content-type': 'multipart/form-data',
+                        'Content-Type': 'application/json',
+                        // 'Content-type': 'multipart/form-data',
                         'Access-Control-Allow-Origin': '*'
                     }
                 }).then(function (response) {

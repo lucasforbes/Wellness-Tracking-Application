@@ -69,6 +69,7 @@ public class UserController {
         return user;
     }
     @PostMapping("/addUser")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public User saveUser(@RequestBody User user) {
         System.out.println("trying to add user");
         int count = udb.findAll().size();
