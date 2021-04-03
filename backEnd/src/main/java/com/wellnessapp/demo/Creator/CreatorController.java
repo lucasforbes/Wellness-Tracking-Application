@@ -66,7 +66,8 @@ public class CreatorController {
 
     @PostMapping("/addCreator")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public Creator saveUser(@RequestBody Creator creator) {
+    public Creator saveCreator(@RequestBody Creator creator) {
+        System.out.println("got here");
         int count = cdb.findAll().size();
         creator.setId(count);
         creator.setUserType("Creator");
