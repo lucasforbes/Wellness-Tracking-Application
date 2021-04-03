@@ -2,10 +2,10 @@ import React,{useState,useEffect} from "react";
 import {TextField, TextareaAutosize, InputLabel, MenuItem, FormControl, Select} from "@material-ui/core";
 import {Button, Card} from "react-bootstrap";
 import axios from "axios";
-import {loginAction} from "../../actions/login";
 
 
-export default function AddWorkout(){
+
+export default function AddWorkout(props){
 
 
     const styles = theme => ({
@@ -15,9 +15,8 @@ export default function AddWorkout(){
     });
 
 
-
-    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-        activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
+    const [activityList, setActivityList] = useState([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+        activitySets:1, activityReps:1, equipmentNeeded:"", videoLink:""}]);
 
     const [workoutTitle,setWorkoutTitle]=useState("");
     const [workoutDescription,setWorkoutDescription]= useState("");
@@ -49,17 +48,45 @@ export default function AddWorkout(){
 
     // handle click event of the Add button
     const handleAddClick = () => {
-        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}]);
+        setActivityList([...activityList, { activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+            activitySets:1, activityReps:1, equipmentNeeded:"", videoLink:""}]);
     };
 
 
 
-    const [json,setJson] = useState("");
+    // const [json,setJson] = useState("");
 
-    const workoutSubmit=(e)=>{
+    const validateParamteres=()=>{
 
-        e.preventDefault()
+        let flag = true;
+
+        if (workoutTitle != "" && workoutTitle.length >= 1) {
+        }else{
+            flag = false;
+            alert("Add Workout Title");
+            return flag;
+        }
+
+        if (workoutDescription != "" && workoutDescription.length >= 1) {
+
+        }else{
+            flag = false;
+            alert("Add Workout Description");
+            return flag;
+        }
+
+        // if (workoutImage != "" && workoutImage!= undefined) {
+        //
+        // }else{
+        //     flag = false;
+        //     alert("Add a Workout Image");
+        //     return flag;
+        // }
+
+        return flag;
+    }
+
+    const workoutSubmit=()=>{
 
         let formData = new FormData();
 
@@ -71,36 +98,56 @@ export default function AddWorkout(){
             'paid': paid
         });
 
-        formData.append("photo",workoutImage);
-        formData.append("exersize",json);
+        // formData.append("photo",workoutImage);
+        // formData.append("exersize",json);
 
 
-        axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', formData, {
+        // axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', formData, {
+        //     headers: {
+        //         'Content-type': 'multipart/form-data',
+        //
+        //         // 'Content-type': 'application/json',
+        //         'Access-Control-Allow-Origin': '*'
+        //     }
+        // }).then(function (response) {
+        //     // handle success
+        //     console.log("status",response);
+        //     // json = null;
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // })
+
+        axios.post('https://bloom-flask-app.herokuapp.com/addExersize', json, {
             headers: {
-                'Content-type': 'multipart/form-data',
+                // 'Content-type': 'multipart/form-data',
+
+                'Content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             }
         }).then(function (response) {
             // handle success
             console.log("status",response);
-                json = null;
+            props.addedNewWorkout()
+            // json = null;
         })
             .catch(function (error) {
                 console.log(error);
             })
 
 
-        alert("Workout added");
+        alert("Workout add request made");
 
         setWorkoutImage(null);
-        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:"",
-            activitySets:"", activityReps:"", equipmentNeeded:"", videoLink:""}])
+        setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
+            activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
         setWorkoutDescription("")
         setWorkoutTitle("");
 
         // setJson(json);
 
     }
+
 
     return (
         <div>
@@ -112,32 +159,264 @@ export default function AddWorkout(){
 
             >
 
-            <form   onSubmit={workoutSubmit}>
+            <form >
 
-                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightgreen', fontFamily: 'Cursive' }}>
+                {/*<div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px" , backgroundColor: 'lightgreen', fontFamily: 'Cursive' }}>*/}
+
+                {/*    <div className={"col-md-12"}>*/}
+
+                {/*        <h4 style={{color: 'white', marginTop: '20px', fontWeight: '900', textDecoration: 'underline'}}>  New Workout </h4>*/}
+
+                {/*    </div>*/}
+
+
+                {/*    <div className={"col-md-12"}>*/}
+
+                {/*    <TextField*/}
+                {/*        required*/}
+                {/*        style={{color: 'dodgerblue'}}*/}
+
+                {/*        label="Workout Name"*/}
+                {/*        id={"workoutName"}*/}
+                {/*        value={workoutTitle}*/}
+                {/*        onChange={(e)=>setWorkoutTitle(e.target.value)}/>*/}
+
+                {/*        {"          "}*/}
+
+
+                {/*        <FormControl >*/}
+                {/*            <InputLabel>Paid</InputLabel>*/}
+                {/*            <Select*/}
+                {/*                value={paid}*/}
+                {/*                onChange={(e)=>setPaid(e.target.value)}*/}
+                {/*                style={{width:'100px'}}*/}
+                {/*            >*/}
+                {/*                <MenuItem value={true}>Yes</MenuItem>*/}
+                {/*                <MenuItem value={false}>No</MenuItem>*/}
+
+                {/*            </Select>*/}
+                {/*        </FormControl>*/}
+
+                {/*        /!*<div className={"col-md-3"}>*!/*/}
+                {/*        /!*    <br/>*!/*/}
+                {/*        /!*    <input type="file"  required onChange={fileChangedHandler}/>*!/*/}
+                {/*        /!*</div>*!/*/}
+
+                {/*        <br/>*/}
+                {/*        <br/>*/}
+
+
+                {/*    </div>*/}
+
+
+                {/*    <div className={"col-md-12"}>*/}
+
+
+                {/*        <TextareaAutosize  style={{backgroundColor: 'white', color: 'dodgerblue'}} rowsMin={4} cols={"80"} placeholder="Workout Description"*/}
+
+                {/*                          value={workoutDescription}*/}
+                {/*                          onChange={(e)=>setWorkoutDescription(e.target.value)}/>*/}
+
+
+                {/*    </div>*/}
+
+
+
+                {/*    <div className={"col-md-12"}>*/}
+
+                {/*       <h4 style={{color: 'White', marginTop: '20px', fontWeight: '900', textDecoration: 'underline'}}>  Add activity </h4>*/}
+
+                {/*    </div>*/}
+
+
+                {/*    <div className={"col-md-12"}>*/}
+
+                {/*        {activityList.map((activity, i) => {*/}
+                {/*            return (*/}
+
+                {/*                <>*/}
+                {/*                    <div className={"col-md-12"} style={{backgroundColor: 'lightgreen'}}>*/}
+
+
+                {/*                        <TextField*/}
+                {/*                            required*/}
+                {/*                            name={"activityName"}*/}
+                {/*                            style={{background:'black !important'}}*/}
+                {/*                            label="Activity Name"*/}
+
+                {/*                            value={activity.ActivityName}*/}
+                {/*                            onChange={e=>handleInputChange(e,i)}*/}
+                {/*                        />*/}
+                {/*                        <br/>*/}
+                {/*                        <br/>*/}
+
+
+                {/*                    </div>*/}
+
+                {/*                     <div>*/}
+
+                {/*                         <TextareaAutosize style={{color: 'dodgerblue'}} rowsMin={3} cols={"50"} placeholder="Activity Description"*/}
+                {/*                            value={activity.activityDescription} name={"activityDescription"}*/}
+                {/*                            onChange={e=>handleInputChange(e,i)}*/}
+                {/*                         />*/}
+
+                {/*                     </div>*/}
+
+                {/*                    <div className={"col-md-12"} style={{backgroundColor: 'lightgreen'}}>*/}
+
+
+                {/*                        <FormControl>*/}
+                {/*                            <InputLabel> Body Parts Targeted </InputLabel>*/}
+                {/*                            <Select*/}
+                {/*                                name={"bodyPartsTargeted"}*/}
+                {/*                                value={activity.bodyPartsTargeted}*/}
+                {/*                                onChange={e=>handleInputChange(e,i)}*/}
+                {/*                                style={{width:'200px'}}*/}
+                {/*                            >*/}
+                {/*                                <MenuItem value={"legs"}>Legs</MenuItem>*/}
+                {/*                                <MenuItem value={"hands"}>Hands</MenuItem>*/}
+                {/*                                <MenuItem value={"chest"}> Chest </MenuItem>*/}
+                {/*                                <MenuItem value={"other"}> Other </MenuItem>*/}
+                {/*                                <MenuItem value={"other"}> All </MenuItem>*/}
+
+                {/*                            </Select>*/}
+                {/*                        </FormControl>*/}
+
+                {/*                        {"  "}*/}
+
+                {/*                         <TextField*/}
+                {/*                             required*/}
+                {/*                             InputProps={{*/}
+                {/*                                 inputProps: {*/}
+                {/*                                     min: 1,*/}
+
+                {/*                                                                                    }*/}
+                {/*                             }}*/}
+                {/*                             type={"number"}*/}
+                {/*                             name={"totalDuration"}*/}
+                {/*                             style={{background:'black !important'}}*/}
+                {/*                             label="Duration in minutes"*/}
+                {/*                             value={activity.totalDuration}*/}
+                {/*                             onChange={e=>handleInputChange(e,i)}*/}
+                {/*                         />*/}
+
+
+                {/*                 </div>*/}
+
+                {/*                 <div className={"col-md-12"}>*/}
+
+                {/*                     <TextField*/}
+                {/*                         required*/}
+                {/*                         InputProps={{*/}
+                {/*                             inputProps: {*/}
+                {/*                                 min: 1*/}
+                {/*                             }*/}
+                {/*                         }}*/}
+                {/*                         type={"number"}*/}
+                {/*                         name={"activityReps"}*/}
+                {/*                         style={{background:'black !important'}}*/}
+                {/*                         label="Reps"*/}
+                {/*                         value={activity.activityReps}*/}
+                {/*                         onChange={e=>handleInputChange(e,i)}*/}
+                {/*                     />*/}
+
+                {/*                     <TextField*/}
+                {/*                         required*/}
+                {/*                         InputProps={{*/}
+                {/*                             inputProps: {*/}
+                {/*                                 min: 1*/}
+                {/*                             }*/}
+                {/*                         }}*/}
+                {/*                         type={"number"}*/}
+                {/*                         name={"activitySets"}*/}
+                {/*                         style={{background:'black !important'}}*/}
+                {/*                         label="Sets"*/}
+                {/*                         value={activity.activitySets}*/}
+                {/*                         onChange={e=>handleInputChange(e,i)}*/}
+                {/*                     />*/}
+
+
+                {/*                 </div>*/}
+
+                {/*                    <div className={"col-md-12"}>*/}
+
+                {/*                        <TextField*/}
+                {/*                            name={"equipmentNeeded"}*/}
+                {/*                            style={{background:'black !important',width: '100 px !important'}}*/}
+                {/*                            label="Equipment Needed"*/}
+
+                {/*                            value={activity.equipmentNeeded}*/}
+                {/*                            onChange={e=>handleInputChange(e,i)}*/}
+                {/*                        />*/}
+
+                {/*                        <TextField*/}
+                {/*                            name={"videoLink"}*/}
+                {/*                            style={{background:'black !important',width: '100 px !important'}}*/}
+                {/*                            label="Video Link"*/}
+
+                {/*                            value={activity.videoLink}*/}
+                {/*                            onChange={e=>handleInputChange(e,i)}*/}
+                {/*                        />*/}
+
+
+
+
+                {/*                    </div>*/}
+
+
+                {/*                <div>*/}
+                {/*                    <div className="btn-box">*/}
+                {/*                        <br/>*/}
+                {/*                        <br/>*/}
+                {/*                        {activityList.length !== 1 && <Button*/}
+                {/*                            variant="danger"*/}
+                {/*                            onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}*/}
+                {/*                        {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}*/}
+                {/*                    </div>*/}
+
+
+
+
+                {/*                 </div>*/}
+
+
+                {/*                </>*/}
+
+                {/*            );*/}
+                {/*        })}*/}
+
+                {/*    </div>*/}
+
+                {/*    <div className={'col-md-3'} style={{position:'relative', bottom: '38px', right: '-400px'}}>*/}
+                {/*        <Button variant="success" onClick={workoutSubmit}>Submit </Button>{' '}*/}
+                {/*    </div>*/}
+
+
+
+
+
+
+
+
+                {/*</div>*/}
+
+                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px"}}>
+
 
                     <div className={"col-md-12"}>
 
-                        <h4 style={{color: 'white', marginTop: '20px', fontWeight: '900', textDecoration: 'underline'}}>  New Workout </h4>
-
-                    </div>
-
-
-                    <div className={"col-md-12"}>
-
-                    <TextField
-                        required
-                        style={{color: 'dodgerblue'}}
-
-                        label="Workout Name"
-                        id={"workoutName"}
-                        value={workoutTitle}
-                        onChange={(e)=>setWorkoutTitle(e.target.value)}/>
+                        <TextField
+                            required
+                            style={{background:'black !important'}}
+                            label="Workout Name"
+                            id={"workoutName"}
+                            value={workoutTitle}
+                            onChange={(e)=>setWorkoutTitle(e.target.value)}/>
 
                         {"          "}
 
 
-                        <FormControl >
+                        <FormControl>
                             <InputLabel>Paid</InputLabel>
                             <Select
                                 value={paid}
@@ -150,10 +429,10 @@ export default function AddWorkout(){
                             </Select>
                         </FormControl>
 
-                        <div className={"col-md-3"}>
-                            <br/>
-                            <input type="file"  required onChange={fileChangedHandler}/>
-                        </div>
+                        {/*<div className={"col-md-3"}>*/}
+                        {/*    <br/>*/}
+                        {/*    <input type="file"  required onChange={fileChangedHandler}/>*/}
+                        {/*</div>*/}
 
                         <br/>
                         <br/>
@@ -165,10 +444,10 @@ export default function AddWorkout(){
                     <div className={"col-md-12"}>
 
 
-                        <TextareaAutosize  style={{backgroundColor: 'white', color: 'dodgerblue'}} rowsMin={4} cols={"80"} placeholder="Workout Description"
-
-                                          value={workoutDescription}
-                                          onChange={(e)=>setWorkoutDescription(e.target.value)}/>
+                        <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
+                                           required
+                                           value={workoutDescription}
+                                           onChange={(e)=>setWorkoutDescription(e.target.value)}/>
 
 
                     </div>
@@ -177,7 +456,7 @@ export default function AddWorkout(){
 
                     <div className={"col-md-12"}>
 
-                       <h4 style={{color: 'White', marginTop: '20px', fontWeight: '900', textDecoration: 'underline'}}>  Add activity </h4>
+                        <h4>  Add activity </h4>
 
                     </div>
 
@@ -188,11 +467,11 @@ export default function AddWorkout(){
                             return (
 
                                 <>
-                                    <div className={"col-md-12"} style={{backgroundColor: 'lightgreen'}}>
+                                    <div className={"col-md-12"}>
 
 
                                         <TextField
-                                            required
+
                                             name={"activityName"}
                                             style={{background:'black !important'}}
                                             label="Activity Name"
@@ -206,16 +485,16 @@ export default function AddWorkout(){
 
                                     </div>
 
-                                     <div>
+                                    <div>
 
-                                         <TextareaAutosize style={{color: 'dodgerblue'}} rowsMin={3} cols={"50"} placeholder="Activity Description"
-                                            value={activity.activityDescription} name={"activityDescription"}
-                                            onChange={e=>handleInputChange(e,i)}
-                                         />
+                                        <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
+                                                           value={activity.activityDescription} name={"activityDescription"}
+                                                           onChange={e=>handleInputChange(e,i)}
+                                        />
 
-                                     </div>
+                                    </div>
 
-                                    <div className={"col-md-12"} style={{backgroundColor: 'lightgreen'}}>
+                                    <div className={"col-md-12"}>
 
 
                                         <FormControl>
@@ -237,59 +516,58 @@ export default function AddWorkout(){
 
                                         {"  "}
 
-                                         <TextField
-                                             required
-                                             InputProps={{
-                                                 inputProps: {
-                                                     min: 1,
+                                        <TextField
 
-                                                                                                    }
-                                             }}
-                                             type={"number"}
-                                             name={"totalDuration"}
-                                             style={{background:'black !important'}}
-                                             label="Duration in minutes"
-                                             value={activity.totalDuration}
-                                             onChange={e=>handleInputChange(e,i)}
-                                         />
-
-
-                                 </div>
-
-                                 <div className={"col-md-12"}>
-
-                                     <TextField
-                                         required
-                                         InputProps={{
-                                             inputProps: {
-                                                 min: 1
-                                             }
-                                         }}
-                                         type={"number"}
-                                         name={"activityReps"}
-                                         style={{background:'black !important'}}
-                                         label="Reps"
-                                         value={activity.activityReps}
-                                         onChange={e=>handleInputChange(e,i)}
-                                     />
-
-                                     <TextField
-                                         required
-                                         InputProps={{
-                                             inputProps: {
-                                                 min: 1
-                                             }
-                                         }}
-                                         type={"number"}
-                                         name={"activitySets"}
-                                         style={{background:'black !important'}}
-                                         label="Sets"
-                                         value={activity.activitySets}
-                                         onChange={e=>handleInputChange(e,i)}
-                                     />
+                                            InputProps={{
+                                                inputProps: {
+                                                    min: 1
+                                                }
+                                            }}
+                                            type={"number"}
+                                            name={"totalDuration"}
+                                            style={{background:'black !important'}}
+                                            label="Duration in minutes"
+                                            value={activity.totalDuration}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
 
 
-                                 </div>
+                                    </div>
+
+                                    <div className={"col-md-12"}>
+
+                                        <TextField
+
+                                            InputProps={{
+                                                inputProps: {
+                                                    min: 1
+                                                }
+                                            }}
+                                            type={"number"}
+                                            name={"activityReps"}
+                                            style={{background:'black !important'}}
+                                            label="Reps"
+                                            value={activity.activityReps}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
+
+                                        <TextField
+
+                                            InputProps={{
+                                                inputProps: {
+                                                    min: 1
+                                                }
+                                            }}
+                                            type={"number"}
+                                            name={"activitySets"}
+                                            style={{background:'black !important'}}
+                                            label="Sets"
+                                            value={activity.activitySets}
+                                            onChange={e=>handleInputChange(e,i)}
+                                        />
+
+
+                                    </div>
 
                                     <div className={"col-md-12"}>
 
@@ -317,21 +595,16 @@ export default function AddWorkout(){
                                     </div>
 
 
-                                <div>
-                                    <div className="btn-box">
-                                        <br/>
-                                        <br/>
-                                        {activityList.length !== 1 && <Button
-                                            variant="danger"
-                                            onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}
-                                        {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}
+                                    <div>
+                                        <div className="btn-box">
+                                            <br/>
+                                            <br/>
+                                            {activityList.length !== 1 && <Button
+                                                variant="danger"
+                                                onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}
+                                            {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}
+                                        </div>
                                     </div>
-
-
-
-
-                                 </div>
-
 
                                 </>
 
@@ -340,18 +613,26 @@ export default function AddWorkout(){
 
                     </div>
 
-                    <div className={'col-md-3'} style={{position:'relative', bottom: '38px', right: '-400px'}}>
-                        <Button variant="success" onClick={workoutSubmit}>Submit </Button>{' '}
+
+                    <div className={"col-md-12"}>
+
+                        <br/>
+                        <br/>
+                        <Button variant="success" onClick={()=>{
+
+                            if(validateParamteres()){
+                                workoutSubmit()
+                            }
+                        }}>Submit </Button>{' '}
+
                     </div>
 
-
-
-                    <div style={{ marginTop: 20 }}>{JSON.stringify(json)}</div>
 
 
 
 
                 </div>
+
 
             </form>
             </Card>
