@@ -85,16 +85,19 @@ public class UserController {
         return user;
     }
     @GetMapping("/findAllUsers")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<User> getUsers(){
         System.out.println("Got users");
         return this.udb.findAll();
     }
     @GetMapping("/findUser/{id}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Optional<User> getUsers(@PathVariable int id){
         System.out.println("Trying to get user with id: " + id);
         return this.udb.findById(id);
     }
     @GetMapping("/subscribeDiet/{email, dietId}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setSubscribedDiets(@PathVariable String email, @PathVariable int id){
         User subscriber = udb.findByEmail(email);
         List<Integer> subscriberDietlist = subscriber.getDietsSubscribed();
@@ -103,6 +106,7 @@ public class UserController {
         return retState;
     }
     @GetMapping("/subscribeExersize/{email, dietId}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setSubscribedExersizes(@PathVariable String email, @PathVariable int id){
         User subscriber = udb.findByEmail(email);
         List<Integer> subscriberExersizeList = subscriber.getExersizesSubscribed();
@@ -112,6 +116,7 @@ public class UserController {
     }
 
     @GetMapping("/findUserByEmail/{email}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public User getUsers(@PathVariable String email){
         System.out.println("username: " + email);
         System.out.println(udb.findByEmail(email));
@@ -131,6 +136,7 @@ public class UserController {
 //        return data;
 //    }
     @GetMapping(value = "/findUserPic/{email}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public byte[] getImage(@PathVariable String email) {
         Image file = idb.findByUserEmail(email);
         byte[] data = null;
