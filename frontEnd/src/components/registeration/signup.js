@@ -122,29 +122,22 @@ export default function Signup(props){
             // if (validator.isEmail(email)) {
 
 
-                let formData = new FormData();
+                // let formData = new FormData();
 
                 const json = JSON.stringify({
 
                     'password': password,
-                    'email': email,
-                    'firstName': firstName,
-                    'lastName': lastName,
-                    'birthday': birthDate,
-                    'gender': gender,
-                    'online': true,
-                    'nutritionist': nutritionist,
-                    'trainer': trainer
+                    'email': email
                 });
 
-                formData.append("photo",userPhoto);
-                formData.append("creator",json);
+                // formData.append("photo",userPhoto);
+                // formData.append("creator",json);
 
-                const res = axios.post('https://bloom-wellness-back.herokuapp.com/addCreator', formData, {
+                const res = axios.post('https://bloom-wellness-back.herokuapp.com/addCreator', json, {
                     headers: {
                         // Overwrite Axios's automatically set Content-Type
-                        // 'Content-Type': 'application/json',
-                        'Content-type': 'multipart/form-data',
+                        'Content-Type': 'application/json',
+                        // 'Content-type': 'multipart/form-data',
                         'Access-Control-Allow-Origin': '*'
                     }
                 }).then(function (response) {
@@ -313,47 +306,47 @@ export default function Signup(props){
                                             </div>
 
 
-                                            {userType == "Creator" || userType == "creator" ?
-                                                <>
-                                                    <div className={"col-md-6"}>
+                                            {/*{userType == "Creator" || userType == "creator" ?*/}
+                                            {/*    <>*/}
+                                            {/*        <div className={"col-md-6"}>*/}
 
-                                                        <FormControl>
-                                                            <InputLabel>Nutrionist</InputLabel>
-                                                            <Select
-                                                                value={nutritionist}
-                                                                onChange={(e) => setNutritionist(e.target.value)}
-                                                                style={{width: '100px'}}
-                                                            >
-                                                                <MenuItem value={true}>Yes</MenuItem>
-                                                                <MenuItem value={false}>No</MenuItem>
-                                                            </Select>
-                                                        </FormControl>
+                                            {/*            <FormControl>*/}
+                                            {/*                <InputLabel>Nutrionist</InputLabel>*/}
+                                            {/*                <Select*/}
+                                            {/*                    value={nutritionist}*/}
+                                            {/*                    onChange={(e) => setNutritionist(e.target.value)}*/}
+                                            {/*                    style={{width: '100px'}}*/}
+                                            {/*                >*/}
+                                            {/*                    <MenuItem value={true}>Yes</MenuItem>*/}
+                                            {/*                    <MenuItem value={false}>No</MenuItem>*/}
+                                            {/*                </Select>*/}
+                                            {/*            </FormControl>*/}
 
-                                                    </div>
+                                            {/*        </div>*/}
 
-                                                    <div className={"col-md-6"}>
+                                            {/*        <div className={"col-md-6"}>*/}
 
-                                                        <FormControl>
-                                                            <InputLabel>Trainer</InputLabel>
-                                                            <Select
-                                                                value={trainer}
-                                                                onChange={(e) => setTrainer(e.target.value)}
-                                                                style={{width: '100px'}}
-                                                            >
-                                                                <MenuItem value={true}>Yes</MenuItem>
-                                                                <MenuItem value={false}>No</MenuItem>
-                                                            </Select>
-                                                        </FormControl>
+                                            {/*            <FormControl>*/}
+                                            {/*                <InputLabel>Trainer</InputLabel>*/}
+                                            {/*                <Select*/}
+                                            {/*                    value={trainer}*/}
+                                            {/*                    onChange={(e) => setTrainer(e.target.value)}*/}
+                                            {/*                    style={{width: '100px'}}*/}
+                                            {/*                >*/}
+                                            {/*                    <MenuItem value={true}>Yes</MenuItem>*/}
+                                            {/*                    <MenuItem value={false}>No</MenuItem>*/}
+                                            {/*                </Select>*/}
+                                            {/*            </FormControl>*/}
 
-                                                    </div>
+                                            {/*        </div>*/}
 
-                                                </>
+                                            {/*    </>*/}
 
 
-                                                :
-                                                ""
+                                            {/*    :*/}
+                                            {/*    ""*/}
 
-                                            }
+                                            {/*}*/}
 
                                             <div className={"col-md-12"} style={{paddingTop: '10px'}}>
 

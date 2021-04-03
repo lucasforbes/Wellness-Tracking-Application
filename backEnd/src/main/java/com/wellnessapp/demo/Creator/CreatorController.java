@@ -64,6 +64,7 @@ public class CreatorController {
         return user;
     }
     @PostMapping("/addCreator")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Creator saveUser(@RequestPart("creator") String basicDetails) throws JsonProcessingException {
         int count = cdb.findAll().size();
         Creator creator = new ObjectMapper().readValue(basicDetails, Creator.class);
@@ -72,16 +73,19 @@ public class CreatorController {
         return creator;
     }
     @GetMapping("/findAllCreators")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public List<Creator> getCreators(){
         System.out.println("Got Creators");
         return this.cdb.findAll();
     }
     @GetMapping("/findAllCreators/{id}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Optional<Creator> getCreators(@PathVariable int id){
         return this.cdb.findById(id);
     }
 
     @GetMapping("/addUserDietSubscription/{email, dietId}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setUserDietSubscription(@PathVariable String email, @PathVariable int id){
         Creator owner = cdb.findByEmail(email);
         List<Integer> userIdList = owner.getUserIdsToDietsSubscribed();
@@ -90,6 +94,7 @@ public class CreatorController {
         return retState;
     }
     @GetMapping("/addUserExersizeSubscription/{email, dietId}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setUserExerssizeSubscription(@PathVariable String email, @PathVariable int id){
         Creator owner = cdb.findByEmail(email);
         List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
@@ -111,6 +116,7 @@ public class CreatorController {
 //        return data;
 //    }
     @GetMapping(value = "/findCreatorPic/{email}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public byte[] getImage(@PathVariable String email) {
         Image file = idb.findByUserEmail(email);
         byte[] data = null;
@@ -124,6 +130,7 @@ public class CreatorController {
         return data;
     }
     @GetMapping(value = "/findUserPic/{email, id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public byte[] getImage(@PathVariable String email, @PathVariable int id) {
         Image file = idb.findByUserEmail(email, id);
         byte[] data = null;
