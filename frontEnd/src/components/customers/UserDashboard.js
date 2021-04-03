@@ -16,6 +16,8 @@ export default function UserDashboard(props){
     const [firstName,setFirstName] = useState("");
     const [allExercises,setAllExercises] = useState();
 
+    const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
+
     useEffect(()=>{
 
         setFirstName(localStorage.getItem("userFirstName"))
@@ -24,24 +26,87 @@ export default function UserDashboard(props){
 
     useEffect(()=>{
 
-    axios.get('https://bloom-wellness-back.herokuapp.com/findAllExersizes', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-    }).then(function (response) {
-        // handle success
-        console.log("allExercises",response);
-        setAllExercises(response.data);
-    })
-        .catch(function (error) {
-            console.log(error);
-        })
+        // axios.get('https://bloom-wellness-back.herokuapp.com/findAllExersizes', {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Origin': '*'
+        //     }
+        // }).then(function (response) {
+        //     // handle success
+        //     console.log("allExercises",response);
+        //     setAllExercises(response.data);
+        // })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     })
 
+        axios.get('https://bloom-flask-app.herokuapp.com/getAllExersize', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("allExercises",response);
+            setAllExercises(response.data);
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
+        axios.get('https://bloom-flask-app.herokuapp.com/getSubscribeByEmail?email='+localStorage.getItem("email"), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("All subscriptions",response);
+            setPreviouslyAddedWorkouts(response.data);
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
 
 
     },[])
 
+
+    const [rerenderAllExe,setRerenderAllExercise] = useState(true);
+
+    const subscribedCallback=()=>{
+        axios.get('https://bloom-flask-app.herokuapp.com/getAllExersize', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("allExercises",response);
+            setAllExercises(response.data);
+            setRerenderAllExercise(!rerenderAllExe)
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+        axios.get('https://bloom-flask-app.herokuapp.com/getSubscribeByEmail?email='+localStorage.getItem("email"), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function (response) {
+            // handle success
+            console.log("All subscriptions",response);
+            setPreviouslyAddedWorkouts(response.data);
+        })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
+    }
 
 
 
@@ -50,8 +115,7 @@ export default function UserDashboard(props){
         <>
 
 
-
-
+            <br/>
             <div className={'row'} style={ {textAlign: 'center' ,backgroundAttachment: 'fixed' , color:'white',fontSize: '3vw', height: '10vw',margin:'0px', backgroundImage: 'url(./ocean_waves_in_blue-1920x1200.jpg)'}}>
                 <div className={'col-xs-4'} style={{position:"relative",right: '-10vw', bottom: '-2vw'}}>
                     Welcome {firstName?firstName:""}
@@ -59,17 +123,45 @@ export default function UserDashboard(props){
             </div>
 
 
-            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'blue', }}>
+            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'grey', }}>
 
                 <Tab eventKey="enrolled" title="Enrolled">
 
-                    Your Enrolled Workouts
+                  <h4>  Your Enrolled Workouts </h4>
+
+                    {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
+                            <>
+                                <Card>
+                                    <Card.Body>
+                                        <div className={"row"}>
+                                            <div className={"col-md-8"}>
+                                                <h4>{workouts.title}</h4>
+                                            </div>
+
+                                            <div className={"col-md-12"}>
+                                                <p>{workouts.description}</p>
+                                            </div>
+
+                                            <p></p>
+                                        </div>
+                                    </Card.Body>
+
+                                </Card>
+                            </>
+                        )
+                        }):
+                        <>
+                            <h6> None previously added Workouts </h6>
+                        </>
+                    }
 
                 </Tab>
 
                 <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgrey'}}>
 
-                    {allExercises?<AllExercises data={allExercises}/> :<></>}
+                    {allExercises?<AllExercises key={rerenderAllExe} data={allExercises} callBack={subscribedCallback}/> :<></>}
+
+
 
                 </Tab>
 

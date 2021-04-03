@@ -55,7 +55,7 @@ export default function AllExercises(props){
         if(value == "paid") {
 
 
-           let temp= props.data.filter((exercise) => {
+            let temp= props.data.filter((exercise) => {
                 return exercise.type;
             })
 
@@ -89,20 +89,36 @@ export default function AllExercises(props){
         setIsOpen(false);
     }
 
+    const subscribeWorkout=(id)=>{
+        axios.post("https://bloom-flask-app.herokuapp.com/subscribe",{
+            id: id,
+            email: localStorage.getItem('email')
+        }).
+        then((res)=>{
+            alert("Subscribed Successfully")
+            props.callBack()
+        })
+            .catch((err)=>{
+                alert("Error while subscribing")
+                console.log(err);
+            })
+    }
+
+
     return(
 
         <>
 
             <FormControl>
                 <InputLabel> Type </InputLabel>
-            <Select onChange={filterPaid} value={paidFilter} onChange={(e)=> {
-                setPaidFilter(e.target.value)
-                filterPaid(e.target.value)
-            }}>
-                 <MenuItem value={"all"}>All</MenuItem>
-                 <MenuItem value={"paid"}> Paid </MenuItem>
-                <MenuItem value={"free"}>Free </MenuItem>
-            </Select>
+                <Select onChange={filterPaid} value={paidFilter} onChange={(e)=> {
+                    setPaidFilter(e.target.value)
+                    filterPaid(e.target.value)
+                }}>
+                    <MenuItem value={"all"}>All</MenuItem>
+                    <MenuItem value={"paid"}> Paid </MenuItem>
+                    <MenuItem value={"free"}>Free </MenuItem>
+                </Select>
             </FormControl>
 
             <Modal
@@ -115,12 +131,59 @@ export default function AllExercises(props){
                 <h2>Workout Details </h2>
 
                 {selectedExercise?
-                <>
-                    {selectedExercise.title}
-                    <br/>
-                    {selectedExercise.description}
-                </>
-                :
+                    <>
+
+                        <div className={"row"}>
+                            <div className={"col-md-5"}>
+                                <h4>  {selectedExercise.title} </h4>
+                            </div>
+
+                            <div className={"col-md-1"}>
+
+                                {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
+
+                                {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
+                                    "Already Subscribed":
+                                    <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                                }
+
+                            </div>
+
+
+                            <div className={"col-md-8"}>
+                                <b> Description: </b>    {" "+selectedExercise.description}
+                            </div>
+
+                            {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+
+                                selectedExercise.activityList.map((item,id)=>{
+                                    return (
+                                        <>
+
+                                            <div className={"col-md-5"}>
+
+                                                <i>Activity: </i> {item.activityName} <br/>
+                                                {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
+                                                {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
+                                                {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
+
+                                                {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+
+                                            </div>
+                                        </>
+                                    )
+                                }):""
+                            }
+
+
+                            <br/>
+
+
+
+                        </div>
+
+                    </>
+                    :
                     ""
                 }
 
