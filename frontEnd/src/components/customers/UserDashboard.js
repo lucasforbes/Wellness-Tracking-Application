@@ -141,7 +141,7 @@ export default function UserDashboard(props){
             </div>
 
 
-            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'grey', }}>
+            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'lightgreen' }}>
 
                 <Tab eventKey="enrolled" title="Enrolled">
 
@@ -149,9 +149,9 @@ export default function UserDashboard(props){
 
                     {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
                             <>
-                                <Card>
+                                <Card style={{backgroundColor: 'lightgreen'}}>
                                     <Card.Body>
-                                        <div className={"row"}>
+                                        <div className={"row"} >
                                             <div className={"col-md-8"}>
                                                 <h4>{workouts.title}</h4>
                                             </div>
@@ -175,7 +175,7 @@ export default function UserDashboard(props){
 
                 </Tab>
 
-                <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgrey'}}>
+                <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgreen'}}>
 
                     {allExercises?<AllExercises key={rerenderAllExe} data={allExercises} callBack={subscribedCallback}/> :<></>}
 
@@ -184,7 +184,7 @@ export default function UserDashboard(props){
                 </Tab>
 
 
-                <Tab eventKey="profile" title="Statistics">
+                <Tab eventKey="profile" title="Statistics" >
                     Stats
                     <Card>
                         <Card.Body>

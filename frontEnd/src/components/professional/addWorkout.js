@@ -400,14 +400,21 @@ export default function AddWorkout(props){
 
                 {/*</div>*/}
 
-                <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px"}}>
+                <div className={"row"} style={{color: 'white' ,backgroundColor: 'lightgreen',paddingLeft:"10px",paddingTop:"10px"}} >
+
+                    <div className={"col-md-12"}  >
+
+                        <h4 style={{fontSize: '180%', textDecoration: 'underline' }}>  New Workout </h4>
+
+                    </div>
 
 
-                    <div className={"col-md-12"}>
+
+                    <div className={"col-md-12"} >
 
                         <TextField
                             required
-                            style={{background:'black !important'}}
+                            style={{backgroundColor:'blue !important' }}
                             label="Workout Name"
                             id={"workoutName"}
                             value={workoutTitle}
@@ -447,6 +454,7 @@ export default function AddWorkout(props){
                         <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
                                            required
                                            value={workoutDescription}
+                                           style={{color: 'dodgerblue'}}
                                            onChange={(e)=>setWorkoutDescription(e.target.value)}/>
 
 
@@ -454,9 +462,9 @@ export default function AddWorkout(props){
 
 
 
-                    <div className={"col-md-12"}>
+                    <div className={"col-md-12"}  >
 
-                        <h4>  Add activity </h4>
+                        <h4 style={{fontSize: '180%', textDecoration: 'underline' }}>  Add activity </h4>
 
                     </div>
 
@@ -488,6 +496,7 @@ export default function AddWorkout(props){
                                     <div>
 
                                         <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
+                                                           style={{color: 'dodgerblue'}}
                                                            value={activity.activityDescription} name={"activityDescription"}
                                                            onChange={e=>handleInputChange(e,i)}
                                         />
@@ -595,7 +604,7 @@ export default function AddWorkout(props){
                                     </div>
 
 
-                                    <div>
+                                    <div className={"row"}>
                                         <div className="btn-box">
                                             <br/>
                                             <br/>
@@ -604,28 +613,35 @@ export default function AddWorkout(props){
                                                 onClick={() => handleRemoveClick(i)}>Remove</Button>} {" "} {" "}
                                             {activityList.length - 1 === i && <Button variant={"primary"} onClick={handleAddClick}>Add</Button>}
                                         </div>
+
                                     </div>
+
 
                                 </>
 
                             );
+
                         })}
+
+
 
                     </div>
 
 
+
                     <div className={"col-md-12"}>
 
-                        <br/>
-                        <br/>
-                        <Button variant="success" onClick={()=>{
+
+                        <Button style={{height: '40px',position: 'relative', right: '-400px', top: '-37px'}} variant="success" onClick={()=>{
 
                             if(validateParamteres()){
                                 workoutSubmit()
                             }
                         }}>Submit </Button>{' '}
 
+
                     </div>
+
 
 
 

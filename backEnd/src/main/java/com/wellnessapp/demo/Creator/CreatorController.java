@@ -63,12 +63,20 @@ public class CreatorController {
         cdb.save(user);
         return user;
     }
+
     @PostMapping("/addCreator")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public Creator saveUser(@RequestPart("creator") String basicDetails) throws JsonProcessingException {
+    public Creator saveCreator(@RequestBody Creator creator) {
+        System.out.println("got here");
         int count = cdb.findAll().size();
-        Creator creator = new ObjectMapper().readValue(basicDetails, Creator.class);
         creator.setId(count);
+        creator.setUserType("Creator");
+        creator.setDeleted(false);
+        creator.setOnline(true);
+        System.out.println("added creator info");
+        Clock cl = Clock.systemUTC();
+        LocalDate currentDate = LocalDate.now(cl);
+        creator.setSignUpTime(currentDate);
         cdb.save(creator);
         return creator;
     }
