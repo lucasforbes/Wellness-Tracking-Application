@@ -17,6 +17,7 @@ export default function UserDashboard(props){
     const [allExercises,setAllExercises] = useState();
 
     const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
+    const [stats,setStats] = useState();
 
     useEffect(()=>{
 
@@ -70,6 +71,14 @@ export default function UserDashboard(props){
             })
 
 
+        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailUser?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setStats(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+
     },[])
 
 
@@ -106,6 +115,14 @@ export default function UserDashboard(props){
             })
 
 
+        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailUser?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setStats(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+
     }
 
 
@@ -118,7 +135,8 @@ export default function UserDashboard(props){
             <br/>
             <div className={'row'} style={ {textAlign: 'center' ,backgroundAttachment: 'fixed' , color:'white',fontSize: '3vw', height: '10vw',margin:'0px', backgroundImage: 'url(./ocean_waves_in_blue-1920x1200.jpg)'}}>
                 <div className={'col-xs-4'} style={{position:"relative",right: '-10vw', bottom: '-2vw'}}>
-                    Welcome {firstName?firstName:""}
+                    Welcome
+                    {/*{firstName?firstName:""}*/}
                 </div>
             </div>
 
@@ -168,6 +186,18 @@ export default function UserDashboard(props){
 
                 <Tab eventKey="profile" title="Statistics">
                     Stats
+                    <Card>
+                        <Card.Body>
+                            <h5> Total Subscribed  {stats? stats.totalUsers:""}
+                                <br/>
+                                <p>
+                                  Total Calories Burned {stats ? stats.caloriesBurned:""}
+                                </p>
+                            </h5>
+                        </Card.Body>
+                    </Card>
+
+
                 </Tab>
             </Tabs>
 

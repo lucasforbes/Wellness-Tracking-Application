@@ -125,9 +125,9 @@ export default function Signup(props){
                 // let formData = new FormData();
 
                 const json = JSON.stringify({
+                    'email': email,
+                    'password': password
 
-                    'password': password,
-                    'email': email
                 });
 
                 // formData.append("photo",userPhoto);

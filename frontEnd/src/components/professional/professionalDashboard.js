@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import AddWorkout from "./addWorkout";
 import {Row, Card, Col, Container, Tab, Tabs, TabContainer, Button} from "react-bootstrap";
 import axios from "axios";
-
+import AddDiet from "./addDiet";
 
 
 export default function ProfessionalDashboard(props){
@@ -102,7 +102,8 @@ export default function ProfessionalDashboard(props){
                         <Card.Img variant={'top'} src="./ocean_waves_in_blue-1920x1200.jpg" alt="Card image" />
                         <Card.ImgOverlay style = {{width: '100%'}}>
                             <div className={'col-xs-4'} style={{position:"relative",right: '-10vw', bottom: '-0vw'}}>
-                                Welcome {firstName?firstName:""}
+                                Welcome
+                                {/*{firstName?firstName:""}*/}
                             </div>
                         </Card.ImgOverlay>
                     </Card>
@@ -155,6 +156,11 @@ export default function ProfessionalDashboard(props){
 
                         <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
                             <AddWorkout addedNewWorkout={addedWorkout}/>
+                        </Tab>
+
+                        <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgrey'}}>
+                            Add Diet
+                            <AddDiet/>
                         </Tab>
 
                         <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgrey'}}>
