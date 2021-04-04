@@ -138,9 +138,10 @@ export default function AddWorkout(props){
 
         alert("Diet add request made");
 
-        
+
         // setWorkoutImage(null);
-        setDietList([...dietList, {"item": "", "servingSize": "", "fat": 0, "carbs": 0,
+
+        setDietList([{"item": "", "servingSize": "", "fat": 0, "carbs": 0,
             "calories": 0, "protein": 0}]);
         setDietDescription("")
         setDietTitle("");
