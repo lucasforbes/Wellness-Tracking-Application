@@ -98,14 +98,6 @@ export default function AboutUs(){
 
             </div>
 
-            <div className={'row'} style={{backgroundColor: 'lightblue', height: '31.5vh'}}>
-
-                <text  style={{backgroundColor: 'lightblue',fontFamily: 'cursive', position: 'relative', right: '-30vw',top:'-350px', color: 'white', fontSize: '3vw'}}>
-                    Live Well, Be Well, Chron Jawns
-                </text>
-
-
-            </div>
 
 
 

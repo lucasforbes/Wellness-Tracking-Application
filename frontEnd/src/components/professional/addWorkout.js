@@ -454,7 +454,7 @@ export default function AddWorkout(props){
                         <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
                                            required
                                            value={workoutDescription}
-                                           style={{color: 'dodgerblue'}}
+                                           style={{color: 'dodgerblue', width:'30vw', minHeight:'40px'}}
                                            onChange={(e)=>setWorkoutDescription(e.target.value)}/>
 
 
@@ -496,7 +496,7 @@ export default function AddWorkout(props){
                                     <div>
 
                                         <TextareaAutosize  rowsMin={3} cols={"50"} placeholder="Activity Description"
-                                                           style={{color: 'dodgerblue'}}
+                                                           style={{color: 'dodgerblue' , width:'30vw', minHeight:'40px'}}
                                                            value={activity.activityDescription} name={"activityDescription"}
                                                            onChange={e=>handleInputChange(e,i)}
                                         />

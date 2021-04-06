@@ -113,17 +113,17 @@ export default function ProfessionalDashboard(props){
                     <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '6px double white',borderLeft: '5px solid white', borderRight: '5px solid white'}}>
 
                         <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
-                            <header style={{textAlign: 'center'}}> workouts</header>
+                            <header style={{textAlign: 'center', color: 'white', fontSize: '200%'}}> Your Workouts</header>
 
                             <br/>
 
                             {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
                                     <>
                                         <Card>
-                                            <Card.Body>
-                                                <div className={"row"}>
+                                            <Card.Body style={{backgroundColor: 'lightgreen'}}>
+                                                <div className={"row"} >
                                                     <div className={"col-md-8"}>
-                                                        <h4>{workouts.title}</h4>
+                                                        <h4 style={{color:'white'}}>{workouts.title}</h4>
                                                     </div>
 
                                                     <div className={"col-md-1"}>
@@ -135,7 +135,7 @@ export default function ProfessionalDashboard(props){
                                                     </div>
 
 
-                                                    <div className={"col-md-12"}>
+                                                    <div className={"col-md-12"} style={{color: 'dodgerblue', fontSize:'80%'}}>
                                                         <p>{workouts.description}</p>
                                                     </div>
 
@@ -158,18 +158,18 @@ export default function ProfessionalDashboard(props){
                             <AddWorkout addedNewWorkout={addedWorkout}/>
                         </Tab>
 
-                        <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgrey'}}>
-                            Add Diet
+                        <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
+
                             <AddDiet/>
                         </Tab>
 
-                        <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgrey'}}>
+                        <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
                             Stats
 
                             <Card>
-                                <Card.Body>
+                                <Card.Body style={{backgroundColor: 'lightgreen'}}>
 
-                                    <h5> Total Subscribers {stats? stats.totalUsers:""}
+                                    <h5 > Total Subscribers {stats? stats.totalUsers:""}
                                         <br/>
                                         <p>
                                             <br/> Total Workouts {" "} {stats ? stats.countWorkouts:""}
