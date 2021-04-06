@@ -104,6 +104,21 @@ export default function AllExercises(props){
             })
     }
 
+    const  removeSubscription=(id)=>{
+        axios.post("https://bloom-flask-app.herokuapp.com/removeSubscribe",{
+            id: id,
+            email: localStorage.getItem('email')
+        }).
+        then((res)=>{
+            alert("UnSubscribed Successfully")
+            // props.callBack()
+        })
+            .catch((err)=>{
+                alert("Error while unsubscribing")
+                console.log(err);
+            })
+    }
+
 
     return(
 
@@ -143,7 +158,13 @@ export default function AllExercises(props){
                                 {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
 
                                 {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
-                                    "Already Subscribed":
+                                    <>"Already Subscribed"
+
+                                        <Button onClick={()=>removeSubscription(selectedExercise._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
+
+                                    </>
+
+                                    :
                                     <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
                                 }
 

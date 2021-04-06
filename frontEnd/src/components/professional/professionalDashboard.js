@@ -112,7 +112,7 @@ export default function ProfessionalDashboard(props){
                 <div className={'flex-row'} style={{backgroundColor:''}} >
                     <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '6px double white',borderLeft: '5px solid white', borderRight: '5px solid white'}}>
 
-                        <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
+                        <Tab eventKey="history" title="Workout Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
                             <header style={{textAlign: 'center'}}> workouts</header>
 
                             <br/>
@@ -154,9 +154,54 @@ export default function ProfessionalDashboard(props){
 
                         </Tab>
 
+
                         <Tab eventKey="addWorkout" title="Add New Workout" align={"left"} style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
                             <AddWorkout addedNewWorkout={addedWorkout}/>
                         </Tab>
+
+
+                        <Tab eventKey="diethistory" title="Diet Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
+                            <header style={{textAlign: 'center'}}> workouts</header>
+
+                            <br/>
+
+                            {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
+                                    <>
+                                        <Card>
+                                            <Card.Body>
+                                                <div className={"row"}>
+                                                    <div className={"col-md-8"}>
+                                                        <h4>{workouts.title}</h4>
+                                                    </div>
+
+                                                    <div className={"col-md-1"}>
+                                                        <Button style={{width:"80px"}} variant="warning" type={"button"}> Edit </Button>
+                                                    </div>
+
+                                                    <div className={"col-md-1"}>
+                                                        <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteWorkout(workouts._id)}> Delete </Button>
+                                                    </div>
+
+
+                                                    <div className={"col-md-12"}>
+                                                        <p>{workouts.description}</p>
+                                                    </div>
+
+                                                    <p></p>
+                                                </div>
+                                            </Card.Body>
+
+                                        </Card>
+                                    </>
+                                )
+                                }):
+                                <>
+                                    <h4> None previously added Diet Plans </h4>
+                                </>
+                            }
+
+                        </Tab>
+
 
                         <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgrey'}}>
                             Add Diet
