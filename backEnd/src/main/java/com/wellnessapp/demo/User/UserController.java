@@ -149,4 +149,8 @@ public class UserController {
         //return new UnifiedReturnValue(false,404, "file download", "failed", "image", new Date()).unifiedReturnValue();
         return data;
     }
+
+    public List<User> getUsersByName(String name){
+        return this.udb.findByFirstNameOrLastName(name, name);
+    }
 }

@@ -89,6 +89,7 @@ public class Article {
         this.keywords = keywords;
     }
 
+
     public List<User> getWriter() {
         return writer;
     }
