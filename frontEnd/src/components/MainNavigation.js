@@ -39,8 +39,9 @@ export default function MainNavigation(props){
                         </Navbar.Brand>
 
                         <Nav className="mr-auto">
-                            <Button variant="dark" ><Link to={""}>Home</Link></Button> {" "}
-                            <Button variant="dark" > <Link to={"about"}> About </Link> </Button>
+                            <Button variant="dark" ><Link to={""}> Dashboard </Link></Button> {" "}
+                            <Button variant="dark"> <Link> Profile </Link></Button>
+                            {/*<Button variant="dark" > <Link to={"about"}> About </Link> </Button>*/}
                             <Button variant="outline-danger" onClick={()=>{
 
 

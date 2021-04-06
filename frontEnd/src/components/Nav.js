@@ -39,6 +39,12 @@ export default function Navigation(props){
 
 
                 {userLoggedIn?
+
+                    <>
+
+                    <Button variant={'warning'}> Edit Profile </Button>
+
+
                 <Button variant="outline-danger" onClick={()=>{
 
                     alert("Logged out")
@@ -49,6 +55,9 @@ export default function Navigation(props){
                     }, 2000);
 
                 }}>  Logout </Button>
+
+
+                    </>
                     :
                     <>
                     </>
