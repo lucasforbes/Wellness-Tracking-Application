@@ -5,8 +5,9 @@ import axios from "axios";
 import AddDiet from "./addDiet";
 import Modal from 'react-modal';
 
-export default function ProfessionalDashboard(props){
 
+
+export default function ProfessionalDashboard(props){
 
     const customStyles = {
         content : {
@@ -32,6 +33,7 @@ export default function ProfessionalDashboard(props){
     const [statsDiet,setStatsDiet] = useState();
 
 
+    //For Workout Modal
     const [modalIsOpen,setIsOpen] = React.useState(false);
     function openModal() {
         setIsOpen(true);
@@ -52,6 +54,33 @@ export default function ProfessionalDashboard(props){
     function closeModal(){
         setIsOpen(false);
     }
+
+
+    //For Diet Modal
+    const [modalIsOpenDiet,setIsOpenDiet] = React.useState(false);
+    function openModalDiet() {
+        setIsOpenDiet(true);
+    }
+
+    function closeModalDiet(){
+        setIsOpenDiet(false);
+    }
+
+    const [selectedDiet,setSelectedDiet] = useState("");
+
+    const handleActionDiet = value => {
+        openModalDiet()
+        setSelectedDiet(value)
+        console.log("Diet Selected",value);
+    }
+
+    function closeModalDiet(){
+        setIsOpenDiet(false);
+    }
+
+
+
+
 
     useEffect(()=>{
 
@@ -223,7 +252,7 @@ export default function ProfessionalDashboard(props){
                             <br/>
 
                             {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
-                                    <>
+                                    <div id={index}>
                                         <Card>
                                             <Card.Body style={{backgroundColor: 'lightgreen'}}>
                                                 <div className={"row"} >
@@ -250,61 +279,64 @@ export default function ProfessionalDashboard(props){
 
                                         </Card>
 
-                                        <Modal  isOpen={modalIsOpen}
-                                                onRequestClose={closeModal}
-                                                style={customStyles}
-                                        >
-                                           <>
-
-                                            <div className={"row"}>
-                                                <div className={"col-md-5"}>
-                                                    <h4>  {selectedExercise.title} </h4>
-                                                </div>
-
-                                                <div className={"col-md-8"}>
-                                                    <b> Description: </b>    {" "+selectedExercise.description}
-                                                </div>
-
-                                                {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
-
-                                                    selectedExercise.activityList.map((item,id)=>{
-                                                        return (
-                                                            <>
-
-                                                                <div className={"col-md-5"}>
-
-                                                                    <i>Activity: </i> {item.activityName} <br/>
-                                                                    {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
-                                                                    {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
-                                                                    {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
-
-                                                                    {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
-
-                                                                </div>
-                                                            </>
-                                                        )
-                                                    }):""
-                                                }
-
-
-                                                <br/>
 
 
 
-                                            </div>
-
-                                            <Button onClick={closeModal}> Close </Button>
-                                            </>
-                                        </Modal>
-
-
-                                    </>
+                                    </div>
                                 )
                                 }):
                                 <>
                                     <h4> None previously added Workouts </h4>
                                 </>
                             }
+
+                            <Modal  isOpen={modalIsOpen}
+                                    onRequestClose={closeModal}
+                                    style={customStyles}
+                            >
+                                <>
+
+
+                                    <div className={"row"}>
+                                        <div className={"col-md-5"}>
+                                            <h4>  {selectedExercise.title} </h4>
+                                        </div>
+
+                                        <div className={"col-md-8"}>
+                                            <b> Description: </b>    {" "+selectedExercise.description}
+                                        </div>
+
+                                        {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+
+                                            selectedExercise.activityList.map((item,id)=>{
+                                                return (
+                                                    <>
+
+                                                        <div className={"col-md-5"}>
+
+                                                            <i>Activity: </i> {item.activityName} <br/>
+                                                            {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
+                                                            {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
+                                                            {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
+
+                                                            {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+
+                                                        </div>
+                                                    </>
+                                                )
+                                            }):""
+                                        }
+
+
+                                        <br/>
+
+
+
+                                    </div>
+
+                                    <Button onClick={closeModal} variant={'danger'}> Close </Button>
+                                </>
+                            </Modal>
 
                         </Tab>
 
@@ -329,7 +361,7 @@ export default function ProfessionalDashboard(props){
                                                     </div>
 
                                                     <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="warning" type={"button"}> Edit </Button>
+                                                        <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleActionDiet(diets)}> View </Button>
                                                     </div>
 
                                                     <div className={"col-md-1"}>
@@ -346,6 +378,9 @@ export default function ProfessionalDashboard(props){
                                             </Card.Body>
 
                                         </Card>
+
+
+
                                     </div>
                                 )
                                 }):
@@ -353,6 +388,55 @@ export default function ProfessionalDashboard(props){
                                     <h4> None previously added Diet Plans </h4>
                                 </>
                             }
+
+
+                            <Modal  isOpen={modalIsOpenDiet}
+                                    onRequestClose={closeModalDiet}
+                                    style={customStyles}
+                            >
+                                <>
+
+                                    <div className={"row"}>
+                                        <div className={"col-md-12"}>
+                                            <h4>  {selectedDiet.title} </h4>
+                                        </div>
+
+                                        <div className={"col-md-12"}>
+                                            <b> Description: </b>    {" "+selectedDiet.description}
+                                        </div>
+
+                                        {selectedDiet.dietList && selectedDiet.dietList.length > 0 ?
+
+                                            selectedDiet.dietList.map((diet,id)=>{
+                                                return (
+                                                    <div id={index} className={"col-md-12"}>
+
+
+                                                        <i>Item: </i> {diet.item}
+                                                        <p>Serving Size {" "+diet.servingSize+" "}</p>
+                                                        <p> Fat Contains {" "+diet.fat+" "} </p>
+                                                        <p> Carbs Contains {" "+diet.carbs+" "}</p>
+                                                        <p> Total Calories {" "+diet.calories+" "}</p>
+                                                        <p> Protein Contains {" "+diet.protein+" "}</p>
+
+
+                                                    </div>
+                                                )
+                                            }):""
+                                        }
+
+
+                                        <br/>
+
+
+
+                                    </div>
+
+                                    <Button onClick={closeModalDiet} variant={'danger'}> Close Diet </Button>
+                                </>
+                            </Modal>
+
+
 
                         </Tab>
 
@@ -389,7 +473,7 @@ export default function ProfessionalDashboard(props){
                                         <p>
                                             <br/> Total Diets {" "} {statsDiet ? statsDiet.countDiet:""}
                                             <br/>Average users per workout {" "}
-                                            {stats ? statsDiet.averageUsers:""}
+                                            {statsDiet ? statsDiet.averageUsers:""}
                                         </p>
 
                                     </h5>

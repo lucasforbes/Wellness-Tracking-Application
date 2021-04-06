@@ -37,6 +37,7 @@ function App() {
               <Route path="/ud" exact component={UserDashboard}/>
               <Route path="/pd" exact component={ProfessionalDashboard}/>
               <Route path="/cal" exact component={Cal}/>
+              <Route path={"/placeholder"} exact component={Placeholder} />
 
 
 
