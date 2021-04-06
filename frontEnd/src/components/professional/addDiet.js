@@ -137,7 +137,12 @@ export default function AddWorkout(props){
                 <form >
 
 
-                    <div className={"row"} style={{paddingLeft:"10px",paddingTop:"10px"}}>
+                    <div className={"row"} style={{color: 'white' ,backgroundColor: 'lightgreen',paddingLeft:"10px",paddingTop:"10px"}} >
+                        <div className={"col-md-12"}  >
+
+                            <h4 style={{fontSize: '180%', textDecoration: 'underline' }}>  Add Diet </h4>
+
+                        </div>
 
 
                         <div className={"col-md-12"}>
@@ -183,6 +188,7 @@ export default function AddWorkout(props){
 
                             <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Diet Description"
                                                required
+                                               style={{color: 'dodgerblue' , width:'30vw', minHeight:'30px'}}
                                                value={dietDescription}
                                                onChange={(e)=>setDietDescription(e.target.value)}/>
 
@@ -191,12 +197,11 @@ export default function AddWorkout(props){
 
 
 
-                        <div className={"col-md-12"}>
+                        <div className={"col-md-12"}  >
 
-                            <h4>  Add activity </h4>
+                            <h4 style={{fontSize: '180%', textDecoration: 'underline' }}>  Add Item </h4>
 
                         </div>
-
 
                         <div className={"col-md-12"}>
 
@@ -338,9 +343,7 @@ export default function AddWorkout(props){
 
                         <div className={"col-md-12"}>
 
-                            <br/>
-                            <br/>
-                            <Button variant="success" onClick={()=>{
+                            <Button style={{height: '40px',position: 'relative', right: '-400px', top: '-37px'}} variant="success" onClick={()=>{
 
                                 if(validateParamteres()){
                                     dietSubmit()
