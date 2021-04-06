@@ -101,8 +101,8 @@ export default function AddWorkout(props){
         }).then(function (response) {
             // handle success
             console.log("status",response);
-            // props.addedNewWorkout()
-            // json = null;
+            props.addedNewDiet()
+
         })
             .catch(function (error) {
                 console.log(error);

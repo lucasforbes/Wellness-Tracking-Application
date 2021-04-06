@@ -3,9 +3,21 @@ import AddWorkout from "./addWorkout";
 import {Row, Card, Col, Container, Tab, Tabs, TabContainer, Button} from "react-bootstrap";
 import axios from "axios";
 import AddDiet from "./addDiet";
-
+import Modal from 'react-modal';
 
 export default function ProfessionalDashboard(props){
+
+
+    const customStyles = {
+        content : {
+            top                   : '50%',
+            left                  : '50%',
+            right                 : 'auto',
+            bottom                : 'auto',
+            marginRight           : '-50%',
+            transform             : 'translate(-50%, -50%)'
+        }
+    };
 
     const { children, value, index, ...other } = props;
 
@@ -16,11 +28,37 @@ export default function ProfessionalDashboard(props){
     const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
     const [stats,setStats] = useState();
 
+    const[previouslyAddedDiets,setPreviouslyAddedDiets] = useState();
+    const [statsDiet,setStatsDiet] = useState();
+
+
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal(){
+        setIsOpen(false);
+    }
+
+    const [selectedExercise,setSelectedExercise] = useState("");
+
+    const handleAction = value => {
+        openModal()
+        setSelectedExercise(value)
+        console.log("Value Selected",value);
+    }
+
+    function closeModal(){
+        setIsOpen(false);
+    }
+
     useEffect(()=>{
 
         // setFirstName(localStorage.getItem("userFirstName"))
         setProfessionalEmail(localStorage.getItem("email"))
 
+        //call for all workouts and workout stats
         axios.get("https://bloom-flask-app.herokuapp.com/getExersizeByEmail?email="+localStorage.getItem("email")).
         then((res)=>{
             setPreviouslyAddedWorkouts(res.data)
@@ -32,6 +70,22 @@ export default function ProfessionalDashboard(props){
         axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmail?email="+localStorage.getItem("email")).
         then((res)=>{
             setStats(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+
+        // calls for all diet and diet stats
+        axios.get("https://bloom-flask-app.herokuapp.com/getDietByEmail?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setPreviouslyAddedDiets(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailDiet?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setStatsDiet(res.data)
         }).catch((err)=>{
             console.log(err);
         })
@@ -72,7 +126,40 @@ export default function ProfessionalDashboard(props){
 
     }
 
+    const deleteDiet=(id)=>{
 
+
+        if (window.confirm("Delete the Diet Plan ?")) {
+            axios.post("https://bloom-flask-app.herokuapp.com/deleteDiet",{
+                id: id
+            }).
+            then((res)=>{
+                axios.get("https://bloom-flask-app.herokuapp.com/getDietByEmail?email="+localStorage.getItem("email")).
+                then((res)=>{
+                    setPreviouslyAddedDiets(res.data)
+                }).catch((err)=>{
+                    alert("Error fetching Diets")
+                    console.log(err);
+                })
+
+                axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailDiet?email="+localStorage.getItem("email")).
+                then((res)=>{
+                    setStatsDiet(res.data)
+                }).catch((err)=>{
+                    console.log(err);
+                })
+
+
+            }).catch((err)=>{
+                alert("Error while trying to delete the value")
+            })
+        }
+
+
+    }
+
+
+    //callback when a workout is added
     const addedWorkout=()=>{
         axios.get("https://bloom-flask-app.herokuapp.com/getExersizeByEmail?email="+localStorage.getItem("email")).
         then((res)=>{
@@ -89,6 +176,24 @@ export default function ProfessionalDashboard(props){
             console.log(err);
         })
 
+    }
+
+    //callback when a diet is added
+    const addedDiet=()=>{
+        axios.get("https://bloom-flask-app.herokuapp.com/getDietByEmail?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setPreviouslyAddedDiets(res.data)
+        }).catch((err)=>{
+            alert("Error fetching Diets")
+            console.log(err);
+        })
+
+        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailDiet?email="+localStorage.getItem("email")).
+        then((res)=>{
+            setStatsDiet(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
     }
 
 
@@ -127,7 +232,7 @@ export default function ProfessionalDashboard(props){
                                                     </div>
 
                                                     <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="warning" type={"button"}> Edit </Button>
+                                                        <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleAction(workouts)}> View </Button>
                                                     </div>
 
                                                     <div className={"col-md-1"}>
@@ -144,6 +249,55 @@ export default function ProfessionalDashboard(props){
                                             </Card.Body>
 
                                         </Card>
+
+                                        <Modal  isOpen={modalIsOpen}
+                                                onRequestClose={closeModal}
+                                                style={customStyles}
+                                        >
+                                           <>
+
+                                            <div className={"row"}>
+                                                <div className={"col-md-5"}>
+                                                    <h4>  {selectedExercise.title} </h4>
+                                                </div>
+
+                                                <div className={"col-md-8"}>
+                                                    <b> Description: </b>    {" "+selectedExercise.description}
+                                                </div>
+
+                                                {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+
+                                                    selectedExercise.activityList.map((item,id)=>{
+                                                        return (
+                                                            <>
+
+                                                                <div className={"col-md-5"}>
+
+                                                                    <i>Activity: </i> {item.activityName} <br/>
+                                                                    {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
+                                                                    {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
+                                                                    {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
+
+                                                                    {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+
+                                                                </div>
+                                                            </>
+                                                        )
+                                                    }):""
+                                                }
+
+
+                                                <br/>
+
+
+
+                                            </div>
+
+                                            <Button onClick={closeModal}> Close </Button>
+                                            </>
+                                        </Modal>
+
+
                                     </>
                                 )
                                 }):
@@ -165,13 +319,13 @@ export default function ProfessionalDashboard(props){
 
                             <br/>
 
-                            {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
-                                    <>
+                            {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?previouslyAddedDiets.map((diets,index)=>{return(
+                                    <div id={index}>
                                         <Card>
                                             <Card.Body>
                                                 <div className={"row"}>
                                                     <div className={"col-md-8"}>
-                                                        <h4>{workouts.title}</h4>
+                                                        <h4>{diets.title}</h4>
                                                     </div>
 
                                                     <div className={"col-md-1"}>
@@ -179,12 +333,12 @@ export default function ProfessionalDashboard(props){
                                                     </div>
 
                                                     <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteWorkout(workouts._id)}> Delete </Button>
+                                                        <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteDiet(diets._id)}> Delete </Button>
                                                     </div>
 
 
                                                     <div className={"col-md-12"}>
-                                                        <p>{workouts.description}</p>
+                                                        <p>{diets.description}</p>
                                                     </div>
 
                                                     <p></p>
@@ -192,7 +346,7 @@ export default function ProfessionalDashboard(props){
                                             </Card.Body>
 
                                         </Card>
-                                    </>
+                                    </div>
                                 )
                                 }):
                                 <>
@@ -204,8 +358,7 @@ export default function ProfessionalDashboard(props){
 
 
                         <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgrey'}}>
-                            Add Diet
-                            <AddDiet/>
+                            <AddDiet addedNewDiet={addedDiet}/>
                         </Tab>
 
                         <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
@@ -214,12 +367,29 @@ export default function ProfessionalDashboard(props){
                             <Card>
                                 <Card.Body style={{backgroundColor: 'lightgreen'}}>
 
-                                    <h5 > Total Subscribers {stats? stats.totalUsers:""}
+                                    <h5 > Total Subscribers for Workout {stats? stats.totalUsers:""}
                                         <br/>
                                         <p>
                                             <br/> Total Workouts {" "} {stats ? stats.countWorkouts:""}
                                             <br/>Average users per workout {" "}
                                             {stats ? stats.averageUsers:""}
+                                        </p>
+
+                                    </h5>
+                                </Card.Body>
+                            </Card>
+
+                            <br/>
+
+                            <Card>
+                                <Card.Body style={{backgroundColor: 'lightgreen'}}>
+
+                                    <h5 > Total Subscribers for Diet {statsDiet? statsDiet.totalUsers:""}
+                                        <br/>
+                                        <p>
+                                            <br/> Total Diets {" "} {statsDiet ? statsDiet.countDiet:""}
+                                            <br/>Average users per workout {" "}
+                                            {stats ? statsDiet.averageUsers:""}
                                         </p>
 
                                     </h5>
