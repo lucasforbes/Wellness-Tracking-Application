@@ -24,7 +24,6 @@ public class VerifyCode {
     @Field("state")
     private int state;
 
-    @javax.persistence.Id
     public Integer getId() {
         return id;
     }
