@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This part is for data visualization
+ * This part is for data visualization, BMI is auto calculated and height is input optionally
  */
 @RestController
 public class BodyInfoController {
