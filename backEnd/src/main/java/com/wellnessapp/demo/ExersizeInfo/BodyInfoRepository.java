@@ -4,8 +4,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface WeightRepository extends MongoRepository<Weight, Integer> {
-    public List<Weight> getWeightByEmail(String email);
+public interface BodyInfoRepository extends MongoRepository<BodyInfo, Integer> {
+    public List<BodyInfo> getWeightByEmail(String email);
 
 
 }

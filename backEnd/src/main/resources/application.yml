@@ -14,6 +14,8 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://admin:admin@bloom.wpazh.mongodb.net/bloom?retryWrites=true&w=majority
+
+
   mail:
     host: smtp.qq.com
     username: 1072846210@qq.com

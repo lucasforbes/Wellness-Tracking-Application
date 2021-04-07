@@ -6,8 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.MappedSuperclass;
 
 
 @RestController
@@ -22,6 +24,7 @@ public class VerifyCode {
     @Field("state")
     private int state;
 
+    @javax.persistence.Id
     public Integer getId() {
         return id;
     }
@@ -53,4 +56,5 @@ public class VerifyCode {
     public void setState(int state) {
         this.state = state;
     }
+
 }

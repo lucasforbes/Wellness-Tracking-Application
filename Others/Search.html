@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+  <form>
+    <h1>Find passages u want to read</h1>
+    <div class="form-box">
+      <select type="text" class="search-type" autofocus id="myselect">
+        <option value="Title">Title</option>
+        <option value="Writer">Writer</option>
+        <option value="Content">Content</option>
+      </select>
+      <input id="inputbox" type="text" class="seach-field business" placeholder="Writer, Content, Title.." value="">
+      <button class="search-btn" type="button" id="search">Search</button>
+    </div>
+  </form>
+  <div class="content">
+    <form>
+      <h4></h4>
+      <h5></h5>
+      <h6></h6>
+      <p></p>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+<script>
+  document.querySelector('button').onclick = function (){
+    var select = document.getElementById('myselect');
+    var selection = "http://127.0.0.1:8080/article/find" + select.options[select.selectedIndex].value;
+    var searchBox = document.getElementById("inputbox").value;
+    var data;
+    if(select.options[select.selectedIndex].value === "Writer") {
+      data = "writer=" + searchBox;
+    }else if(select.options[select.selectedIndex].value === "Content"){
+      data = "content=" + searchBox;
+    }else if(select.options[select.selectedIndex].value === "Title"){
+      data = "title=" + searchBox;
+    }else{
+      alert("error");
+    }
+
+
+   $.get(
+     selection,
+     data,
+     function (result){
+       var jsonObj = eval('('+result+')');
+
+       for(var i=0;i<jsonObj.length;i++){
+         document.querySelector('h4').innerText = jsonObj[i].title;
+         var w = eval(jsonObj[i].writer);
+         var obj = null;
+         for(var j=0;j<w.length;j++){
+           if(obj === null){
+             obj = w[j].firstName+" "+w[j].lastName;
+           }else {
+             obj = ", "+w[j].firstName+" "+w[j].lastName;
+           }
+
+         }
+         document.querySelector('h6').innerText = obj;
+         document.querySelector('p').innerText = jsonObj[i].content;
+       }
+
+     },
+     "text"
+   )
+  }
+</script>
+
