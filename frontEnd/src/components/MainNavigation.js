@@ -31,6 +31,7 @@ export default function MainNavigation(props){
                             <img
                                 alt=""
                                 src="Bloom Wellness White Transparent cropped.png"
+
                                 width="80"
                                 height="40"
                                 className="d-inline-block align-top"
