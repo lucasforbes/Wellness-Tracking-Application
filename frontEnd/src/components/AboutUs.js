@@ -28,7 +28,7 @@ export default function AboutUs(){
 
 
                 <div className={'col-md-6'}>
-                    <div className={'header'} style={{marginTop: '3vh', fontFamily: 'Cursive' , textAlign: 'center', fontSize: '200%', color: 'white'}}> Meet the Team </div>
+                    <div className={'header'} style={{marginTop: '3vh', fontFamily: 'Cursive' , textAlign: 'center',fontWeight:'500',textDecoration:'underline', fontSize: '300%', color: 'white'}}> Meet the Team </div>
 
                     <div className={'row'} style={{padding: '10px',marginRight: 'auto', marginLeft: 'auto'}}>
                         <div className={'col-sm-6'} style={{}}>

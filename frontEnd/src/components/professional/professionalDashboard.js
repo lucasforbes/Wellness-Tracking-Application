@@ -246,8 +246,8 @@ export default function ProfessionalDashboard(props){
                 <div className={'flex-row'} style={{backgroundColor:''}} >
                     <Tabs defaultActiveKey="history" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '6px double white',borderLeft: '5px solid white', borderRight: '5px solid white'}}>
 
-                        <Tab eventKey="history" title="Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
-                            <header style={{textAlign: 'center', color: 'white', fontSize: '200%'}}> Your Workouts</header>
+                        <Tab eventKey="history" title="Workout Inventory" style = {{backgroundColor: 'lightgreen', color: 'white', fontFamily:'cursive',bordercolor: 'white',border: 'solid'}}>
+                            <header style={{textAlign: 'center', fontSize: '200%', textDecoration:'underline',fontWeight: '600'}}> Your Workouts</header>
 
                             <br/>
 
@@ -286,7 +286,7 @@ export default function ProfessionalDashboard(props){
                                 )
                                 }):
                                 <>
-                                    <h4> None previously added Workouts </h4>
+                                    <h4 style={{ position:'relative',right:'-30px',fontSize: '200%', fontWeight: '420'}}> No previously added Workouts </h4>
                                 </>
                             }
 
@@ -346,8 +346,8 @@ export default function ProfessionalDashboard(props){
                         </Tab>
 
 
-                        <Tab eventKey="diethistory" title="Diet Inventory" style = {{backgroundColor: 'lightblue', color: 'red'}}>
-                            <header style={{textAlign: 'center'}}> workouts</header>
+                        <Tab eventKey="diethistory" title="Diet Inventory" style = {{backgroundColor: 'lightgreen', color: 'white', fontFamily: 'cursive', border: 'solid', borderColor:'white'}}>
+                            <header style={{textAlign: 'center', fontSize: '200%', fontWeight: '600',textDecoration:'underline'}}>Your Diets</header>
 
                             <br/>
 
@@ -385,7 +385,7 @@ export default function ProfessionalDashboard(props){
                                 )
                                 }):
                                 <>
-                                    <h4> None previously added Diet Plans </h4>
+                                    <h4 style={{fontSize: '200%',fontWeight:'420', position:'relative',right:'-30px'}}>No previously added Diet Plans </h4>
                                 </>
                             }
 
@@ -441,11 +441,11 @@ export default function ProfessionalDashboard(props){
                         </Tab>
 
 
-                        <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgrey'}}>
+                        <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgreen',border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
                             <AddDiet addedNewDiet={addedDiet}/>
                         </Tab>
 
-                        <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
+                        <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}>
                             Stats
 
                             <Card>

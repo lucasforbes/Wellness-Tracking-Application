@@ -88,7 +88,7 @@ export default function Homepage() {
                             <Card.Body>
                                 <Card.Title style = {{fontSize:'200%'}}>Wellness Programs</Card.Title>
                                 <Card.Subtitle style = {{fontSize:'150%'}} className="mb-2 text-muted">Be Well</Card.Subtitle>
-                                <Card.Text>Access to wellness programs</Card.Text>
+                                <Card.Text>Access to wellness programs coming soon</Card.Text>
 
                             </Card.Body>
                         </Card>
