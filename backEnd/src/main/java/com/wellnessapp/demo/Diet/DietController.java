@@ -224,7 +224,7 @@ public class DietController {
         int userId = user.getId();
         List userDiets = user.getDietsSubscribed();
         userDiets.add(exersizeId);
-        List subscribers = diet.getUserIdsToExersizesSubscribed();
+        List subscribers = diet.getUserIdsToDietsSubscribed();
         subscribers.add(userId);
         String retState = "Added user to Diet subscriber list";
         return retState;
@@ -236,7 +236,7 @@ public class DietController {
         int userId = user.getId();
         List userDiets = user.getDietsSubscribed();
         userDiets.remove(exersizeId);
-        List subscribers = diet.getUserIdsToExersizesSubscribed();
+        List subscribers = diet.getUserIdsToDietsSubscribed();
         subscribers.remove(userId);
         String retState = "removed user to Diet subscriber list";
         return retState;
