@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,8 +45,8 @@ public class User {
     //    state of user: Online/Offline
     private Boolean online;
     private Boolean isDeleted;
-    private List<Integer> dietsSubscribed;
-    private List<Integer> exersizesSubscribed;
+    private List<ObjectId> dietsSubscribed;
+    private List<ObjectId> exersizesSubscribed;
     private List<Integer> paidCreatorsSubscribed;
 
     // need to figure out picture, for now taking out of constructor:
@@ -95,19 +96,19 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Integer> getDietsSubscribed() {
+    public List<ObjectId> getDietsSubscribed() {
         return dietsSubscribed;
     }
 
-    public void setDietsSubscribed(List<Integer> dietsSubscribed) {
+    public void setDietsSubscribed(List<ObjectId> dietsSubscribed) {
         this.dietsSubscribed = dietsSubscribed;
     }
 
-    public List<Integer> getExersizesSubscribed() {
+    public List<ObjectId> getExersizesSubscribed() {
         return exersizesSubscribed;
     }
 
-    public void setExersizesSubscribed(List<Integer> exersizesSubscribed) {
+    public void setExersizesSubscribed(List<ObjectId> exersizesSubscribed) {
         this.exersizesSubscribed = exersizesSubscribed;
     }
 

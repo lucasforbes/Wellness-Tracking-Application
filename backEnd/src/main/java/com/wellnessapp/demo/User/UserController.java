@@ -96,24 +96,24 @@ public class UserController {
         System.out.println("Trying to get user with id: " + id);
         return this.udb.findById(id);
     }
-    @GetMapping("/subscribeDiet/{email, dietId}")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setSubscribedDiets(@PathVariable String email, @PathVariable int id){
-        User subscriber = udb.findByEmail(email);
-        List<Integer> subscriberDietlist = subscriber.getDietsSubscribed();
-        subscriberDietlist.add(id);
-        String retState = "Added diet to diets subscribed to user";
-        return retState;
-    }
-    @GetMapping("/subscribeExersize/{email, dietId}")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setSubscribedExersizes(@PathVariable String email, @PathVariable int id){
-        User subscriber = udb.findByEmail(email);
-        List<Integer> subscriberExersizeList = subscriber.getExersizesSubscribed();
-        subscriberExersizeList.add(id);
-        String retState = "Added exersize to exersizes subscribed to user";
-        return retState;
-    }
+//    @GetMapping("/subscribeDiet/{email, dietId}")
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    public String setSubscribedDiets(@PathVariable String email, @PathVariable int id){
+//        User subscriber = udb.findByEmail(email);
+//        List<Integer> subscriberDietlist = subscriber.getDietsSubscribed();
+//        subscriberDietlist.add(id);
+//        String retState = "Added diet to diets subscribed to user";
+//        return retState;
+//    }
+//    @GetMapping("/subscribeExersize/{email, dietId}")
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    public String setSubscribedExersizes(@PathVariable String email, @PathVariable int id){
+//        User subscriber = udb.findByEmail(email);
+//        List<Integer> subscriberExersizeList = subscriber.getExersizesSubscribed();
+//        subscriberExersizeList.add(id);
+//        String retState = "Added exersize to exersizes subscribed to user";
+//        return retState;
+//    }
 
     @GetMapping("/findUserByEmail/{email}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")

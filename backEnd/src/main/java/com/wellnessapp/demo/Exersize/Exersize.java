@@ -3,6 +3,7 @@ package com.wellnessapp.demo.Exersize;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ import java.util.*;
 @Document(collection = "Exersize")
 public class Exersize {
     @Id
-    int id;
+    ObjectId id;
     String email;
     String title;
     String description;
@@ -96,11 +97,11 @@ public class Exersize {
         this.paid = paid;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

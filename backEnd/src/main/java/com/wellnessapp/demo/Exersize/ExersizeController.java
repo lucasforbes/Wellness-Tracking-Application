@@ -38,7 +38,7 @@ public class ExersizeController {
     public Exersize saveExersize(@RequestParam("photo") MultipartFile photo, @RequestPart("exersize") Exersize exersize) throws JsonProcessingException {
         System.out.println("");
         int id = edb.findAll().size();
-        exersize.id = (id + 1);
+//        exersize.id = (id + 1);
         try{
             MultipartFile file = photo;
             int count2 = idb.findAll().size();
@@ -46,7 +46,7 @@ public class ExersizeController {
             image.setId(count2);
             image.setName(file.getOriginalFilename());
             image.setUserEmail(exersize.getEmail());
-            image.setOtherDbId(exersize.getId());
+//            image.setOtherDbId(exersize.getId());
             image.setBelongsTo(2);
             image.setUpdateDate(new Date());
             image.setContent(new Binary(file.getBytes()));
@@ -173,148 +173,148 @@ public class ExersizeController {
         creator.getPaidUsers().remove(user.getId());
         return "user unsubscribed to paid creator";
     }
-
-    @GetMapping("/findExersizesSubscribed/{email}")
-    public List<Exersize>findExersizesSubscribed(@PathVariable String email){
-        List<Exersize> returnExersizes = new List<Exersize>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Exersize> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Exersize exersize) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Exersize> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Exersize> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public boolean equals(Object o) {
-                return false;
-            }
-
-            @Override
-            public int hashCode() {
-                return 0;
-            }
-
-            @Override
-            public Exersize get(int index) {
-                return null;
-            }
-
-            @Override
-            public Exersize set(int index, Exersize element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Exersize element) {
-
-            }
-
-            @Override
-            public Exersize remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Exersize> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Exersize> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Exersize> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
-        User user = udb.findByEmail(email);
-        List<Integer> subscriptions = user.getExersizesSubscribed();
-        for (Integer i : subscriptions){
-            try{
-                int x = (int) i;
-                Exersize d = edb.findById(x);
-                returnExersizes.add(d);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        return returnExersizes;
-    }
+//
+//    @GetMapping("/findExersizesSubscribed/{email}")
+//    public List<Exersize>findExersizesSubscribed(@PathVariable String email){
+//        List<Exersize> returnExersizes = new List<Exersize>() {
+//            @Override
+//            public int size() {
+//                return 0;
+//            }
+//
+//            @Override
+//            public boolean isEmpty() {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean contains(Object o) {
+//                return false;
+//            }
+//
+//            @Override
+//            public Iterator<Exersize> iterator() {
+//                return null;
+//            }
+//
+//            @Override
+//            public Object[] toArray() {
+//                return new Object[0];
+//            }
+//
+//            @Override
+//            public <T> T[] toArray(T[] a) {
+//                return null;
+//            }
+//
+//            @Override
+//            public boolean add(Exersize exersize) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean remove(Object o) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean containsAll(Collection<?> c) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean addAll(Collection<? extends Exersize> c) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean addAll(int index, Collection<? extends Exersize> c) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean removeAll(Collection<?> c) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean retainAll(Collection<?> c) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void clear() {
+//
+//            }
+//
+//            @Override
+//            public boolean equals(Object o) {
+//                return false;
+//            }
+//
+//            @Override
+//            public int hashCode() {
+//                return 0;
+//            }
+//
+//            @Override
+//            public Exersize get(int index) {
+//                return null;
+//            }
+//
+//            @Override
+//            public Exersize set(int index, Exersize element) {
+//                return null;
+//            }
+//
+//            @Override
+//            public void add(int index, Exersize element) {
+//
+//            }
+//
+//            @Override
+//            public Exersize remove(int index) {
+//                return null;
+//            }
+//
+//            @Override
+//            public int indexOf(Object o) {
+//                return 0;
+//            }
+//
+//            @Override
+//            public int lastIndexOf(Object o) {
+//                return 0;
+//            }
+//
+//            @Override
+//            public ListIterator<Exersize> listIterator() {
+//                return null;
+//            }
+//
+//            @Override
+//            public ListIterator<Exersize> listIterator(int index) {
+//                return null;
+//            }
+//
+//            @Override
+//            public List<Exersize> subList(int fromIndex, int toIndex) {
+//                return null;
+//            }
+//        };
+//        User user = udb.findByEmail(email);
+//        List<Integer> subscriptions = user.getExersizesSubscribed();
+//        for (Integer i : subscriptions){
+//            try{
+//                int x = (int) i;
+//                Exersize d = edb.findById(x);
+//                returnExersizes.add(d);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }
+//        return returnExersizes;
+//    }
 
     @GetMapping(value = "/findExersizePic/{exersizeId}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable int exersizeId) {

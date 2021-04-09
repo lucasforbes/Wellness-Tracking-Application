@@ -1,6 +1,7 @@
 package com.wellnessapp.demo.Diet;
 
 import com.wellnessapp.demo.Exersize.SingleExersize;
+import org.bson.types.ObjectId;
 
 import javax.persistence.Id;
 import java.util.Collection;
@@ -10,7 +11,7 @@ import java.util.ListIterator;
 
 public class Diet {
     @Id
-    int id;
+    ObjectId id;
     String email;
     String title;
     String description;
@@ -27,11 +28,11 @@ public class Diet {
         this.paid = paid;
     }
 
-    public int getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
