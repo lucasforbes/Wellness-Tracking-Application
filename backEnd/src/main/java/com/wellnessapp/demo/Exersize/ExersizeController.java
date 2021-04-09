@@ -121,7 +121,7 @@ public class ExersizeController {
         String retState = "Removed user to Exersize subscriber list";
         return retState;
     }
-    @GetMapping("/subscribeUserToPaidExersize/{exersizeId, userEmail}")
+    @GetMapping("/subscribeUserToPaidExersize/")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setUserPaidExersizeSubscription(@RequestParam String exersizeId, @RequestParam String userEmail){
         ObjectId id = new ObjectId(exersizeId);
