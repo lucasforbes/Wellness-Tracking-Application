@@ -58,6 +58,28 @@ export default function AdminDashboard(props){
     }
 
 
+    const updateApprovalNotes=(id)=>{
+
+        let notes = document.getElementById(id).value;
+
+        let json = JSON.stringify({
+            'id': id,
+            'notes': notes
+        })
+
+        axios.post('https://bloom-flask-app.herokuapp.com/updateApprovalExerciseNote',json)
+            .then((res)=>{
+                setRerender(!rerender)
+                console.log(res.data)
+            })
+            .catch((err)=>{
+                alert("Error while changing approval notes")
+                console.log(err)
+            })
+    }
+
+
+
     return(
 
         <>
@@ -101,9 +123,9 @@ export default function AdminDashboard(props){
                                                 {exercise.approved? <Button style={{width:"max-content"}} variant={"light"} onClick={()=>updateApproval(exercise._id,false)}><FcCancel/> Cancel Approval</Button>: <Button variant={"light"} style={{width:"max-content"}} onClick={()=>updateApproval(exercise._id,true)}><FcCheckmark/> Approve </Button>}
                                                <p>  <br/><text className={"bg-warning"}>{" Note: "} </text> </p>
                                                 <tr>
-                                                    <td> <input type={'text'} value={exercise.notes?exercise.notes:""} />  </td>
+                                                    <td> <input type={'text'} id={exercise._id} defaultValue={exercise.notes?exercise.notes:""} />  </td>
                                                     <td> {" "}</td>
-                                                    <td>  <Button style={{width:"max-content"}} variant={"info"}> Update </Button> </td>
+                                                    <td>  <Button style={{width:"max-content"}} variant={"info"} onClick={()=>updateApprovalNotes(exercise._id)}> Update </Button> </td>
                                                 </tr>
 
                                             </div>
