@@ -132,77 +132,93 @@ export default function UserDashboard(props){
         <>
 
 
-            <br/>
-            <div className={'row'} style={ {textAlign: 'center' ,backgroundAttachment: 'fixed' , color:'white',fontSize: '3vw', height: '10vw',margin:'0px', backgroundImage: 'url(./ocean_waves_in_blue-1920x1200.jpg)'}}>
-                <div className={'col-xs-4'} style={{position:"relative",right: '-10vw', bottom: '-2vw'}}>
-                    Welcome
-                    {/*{firstName?firstName:""}*/}
-                </div>
-            </div>
+           <div className={'container-fluid'} style={{backgroundColor: 'lightblue', height: 'auto'}}>
+               <div className={'row'} style = {{width: '',  overflow: 'hidden', minHeight: '80px', backgroundColor: 'lightgrey', fontSize:'4vw', fontFamily: 'Cursive'}}>
+                   <Card style = {{width: '100%', height:'8vw', minHeight:'0'}} className="bg-dark text-white">
+                       <Card.Img variant={'top'} src="./ocean_waves_in_blue-1920x1200.jpg" alt="Card image" />
+                       <Card.ImgOverlay style = {{width: '100%'}}>
+                           <div className={'col-xs-4'} style={{position:"relative",right: '-10vw', bottom: '-0vw'}}>
+                               Welcome
+                               {/*{firstName?firstName:""}*/}
+                           </div>
+                       </Card.ImgOverlay>
+                   </Card>
+               </div>
 
 
-            <Tabs defaultActiveKey="enrolled" style={{backgroundColor:'lightgreen' }}>
+               <div className={'flex-row'} style={{backgroundColor:''}} >
 
-                <Tab eventKey="enrolled" title="Enrolled">
+                   <Tabs defaultActiveKey="enrolled" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '6px double white',borderLeft: '5px solid white', borderRight: '5px solid white'}}>
 
-                  <h4>  Your Enrolled Workouts </h4>
+                       <Tab eventKey="enrolled" title="Enrolled" style = {{backgroundColor: 'lightgreen', color: 'white', fontFamily:'cursive',bordercolor: 'white',border: 'solid'}}>
 
-                    {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
-                            <>
-                                <Card style={{backgroundColor: 'lightgreen'}}>
-                                    <Card.Body>
-                                        <div className={"row"} >
-                                            <div className={"col-md-8"}>
-                                                <h4>{workouts.title}</h4>
-                                            </div>
+                           <h4 style={{textAlign: 'center', fontSize: '200%', textDecoration:'underline',fontWeight: '600'}}>  Your Enrolled Workouts </h4>
 
-                                            <div className={"col-md-12"}>
-                                                <p>{workouts.description}</p>
-                                            </div>
+                           {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
+                                   <>
+                                       <Card style={{backgroundColor: 'lightgreen'}}>
+                                           <Card.Body>
+                                               <div className={"row"} >
+                                                   <div className={"col-md-8"}>
+                                                       <h4>{workouts.title}</h4>
+                                                   </div>
 
-                                            <p></p>
-                                        </div>
-                                    </Card.Body>
+                                                   <div className={"col-md-12"}>
+                                                       <p>{workouts.description}</p>
+                                                   </div>
 
-                                </Card>
-                            </>
-                        )
-                        }):
-                        <>
-                            <h6> None previously added Workouts </h6>
-                        </>
-                    }
+                                                   <p></p>
+                                               </div>
+                                           </Card.Body>
 
-                </Tab>
+                                       </Card>
+                                   </>
+                               )
+                               }):
+                               <>
+                                   <h6> None previously added Workouts </h6>
+                               </>
+                           }
 
-                <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgreen'}}>
+                       </Tab>
 
-                    {allExercises?<AllExercises key={rerenderAllExe} data={allExercises} callBack={subscribedCallback}/> :<></>}
+                       <Tab eventKey="market" title="MarketPlace" align={"left"} style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
 
-
-
-                </Tab>
-
-
-                <Tab eventKey="profile" title="Statistics" >
-                    Stats
-                    <Card>
-                        <Card.Body>
-                            <h5> Total Subscribed  {stats? stats.totalUsers:""}
-                                <br/>
-                                <p>
-                                  Total Calories Burned {stats ? stats.caloriesBurned:""}
-                                </p>
-                            </h5>
-                        </Card.Body>
-                    </Card>
-
-
-                </Tab>
-            </Tabs>
+                           {allExercises?<AllExercises key={rerenderAllExe} data={allExercises} callBack={subscribedCallback}/> :<></>}
 
 
 
+                       </Tab>
+
+
+                       <Tab eventKey="profile" title="Statistics"   style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}>
+                           Stats
+                           <Card style={{backgroundColor:'lightgreen'}}>
+                               <Card.Body>
+                                   <h5> Total Subscribed  {stats? stats.totalUsers:""}
+                                       <br/>
+                                       <p>
+                                           Total Calories Burned {stats ? stats.caloriesBurned:""}
+                                       </p>
+                                   </h5>
+                               </Card.Body>
+                           </Card>
+
+
+                       </Tab>
+                   </Tabs>
+
+
+
+
+
+               </div>
+
+
+
+
+
+           </div>
 
 
         </>

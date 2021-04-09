@@ -48,6 +48,53 @@ export default function AllExercises(props){
 
     ];
 
+    const customStyles = {
+
+        header: {
+            style: {
+                color: 'white',
+                backgroundColor: 'dodgerblue',
+                fontWeight: '1000',
+                fontSize: '180%',
+                textDecoration: 'underline',
+                borderRight: 'inset 5px white',
+                borderLeft: 'solid 5px white',
+                borderTop: 'inset 5px dodgerblue',
+
+                minHeight: '72px', // override the row height
+            }
+        },
+
+        rows: {
+            style: {
+                color: 'white',
+                backgroundColor: 'lightGreen',
+
+                minHeight: '72px', // override the row height
+            }
+        },
+        headCells: {
+            style: {
+                color: 'dodgerblue',
+                backgroundColor: 'lightBlue',
+                paddingLeft: '8px', // override the cell padding for head cells
+                paddingRight: '8px',
+                borderBottom: 'inset 5px dodgerblue',
+                fontSize: '110%',
+                fontWeight: '550'
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '120%',
+                color: 'dodgerblue',
+                backgroundColor: 'lightGreen',
+                paddingLeft: '8px', // override the cell padding for data cells
+                paddingRight: '8px',
+            },
+        },
+    };
+
 
     const filterPaid=(value)=>{
 
@@ -123,102 +170,108 @@ export default function AllExercises(props){
     return(
 
         <>
+            <div className={'container-fluid'} style={{color: 'white', backgroundColor:'lightgreen',fontFamily: 'cursive'}}>
 
-            <FormControl>
-                <InputLabel> Type </InputLabel>
-                <Select onChange={filterPaid} value={paidFilter} onChange={(e)=> {
-                    setPaidFilter(e.target.value)
-                    filterPaid(e.target.value)
-                }}>
-                    <MenuItem value={"all"}>All</MenuItem>
-                    <MenuItem value={"paid"}> Paid </MenuItem>
-                    <MenuItem value={"free"}>Free </MenuItem>
-                </Select>
-            </FormControl>
 
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-            >
+                <FormControl >
+                    <InputLabel> Type </InputLabel>
+                    <Select onChange={filterPaid} value={paidFilter} onChange={(e)=> {
+                        setPaidFilter(e.target.value)
+                        filterPaid(e.target.value)
+                    }}>
+                        <MenuItem value={"all"}>All</MenuItem>
+                        <MenuItem value={"paid"}> Paid </MenuItem>
+                        <MenuItem value={"free"}>Free </MenuItem>
+                    </Select>
+                </FormControl>
 
-                <Button variant="danger" onClick={closeModal}>close</Button>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                >
 
-                <h2>Workout Details </h2>
+                    <Button variant="danger" onClick={closeModal}>close</Button>
 
-                {selectedExercise?
-                    <>
+                    <h2 >Workout Details </h2>
 
-                        <div className={"row"}>
-                            <div className={"col-md-5"}>
-                                <h4>  {selectedExercise.title} </h4>
-                            </div>
+                    {selectedExercise?
+                        <>
 
-                            <div className={"col-md-1"}>
+                            <div className={"row"} >
+                                <div className={"col-md-5"} >
+                                    <h4>  {selectedExercise.title} </h4>
+                                </div>
 
-                                {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
+                                <div className={"col-md-1"}>
 
-                                {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
-                                    <>"Already Subscribed"
+                                    {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
 
-                                        <Button onClick={()=>removeSubscription(selectedExercise._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
+                                    {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
+                                        <>"Already Subscribed"
 
-                                    </>
+                                            <Button onClick={()=>removeSubscription(selectedExercise._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
 
-                                    :
-                                    <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                                        </>
+
+                                        :
+                                        <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                                    }
+
+                                </div>
+
+
+                                <div className={"col-md-8"}>
+                                    <b> Description: </b>    {" "+selectedExercise.description}
+                                </div>
+
+                                {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+
+                                    selectedExercise.activityList.map((item,id)=>{
+                                        return (
+                                            <>
+
+                                                <div className={"col-md-5"}>
+
+                                                    <i>Activity: </i> {item.activityName} <br/>
+                                                    {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
+                                                    {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
+                                                    {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
+
+                                                    {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+
+                                                </div>
+                                            </>
+                                        )
+                                    }):""
                                 }
 
+
+                                <br/>
+
+
+
                             </div>
 
-
-                            <div className={"col-md-8"}>
-                                <b> Description: </b>    {" "+selectedExercise.description}
-                            </div>
-
-                            {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
-
-                                selectedExercise.activityList.map((item,id)=>{
-                                    return (
-                                        <>
-
-                                            <div className={"col-md-5"}>
-
-                                                <i>Activity: </i> {item.activityName} <br/>
-                                                {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
-                                                {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
-                                                {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
-
-                                                {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
-
-                                            </div>
-                                        </>
-                                    )
-                                }):""
-                            }
+                        </>
+                        :
+                        ""
+                    }
 
 
-                            <br/>
+                </Modal>
 
-
-
-                        </div>
-
-                    </>
-                    :
-                    ""
-                }
-
-
-            </Modal>
-
-            <DataTable
-                title="Workout List"
-                columns={columns}
-                data={data}
-                theme="solarized"
-                pagination={true}
-                onRowClicked={handleAction}
-            />
+                <DataTable
+                    title="Workout List"
+                    columns={columns}
+                    style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}
+                    customStyles={customStyles}
+                    data={data}
+                    theme="info"
+                    pagination={true}
+                    onRowClicked={handleAction}
+                />
+            </div>
+            <br/>
 
         </>
     )
