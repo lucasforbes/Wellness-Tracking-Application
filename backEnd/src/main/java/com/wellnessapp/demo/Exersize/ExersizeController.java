@@ -11,6 +11,7 @@ import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.Image;
 import com.wellnessapp.demo.tools.ImageRepository;
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -145,6 +146,11 @@ public class ExersizeController {
         }
 
     }
+    @GetMapping("/getExersizesss/{exersizeId}")
+    public Exersize getExersizesss(@PathVariable ObjectId objectId){
+        return edb.findById(objectId);
+        }
+
     @GetMapping("/subscribeUserToPaidCreator/{exersizeId, userEmail}")
     public String setUserPaidExersizeSubscriptionSupport(@PathVariable int exersizeId, @PathVariable String userEmail){
 //

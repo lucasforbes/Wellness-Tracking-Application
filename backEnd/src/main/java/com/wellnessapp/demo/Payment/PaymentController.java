@@ -27,6 +27,8 @@ public class PaymentController {
     @Autowired
     private DietRepository ddb;
 
+//    Change to JSON
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/makePayment")
     @ResponseBody
