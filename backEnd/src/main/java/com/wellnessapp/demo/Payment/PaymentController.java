@@ -34,7 +34,10 @@ public class PaymentController {
 
     @PostMapping("/makePayment")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String makePayment(@RequestParam String userEmail, @RequestParam String obj, @RequestParam Payment payment){
+    public String makePayment(@RequestBody PaymentStruct paymentStruct){
+        String userEmail = paymentStruct.getUserEmail();
+        String obj = paymentStruct.getObj();
+        Payment payment = paymentStruct.getPayment();
         ObjectId id = new ObjectId(obj);
         List<Object> jawns = new ArrayList<>();
         try{
