@@ -147,7 +147,7 @@ public class ExersizeController {
 
     }
     @GetMapping("/getExersizesss/{exersizeId}")
-    public Exersize getExersizesss(@PathVariable String objectId){
+    public Exersize getExersizesss(@PathVariable String exersizeId){
         ObjectId obj = new ObjectId("605f9c2f597547bacce7504a");
         System.out.println(obj.getClass());
         System.out.println(obj);
