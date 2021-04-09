@@ -30,7 +30,7 @@ public class Exersize {
     Boolean paid;
     String picture;
     String videoLink;
-    private List<Integer> userIdsToExersizesSubscribed;
+    private List<String> userIdsToExersizesSubscribed;
 
     public Exersize(String email, SingleExersize[] activityList, String title, String description, Boolean paid) {
         this.email = email;
@@ -53,11 +53,11 @@ public class Exersize {
         return videoLink;
     }
 
-    public List<Integer> getUserIdsToExersizesSubscribed() {
+    public List<String> getUserIdsToExersizesSubscribed() {
         return userIdsToExersizesSubscribed;
     }
 
-    public void setUserIdsToExersizesSubscribed(List<Integer> userIdsToExersizesSubscribed) {
+    public void setUserIdsToExersizesSubscribed(List<String> userIdsToExersizesSubscribed) {
         this.userIdsToExersizesSubscribed = userIdsToExersizesSubscribed;
     }
 

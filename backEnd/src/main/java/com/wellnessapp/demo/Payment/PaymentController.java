@@ -64,20 +64,20 @@ public class PaymentController {
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
         User user = udb.findByEmail(userEmail);
         Creator creator;
-        List<Integer> contentSubscription;
+        List<String> contentSubscription;
         try{
             Exersize exersize = (Exersize) jawns.get(0);
             creator = cdb.findByEmail(exersize.getEmail());
             //        perform the normal opperations to subscription lists
             contentSubscription = exersize.getUserIdsToExersizesSubscribed();
-            contentSubscription.add(user.getId());
+            contentSubscription.add(user.getEmail());
             user.getExersizesSubscribed().add(exersize.getId());
             creator.getUserIdsToExersizesSubscribed().add(user.getId());
         }catch (Exception e){
             Diet diet = (Diet) jawns.get(0);
             creator = cdb.findByEmail(diet.getEmail());
             contentSubscription = diet.getUserIdsToDietsSubscribed();
-            contentSubscription.add(user.getId());
+            contentSubscription.add(user.getEmail());
             user.getDietsSubscribed().add(diet.getId());
             creator.getUserIdsToDietsSubscribed().add(user.getId());
         }

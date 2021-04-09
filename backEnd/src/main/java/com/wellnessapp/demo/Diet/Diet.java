@@ -19,7 +19,7 @@ public class Diet {
     Boolean paid;
     String picture;
     String videoLink;
-    private List<Integer> userIdsToDietsSubscribed;
+    private List<String> userIdsToDietsSubscribed;
     public Diet(String email, String title, String description, SingleDiet[] dietList, Boolean paid) {
         this.email = email;
         this.title = title;
@@ -64,11 +64,11 @@ public class Diet {
         return dietList;
     }
 
-    public List<Integer> getUserIdsToDietsSubscribed() {
+    public List<String> getUserIdsToDietsSubscribed() {
         return userIdsToDietsSubscribed;
     }
 
-    public void setUserIdsToDietsSubscribed(List<Integer> userIdsToDietsSubscribed) {
+    public void setUserIdsToDietsSubscribed(List<String> userIdsToDietsSubscribed) {
         this.userIdsToDietsSubscribed = userIdsToDietsSubscribed;
     }
 
