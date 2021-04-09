@@ -32,7 +32,8 @@ public class PaymentController {
 
 //    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/makePayment")
-    public String makePayment(@PathVariable String userEmail, @PathVariable ObjectId id, @PathVariable Payment payment){
+    public String makePayment(@PathVariable String userEmail, @PathVariable String obj, @PathVariable Payment payment){
+        ObjectId id = new ObjectId(obj);
         List<Object> jawns = new ArrayList<>();
         try{
             Exersize jawn = edb.findById(id);
