@@ -148,9 +148,12 @@ public class ExersizeController {
     }
     @GetMapping("/getExersizesss/{exersizeId}")
     public Exersize getExersizesss(@PathVariable String objectId){
-        ObjectId obj = new ObjectId(objectId);
+        ObjectId obj = new ObjectId("605f9c2f597547bacce7504a");
+        System.out.println(obj.getClass());
+        System.out.println(obj);
         return edb.findById(obj);
         }
+
 
     @GetMapping("/subscribeUserToPaidCreator/{exersizeId, userEmail}")
     public String setUserPaidExersizeSubscriptionSupport(@PathVariable int exersizeId, @PathVariable String userEmail){
