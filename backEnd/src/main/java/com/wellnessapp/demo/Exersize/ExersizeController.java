@@ -121,8 +121,9 @@ public class ExersizeController {
         return retState;
     }
     @GetMapping("/subscribeUserToPaidExersize/{exersizeId, userEmail}")
-    public String setUserPaidExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
-        Exersize exersize = edb.findById(exersizeId);
+    public String setUserPaidExersizeSubscription(@PathVariable String exersizeId, @PathVariable String userEmail){
+        ObjectId id = new ObjectId(exersizeId);
+        Exersize exersize = edb.findById(id);
         String creatorEmail =  exersize.getEmail();
         Creator creator = cdb.findByEmail(creatorEmail);
         User user = udb.findByEmail(userEmail);

@@ -54,13 +54,13 @@ public class PaymentController {
         LocalDate currentDate = LocalDate.now(cl);
         for(int i=0; i < num.length(); i++) {
             Boolean flag = Character.isDigit(num.charAt(i));
-            if (flag == false) {
+            if (flag == false || num.length() != 16) {
                 return "Please enter valid 16 digit credit card number";
             }
         }
         for(int i=0; i < cvv.length(); i++) {
             Boolean flag = Character.isDigit(cvv.charAt(i));
-            if (flag == false) {
+            if (flag == false || cvv.length() != 3) {
                 return "Please enter valid 3 digit cvv";
             }
         }
