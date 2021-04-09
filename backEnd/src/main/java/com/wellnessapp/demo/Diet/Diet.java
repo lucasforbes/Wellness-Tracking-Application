@@ -18,7 +18,7 @@ public class Diet {
     Boolean paid;
     String picture;
     String videoLink;
-    private List<Integer> userIdsToExersizesSubscribed;
+    private List<Integer> userIdsToDietsSubscribed;
     public Diet(String email, String title, String description, SingleDiet[] dietList, Boolean paid) {
         this.email = email;
         this.title = title;
@@ -63,12 +63,12 @@ public class Diet {
         return dietList;
     }
 
-    public List<Integer> getUserIdsToExersizesSubscribed() {
-        return userIdsToExersizesSubscribed;
+    public List<Integer> getUserIdsToDietsSubscribed() {
+        return userIdsToDietsSubscribed;
     }
 
-    public void setUserIdsToExersizesSubscribed(List<Integer> userIdsToExersizesSubscribed) {
-        this.userIdsToExersizesSubscribed = userIdsToExersizesSubscribed;
+    public void setUserIdsToDietsSubscribed(List<Integer> userIdsToDietsSubscribed) {
+        this.userIdsToDietsSubscribed = userIdsToDietsSubscribed;
     }
 
     public void setDietList(SingleDiet[] dietList) {

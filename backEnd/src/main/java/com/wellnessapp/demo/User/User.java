@@ -46,6 +46,7 @@ public class User {
     private Boolean isDeleted;
     private List<Integer> dietsSubscribed;
     private List<Integer> exersizesSubscribed;
+    private List<Integer> paidCreatorsSubscribed;
 
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
@@ -72,6 +73,7 @@ public class User {
         this.signUpTime = currentDate;
         this.exersizesSubscribed = new ArrayList<>();
         this.dietsSubscribed = new ArrayList<>();
+        this.paidCreatorsSubscribed = new ArrayList<>();
         this.phoneNumber = "";
     }
 
@@ -107,6 +109,14 @@ public class User {
 
     public void setExersizesSubscribed(List<Integer> exersizesSubscribed) {
         this.exersizesSubscribed = exersizesSubscribed;
+    }
+
+    public List<Integer> getPaidCreatorsSubscribed() {
+        return paidCreatorsSubscribed;
+    }
+
+    public void setPaidCreatorsSubscribed(List<Integer> paidCreatorsSubscribed) {
+        this.paidCreatorsSubscribed = paidCreatorsSubscribed;
     }
 
     public int getId() {

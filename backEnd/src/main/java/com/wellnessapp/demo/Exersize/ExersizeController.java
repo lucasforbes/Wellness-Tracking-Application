@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellnessapp.demo.Admin.Admin;
 import com.wellnessapp.demo.Creator.Creator;
+import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.Diet.Diet;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
@@ -27,6 +28,8 @@ public class ExersizeController {
     private ImageRepository idb;
     @Autowired
     private UserRepository udb;
+    @Autowired
+    private CreatorRepository cdb;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/addExersize")
@@ -86,26 +89,79 @@ public class ExersizeController {
     @GetMapping("/subscribeUserToExersize/{exersizeId, userEmail}")
     public String setUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
         Exersize exersize = edb.findById(exersizeId);
+        Creator creator = cdb.findByEmail(exersize.getEmail());
         User user = udb.findByEmail(userEmail);
         int userId = user.getId();
+//        add exersize to userExersize subscription list
         List exersizeSubscriptions = user.getExersizesSubscribed();
         exersizeSubscriptions.add(exersizeId);
+//        add userID to single exersize subscription list
         List subscribers = exersize.getUserIdsToExersizesSubscribed();
         subscribers.add(userId);
+//        add userId to all subscribers of a creator
+        List creatorSubscribeList = creator.getUserIdsToExersizesSubscribed();
+        creatorSubscribeList.add(userId);
         String retState = "Added user to Exersize subscriber list";
         return retState;
     }
     @GetMapping("/unsubscribeUserToExersize/{exersizeId, userEmail}")
     public String unsetUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
         Exersize exersize = edb.findById(exersizeId);
+        Creator creator = cdb.findByEmail(exersize.getEmail());
         User user = udb.findByEmail(userEmail);
         int userId = user.getId();
         List exersizeSubscriptions = user.getExersizesSubscribed();
         exersizeSubscriptions.remove(exersizeId);
         List subscribers = exersize.getUserIdsToExersizesSubscribed();
         subscribers.remove(userId);
+        List creatorSubscribeList = creator.getUserIdsToExersizesSubscribed();
+        creatorSubscribeList.remove(userId);
         String retState = "Removed user to Exersize subscriber list";
         return retState;
+    }
+    @GetMapping("/subscribeUserToPaidExersize/{exersizeId, userEmail}")
+    public String setUserPaidExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
+        Exersize exersize = edb.findById(exersizeId);
+        String creatorEmail =  exersize.getEmail();
+        Creator creator = cdb.findByEmail(creatorEmail);
+        User user = udb.findByEmail(userEmail);
+        int userId = user.getId();
+//        first check if user is already subscribed to creator
+        Integer creatorID = creator.getId();
+        List creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        if(creatorsSubscribed.contains(creatorID)){
+//            add subscription to lists without charging the user
+            List exersizeSubscriptions = user.getExersizesSubscribed();
+            exersizeSubscriptions.add(exersizeId);
+            List subscribers = exersize.getUserIdsToExersizesSubscribed();
+            subscribers.add(userId);
+            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            String retState = "Added user to Exersize subscriber list";
+            return retState;
+        }
+        else{
+//            prompt user to pay for subscription to creator
+            return "Need Payment";
+        }
+
+    }
+    @GetMapping("/subscribeUserToPaidCreator/{exersizeId, userEmail}")
+    public String setUserPaidExersizeSubscriptionSupport(@PathVariable int exersizeId, @PathVariable String userEmail){
+//
+        Exersize exersize = edb.findById(exersizeId);
+        Creator creator = cdb.findByEmail(exersize.getEmail());
+        User user = udb.findByEmail(userEmail);
+        user.getPaidCreatorsSubscribed().remove(creator.getId());
+        creator.getPaidUsers().remove(user.getId());
+        return "user unsubscribed to paid creator";
+    }
+    @GetMapping("/unsubscribeUserFromCreator/{creatorEmail, userEmail}")
+    public String unsetUserPaidExersizeSubscription(@PathVariable String creatorEmail, @PathVariable String userEmail){
+        Creator creator = cdb.findByEmail(creatorEmail);
+        User user = udb.findByEmail(userEmail);
+        user.getPaidCreatorsSubscribed().remove(creator.getId());
+        creator.getPaidUsers().remove(user.getId());
+        return "user unsubscribed to paid creator";
     }
 
     @GetMapping("/findExersizesSubscribed/{email}")

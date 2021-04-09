@@ -1,23 +1,44 @@
 package com.wellnessapp.demo.Payment;
 
+import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.Creator.CreatorRepository;
+import com.wellnessapp.demo.Diet.Diet;
+import com.wellnessapp.demo.Diet.DietRepository;
+import com.wellnessapp.demo.Exersize.Exersize;
+import com.wellnessapp.demo.Exersize.ExersizeRepository;
+import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.Clock;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentController {
     @Autowired
     private UserRepository udb;
     @Autowired
     private CreatorRepository cdb;
+    @Autowired
+    private ExersizeRepository edb;
+    @Autowired
+    private DietRepository ddb;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/makePayment")
     @ResponseBody
-    public String makePayment(@RequestParam("userEmail") String userEmail, @RequestParam("creatorEmail") String creatorEmail, @RequestPart("card") Payment payment){
+    public String makePayment(@RequestParam("userEmail") String userEmail, @RequestParam("contentId") int id, @RequestPart("card") Payment payment){
+        List<Object> jawns = new ArrayList<>();
+        try{
+            Exersize jawn = edb.findById(id);
+            jawns.add(jawn);
+        }catch (Exception e){
+            Diet jawn = ddb.findById(id);
+            jawns.add(jawn);
+        }
         String num = payment.getCardNumber();
         String cvv = payment.getCvv();
         LocalDate date = payment.getDate();
@@ -38,7 +59,30 @@ public class PaymentController {
         if (date.compareTo(currentDate) < 0){
             return "Card expired, try another one";
         }
-//        maybe add card to user, add exersize to paid subscriptions?
-        return "Payment Processed";
+//        payment was accepted so first add the user to creatorSubscirptions and vice versA
+        User user = udb.findByEmail(userEmail);
+        Creator creator;
+        List<Integer> contentSubscription;
+        try{
+            Exersize exersize = (Exersize) jawns.get(0);
+            creator = cdb.findByEmail(exersize.getEmail());
+            //        perform the normal opperations to subscription lists
+            contentSubscription = exersize.getUserIdsToExersizesSubscribed();
+            contentSubscription.add(user.getId());
+            user.getExersizesSubscribed().add(exersize.getId());
+            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+        }catch (Exception e){
+            Diet diet = (Diet) jawns.get(0);
+            creator = cdb.findByEmail(diet.getEmail());
+            contentSubscription = diet.getUserIdsToDietsSubscribed();
+            contentSubscription.add(user.getId());
+            user.getDietsSubscribed().add(diet.getId());
+            creator.getUserIdsToDietsSubscribed().add(user.getId());
+        }
+        List<Integer> creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        creatorsSubscribed.add(creator.getId());
+        List<Integer> usersSubscribed = creator.getPaidUsers();
+        usersSubscribed.add(user.getId());
+        return "Payment Processed, Subscription Added";
     }
 }

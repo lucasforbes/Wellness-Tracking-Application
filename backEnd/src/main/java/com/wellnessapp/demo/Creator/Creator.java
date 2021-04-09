@@ -45,6 +45,7 @@ public class Creator extends WellnessApplication {
     private String phoneNumber;
     private List<Integer> userIdsToDietsSubscribed;
     private List<Integer> userIdsToExersizesSubscribed;
+    private List<Integer> paidUsers;
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
@@ -71,6 +72,7 @@ public class Creator extends WellnessApplication {
         this.isDeleted = false;
         this.userIdsToDietsSubscribed = new ArrayList<>();
         this.userIdsToExersizesSubscribed = new ArrayList<>();
+        this.paidUsers = new ArrayList<>();
         this.phoneNumber = "";
     }
 
@@ -226,6 +228,14 @@ public class Creator extends WellnessApplication {
 
     public void setUserIdsToDietsSubscribed(List<Integer> userIdsToDietsSubscribed) {
         this.userIdsToDietsSubscribed = userIdsToDietsSubscribed;
+    }
+
+    public List<Integer> getPaidUsers() {
+        return paidUsers;
+    }
+
+    public void setPaidUsers(List<Integer> paidUsers) {
+        this.paidUsers = paidUsers;
     }
 
     public List<Integer> getUserIdsToExersizesSubscribed() {
