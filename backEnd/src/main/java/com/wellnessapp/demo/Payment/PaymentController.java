@@ -30,8 +30,9 @@ public class PaymentController {
 
 //    Change to JSON
 
-//    @CrossOrigin(origins = "*", allowedHeaders = "*")
+
     @PostMapping("/makePayment")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String makePayment(@PathVariable String userEmail, @PathVariable String obj, @PathVariable Payment payment){
         ObjectId id = new ObjectId(obj);
         List<Object> jawns = new ArrayList<>();
