@@ -8,6 +8,7 @@ import com.wellnessapp.demo.Exersize.Exersize;
 import com.wellnessapp.demo.Exersize.ExersizeRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,10 +30,9 @@ public class PaymentController {
 
 //    Change to JSON
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/makePayment")
-    @ResponseBody
-    public String makePayment(@RequestParam("userEmail") String userEmail, @RequestParam("contentId") int id, @RequestPart("card") Payment payment){
+    public String makePayment(@PathVariable String userEmail, @PathVariable ObjectId id, @PathVariable Payment payment){
         List<Object> jawns = new ArrayList<>();
         try{
             Exersize jawn = edb.findById(id);
