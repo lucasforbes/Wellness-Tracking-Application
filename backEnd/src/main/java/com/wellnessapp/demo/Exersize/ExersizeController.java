@@ -106,8 +106,9 @@ public class ExersizeController {
         return retState;
     }
     @GetMapping("/unsubscribeUserToExersize/{exersizeId, userEmail}")
-    public String unsetUserExersizeSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
-        Exersize exersize = edb.findById(exersizeId);
+    public String unsetUserExersizeSubscription(@RequestParam String exersizeId, @RequestParam String userEmail){
+        ObjectId id = new ObjectId(exersizeId);
+        Exersize exersize = edb.findById(id);
         Creator creator = cdb.findByEmail(exersize.getEmail());
         User user = udb.findByEmail(userEmail);
         int userId = user.getId();
@@ -121,7 +122,8 @@ public class ExersizeController {
         return retState;
     }
     @GetMapping("/subscribeUserToPaidExersize/{exersizeId, userEmail}")
-    public String setUserPaidExersizeSubscription(@PathVariable String exersizeId, @PathVariable String userEmail){
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public String setUserPaidExersizeSubscription(@RequestParam String exersizeId, @RequestParam String userEmail){
         ObjectId id = new ObjectId(exersizeId);
         Exersize exersize = edb.findById(id);
         String creatorEmail =  exersize.getEmail();
