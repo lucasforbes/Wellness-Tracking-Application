@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
 public class PaymentController {
     @Autowired
     private UserRepository udb;
@@ -33,7 +34,6 @@ public class PaymentController {
 
     @PostMapping("/makePayment")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @ResponseBody
     public String makePayment(@RequestParam String userEmail, @RequestParam String obj, @RequestParam Payment payment){
         ObjectId id = new ObjectId(obj);
         List<Object> jawns = new ArrayList<>();
