@@ -147,8 +147,9 @@ public class ExersizeController {
 
     }
     @GetMapping("/getExersizesss/{exersizeId}")
-    public Exersize getExersizesss(@PathVariable ObjectId objectId){
-        return edb.findById(objectId);
+    public Exersize getExersizesss(@PathVariable String objectId){
+        ObjectId obj = new ObjectId(objectId);
+        return edb.findById(obj);
         }
 
     @GetMapping("/subscribeUserToPaidCreator/{exersizeId, userEmail}")
