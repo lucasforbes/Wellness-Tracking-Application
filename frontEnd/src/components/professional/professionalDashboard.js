@@ -4,6 +4,7 @@ import {Row, Card, Col, Container, Tab, Tabs, TabContainer, Button} from "react-
 import axios from "axios";
 import AddDiet from "./addDiet";
 import Modal from 'react-modal';
+import Creatorchat from "../chat/CreatorChat";
 
 
 
@@ -357,9 +358,9 @@ export default function ProfessionalDashboard(props){
 
                             {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?previouslyAddedDiets.map((diets,index)=>{return(
                                     <div id={index}>
-                                        <Card>
+                                        <Card style={{backgroundColor: 'lightgreen'}}>
                                             <Card.Body>
-                                                <div className={"row"}>
+                                                <div className={"row"} >
                                                     <div className={"col-md-8"}>
                                                         <h4>{diets.title}</h4>
                                                     </div>
@@ -483,6 +484,11 @@ export default function ProfessionalDashboard(props){
                                     </h5>
                                 </Card.Body>
                             </Card>
+
+                        </Tab>
+
+                        <Tab title={"Chat"} eventKey={"Chat"}>
+                            <Creatorchat/>
 
                         </Tab>
 

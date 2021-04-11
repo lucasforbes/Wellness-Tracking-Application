@@ -2,6 +2,8 @@ import React,{useEffect,useState} from "react";
 import ProfessionalDashboard from "./professional/professionalDashboard";
 import UserDashboard from "./customers/UserDashboard";
 import AdminDashboard from "./admin/AdminDashboard";
+import Chat from "./chat/chat";
+import Creatorchat from "./chat/CreatorChat";
 
 export default function Maindashboard(){
 
@@ -43,6 +45,13 @@ export default function Maindashboard(){
                     ""
                 }
 
+                {/*<div>*/}
+
+                {/*    {localStorage.getItem('userType') == "User" ?*/}
+                {/*        <Chat/> :*/}
+                {/*        <Creatorchat/>*/}
+                {/*    }*/}
+                {/*</div>*/}
 
             </div>
 

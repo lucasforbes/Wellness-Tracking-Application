@@ -7,7 +7,7 @@ import socketIOClient from "socket.io-client";
 
 const ENDPOINT = "ws://bloom-wellness-back.herokuapp.com/chat/";
 
-export default function Chat(props){
+export default function Creatorchat(props){
 
     const [allCreators,setAllCreators] = useState();
     const [creatorSelected,setCreatorSelected] = useState("");
@@ -22,7 +22,7 @@ export default function Chat(props){
 
     useEffect(()=>{
 
-        axios.get('https://bloom-wellness-back.herokuapp.com/findAllCreators')
+        axios.get('https://bloom-wellness-back.herokuapp.com/findAllUsers')
             .then((res)=>{
                 setAllCreators(res.data)
 
@@ -69,11 +69,11 @@ export default function Chat(props){
 
             let tempHistory = chatHistory;
 
-             console.log("event",result['from'],tempHistory,"temp");
+            console.log("event",result['from'],tempHistory,"temp");
 
-             if(result['from'] in tempHistory) {
-                 tempHistory[result['from']].push({'person': 'creator', 'message': result['message']})
-             }
+            if(result['from'] in tempHistory) {
+                tempHistory[result['from']].push({'person': 'creator', 'message': result['message']})
+            }
             setChatHistory(tempHistory)
             console.log("Data to react",result)
         }
@@ -104,13 +104,13 @@ export default function Chat(props){
             socket.send(JSON.stringify(message));
         }
         catch(err) {
-           alert("Not able to send Message Still in connecting mode try again")
+            alert("Not able to send Message Still in connecting mode try again")
         }
 
-            let tempHistory = chatHistory;
+        let tempHistory = chatHistory;
 
-            tempHistory[creatorSelected].push({'person':'user','message':enteredMessage})
-            setChatHistory(tempHistory)
+        tempHistory[creatorSelected].push({'person':'user','message':enteredMessage})
+        setChatHistory(tempHistory)
 
     }
 
@@ -119,29 +119,29 @@ export default function Chat(props){
 
         <>
             <br/>
-                <div className={"row"}>
+            <div className={"row"}>
 
-                    <div className={"col-md-2"}>
-                        <div className={"card-header"}>Professional and Dietitians </div>
-                        {allCreators && allCreators.length > 0 ? allCreators.map((creator,index)=> {
+                <div className={"col-md-2"}>
+                    <div className={"card-header"}>Professional and Dietitians </div>
+                    {allCreators && allCreators.length > 0 ? allCreators.map((creator,index)=> {
 
-                            let image = images[index%4]
-                                return (
-                                    <div className={"card text-white bg-primary"} onClick={()=>setCreatorSelected(creator.email)}>
-                                        <img style={{width:'100px',height:'100px'}} src={process.env.PUBLIC_URL + image} />
-                                        {creator.email}
-                                    </div>
-                                )
-                            }):""
-                        }
-                    </div>
+                        let image = images[index%4]
+                        return (
+                            <div className={"card text-white bg-primary"} onClick={()=>setCreatorSelected(creator.email)}>
+                                <img style={{width:'100px',height:'100px'}} src={process.env.PUBLIC_URL + image} />
+                                {creator.email}
+                            </div>
+                        )
+                    }):""
+                    }
+                </div>
 
-                    <div className={"cols-md-8 card bg-light"}>
-                        <div className={"card-header text-white bg-danger overflowY:'scroll',height:'100px',width:'1200px'"}>Contact: {creatorSelected?creatorSelected:""} </div>
+                <div className={"cols-md-8 card"}>
+                    <div className={"card-header text-white bg-danger overflowY:'scroll',height:'100px !important',width:'1200px'"}>Contact: {creatorSelected?creatorSelected:""} </div>
 
-                        {creatorSelected && chatHistory[creatorSelected] &&
+                    {creatorSelected && chatHistory[creatorSelected] &&
 
-                        chatHistory[creatorSelected].length > 0 ? chatHistory[creatorSelected].map((obj,index)=>{
+                    chatHistory[creatorSelected].length > 0 ? chatHistory[creatorSelected].map((obj,index)=>{
 
                             const styleUser ={
                                 borderRadius: '25px',
@@ -161,40 +161,46 @@ export default function Chat(props){
 
                             return(
                                 <div>
-                                <div className={"text-white mb-4"} style={obj.person == "user" ?  styleUser : styleCreator}>
-                                    {obj.message}
+
+                                    <div className={"text-white mb-4"} style={obj.person == "user" ?  styleUser : styleCreator}>
+                                        {obj.message}
+                                    </div>
                                 </div>
-                                </div>
-                                )
+                            )
                         })
-                            :
-                            ""
-                        }
+                        :
+                        ""
+                    }
 
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-
-                        <TextField placeholder={"Enter Message ...."} value={enteredMessage} onChange={(e)=>{
-                            setEnteredMessage(e.target.value)
-                        }} style={{minWidth:"200px"}}/>
-
-                        {creatorSelected?<Button className={"bg-success"} onClick={()=>{
-                            sendMessage()
-                            setTimeout(
-                                function() {
-                                    setEnteredMessage("")
-                                }, 2000);
-                        }}> Send Message </Button>:""}
-                            </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>  <br/>
+                    <br/>
 
 
+
+                    <TextField placeholder={"Enter Message ...."} value={enteredMessage} onChange={(e)=>{
+                        setEnteredMessage(e.target.value)
+                    }} style={{minWidth:"200px"}}/>
+                    {creatorSelected?<Button className={"bg-success"} onClick={()=>{
+                        sendMessage()
+                        setTimeout(
+                            function() {
+                                setEnteredMessage("")
+                            }, 2000);
+                    }}> Send Message </Button>:""}
 
                 </div>
+
+
+            </div>
         </>
     )
 
