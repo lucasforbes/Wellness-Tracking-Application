@@ -169,8 +169,31 @@ export default function AllExercises(props){
     const [modalIsOpenPaid,setIsOpenPaid] = React.useState(false);
 
 
+
+
     const PaidsubscribeWorkout=(id)=>{
-        axios.get("https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidExersize/exersizeId="+id+"&userEmail="+localStorage.getItem('email'),{
+
+        // let json = JSON.stringify({
+        //     'exersizeId' : id,
+        //     'userEmail':
+        // })
+
+        // const json = {
+        //     'userEmail': localStorage.getItem('email'),
+        //     'exersizeId': id
+        //
+        // };
+
+        // let json = new FormData();
+        // json.append("userEmail",localStorage.getItem("email"))
+        // json.append("exersizeId",id)
+
+        // let url2 = "https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidExersize/?exersizeId=605f9c2f597547bacce7504a&userEmail=jimmy@google.com"
+        let url = "https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidExersize/?exersizeId="+id+"&userEmail="+localStorage.getItem('email')
+
+        console.log("url1",url)
+
+        axios.get(url,{
             headers: {
                 // Overwrite Axios's automatically set Content-Type
                 'Content-Type': 'application/json',
@@ -317,7 +340,7 @@ export default function AllExercises(props){
                                         :
                                         <>
                                         {selectedExercise.paid?
-                                                <Button onClick={() => subscribeWorkout(selectedExercise._id)}
+                                                <Button onClick={() => PaidsubscribeWorkout(selectedExercise._id)}
                                                         style={{minWidth: "140px"}} variant="success"
                                                         type={"button"}> Paid Subscribe </Button>
                                                 :

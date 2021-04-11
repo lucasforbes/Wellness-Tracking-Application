@@ -12,7 +12,7 @@ export default function Chat(props){
     const [allCreators,setAllCreators] = useState();
     const [creatorSelected,setCreatorSelected] = useState("");
 
-    let socket = new WebSocket("ws://bloom-wellness-back.herokuapp.com/chat/"+localStorage.getItem('email'));
+    let socket = new WebSocket("wss://bloom-wellness-back.herokuapp.com/chat/"+localStorage.getItem('email'));
 
     const images=["user1.png","user2.png","user3.png","user4.png"];
 
@@ -90,7 +90,7 @@ export default function Chat(props){
     const sendMessage=()=>{
 
         if(!socket){
-            socket = new WebSocket("ws://bloom-wellness-back.herokuapp.com/chat/"+localStorage.getItem('email'));
+            socket = new WebSocket("wss://bloom-wellness-back.herokuapp.com/chat/"+localStorage.getItem('email'));
         }
 
         let message = {
