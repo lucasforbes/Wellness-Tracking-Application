@@ -358,9 +358,9 @@ export default function ProfessionalDashboard(props){
 
                             {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?previouslyAddedDiets.map((diets,index)=>{return(
                                     <div id={index}>
-                                        <Card style={{backgroundColor: 'lightgreen'}}>
-                                            <Card.Body>
-                                                <div className={"row"} >
+                                        <Card>
+                                            <Card.Body style={{backgroundColor:'lightgreen'}}>
+                                                <div className={"row"}>
                                                     <div className={"col-md-8"}>
                                                         <h4>{diets.title}</h4>
                                                     </div>

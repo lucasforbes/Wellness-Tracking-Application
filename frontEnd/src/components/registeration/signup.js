@@ -241,7 +241,7 @@ export default function Signup(props){
 
                         <Card style={{width: 'auto', border: 'none'}}>
                             <Card.Img
-                                src="https:/external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fchinesefloweranthology.files.wordpress.com%2F2015%2F04%2Flotus-flowers-wallpaper-hd-21.jpg&f=1&nofb=1"
+                                src="frontEnd/public/lily.jpg"
                                 alt="Card iimage"/>
                             <Card.ImgOverlay style={{width: '100%'}}>
 
