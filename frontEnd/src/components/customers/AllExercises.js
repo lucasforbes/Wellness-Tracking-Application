@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import Modal from 'react-modal';
 
 import DataTable from 'react-data-table-component';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import {FcSearch} from "react-icons/fc";
 
 
 
@@ -17,7 +19,19 @@ export default function AllExercises(props){
 
     const [selectedExercise,setSelectedExercise] = useState("");
 
+    const [allCreators,setAllCreators] = useState();
+    const [creatorSelected,setCreatorSelected] = useState("all");
+
     useEffect(()=>{
+
+
+        axios.get('https://bloom-wellness-back.herokuapp.com/findAllCreators')
+            .then((res)=>{
+                setAllCreators(res.data)
+            })
+            .catch((err)=>{
+                console.log("Error while fetching Creators",err)
+            })
 
     },[])
 
@@ -167,6 +181,38 @@ export default function AllExercises(props){
     }
 
 
+    const [searchValue,setSearchValue] = useState("");
+
+    const handleSearch=()=>{
+
+        setPaidFilter("all")
+
+
+        let tempData = props.data.filter((row)=>{
+            return JSON.stringify(row).toLowerCase().includes(searchValue.toLowerCase())
+        })
+
+        setData(tempData)
+
+    }
+
+    const handleCreator=(value)=>{
+        setPaidFilter("all")
+        setSearchValue("")
+
+        if(value == "all"){
+            setData(props.data)
+        }else{
+            let tempData = props.data.filter((row)=>{
+                return row.email==value
+            })
+
+            setData(tempData)
+
+        }
+
+    }
+
     return(
 
         <>
@@ -182,6 +228,21 @@ export default function AllExercises(props){
                         <MenuItem value={"all"}>All</MenuItem>
                         <MenuItem value={"paid"}> Paid </MenuItem>
                         <MenuItem value={"free"}>Free </MenuItem>
+                    </Select>
+                </FormControl>
+
+                {" "}
+                <FormControl >
+                    <InputLabel> Creator </InputLabel>
+                    <Select  style={{minWidth:'150px'}} value={creatorSelected} onChange={(e)=> {
+                        setCreatorSelected(e.target.value)
+                        handleCreator(e.target.value)
+                    }}>
+                        <option value={"all"}>All</option>
+                        {allCreators && allCreators.length > 0 ? allCreators.map((creator,index)=>{
+                            return ( <option id={index} value={creator.email}> {creator.email}</option>)
+                        }):""}
+
                     </Select>
                 </FormControl>
 
@@ -257,6 +318,29 @@ export default function AllExercises(props){
 
 
                 </Modal>
+
+                <TextField
+
+                    placeholder={'Search by Creator, Contain'}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <FcSearch style={{background:'white'}}/>
+                            </InputAdornment>
+                        ),
+                    }}
+                    value={searchValue}
+                    onChange={(e)=>{
+                        setSearchValue(e.target.value)
+                        handleSearch()
+                    }}
+                    style={{background: 'white',width:'300px',marginTop:'10px'}}
+
+                />
+
+                <br/>
+
+                <br/>
 
                 <DataTable
                     title="Workout List"

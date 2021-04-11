@@ -245,9 +245,10 @@ export default function AllDiets(props){
                     </Select>
                 </FormControl>
 
+                {" "}
                 <FormControl >
                     <InputLabel> Creator </InputLabel>
-                    <Select  value={creatorSelected} onChange={(e)=> {
+                    <Select  style={{minWidth:'150px'}} value={creatorSelected} onChange={(e)=> {
                         setCreatorSelected(e.target.value)
                         handleCreator(e.target.value)
                     }}>
@@ -352,14 +353,15 @@ export default function AllDiets(props){
                             setSearchValue(e.target.value)
                             handleSearch()
                         }}
-                        style={{background: 'white',width:'300px'}}
+                        style={{background: 'white',width:'300px',marginTop:'10px'}}
 
                  />
 
                 <br/>
 
-
+<br/>
                 <DataTable
+
                     title="Diet List"
                     columns={columns}
                     style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white',rowHeight:'200px'}}
