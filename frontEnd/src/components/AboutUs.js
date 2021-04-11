@@ -10,7 +10,7 @@ import Login from "./registeration/login";
 export default function AboutUs(){
     return(
         <>
-            <div className={'row'} style={{height: '100vh', width:'100vw', overflow: 'hidden', backgroundColor: 'lightblue'}}  >
+            <div className={'row'} style={{height: '130vh', width:'100vw', overflow: 'hidden', backgroundColor: 'lightblue'}}  >
 
                 <div className={'col-md-6'}>
                     <Card style = {{marginLeft: '2vw',marginRight: '2vw',marginTop: '10vh',borderBottom: '5px groove dodgerblue',borderTop: '5px solid white', borderLeft: '5px inset lightgreen', borderRight: '5px inset lightgreen'}} className="bg-dark text-white">
