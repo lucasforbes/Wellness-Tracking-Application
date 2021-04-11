@@ -1,6 +1,8 @@
 package com.wellnessapp.demo.Diet;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.wellnessapp.demo.Creator.Creator;
+import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.Exersize.Exersize;
 import com.wellnessapp.demo.Exersize.ExersizeRepository;
 import com.wellnessapp.demo.User.User;
@@ -8,6 +10,7 @@ import com.wellnessapp.demo.User.UserRepository;
 import com.wellnessapp.demo.tools.Image;
 import com.wellnessapp.demo.tools.ImageRepository;
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +27,8 @@ public class DietController {
     private ImageRepository idb;
     @Autowired
     private UserRepository udb;
+    @Autowired
+    private CreatorRepository cdb;
 
 //    @PostMapping("/addDiet")
 //    @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -240,6 +245,34 @@ public class DietController {
         subscribers.remove(userId);
         String retState = "removed user to Diet subscriber list";
         return retState;
+    }
+    @GetMapping("/subscribeUserToPaidDiet/")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public String setUserPaidDietSubscription(@RequestParam String dietId, @RequestParam String userEmail){
+        ObjectId id = new ObjectId(dietId);
+        Diet diet = ddb.findById(id);
+        String creatorEmail =  diet.getEmail();
+        Creator creator = cdb.findByEmail(creatorEmail);
+        User user = udb.findByEmail(userEmail);
+        int userId = user.getId();
+//        first check if user is already subscribed to creator
+        Integer creatorID = creator.getId();
+        List creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        if(creatorsSubscribed.contains(creatorID)){
+//            add subscription to lists without charging the user
+            List exersizeSubscriptions = user.getExersizesSubscribed();
+            exersizeSubscriptions.add(dietId);
+            List subscribers = diet.getUserIdsToDietsSubscribed();
+            subscribers.add(userId);
+            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            String retState = "Added user to Diet subscriber list";
+            return retState;
+        }
+        else{
+//            prompt user to pay for subscription to creator
+            return "Need Payment";
+        }
+
     }
     @GetMapping(value = "/findDietPic/{email, id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] getImage(@PathVariable String email, @PathVariable int id) {
