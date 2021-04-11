@@ -207,7 +207,7 @@ export default function AddWorkout(props){
                     </div>
 
 
-                    <div className={"col-md-12"}>
+                    <div className={"col-md-12"} style={{color:'blue'}}>
 
 
                         <TextareaAutosize  rowsMin={4} cols={"80"} placeholder="Workout Description"
