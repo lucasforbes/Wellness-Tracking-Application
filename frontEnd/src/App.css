@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.popup:hover{
+  border-style: outset;
+  border-color: midnightblue;
+  border-width: thick;
+}

@@ -3,21 +3,27 @@ import axios from "axios";
 import {Card, Button, Tabs, Tab} from 'react-bootstrap';
 import {TextField,Select,MenuItem,InputLabel, FormControl} from '@material-ui/core/';
 import {Link} from "react-router-dom";
+import {FcSearch} from  "react-icons/fc";
 import Modal from 'react-modal';
-
+import InputAdornment from '@material-ui/core/InputAdornment';
 import DataTable from 'react-data-table-component';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import {FcSearch} from "react-icons/fc";
+
+import { makeStyles } from "@material-ui/core/styles";
 
 
+export default function AllDiets(props){
 
-export default function AllExercises(props){
+    const useStyles = makeStyles((theme) => ({
+        input: {
+            background: 'white'
+        }
+    }));
 
     const [data,setData]= useState(props.data);
 
     const [paidFilter,setPaidFilter] = useState("all");
 
-    const [selectedExercise,setSelectedExercise] = useState("");
+    const [selectedDiet,setSelectedDiet] = useState("");
 
     const [allCreators,setAllCreators] = useState();
     const [creatorSelected,setCreatorSelected] = useState("all");
@@ -37,9 +43,11 @@ export default function AllExercises(props){
 
 
 
+
+
     const handleAction = value => {
         openModal()
-        setSelectedExercise(value)
+        setSelectedDiet(value)
         console.log("Value Selected",value);
     }
 
@@ -48,16 +56,22 @@ export default function AllExercises(props){
             name: 'Title',
             selector: 'title',
             sortable: true,
+            maxWidth: 100,
+            minWidth: 20,
         },
         {
             name: 'Description',
             selector: 'description',
             sortable: true,
+            maxWidth: 100,
+            minWidth: 20,
         },
         {
             name: 'By',
             selector: 'email',
             sortable: true,
+            maxWidth: 100,
+            minWidth: 20,
         },
 
     ];
@@ -113,19 +127,20 @@ export default function AllExercises(props){
     const filterPaid=(value)=>{
 
 
+
         if(value == "paid") {
 
 
-            let temp= props.data.filter((exercise) => {
-                return exercise.type;
+            let temp= props.data.filter((diet) => {
+                return diet.type;
             })
 
             setData(temp)
         }
 
         if(value == "free"){
-            let temp = props.data.filter((exercise) => {
-                return !exercise.type;
+            let temp = props.data.filter((diet) => {
+                return !diet.type;
             })
 
             setData(temp)
@@ -150,8 +165,8 @@ export default function AllExercises(props){
         setIsOpen(false);
     }
 
-    const subscribeWorkout=(id)=>{
-        axios.post("https://bloom-flask-app.herokuapp.com/subscribe",{
+    const subscribeDiet=(id)=>{
+        axios.post("https://bloom-flask-app.herokuapp.com/subscribeDiet",{
             id: id,
             email: localStorage.getItem('email')
         }).
@@ -165,8 +180,8 @@ export default function AllExercises(props){
             })
     }
 
-    const  removeSubscription=(id)=>{
-        axios.post("https://bloom-flask-app.herokuapp.com/removeSubscribe",{
+    const  removeDietSubscription=(id)=>{
+        axios.post("https://bloom-flask-app.herokuapp.com/removeDietSubscribe",{
             id: id,
             email: localStorage.getItem('email')
         }).
@@ -179,7 +194,6 @@ export default function AllExercises(props){
                 console.log(err);
             })
     }
-
 
     const [searchValue,setSearchValue] = useState("");
 
@@ -220,7 +234,7 @@ export default function AllExercises(props){
 
 
                 <FormControl >
-                    <InputLabel> Type </InputLabel>
+                    <InputLabel> Cost </InputLabel>
                     <Select onChange={filterPaid} value={paidFilter} onChange={(e)=> {
                         setPaidFilter(e.target.value)
                         filterPaid(e.target.value)
@@ -240,7 +254,7 @@ export default function AllExercises(props){
                     }}>
                         <option value={"all"}>All</option>
                         {allCreators && allCreators.length > 0 ? allCreators.map((creator,index)=>{
-                            return ( <option id={index} value={creator.email}> {creator.email}</option>)
+                           return ( <option id={index} value={creator.email}> {creator.email}</option>)
                         }):""}
 
                     </Select>
@@ -253,50 +267,51 @@ export default function AllExercises(props){
 
                     <Button variant="danger" onClick={closeModal}>close</Button>
 
-                    <h2 >Workout Details </h2>
+                    <h2 >Diet Details </h2>
 
-                    {selectedExercise?
+                    {selectedDiet?
                         <>
 
                             <div className={"row"} >
                                 <div className={"col-md-5"} >
-                                    <h4>  {selectedExercise.title} </h4>
+                                    <h4>  {selectedDiet.title} </h4>
                                 </div>
 
                                 <div className={"col-md-1"}>
 
-                                    {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
 
-                                    {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
+                                    {selectedDiet.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
                                         <>
-                                            <Button onClick={()=>removeSubscription(selectedExercise._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
+
+                                            <Button onClick={()=>removeDietSubscription(selectedDiet._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
+
                                         </>
 
                                         :
-                                        <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                                        <Button onClick={()=>subscribeDiet(selectedDiet._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
                                     }
 
                                 </div>
 
 
                                 <div className={"col-md-8"}>
-                                    <b> Description: </b>    {" "+selectedExercise.description}
+                                    <b> Description: </b>    {" "+selectedDiet.description}
                                 </div>
 
-                                {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+                                {selectedDiet.dietList && selectedDiet.dietList.length > 0 ?
 
-                                    selectedExercise.activityList.map((item,id)=>{
+                                    selectedDiet.dietList.map((dietItem,id)=>{
                                         return (
                                             <>
 
                                                 <div className={"col-md-5"}>
 
-                                                    <i>Activity: </i> {item.activityName} <br/>
-                                                    {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
-                                                    {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
-                                                    {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
-
-                                                    {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+                                                    <i>Item: </i> {dietItem.item}
+                                                    <p>Serving Size {" "+dietItem.servingSize+" "}</p>
+                                                    <p> Fat Contains {" "+dietItem.fat+" "} </p>
+                                                    <p> Carbs Contains {" "+dietItem.carbs+" "}</p>
+                                                    <p> Total Calories {" "+dietItem.calories+" "}</p>
+                                                    <p> Protein Contains {" "+dietItem.protein+" "}</p>
 
                                                 </div>
                                             </>
@@ -319,33 +334,37 @@ export default function AllExercises(props){
 
                 </Modal>
 
-                <TextField
+                {" "}
 
-                    placeholder={'Search by Creator, Contain'}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <FcSearch style={{background:'white'}}/>
-                            </InputAdornment>
-                        ),
-                    }}
-                    value={searchValue}
-                    onChange={(e)=>{
-                        setSearchValue(e.target.value)
-                        handleSearch()
-                    }}
-                    style={{background: 'white',width:'300px',marginTop:'10px'}}
 
-                />
+
+                 <TextField
+
+                        placeholder={'Search by Creator, Contain'}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <FcSearch style={{background:'white'}}/>
+                                </InputAdornment>
+                            ),
+                        }}
+                        value={searchValue}
+                        onChange={(e)=>{
+                            setSearchValue(e.target.value)
+                            handleSearch()
+                        }}
+                        style={{background: 'white',width:'300px',marginTop:'10px'}}
+
+                 />
 
                 <br/>
 
-                <br/>
-
+<br/>
                 <DataTable
-                    title="Workout List"
+
+                    title="Diet List"
                     columns={columns}
-                    style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}
+                    style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white',rowHeight:'200px'}}
                     customStyles={customStyles}
                     data={data}
                     theme="info"

@@ -27,6 +27,8 @@ export default function ProfessionalDashboard(props){
     const [professionalEmail,setProfessionalEmail] = useState("");
 
     const [previouslyAddedWorkouts,setPreviouslyAddedWorkouts] = useState();
+
+
     const [stats,setStats] = useState();
 
     const[previouslyAddedDiets,setPreviouslyAddedDiets] = useState();
@@ -216,6 +218,8 @@ export default function ProfessionalDashboard(props){
             alert("Error fetching Diets")
             console.log(err);
         })
+
+
 
         axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailDiet?email="+localStorage.getItem("email")).
         then((res)=>{
