@@ -127,20 +127,19 @@ export default function AllDiets(props){
     const filterPaid=(value)=>{
 
 
-
         if(value == "paid") {
 
 
-            let temp= props.data.filter((diet) => {
-                return diet.type;
+            let temp= props.data.filter((exercise) => {
+                return exercise.paid == true;
             })
 
             setData(temp)
         }
 
         if(value == "free"){
-            let temp = props.data.filter((diet) => {
-                return !diet.type;
+            let temp = props.data.filter((exercise) => {
+                return exercise.paid == false;
             })
 
             setData(temp)
@@ -152,6 +151,7 @@ export default function AllDiets(props){
 
 
     }
+
 
 
     console.log(data)
@@ -304,7 +304,7 @@ export default function AllDiets(props){
                                         return (
                                             <>
 
-                                                <div className={"col-md-5"}>
+                                                <div className={"col-md-5 text-white bg-info"}>
 
                                                     <i>Item: </i> {dietItem.item}
                                                     <p>Serving Size {" "+dietItem.servingSize+" "}</p>

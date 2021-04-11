@@ -117,7 +117,7 @@ export default function AllExercises(props){
 
 
             let temp= props.data.filter((exercise) => {
-                return exercise.type;
+                return exercise.paid == true;
             })
 
             setData(temp)
@@ -125,7 +125,7 @@ export default function AllExercises(props){
 
         if(value == "free"){
             let temp = props.data.filter((exercise) => {
-                return !exercise.type;
+                return exercise.paid == false;
             })
 
             setData(temp)
@@ -164,6 +164,36 @@ export default function AllExercises(props){
                 console.log(err);
             })
     }
+
+
+    const [modalIsOpenPaid,setIsOpenPaid] = React.useState(false);
+
+
+    const PaidsubscribeWorkout=(id)=>{
+        axios.get("https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidExersize/exersizeId="+id+"&userEmail="+localStorage.getItem('email'),{
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+        .then((res)=>{
+
+            if(res.data == "Added user to Exersize subscriber list"){
+                alert("Successfully added")
+                props.callBack()
+            }
+            if(res.data == "Need Payment"){
+
+            }
+
+        })
+        .catch((err)=>{
+            alert("Error while subscribing")
+            console.log(err);
+        })
+    }
+
 
     const  removeSubscription=(id)=>{
         axios.post("https://bloom-flask-app.herokuapp.com/removeSubscribe",{
@@ -221,7 +251,7 @@ export default function AllExercises(props){
 
                 <FormControl >
                     <InputLabel> Type </InputLabel>
-                    <Select onChange={filterPaid} value={paidFilter} onChange={(e)=> {
+                    <Select  value={paidFilter} onChange={(e)=> {
                         setPaidFilter(e.target.value)
                         filterPaid(e.target.value)
                     }}>
@@ -245,6 +275,18 @@ export default function AllExercises(props){
 
                     </Select>
                 </FormControl>
+
+                <Modal
+                    isOpen={modalIsOpenPaid}
+                    onRequestClose={()=>setIsOpenPaid(false)}
+                >
+
+                    <Button variant="danger" onClick={closeModal}>close</Button>
+
+                    <h2 > Credit Card Detials:</h2>
+
+
+                </Modal>
 
                 <Modal
                     isOpen={modalIsOpen}
@@ -273,7 +315,17 @@ export default function AllExercises(props){
                                         </>
 
                                         :
-                                        <Button onClick={()=>subscribeWorkout(selectedExercise._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                                        <>
+                                        {selectedExercise.paid?
+                                                <Button onClick={() => subscribeWorkout(selectedExercise._id)}
+                                                        style={{minWidth: "140px"}} variant="success"
+                                                        type={"button"}> Paid Subscribe </Button>
+                                                :
+                                                <Button onClick={() => subscribeWorkout(selectedExercise._id)}
+                                                        style={{width: "100px"}} variant="success"
+                                                        type={"button"}> Subscribe </Button>
+                                        }
+                                        </>
                                     }
 
                                 </div>
@@ -283,13 +335,14 @@ export default function AllExercises(props){
                                     <b> Description: </b>    {" "+selectedExercise.description}
                                 </div>
 
+
                                 {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
 
                                     selectedExercise.activityList.map((item,id)=>{
                                         return (
-                                            <>
 
-                                                <div className={"col-md-5"}>
+
+                                                <div className={"col-md-5 card text-white bg-info"}>
 
                                                     <i>Activity: </i> {item.activityName} <br/>
                                                     {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
@@ -299,10 +352,11 @@ export default function AllExercises(props){
                                                     {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
 
                                                 </div>
-                                            </>
+
                                         )
                                     }):""
                                 }
+
 
 
                                 <br/>

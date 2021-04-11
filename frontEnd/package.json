@@ -27,6 +27,7 @@
     "react-scrollbar": "^0.5.6",
     "react-sliding-pane": "^7.0.0",
     "redux": "^4.0.5",
+    "socket.io-client": "^4.0.1",
     "styled-components": "^5.2.1",
     "textbelt": "^0.0.4",
     "validator": "^13.5.2",
