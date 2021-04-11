@@ -122,6 +122,7 @@ export default function UserDashboard(props){
     const [rerenderAllExe,setRerenderAllExercise] = useState(true);
 
     const [rerenderPreviousWorkouts,setRerenderPreviousWorkouts] = useState(true);
+    const [rerenderPreviousDiets,setRerenderPreviousDiets] = useState(true);
 
     const subscribedCallback=()=>{
         axios.get('https://bloom-flask-app.herokuapp.com/getAllExersize', {
@@ -180,6 +181,7 @@ export default function UserDashboard(props){
             console.log("allDiets",response);
             setAllDiets(response.data);
             setRerenderAllDiet(!rerenderAllDiet)
+            setRerenderPreviousDiets(!rerenderPreviousDiets)
         })
             .catch(function (error) {
                 console.log(error);
@@ -227,9 +229,9 @@ export default function UserDashboard(props){
 
                    <Tabs defaultActiveKey="enrolled" style={{backgroundColor: 'lightblue', fontFamily: 'Cursive', marginTop: '10px', borderTop: '6px double white',borderLeft: '5px solid white', borderRight: '5px solid white'}}>
 
-                       <Tab eventKey="enrolled" title="Enrolled Workouts" style = {{backgroundColor: 'lightblue', color: 'white', fontFamily:'cursive',bordercolor: 'white',border: 'solid',paddingLeft:'5px'}}>
+                       <Tab eventKey="enrolled" title="Enrolled Workouts" style = {{backgroundColor: 'lightGreen', color: 'white', fontFamily:'cursive',bordercolor: 'white',border: 'solid',paddingLeft:'5px'}}>
 
-                           <h4 style={{textAlign: 'center', fontSize: '200%', textDecoration:'underline',fontWeight: '600', color:'coral'}}>  Your Enrolled Workouts </h4>
+                           <h4 style={{textAlign: 'center', fontSize: '200%', textDecoration:'underline',fontWeight: '600'}}>  Your Enrolled Workouts </h4>
 
                            {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?
                                <PreviousWorkouts key={rerenderPreviousWorkouts} data={previouslyAddedWorkouts} callBack={subscribedCallback}/>
@@ -258,27 +260,12 @@ export default function UserDashboard(props){
 
                            <h4 style={{textAlign: 'center', fontSize: '200%', textDecoration:'underline',fontWeight: '600'}}>  Your Enrolled Workouts </h4>
 
-                           {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?previouslyAddedDiets.map((diets,index)=>{return(
+                           {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?
                                    <>
-                                       <Card style={{backgroundColor: 'lightgreen'}}>
-                                           <Card.Body>
-                                               <div className={"row"} >
-                                                   <div className={"col-md-8"}>
-                                                       <h4>{diets.title}</h4>
-                                                   </div>
-
-                                                   <div className={"col-md-12"}>
-                                                       <p>{diets.description}</p>
-                                                   </div>
-
-                                                   <p></p>
-                                               </div>
-                                           </Card.Body>
-
-                                       </Card>
+                                       <PreviousDiets key={rerenderPreviousDiets} data={previouslyAddedDiets} callBack={subscribedCallbackDiet}/>
                                    </>
-                               )
-                               }):
+
+                               :
                                <>
                                    <h6> None previously added Diets </h6>
                                </>

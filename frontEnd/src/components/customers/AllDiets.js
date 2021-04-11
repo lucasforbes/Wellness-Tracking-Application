@@ -164,7 +164,7 @@ export default function AllDiets(props){
         }).
         then((res)=>{
             alert("UnSubscribed Successfully")
-            // props.callBack()
+            props.callBack()
         })
             .catch((err)=>{
                 alert("Error while unsubscribing")
