@@ -36,6 +36,16 @@ export default function AllExercises(props){
     },[])
 
 
+    const customStylesModal = {
+        content : {
+            top                   : '50%',
+            left                  : '50%',
+            right                 : 'auto',
+            bottom                : 'auto',
+            marginRight           : '-50%',
+            transform             : 'translate(-50%, -50%)'
+        }
+    };
 
     const handleAction = value => {
         openModal()
@@ -169,7 +179,11 @@ export default function AllExercises(props){
     const [modalIsOpenPaid,setIsOpenPaid] = React.useState(false);
 
 
+    const [modalPaidSub,setModalPaidSub] = useState(false);
 
+    const [creditCardNumber,setCreditCardNumber] = useState("");
+    const [cvv,setCVV] = useState("");
+    const [cardDate,setCardDate] = useState(new Date().toISOString().split("T")[0]);
 
     const PaidsubscribeWorkout=(id)=>{
 
@@ -207,7 +221,7 @@ export default function AllExercises(props){
                 props.callBack()
             }
             if(res.data == "Need Payment"){
-
+                setModalPaidSub(true)
             }
 
         })
@@ -215,6 +229,40 @@ export default function AllExercises(props){
             alert("Error while subscribing")
             console.log(err);
         })
+    }
+
+
+    const submitCard=()=>{
+
+        let json = JSON.stringify({
+          'userEmail':localStorage.getItem('email'),
+          'obj': selectedExercise._id,
+          'cardNumber': creditCardNumber,
+            'cvv':cvv,
+            'date':cardDate
+        })
+
+        axios.post('https://bloom-wellness-back.herokuapp.com/makePayment',json,{
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+            .then((res)=>{
+
+                if(res.data == "Payment Processed, Subscription Added"){
+                    alert("Successfully added")
+                    props.callBack()
+                }else{
+                    alert( res.data)
+                }
+
+            })
+            .catch((err)=>{
+                alert("Error while subscribing")
+                console.log(err);
+            })
     }
 
 
@@ -266,9 +314,15 @@ export default function AllExercises(props){
 
     }
 
+
+
     return(
 
         <>
+
+
+
+
             <div className={'container-fluid'} style={{color: 'white', backgroundColor:'lightgreen',fontFamily: 'cursive'}}>
 
 
@@ -392,6 +446,57 @@ export default function AllExercises(props){
                         :
                         ""
                     }
+
+
+                </Modal>
+
+                <Modal  isOpen={modalPaidSub}
+                        onRequestClose={()=>setModalPaidSub(false)}
+                        style={customStylesModal}
+                >
+
+                    <div className={"card text-white bg-primary"}>
+                        <div className={"card-header"}> Enter Credit Card Details </div>
+                        <div className={"card-body"}>
+
+                            <div className={"row"}>
+                                <div className={"col-md-6"}>
+
+                                    <TextField style={{backgroundColor:'white',  width:'400px'}} placeholder={"Credit Card Number"}
+                                             value={creditCardNumber}
+                                             onChange={(e)=>{
+                                                 setCreditCardNumber(e.target.value)
+                                             }}
+                                    >
+
+                                  </TextField>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <div className={"col-md-3"}>
+                                    <TextField style={{backgroundColor:'white'}} placeholder={"CVV"}
+                                    value={cvv}
+                                               onChange={(e)=>{
+                                                   setCVV(e.target.value)
+                                               }}
+                                    > </TextField>
+                                </div>
+
+                                <div className={"col-md-3"}>
+                                    <TextField style={{backgroundColor:'white'}} type={"date"}
+                                               placeholder={"Credit Card Number"} value={cardDate} onChange={(e)=>setCardDate(e.target.value)}></TextField>
+                                </div>
+
+                                <div className={"col-md-6"}>
+                                    <Button variant={"success"} type={"button"} onClick={f}> Submit </Button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
 
 
                 </Modal>
