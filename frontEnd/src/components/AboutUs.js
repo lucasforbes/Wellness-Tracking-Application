@@ -63,7 +63,7 @@ export default function AboutUs(){
                     <div className={'row'} style={{padding: '10px', marginRight: 'auto', marginLeft: 'auto'}}>
                         <div className={'col-sm-6'} style={{padding:'10px',  marginRight: 'auto', marginLeft: 'auto'}}>
                             <Card style={{marginTop: '-9px',height: '107%', fontSize:'2vw',textAlign: 'center',backgroundColor:'lightGreen', color: 'white', fontFamily:'cursive', width: '20vw', borderBottom: '5px groove dodgerblue',borderTop: '5px solid white', borderLeft: '5px groove lightgreen', borderRight: '5px groove lightgreen'}}>
-                                <Card.Img style={{height: '100%'}} variant="top" src="vishal.jpg"/>
+                                <Card.Img style={{height: '100%'}} variant="top" src="Vishal.jpg"/>
 
                                 <Card.ImgOverlay style = {{}}>
                                     <header style={{position:'absolute', bottom:'0px'}}> Vishal</header>
@@ -77,7 +77,7 @@ export default function AboutUs(){
 
                         <div className={'col-sm-6'} style={{padding:'10px',  marginRight: 'auto', marginLeft: 'auto'}}>
                             <Card style={{marginTop: '-9px',height: '107%', fontSize:'2vw',textAlign: 'center',backgroundColor:'lightGreen', color: 'white', fontFamily:'cursive', width: '20vw', borderBottom: '5px groove dodgerblue',borderTop: '5px solid white', borderLeft: '5px groove lightgreen', borderRight: '5px groove lightgreen'}}>
-                                <Card.Img style={{height: '100%'}} variant="top" src="lucas.png"/>
+                                <Card.Img style={{height: '100%'}} variant="top" src="Lucas.png"/>
 
                                 <Card.ImgOverlay style = {{}}>
                                     <header style={{position:'absolute', bottom:'0px'}}> Lucas</header>
