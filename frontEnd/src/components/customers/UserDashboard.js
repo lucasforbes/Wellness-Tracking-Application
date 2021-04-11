@@ -282,21 +282,21 @@ export default function UserDashboard(props){
 
 
 
-                       <Tab eventKey="profile" title="Statistics"   style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}>
-                           Stats
-                           <Card style={{backgroundColor:'lightgreen'}}>
-                               <Card.Body>
-                                   <h5> Total Subscribed  {stats? stats.totalUsers:""}
-                                       <br/>
-                                       <p>
-                                           Total Calories Burned {stats ? stats.caloriesBurned:""}
-                                       </p>
-                                   </h5>
-                               </Card.Body>
-                           </Card>
+                       {/*<Tab eventKey="profile" title="Statistics"   style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}>*/}
+                       {/*    Stats*/}
+                       {/*    <Card style={{backgroundColor:'lightgreen'}}>*/}
+                       {/*        <Card.Body>*/}
+                       {/*            <h5> Total Subscribed  {stats? stats.totalUsers:""}*/}
+                       {/*                <br/>*/}
+                       {/*                <p>*/}
+                       {/*                    Total Calories Burned {stats ? stats.caloriesBurned:""}*/}
+                       {/*                </p>*/}
+                       {/*            </h5>*/}
+                       {/*        </Card.Body>*/}
+                       {/*    </Card>*/}
 
 
-                       </Tab>
+                       {/*</Tab>*/}
 
                        <Tab eventKey="Chat"  title={"Chat"}>
                            <Chat/>

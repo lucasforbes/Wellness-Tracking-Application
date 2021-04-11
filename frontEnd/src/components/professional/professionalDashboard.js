@@ -447,7 +447,9 @@ export default function ProfessionalDashboard(props){
 
 
                         <Tab eventKey="addDiet" title="Add Diet" style={{backgroundColor: 'lightgreen',border: 'solid', borderColor: 'white', fontFamily: 'Cursive'}}>
-                            <AddDiet addedNewDiet={addedDiet}/>
+
+                                <AddDiet addedNewDiet={addedDiet}/>
+
                         </Tab>
 
                         <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}>
