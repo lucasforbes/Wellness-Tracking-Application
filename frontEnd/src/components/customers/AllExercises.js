@@ -488,7 +488,7 @@ export default function AllExercises(props){
                                 </div>
 
                                 <div className={"col-md-6"}>
-                                    <Button variant={"success"} type={"button"} onClick={f}> Submit </Button>
+                                    <Button variant={"success"} type={"button"} onClick={submitCard}> Submit </Button>
                                 </div>
 
 
