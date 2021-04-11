@@ -46,10 +46,10 @@ export default function PreviousWorkouts(props){
 
                 return(
                     <>
-                    <div className={"col-md-5"}>
-                    <div className={"bg-success text-white card mb-3 popup"} id={index}>
-                        <Card.Body>
-                            <div className={"row"} >
+                    <div className={"col-md-5"} style={{margin:'10px'}}>
+                    <div className={"bg-success text-white card mb-3 popup"}  id={index}>
+                        <Card.Body style={{backgroundColor:'lightblue', borderColor: 'blue', borderStyle: 'ridge'}} >
+                            <div className={"row"} style={{backgroundColor:'lightblue'}} >
 
                                 <div className={"col-md-4"}>
                                     <img style={{width:'100px',height:'100px'}} src={process.env.PUBLIC_URL + image} />
