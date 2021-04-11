@@ -65,7 +65,13 @@ export default function Chat(props){
 
     if(socket){
         socket.onmessage = function(event){
-            var result = event.data
+            var result = JSON.parse(event.data)
+
+            let tempHistory = chatHistory;
+
+            // console.log("event",result['from']);
+            tempHistory[result['from']].push(result['message'])
+            setChatHistory(tempHistory)
             console.log("Data to react",result)
         }
     }else{
@@ -80,7 +86,7 @@ export default function Chat(props){
     return(
 
         <>
-            {JSON.stringify(chatHistory)}
+            <br/>
                 <div className={"row"}>
 
                     <div className={"col-md-2"}>
@@ -98,8 +104,24 @@ export default function Chat(props){
                         }
                     </div>
 
-                    <div className={"cols-md-5 card"}>
-                        {creatorSelected}
+                    <div className={"cols-md-8 card"}>
+                        <div className={"card-header text-white bg-danger"}>Contact: {creatorSelected?creatorSelected:""} </div>
+
+                        {creatorSelected && chatHistory[creatorSelected] &&
+
+                        chatHistory[creatorSelected].length > 0 ? chatHistory[creatorSelected].map((message,index)=>{
+                            return(
+                                <div style={{overflowY:'scroll',height:'400px',width:'800px'}}>
+                                    {JSON.stringify(message)}
+                                </div>
+                                )
+                        })
+                            :
+                            ""
+                        }
+
+
+
                     </div>
 
 
