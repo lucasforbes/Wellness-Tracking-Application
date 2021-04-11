@@ -161,7 +161,7 @@ export default function Chat(props){
 
                             return(
                                 <div>
-                                <div className={"text-white mb-4"} style={obj.person == "user" ?  styleUser : styleCreator}>
+                                <div className={"text-white mb-6"} style={obj.person == "user" ?  styleUser : styleCreator}>
                                     {obj.message}
                                 </div>
                                 </div>
