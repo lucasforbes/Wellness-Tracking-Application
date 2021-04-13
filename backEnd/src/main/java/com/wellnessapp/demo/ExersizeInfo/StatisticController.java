@@ -192,7 +192,7 @@ public class StatisticController {
         return null;
     }
 
-    @GetMapping("/statistic/-")
+    @GetMapping("/statistic/getlatestyear")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ResponseBody
     public List<Statistic> getLatestYearData(@RequestParam("email")String email){
