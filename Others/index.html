@@ -19,7 +19,6 @@
 
   var userId = null;
 
-
   if('WebSocket' in window){
     websocket = new WebSocket("ws://bloom-wellness-back.herokuapp.com/chat/jimmy@google.com");
   } else {
@@ -38,9 +37,7 @@
 
   websocket.onmessage = function(event){
     var result = event.data
-
     setMessageInnerHTML(result)
-
   }
 
 
@@ -56,7 +53,6 @@
 
   function setMessageInnerHTML(innerHTML){
     document.getElementById('message').innerHTML += innerHTML + '<br/>';
-
   }
 
 
