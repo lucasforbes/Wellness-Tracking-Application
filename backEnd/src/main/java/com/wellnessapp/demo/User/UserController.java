@@ -77,6 +77,8 @@ public class UserController {
         user.setUserType("User");
         user.setIsDeleted(false);
         user.setOnline(true);
+        user.setFirstName("firstName");
+        user.setLastName("lastName");
         System.out.println("added user info");
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
