@@ -77,6 +77,7 @@ public class PaymentController {
             edb.delete(exersize);
             creator = cdb.findByEmail(exersize.getEmail());
             exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
+//            exersize.setApproved(t);
             edb.save(exersize);
             //        perform the normal opperations to subscription lists
 //            contentSubscription = exersize.getUserIdsToExersizesSubscribed();
