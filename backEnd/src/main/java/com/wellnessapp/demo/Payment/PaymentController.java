@@ -68,6 +68,7 @@ public class PaymentController {
             return "Card expired, try another one";
         }
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
+
         User user = udb.findByEmail(userEmail);
         Creator creator;
         List<String> contentSubscription;

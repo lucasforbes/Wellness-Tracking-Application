@@ -31,44 +31,44 @@ public class WellnessApplication implements CommandLineRunner {
     // testing out databases
     @Override
     public void run(String... args) throws Exception {
-        udb.deleteAll();
-        adb.deleteAll();
-        cdb.deleteAll();
-
-        // save a couple of Users
-        User user1 = new User("1234", "jimmy@google.com");
-        user1.setId(0);
-        udb.save(user1);
-        UserDetails ud = new UserDetails("jimmy","oconner", "1997-10-21", "male", "5743397212");
-        User u = udb.findByEmail("jimmy@google.com");
-        u.setFirstName(ud.getFirstName());
-        u.setLastName(ud.getLastName());
-        u.setBirthday(ud.getBirthday());
-        u.setGender(ud.getGender());
-        u.setAge(ud.getAge());
-        u.setPhoneNumber(ud.getPhoneNumber());
-        udb.delete(user1);
-        udb.save(u);
-        User user2 = new User("1234", "bob@google.com");
-        user2.setId(1);
-        udb.save(user2);
-        User user3 = new User("1234", "1072846210@qq.com");
-        user3.setId(2);
-        udb.save(user3);
-        // save a couple of Admins
-        Admin admin1 = new Admin("1234", "theboss@google.com",  "Jim", "Honcho", "0123456789");
-        admin1.setId(0);
-        adb.save(admin1);
-        Admin admin2 = new Admin( "1234", "manager@google.com",  "Jess", "Jawns", "9876543210");
-        admin2.setId(1);
-        adb.save(admin2);
-        // save a couple of Creators
-        Creator creator1 = new Creator("1234", "vishal@google.com");
-        creator1.setId(0);
-        cdb.save(creator1);
-        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com");
-        creator2.setId(1);
-        cdb.save(creator2);
+//        udb.deleteAll();
+//        adb.deleteAll();
+//        cdb.deleteAll();
+//
+//        // save a couple of Users
+//        User user1 = new User("1234", "jimmy@google.com");
+//        user1.setId(0);
+//        udb.save(user1);
+//        UserDetails ud = new UserDetails("jimmy","oconner", "1997-10-21", "male", "5743397212");
+//        User u = udb.findByEmail("jimmy@google.com");
+//        u.setFirstName(ud.getFirstName());
+//        u.setLastName(ud.getLastName());
+//        u.setBirthday(ud.getBirthday());
+//        u.setGender(ud.getGender());
+//        u.setAge(ud.getAge());
+//        u.setPhoneNumber(ud.getPhoneNumber());
+//        udb.delete(user1);
+//        udb.save(u);
+//        User user2 = new User("1234", "bob@google.com");
+//        user2.setId(1);
+//        udb.save(user2);
+//        User user3 = new User("1234", "1072846210@qq.com");
+//        user3.setId(2);
+//        udb.save(user3);
+//        // save a couple of Admins
+//        Admin admin1 = new Admin("1234", "theboss@google.com",  "Jim", "Honcho", "0123456789");
+//        admin1.setId(0);
+//        adb.save(admin1);
+//        Admin admin2 = new Admin( "1234", "manager@google.com",  "Jess", "Jawns", "9876543210");
+//        admin2.setId(1);
+//        adb.save(admin2);
+//        // save a couple of Creators
+//        Creator creator1 = new Creator("1234", "vishal@google.com");
+//        creator1.setId(0);
+//        cdb.save(creator1);
+//        Creator creator2 = new Creator( "1234", "wellnessCoach@google.com");
+//        creator2.setId(1);
+//        cdb.save(creator2);
 //         fetch all users
         System.out.println("Users found with findAll():");
         System.out.println("-------------------------------");
