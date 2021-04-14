@@ -10,6 +10,7 @@ import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.data.mongodb.core.query.Update.update;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -68,16 +69,19 @@ public class PaymentController {
             return "Card expired, try another one";
         }
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
-
         User user = udb.findByEmail(userEmail);
         Creator creator;
         List<String> contentSubscription;
         try{
             Exersize exersize = (Exersize) jawns.get(0);
+            edb.delete(exersize);
             creator = cdb.findByEmail(exersize.getEmail());
+            exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
+            edb.save(exersize);
             //        perform the normal opperations to subscription lists
-            contentSubscription = exersize.getUserIdsToExersizesSubscribed();
-            contentSubscription.add(user.getEmail());
+//            contentSubscription = exersize.getUserIdsToExersizesSubscribed();
+//            contentSubscription.add(user.getEmail());
+//            do these in the same delete add order maybe?
             user.getExersizesSubscribed().add(exersize.getId());
             creator.getUserIdsToExersizesSubscribed().add(user.getId());
         }catch (Exception e){
