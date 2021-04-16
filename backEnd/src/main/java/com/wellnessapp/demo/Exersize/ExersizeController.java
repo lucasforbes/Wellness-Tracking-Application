@@ -135,6 +135,7 @@ public class ExersizeController {
 //        first check if user is already subscribed to creator
         Integer creatorID = creator.getId();
         List creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        System.out.println("did 2.4");
         if(creatorsSubscribed.contains(creatorID)){
             System.out.println("did 3");
 //            add subscription to lists without charging the user
