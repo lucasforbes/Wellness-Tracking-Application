@@ -12,6 +12,7 @@ import AllDiets from "./AllDiets";
 import PreviousWorkouts from "./PreviousWorkouts";
 import PreviousDiets from "./PreviousDiets";
 import Chat from "../chat/chat";
+import Statistics from "./Statistics";
 
 export default function UserDashboard(props){
 
@@ -297,6 +298,11 @@ export default function UserDashboard(props){
 
 
                        {/*</Tab>*/}
+
+
+                       <Tab eventKey="Stats"  title={"Stats"}>
+                           <Statistics/>
+                       </Tab>
 
                        <Tab eventKey="Chat"  title={"Chat"}>
                            <Chat/>

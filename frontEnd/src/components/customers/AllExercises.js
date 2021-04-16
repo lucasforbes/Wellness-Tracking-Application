@@ -237,9 +237,11 @@ export default function AllExercises(props){
         let json = JSON.stringify({
           'userEmail':localStorage.getItem('email'),
           'obj': selectedExercise._id,
-          'cardNumber': creditCardNumber,
-            'cvv':cvv,
-            'date':cardDate
+           'payment': {
+               'cardNumber': creditCardNumber,
+               'cvv': cvv,
+               'date': cardDate
+           }
         })
 
         axios.post('https://bloom-wellness-back.herokuapp.com/makePayment',json,{
@@ -255,7 +257,7 @@ export default function AllExercises(props){
                     alert("Successfully added")
                     props.callBack()
                 }else{
-                    alert( res.data)
+                    alert(res.data)
                 }
 
             })
