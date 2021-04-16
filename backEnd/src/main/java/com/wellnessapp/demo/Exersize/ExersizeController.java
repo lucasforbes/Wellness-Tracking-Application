@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.text.html.Option;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 @RestController
@@ -133,10 +134,12 @@ public class ExersizeController {
         int userId = user.getId();
         System.out.println("did 2");
 //        first check if user is already subscribed to creator
-        Integer creatorID = creator.getId();
         List creatorsSubscribed = user.getPaidCreatorsSubscribed();
         System.out.println("did 2.4");
-        if(creatorsSubscribed.contains(creatorID)){
+        if(creatorsSubscribed.isEmpty()){
+            return "Need Payment";
+        }
+        if(creatorsSubscribed.contains(creatorEmail)){
             System.out.println("did 3");
 //            add subscription to lists without charging the user
             List exersizeSubscriptions = user.getExersizesSubscribed();
