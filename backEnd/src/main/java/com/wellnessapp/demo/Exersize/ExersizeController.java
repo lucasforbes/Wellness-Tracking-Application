@@ -127,18 +127,22 @@ public class ExersizeController {
         ObjectId id = new ObjectId(exersizeId);
         Exersize exersize = edb.findById(id);
         String creatorEmail =  exersize.getEmail();
+        System.out.println("did 1");
         Creator creator = cdb.findByEmail(creatorEmail);
         User user = udb.findByEmail(userEmail);
         int userId = user.getId();
+        System.out.println("did 2");
 //        first check if user is already subscribed to creator
         Integer creatorID = creator.getId();
         List creatorsSubscribed = user.getPaidCreatorsSubscribed();
         if(creatorsSubscribed.contains(creatorID)){
+            System.out.println("did 3");
 //            add subscription to lists without charging the user
             List exersizeSubscriptions = user.getExersizesSubscribed();
             exersizeSubscriptions.add(exersizeId);
             List subscribers = exersize.getUserIdsToExersizesSubscribed();
             subscribers.add(userId);
+            System.out.println("did 4");
             creator.getUserIdsToExersizesSubscribed().add(user.getId());
             String retState = "Added user to Exersize subscriber list";
             return retState;
