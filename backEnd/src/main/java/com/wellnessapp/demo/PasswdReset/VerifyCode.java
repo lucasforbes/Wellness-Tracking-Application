@@ -1,15 +1,9 @@
 package com.wellnessapp.demo.PasswdReset;
 
-import org.hibernate.annotations.Filter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.MappedSuperclass;
 
 
 @RestController

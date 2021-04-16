@@ -57,4 +57,25 @@ public class BodyInfoController {
             return null;
         }
     }
+
+    @GetMapping("/bodyinfo/getLatestInfo")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public BodyInfo getLatest(@RequestParam("email")String email){
+        try{
+            List<BodyInfo> bodyInfos = bodyInfoRepositoryRepository.getWeightByEmail(email);
+            if(bodyInfos.isEmpty()){
+                return null;
+            }
+            Date date = bodyInfos.get(0).getTime();
+            for(BodyInfo bodyInfo: bodyInfos){
+                if(bodyInfo.getTime().compareTo(date) > 0){
+                    date = bodyInfo.getTime();
+                }
+            }
+            return bodyInfoRepositoryRepository.findBodyInfoByEmailAndTime(email, date);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

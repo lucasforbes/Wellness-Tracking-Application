@@ -30,6 +30,7 @@ public class Exersize {
     Boolean paid;
     String picture;
     String videoLink;
+    Boolean approved;
     private List<String> userIdsToExersizesSubscribed;
 
     public Exersize(String email, SingleExersize[] activityList, String title, String description, Boolean paid) {
@@ -39,6 +40,14 @@ public class Exersize {
         this.paid = paid;
         this.activityList = activityList;
 
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
     }
 
     public String getPicture() {
