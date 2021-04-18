@@ -92,13 +92,13 @@ public class PaymentController {
             System.out.println("E3");
             edb.save(exersize);
             System.out.println("saved exersize");
-//          save in udb
-            List exersizesSubscribed = user.getExersizesSubscribed();
-            exersizesSubscribed.add(exersize.getId());
-            System.out.println("Exersize id added to list: " + exersize.getId());
-            udb.save(user);
-            System.out.println("Saved in user");
-//            save in cdb
+//          save in udb - some users don't have this list so ignore:
+//            List exersizesSubscribed = user.getExersizesSubscribed();
+//            exersizesSubscribed.add(exersize.getId());
+//            System.out.println("Exersize id added to list: " + exersize.getId());
+//            udb.save(user);
+//            System.out.println("Saved in user");
+//            save in cdb -
             creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             cdb.save(creator);
             System.out.println("E4");
@@ -113,9 +113,9 @@ public class PaymentController {
             contentSubscription.add(user.getEmail());
             ddb.save(diet);
             System.out.println("D3");
-//            save in udb
-            user.getDietsSubscribed().add(diet.getId());
-            udb.save(user);
+////            save in udb - not all users have this list
+//            user.getDietsSubscribed().add(diet.getId());
+//            udb.save(user);
 //            save in cdb
             creator.getUserIdsToDietsSubscribed().add(user.getEmail());
             cdb.save(creator);
