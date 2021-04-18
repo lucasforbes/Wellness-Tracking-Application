@@ -211,6 +211,55 @@ public class StatisticController {
         return null;
     }
 
+    @GetMapping("/statistic/priority")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @ResponseBody
+    public Priority getPriorityFromUser(@RequestParam("email")String email){
+        List<Statistic> list = statisticRepository.findByEmailAndIsInUse(email, true);
+        int yoga = 0, cardio = 0, bodyBuilding = 0;
+        for(Statistic statistic: list){
+            yoga += statistic.getYoga();
+            cardio += statistic.getCardio();
+            bodyBuilding += statistic.getBodyBuilding();
+        }
+        Priority priority = new Priority();
+        int max = Math.max(Math.max(yoga, cardio), bodyBuilding);
+        if( max == bodyBuilding ){
+            priority.setFirst("bodyBuilding");
+            priority.setFirstTime(max);
+            int second = Math.max(yoga, cardio);
+            if(second == yoga){
+                priority.setSecond("yoga");
+                priority.setSecondTime(yoga);
+            }else {
+                priority.setSecond("cardio");
+                priority.setSecondTime(cardio);
+            }
+        }else if(max == yoga){
+            priority.setFirst("yoga");
+            priority.setFirstTime(yoga);
+            int second = Math.max(bodyBuilding, cardio);
+            if(second == bodyBuilding){
+                priority.setSecondTime(bodyBuilding);
+                priority.setSecond("bodyBuilding");
+            }else {
+                priority.setSecond("cardio");
+                priority.setSecondTime(cardio);
+            }
+        }else {
+            priority.setFirstTime(cardio);
+            priority.setFirst("cardio");
+            int second = Math.max(bodyBuilding, yoga);
+            if(second == yoga){
+                priority.setSecond("yoga");
+                priority.setSecondTime(yoga);
+            }else {
+                priority.setSecond("bodyBuilding");
+                priority.setSecondTime(bodyBuilding);
+            }
+        }
+        return priority;
+    }
 
 
 
