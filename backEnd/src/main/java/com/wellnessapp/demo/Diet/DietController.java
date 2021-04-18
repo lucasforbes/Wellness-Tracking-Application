@@ -200,10 +200,11 @@ public class DietController {
 //        }
 //        return returnDiets;
 //    }
-    @GetMapping("/findDietById")
-    public Diet findDietById(){
-        return this.ddb.findById(2);
-    }
+//    @GetMapping("/findDietById")
+//    public Diet findDietById(){
+//        return this.ddb.findById(2);
+//    }
+
     @GetMapping("/findDietByEmail/{email}")
     public List<Diet> getByUserID(@PathVariable String email){
         return this.ddb.findByEmail(email);
@@ -223,7 +224,7 @@ public class DietController {
         return data;
     }
     @GetMapping("/subscribeUserToDiet/{dietId, userEmail}")
-    public String setUserDietSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
+    public String setUserDietSubscription(@PathVariable ObjectId exersizeId, @PathVariable String userEmail){
         Diet diet = ddb.findById(exersizeId);
         User user =  udb.findByEmail(userEmail);
         int userId = user.getId();
@@ -235,7 +236,7 @@ public class DietController {
         return retState;
     }
     @GetMapping("/unsubscribeUserToDiet/{dietId, userId}")
-    public String unsetUserDietSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
+    public String unsetUserDietSubscription(@PathVariable ObjectId exersizeId, @PathVariable String userEmail){
         Diet diet = ddb.findById(exersizeId);
         User user =  udb.findByEmail(userEmail);
         int userId = user.getId();
