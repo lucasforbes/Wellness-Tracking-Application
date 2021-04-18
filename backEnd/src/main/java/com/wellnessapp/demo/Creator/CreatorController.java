@@ -104,9 +104,9 @@ public class CreatorController {
         return this.cdb.findById(id);
     }
 
-    @GetMapping("/getCreatorBalance/{creatorEmail}")
+    @GetMapping("/getCreatorBalance/{creatorEmail}/")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public int getCreatorBalance(@PathVariable String creatorEmail){
+    public int getCreatorBalance(@PathVariable("creatorEmail") String creatorEmail){
         Creator creator = cdb.findByEmail(creatorEmail);
         try {
             int balance = creator.getMoneyRecieved();
