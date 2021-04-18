@@ -82,29 +82,33 @@ public class PaymentController {
             edb.delete(exersize);
             System.out.println("E2");
             creator = cdb.findByEmail(exersize.getEmail());
+//            save in edb
             exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
             System.out.println("E3");
-//            exersize.setApproved(t);
             edb.save(exersize);
-            //        perform the normal opperations to subscription lists
-//            contentSubscription = exersize.getUserIdsToExersizesSubscribed();
-//            contentSubscription.add(user.getEmail());
-//            do these in the same delete add order maybe?
+//          save in udb
             user.getExersizesSubscribed().add(exersize.getId());
+//            save in cdb
             creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             System.out.println("E4");
         }catch (Exception e){
             System.out.println("D1");
             Diet diet = (Diet) jawns.get(0);
+            ddb.delete(diet);
             System.out.println("D2");
             creator = cdb.findByEmail(diet.getEmail());
+//            save in ddb
             contentSubscription = diet.getUserIdsToDietsSubscribed();
             contentSubscription.add(user.getEmail());
+            ddb.save(diet);
             System.out.println("D3");
+//            save in udb
             user.getDietsSubscribed().add(diet.getId());
+//            save in cdb
             creator.getUserIdsToDietsSubscribed().add(user.getEmail());
             System.out.println("D4");
         }
+//        save to paid subscription lists
         List<String> creatorsSubscribed = user.getPaidCreatorsSubscribed();
         creatorsSubscribed.add(creator.getEmail());
         List<String> usersSubscribed = creator.getPaidUsers();
