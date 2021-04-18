@@ -141,6 +141,7 @@ public class ExersizeController {
             return "Need Payment";
         }
         if(creatorsSubscribed.contains(creatorEmail)){
+            udb.delete(user);
             System.out.println("did 3");
 //            add subscription to lists without charging the user
             List exersizeSubscriptions = user.getExersizesSubscribed();

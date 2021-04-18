@@ -263,6 +263,7 @@ public class DietController {
             return "Need Payment";
         }
         if(creatorsSubscribed.contains(creatorID)){
+            udb.delete(user);
 //            add subscription to lists without charging the user
             List dietsSubscriptions = user.getDietsSubscribed();
             dietsSubscriptions.add(dietId);
