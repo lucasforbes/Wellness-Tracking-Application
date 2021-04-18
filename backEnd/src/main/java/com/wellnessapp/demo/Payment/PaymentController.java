@@ -77,6 +77,7 @@ public class PaymentController {
         System.out.println("PAYment accepted");
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
         User user = udb.findByEmail(userEmail);
+        udb.delete(user);
         System.out.println("User info: " + user);
         Creator creator;
         List<String> contentSubscription;
@@ -128,7 +129,6 @@ public class PaymentController {
         usersSubscribed.add(user.getEmail());
         cdb.save(creator);
         System.out.println("saved creator now to user");
-        udb.delete(user);
         udb.save(user);
         return "Payment Processed, Subscription Added";
     }
