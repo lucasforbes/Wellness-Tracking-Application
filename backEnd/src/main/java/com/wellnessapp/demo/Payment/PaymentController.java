@@ -77,6 +77,7 @@ public class PaymentController {
         System.out.println("PAYment accepted");
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
         User user = udb.findByEmail(userEmail);
+        System.out.println("User info: " + user);
         Creator creator;
         List<String> contentSubscription;
         try{
@@ -85,13 +86,16 @@ public class PaymentController {
 //            edb.delete(exersize);
             System.out.println("E2");
             creator = cdb.findByEmail(exersize.getEmail());
+            System.out.println("Creator info: " + creator);
 //            save in edb
             exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
             System.out.println("E3");
             edb.save(exersize);
             System.out.println("saved exersize");
 //          save in udb
-            user.getExersizesSubscribed().add(exersize.getId());
+            List exersizesSubscribed = user.getExersizesSubscribed();
+            exersizesSubscribed.add(exersize.getId());
+            System.out.println("Exersize id added to list: " + exersize.getId());
             udb.save(user);
             System.out.println("Saved in user");
 //            save in cdb
@@ -122,6 +126,8 @@ public class PaymentController {
         creatorsSubscribed.add(creator.getEmail());
         List<String> usersSubscribed = creator.getPaidUsers();
         usersSubscribed.add(user.getEmail());
+        cdb.save(creator);
+        udb.save(user);
         return "Payment Processed, Subscription Added";
     }
 }
