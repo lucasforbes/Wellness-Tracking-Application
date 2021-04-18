@@ -46,6 +46,7 @@ public class Creator extends WellnessApplication {
     private List<String> userIdsToDietsSubscribed;
     private List<String> userIdsToExersizesSubscribed;
     private List<String> paidUsers;
+    private int moneyRecieved;
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
@@ -74,12 +75,20 @@ public class Creator extends WellnessApplication {
         this.userIdsToExersizesSubscribed = new ArrayList<>();
         this.paidUsers = new ArrayList<>();
         this.phoneNumber = "";
+        this.moneyRecieved = 0;
     }
 
     public Creator() {
 
     }
 
+    public int getMoneyRecieved() {
+        return moneyRecieved;
+    }
+
+    public void setMoneyRecieved(int moneyRecieved) {
+        this.moneyRecieved = moneyRecieved;
+    }
 
     public String printUser() {
         String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail();

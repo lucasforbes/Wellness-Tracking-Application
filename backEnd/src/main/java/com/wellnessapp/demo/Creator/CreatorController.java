@@ -104,6 +104,19 @@ public class CreatorController {
         return this.cdb.findById(id);
     }
 
+    @GetMapping("/getCreatorBalance/")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public int getCreatorBalance(@PathVariable String creatorEmail){
+        Creator creator = cdb.findByEmail(creatorEmail);
+        try {
+            int balance = creator.getMoneyRecieved();
+            return balance;
+        }catch (Exception e){
+            creator.setMoneyRecieved(0);
+            return 0;
+        }
+    }
+
     @GetMapping("/addUserDietSubscription/{email, dietId}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String setUserDietSubscription(@PathVariable String email, @PathVariable String userEmail){

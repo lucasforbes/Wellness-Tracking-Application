@@ -8,6 +8,7 @@ import com.wellnessapp.demo.Exersize.Exersize;
 import com.wellnessapp.demo.Exersize.ExersizeRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -127,6 +128,13 @@ public class PaymentController {
         creatorsSubscribed.add(creator.getEmail());
         List<String> usersSubscribed = creator.getPaidUsers();
         usersSubscribed.add(user.getEmail());
+        try{
+            int balance = creator.getMoneyRecieved();
+            balance = balance + 2;
+            creator.setMoneyRecieved(balance);
+        }catch (Exception e){
+            creator.setMoneyRecieved(2);
+        }
         cdb.save(creator);
         System.out.println("saved creator now to user");
         udb.save(user);
