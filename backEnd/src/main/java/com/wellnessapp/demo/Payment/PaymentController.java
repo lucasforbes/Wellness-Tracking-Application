@@ -125,9 +125,14 @@ public class PaymentController {
         }
 //        save to paid subscription lists
         List<String> creatorsSubscribed = user.getPaidCreatorsSubscribed();
-        creatorsSubscribed.add(creator.getEmail());
+        if(!creatorsSubscribed.contains(creator.getEmail())){
+            creatorsSubscribed.add(creator.getEmail());
+        }
         List<String> usersSubscribed = creator.getPaidUsers();
-        usersSubscribed.add(user.getEmail());
+        if(!usersSubscribed.contains(user.getEmail())){
+            usersSubscribed.add(user.getEmail());
+        }
+
         try{
             int balance = creator.getMoneyRecieved();
             balance = balance + 2;
