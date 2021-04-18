@@ -147,7 +147,7 @@ public class ExersizeController {
             List subscribers = exersize.getUserIdsToExersizesSubscribed();
             subscribers.add(userId);
             System.out.println("did 4");
-            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             String retState = "Added user to Exersize subscriber list";
             return retState;
         }

@@ -264,7 +264,7 @@ public class DietController {
             exersizeSubscriptions.add(dietId);
             List subscribers = diet.getUserIdsToDietsSubscribed();
             subscribers.add(userId);
-            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             String retState = "Added user to Diet subscriber list";
             return retState;
         }

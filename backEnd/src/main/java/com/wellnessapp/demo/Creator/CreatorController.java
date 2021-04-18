@@ -94,19 +94,19 @@ public class CreatorController {
 
     @GetMapping("/addUserDietSubscription/{email, dietId}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setUserDietSubscription(@PathVariable String email, @PathVariable int id){
+    public String setUserDietSubscription(@PathVariable String email, @PathVariable String userEmail){
         Creator owner = cdb.findByEmail(email);
-        List<Integer> userIdList = owner.getUserIdsToDietsSubscribed();
-        userIdList.add(id);
+        List<String> userIdList = owner.getUserIdsToDietsSubscribed();
+        userIdList.add(userEmail);
         String retState = "Added user to Diet subscriber list";
         return retState;
     }
     @GetMapping("/addUserExersizeSubscription/{email, dietId}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setUserExerssizeSubscription(@PathVariable String email, @PathVariable int id){
+    public String setUserExerssizeSubscription(@PathVariable String email, @PathVariable String userEmail){
         Creator owner = cdb.findByEmail(email);
-        List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
-        userIdList.add(id);
+        List<String> userIdList = owner.getUserIdsToExersizesSubscribed();
+        userIdList.add(userEmail);
         String retState = "Added user to Exersize subscriber list";
         return retState;
     }

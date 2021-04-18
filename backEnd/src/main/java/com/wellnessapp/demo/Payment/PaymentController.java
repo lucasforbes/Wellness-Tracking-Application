@@ -42,9 +42,12 @@ public class PaymentController {
         ObjectId id = new ObjectId(obj);
         List<Object> jawns = new ArrayList<>();
         try{
+            System.out.println("Trying to get exersize object id");
             Exersize jawn = edb.findById(id);
+            System.out.println("Got exersize id: " + jawn);
             jawns.add(jawn);
         }catch (Exception e){
+            System.out.println("Trying to get Diet object id");
             Diet jawn = ddb.findById(id);
             jawns.add(jawn);
         }
@@ -84,19 +87,19 @@ public class PaymentController {
 //            contentSubscription.add(user.getEmail());
 //            do these in the same delete add order maybe?
             user.getExersizesSubscribed().add(exersize.getId());
-            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
         }catch (Exception e){
             Diet diet = (Diet) jawns.get(0);
             creator = cdb.findByEmail(diet.getEmail());
             contentSubscription = diet.getUserIdsToDietsSubscribed();
             contentSubscription.add(user.getEmail());
             user.getDietsSubscribed().add(diet.getId());
-            creator.getUserIdsToDietsSubscribed().add(user.getId());
+            creator.getUserIdsToDietsSubscribed().add(user.getEmail());
         }
-        List<Integer> creatorsSubscribed = user.getPaidCreatorsSubscribed();
-        creatorsSubscribed.add(creator.getId());
-        List<Integer> usersSubscribed = creator.getPaidUsers();
-        usersSubscribed.add(user.getId());
+        List<String> creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        creatorsSubscribed.add(creator.getEmail());
+        List<String> usersSubscribed = creator.getPaidUsers();
+        usersSubscribed.add(user.getEmail());
         return "Payment Processed, Subscription Added";
     }
 }

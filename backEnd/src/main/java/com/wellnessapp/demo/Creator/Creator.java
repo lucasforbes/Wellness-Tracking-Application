@@ -43,9 +43,9 @@ public class Creator extends WellnessApplication {
     private Boolean online;
     private Boolean isDeleted;
     private String phoneNumber;
-    private List<Integer> userIdsToDietsSubscribed;
-    private List<Integer> userIdsToExersizesSubscribed;
-    private List<Integer> paidUsers;
+    private List<String> userIdsToDietsSubscribed;
+    private List<String> userIdsToExersizesSubscribed;
+    private List<String> paidUsers;
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
     // need to figure out Json to date, for now taking out of constructor
@@ -222,27 +222,27 @@ public class Creator extends WellnessApplication {
         this.level = level;
     }
 
-    public List<Integer> getUserIdsToDietsSubscribed() {
+    public List<String> getUserIdsToDietsSubscribed() {
         return userIdsToDietsSubscribed;
     }
 
-    public void setUserIdsToDietsSubscribed(List<Integer> userIdsToDietsSubscribed) {
+    public void setUserIdsToDietsSubscribed(List<String> userIdsToDietsSubscribed) {
         this.userIdsToDietsSubscribed = userIdsToDietsSubscribed;
     }
 
-    public List<Integer> getPaidUsers() {
+    public List<String> getPaidUsers() {
         return paidUsers;
     }
 
-    public void setPaidUsers(List<Integer> paidUsers) {
+    public void setPaidUsers(List<String> paidUsers) {
         this.paidUsers = paidUsers;
     }
 
-    public List<Integer> getUserIdsToExersizesSubscribed() {
+    public List<String> getUserIdsToExersizesSubscribed() {
         return userIdsToExersizesSubscribed;
     }
 
-    public void setUserIdsToExersizesSubscribed(List<Integer> userIdsToExersizesSubscribed) {
+    public void setUserIdsToExersizesSubscribed(List<String> userIdsToExersizesSubscribed) {
         this.userIdsToExersizesSubscribed = userIdsToExersizesSubscribed;
     }
 }
