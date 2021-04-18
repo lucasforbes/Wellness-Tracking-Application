@@ -86,8 +86,10 @@ public class PaymentController {
             exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
             System.out.println("E3");
             edb.save(exersize);
+            System.out.println("saved exersize");
 //          save in udb
             user.getExersizesSubscribed().add(exersize.getId());
+            System.out.println("Saved in user");
 //            save in cdb
             creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             System.out.println("E4");
