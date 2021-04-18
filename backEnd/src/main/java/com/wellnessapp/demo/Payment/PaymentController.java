@@ -128,7 +128,8 @@ public class PaymentController {
         usersSubscribed.add(user.getEmail());
         cdb.save(creator);
         System.out.println("saved creator now to user");
-        udb.insert(user);
+        udb.delete(user);
+        udb.save(user);
         return "Payment Processed, Subscription Added";
     }
 }
