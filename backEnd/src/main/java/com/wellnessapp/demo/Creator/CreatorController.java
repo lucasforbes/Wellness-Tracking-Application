@@ -110,9 +110,11 @@ public class CreatorController {
         Creator creator = cdb.findByEmail(creatorEmail);
         try {
             int balance = creator.getMoneyRecieved();
+            System.out.println("Got Balance");
             return balance;
         }catch (Exception e){
             creator.setMoneyRecieved(0);
+            System.out.println("Balance is 0");
             return 0;
         }
     }
