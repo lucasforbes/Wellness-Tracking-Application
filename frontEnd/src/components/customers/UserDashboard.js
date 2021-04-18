@@ -110,12 +110,12 @@ export default function UserDashboard(props){
             })
 
 
-        axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailUser?email="+localStorage.getItem("email")).
-        then((res)=>{
-            setStats(res.data)
-        }).catch((err)=>{
-            console.log(err);
-        })
+        // axios.get("https://bloom-flask-app.herokuapp.com/getStatsByEmailUser?email="+localStorage.getItem("email")).
+        // then((res)=>{
+        //     setStats(res.data)
+        // }).catch((err)=>{
+        //     console.log(err);
+        // })
 
 
     },[])
@@ -305,7 +305,7 @@ export default function UserDashboard(props){
                        </Tab>
 
                        <Tab eventKey="Chat"  title={"Chat"}>
-                           <Chat/>
+                           {/*<Chat/>*/}
                        </Tab>
 
                    </Tabs>

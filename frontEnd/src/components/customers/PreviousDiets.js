@@ -45,8 +45,8 @@ export default function PreviousDiets(props){
 
                     return(
                         <>
-                            <div className={"col-md-5"}>
-                                <div className={"bg-success text-white card mb-3 popup"} id={index}>
+                            <div className={"col-md-5"} id={index}>
+                                <div className={"bg-success text-white card mb-3 popup"}>
                                     <Card.Body>
                                         <div className={"row"} >
 
@@ -61,7 +61,7 @@ export default function PreviousDiets(props){
                                                     {diet.dietList.map((dietItem,index3)=>{
                                                         return(
                                                             <>
-                                                                <div className={ diet.dietList.length == 1 ? "col-md-8 bg-dark" : "col-md-5 bg-dark "}>
+                                                                <div className={ diet.dietList.length == 1 ? "col-md-8 bg-dark" : "col-md-5 bg-dark "} id={index3}>
                                                                     <b> {dietItem.item}</b> <br/>
                                                                     <p> Serving Size: {dietItem.servingSize+" "}
                                                                         {"Fat(kg): "+dietItem.fat+" Carbs: "+

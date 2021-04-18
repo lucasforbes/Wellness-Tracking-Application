@@ -62,7 +62,7 @@ export default function PreviousWorkouts(props){
                                         {exercise.activityList.map((activity,index3)=>{
                                             return(
                                                 <>
-                                                    <div className={ exercise.activityList.length == 1 ? "col-md-8 bg-dark" : "col-md-5 bg-dark "}>
+                                                    <div className={ exercise.activityList.length == 1 ? "col-md-8 bg-dark" : "col-md-5 bg-dark "} id={index3}>
                                                         <b> {activity.activityName}</b> <br/>
                                                         <p> {activity.activityDescription?activity.activityDescription:""}</p> <br/>
                                                         <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "}

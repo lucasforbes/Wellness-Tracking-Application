@@ -417,11 +417,11 @@ export default function AllExercises(props){
 
                                 {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
 
-                                    selectedExercise.activityList.map((item,id)=>{
+                                    selectedExercise.activityList.map((item,index)=>{
                                         return (
 
 
-                                                <div className={"col-md-5 card text-white bg-info"}>
+                                                <div className={"col-md-5 card text-white bg-info"} id={index}>
 
                                                     <i>Activity: </i> {item.activityName} <br/>
                                                     {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
