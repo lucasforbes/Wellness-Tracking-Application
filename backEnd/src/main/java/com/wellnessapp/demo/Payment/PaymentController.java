@@ -127,7 +127,8 @@ public class PaymentController {
         List<String> usersSubscribed = creator.getPaidUsers();
         usersSubscribed.add(user.getEmail());
         cdb.save(creator);
-        udb.save(user);
+        System.out.println("saved creator now to user");
+        udb.insert(user);
         return "Payment Processed, Subscription Added";
     }
 }
