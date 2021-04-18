@@ -71,15 +71,19 @@ public class PaymentController {
         if (date.compareTo(currentDate) < 0){
             return "Card expired, try another one";
         }
+        System.out.println("PAYment accepted");
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
         User user = udb.findByEmail(userEmail);
         Creator creator;
         List<String> contentSubscription;
         try{
             Exersize exersize = (Exersize) jawns.get(0);
+            System.out.println("E1");
             edb.delete(exersize);
+            System.out.println("E2");
             creator = cdb.findByEmail(exersize.getEmail());
             exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
+            System.out.println("E3");
 //            exersize.setApproved(t);
             edb.save(exersize);
             //        perform the normal opperations to subscription lists
@@ -88,13 +92,18 @@ public class PaymentController {
 //            do these in the same delete add order maybe?
             user.getExersizesSubscribed().add(exersize.getId());
             creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
+            System.out.println("E4");
         }catch (Exception e){
+            System.out.println("D1");
             Diet diet = (Diet) jawns.get(0);
+            System.out.println("D2");
             creator = cdb.findByEmail(diet.getEmail());
             contentSubscription = diet.getUserIdsToDietsSubscribed();
             contentSubscription.add(user.getEmail());
+            System.out.println("D3");
             user.getDietsSubscribed().add(diet.getId());
             creator.getUserIdsToDietsSubscribed().add(user.getEmail());
+            System.out.println("D4");
         }
         List<String> creatorsSubscribed = user.getPaidCreatorsSubscribed();
         creatorsSubscribed.add(creator.getEmail());

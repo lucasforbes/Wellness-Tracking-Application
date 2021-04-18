@@ -135,6 +135,7 @@ public class ExersizeController {
         System.out.println("did 2");
 //        first check if user is already subscribed to creator
         List creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        System.out.println("creators in creatorsSubscribedList:" + creatorsSubscribed);
         System.out.println("did 2.4");
         if(creatorsSubscribed.isEmpty()){
             return "Need Payment";
