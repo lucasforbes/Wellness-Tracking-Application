@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -77,6 +78,17 @@ public class CreatorController {
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
         creator.setSignUpTime(currentDate);
+        creator.setBirthday(currentDate);
+        creator.setFirstName("firstName");
+        creator.setLastName("lastName");
+        creator.setGender("gender");
+        creator.setNutritionist(true);
+        creator.setTrainer(true);
+        creator.setDeleted(false);
+        creator.setPhoneNumber("");
+        creator.setUserIdsToDietsSubscribed(new ArrayList<>());
+        creator.setUserIdsToExersizesSubscribed(new ArrayList<>());
+        creator.setPaidUsers(new ArrayList<>());
         cdb.save(creator);
         return creator;
     }

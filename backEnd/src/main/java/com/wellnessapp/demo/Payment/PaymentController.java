@@ -10,7 +10,10 @@ import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.data.mongodb.core.query.Update.update;
+
+
+import org.springframework.data.mongodb.core.MongoActionOperation;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -79,7 +82,7 @@ public class PaymentController {
         try{
             Exersize exersize = (Exersize) jawns.get(0);
             System.out.println("E1");
-            edb.delete(exersize);
+//            edb.delete(exersize);
             System.out.println("E2");
             creator = cdb.findByEmail(exersize.getEmail());
 //            save in edb
@@ -89,14 +92,16 @@ public class PaymentController {
             System.out.println("saved exersize");
 //          save in udb
             user.getExersizesSubscribed().add(exersize.getId());
+            udb.save(user);
             System.out.println("Saved in user");
 //            save in cdb
             creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
+            cdb.save(creator);
             System.out.println("E4");
         }catch (Exception e){
             System.out.println("D1");
             Diet diet = (Diet) jawns.get(0);
-            ddb.delete(diet);
+//            ddb.delete(diet);
             System.out.println("D2");
             creator = cdb.findByEmail(diet.getEmail());
 //            save in ddb
@@ -106,8 +111,10 @@ public class PaymentController {
             System.out.println("D3");
 //            save in udb
             user.getDietsSubscribed().add(diet.getId());
+            udb.save(user);
 //            save in cdb
             creator.getUserIdsToDietsSubscribed().add(user.getEmail());
+            cdb.save(creator);
             System.out.println("D4");
         }
 //        save to paid subscription lists

@@ -150,6 +150,10 @@ public class ExersizeController {
             System.out.println("did 4");
             creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             String retState = "Added user to Exersize subscriber list";
+//            save in databases
+            udb.save(user);
+            edb.save(exersize);
+            cdb.save(creator);
             return retState;
         }
         else{
