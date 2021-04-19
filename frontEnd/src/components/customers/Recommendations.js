@@ -2,11 +2,17 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 
 import {alpha} from "validator/es/lib/alpha";
+import AllExercises from "./AllExercises";
 
-export default function Recommnedations(){
+export default function Recommnedations(props){
 
 
+    const [exercises,setExercises] = useState();
+    const [videos, setVideos] = useState();
 
+    const subscribedCallback=()=>{
+        props.callBack()
+    }
 
     useEffect(()=>{
 
@@ -25,6 +31,10 @@ export default function Recommnedations(){
                     }
                 }).then((res2)=>{
                     console.log("re videos",res2.data)
+
+                    setExercises(res2.data['mostSubscribed'])
+                    setVideos(res2.data['videoList'])
+
                 }).catch((err2)=>{
                     console.log("Error fetching recommendations")
                 })
@@ -41,7 +51,10 @@ export default function Recommnedations(){
 
     return(
         <>
-            Re
+
+
+            {exercises? <AllExercises  data={exercises} callBack={subscribedCallback}/> : "" }
+
         </>
     )
 }
