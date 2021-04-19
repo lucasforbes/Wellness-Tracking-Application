@@ -57,16 +57,16 @@ export default function Recommnedations(props){
             {exercises? <AllExercises  data={exercises} callBack={subscribedCallback}/> : "" }
 
 
-            <div className={"card-header text-white bg-danger"}> Suggested Videos</div>
-            <div className={"row"} style={{paddingLeft:'10px',paddingTop:'10px'}}>
+            <div className={"card-header text-white bg-primary"} style={{fontFamily: 'cursive',fontWeight: '600', fontSize: '130%', textDecoration: 'underline'}}> Suggested Videos</div>
+            <div className={"row"} style={{paddingLeft:'10px',paddingTop:'10px', backgroundColor: 'lightblue', fontSize: '130%', fontFamily: 'cursive'}}>
             {videos? videos.map((video,index)=>{
                 return(
-                    <div id={index} className={"col-md-4 card text-white bg-info"} style={{borderWidth:'10px',borderColor:'white'}}>
-                        <div className={"card-header"} style={{backgroundColor:'lightgreen'}}> {video['Exercises Title']}</div>
-                        <div className={"card-body"}> Exersize Description:
+                    <div id={index} className={"col-md-4 card text-white"} style={{borderWidth:'10px',borderColor:'lightblue', backgroundColor: 'lightblue'}}>
+                        <div className={"card-header"} style={{backgroundColor:'lightgreen', color: 'dodgerblue', textDecoration: 'underline', fontWeight: '600'}}> {video['Exercises Title']}</div>
+                        <div className={"card-body"} style={{backgroundColor: 'lightGreen'}}> Exersize Description:
                             <br/>
                             {video['Exersize Description']} {"  "} <a href={video['Exersize Video Link']}  target={"_blank"} >
-                                <div style={{width:'min-content',paddingLeft:'3px',paddingRight:'3px'}} className={"bg-primary text-white"} >Video </div> </a>
+                                <div style={{width:'min-content',paddingLeft:'3px',paddingRight:'3px', color: 'blue'}} className={" text-lightblue"} >Video </div> </a>
                         <br/>
 
 
