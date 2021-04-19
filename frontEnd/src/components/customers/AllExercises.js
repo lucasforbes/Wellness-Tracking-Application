@@ -415,7 +415,7 @@ export default function AllExercises(props){
                                 </div>
 
 
-                                {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+                                {selectedExercise['paid'] != true && selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
 
                                     selectedExercise.activityList.map((item,index)=>{
                                         return (
@@ -436,6 +436,19 @@ export default function AllExercises(props){
                                     }):""
                                 }
 
+
+                                <div className={"col-md-12"}>
+
+                                </div>
+                                <div className={"col-md-3"}>
+                                {selectedExercise['paid'] ?
+
+                                    <div className={"card-header text-white bg-success"}>
+                                        Subscribe to view the content
+                                    </div>
+                                :""
+                                }
+                                </div>
 
 
                                 <br/>
