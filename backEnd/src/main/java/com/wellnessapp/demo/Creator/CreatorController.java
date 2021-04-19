@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -77,6 +78,17 @@ public class CreatorController {
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
         creator.setSignUpTime(currentDate);
+        creator.setBirthday(currentDate);
+        creator.setFirstName("firstName");
+        creator.setLastName("lastName");
+        creator.setGender("gender");
+        creator.setNutritionist(true);
+        creator.setTrainer(true);
+        creator.setDeleted(false);
+        creator.setPhoneNumber("");
+        creator.setUserIdsToDietsSubscribed(new ArrayList<>());
+        creator.setUserIdsToExersizesSubscribed(new ArrayList<>());
+        creator.setPaidUsers(new ArrayList<>());
         cdb.save(creator);
         return creator;
     }
@@ -92,21 +104,36 @@ public class CreatorController {
         return this.cdb.findById(id);
     }
 
+    @GetMapping("/getCreatorBalance/{creatorEmail}/")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public int getCreatorBalance(@PathVariable("creatorEmail") String creatorEmail){
+        Creator creator = cdb.findByEmail(creatorEmail);
+        try {
+            int balance = creator.getMoneyRecieved();
+            System.out.println("Got Balance");
+            return balance;
+        }catch (Exception e){
+            creator.setMoneyRecieved(0);
+            System.out.println("Balance is 0");
+            return 0;
+        }
+    }
+
     @GetMapping("/addUserDietSubscription/{email, dietId}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setUserDietSubscription(@PathVariable String email, @PathVariable int id){
+    public String setUserDietSubscription(@PathVariable String email, @PathVariable String userEmail){
         Creator owner = cdb.findByEmail(email);
-        List<Integer> userIdList = owner.getUserIdsToDietsSubscribed();
-        userIdList.add(id);
+        List<String> userIdList = owner.getUserIdsToDietsSubscribed();
+        userIdList.add(userEmail);
         String retState = "Added user to Diet subscriber list";
         return retState;
     }
     @GetMapping("/addUserExersizeSubscription/{email, dietId}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String setUserExerssizeSubscription(@PathVariable String email, @PathVariable int id){
+    public String setUserExerssizeSubscription(@PathVariable String email, @PathVariable String userEmail){
         Creator owner = cdb.findByEmail(email);
-        List<Integer> userIdList = owner.getUserIdsToExersizesSubscribed();
-        userIdList.add(id);
+        List<String> userIdList = owner.getUserIdsToExersizesSubscribed();
+        userIdList.add(userEmail);
         String retState = "Added user to Exersize subscriber list";
         return retState;
     }

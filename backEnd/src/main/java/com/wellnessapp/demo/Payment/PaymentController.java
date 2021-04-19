@@ -8,9 +8,13 @@ import com.wellnessapp.demo.Exersize.Exersize;
 import com.wellnessapp.demo.Exersize.ExersizeRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.data.mongodb.core.query.Update.update;
+
+
+import org.springframework.data.mongodb.core.MongoActionOperation;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -42,9 +46,12 @@ public class PaymentController {
         ObjectId id = new ObjectId(obj);
         List<Object> jawns = new ArrayList<>();
         try{
+            System.out.println("Trying to get exersize object id");
             Exersize jawn = edb.findById(id);
+            System.out.println("Got exersize id: " + jawn);
             jawns.add(jawn);
         }catch (Exception e){
+            System.out.println("Trying to get Diet object id");
             Diet jawn = ddb.findById(id);
             jawns.add(jawn);
         }
@@ -68,35 +75,74 @@ public class PaymentController {
         if (date.compareTo(currentDate) < 0){
             return "Card expired, try another one";
         }
+        System.out.println("PAYment accepted");
 //        payment was accepted so first add the user to creatorSubscirptions and vice versA
         User user = udb.findByEmail(userEmail);
+        udb.delete(user);
+        System.out.println("User info: " + user);
         Creator creator;
         List<String> contentSubscription;
         try{
             Exersize exersize = (Exersize) jawns.get(0);
-            edb.delete(exersize);
+            System.out.println("E1");
+//            edb.delete(exersize);
+            System.out.println("E2");
             creator = cdb.findByEmail(exersize.getEmail());
+            System.out.println("Creator info: " + creator);
+//            save in edb
             exersize.getUserIdsToExersizesSubscribed().add(user.getEmail());
-//            exersize.setApproved(t);
+            System.out.println("E3");
             edb.save(exersize);
-            //        perform the normal opperations to subscription lists
-//            contentSubscription = exersize.getUserIdsToExersizesSubscribed();
-//            contentSubscription.add(user.getEmail());
-//            do these in the same delete add order maybe?
-            user.getExersizesSubscribed().add(exersize.getId());
-            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            System.out.println("saved exersize");
+//          save in udb - some users don't have this list so ignore:
+//            List exersizesSubscribed = user.getExersizesSubscribed();
+//            exersizesSubscribed.add(exersize.getId());
+//            System.out.println("Exersize id added to list: " + exersize.getId());
+//            udb.save(user);
+//            System.out.println("Saved in user");
+//            save in cdb -
+            creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
+            cdb.save(creator);
+            System.out.println("E4");
         }catch (Exception e){
+            System.out.println("D1");
             Diet diet = (Diet) jawns.get(0);
+//            ddb.delete(diet);
+            System.out.println("D2");
             creator = cdb.findByEmail(diet.getEmail());
+//            save in ddb
             contentSubscription = diet.getUserIdsToDietsSubscribed();
             contentSubscription.add(user.getEmail());
-            user.getDietsSubscribed().add(diet.getId());
-            creator.getUserIdsToDietsSubscribed().add(user.getId());
+            ddb.save(diet);
+            System.out.println("D3");
+////            save in udb - not all users have this list
+//            user.getDietsSubscribed().add(diet.getId());
+//            udb.save(user);
+//            save in cdb
+            creator.getUserIdsToDietsSubscribed().add(user.getEmail());
+            cdb.save(creator);
+            System.out.println("D4");
         }
-        List<Integer> creatorsSubscribed = user.getPaidCreatorsSubscribed();
-        creatorsSubscribed.add(creator.getId());
-        List<Integer> usersSubscribed = creator.getPaidUsers();
-        usersSubscribed.add(user.getId());
+//        save to paid subscription lists
+        List<String> creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        if(!creatorsSubscribed.contains(creator.getEmail())){
+            creatorsSubscribed.add(creator.getEmail());
+        }
+        List<String> usersSubscribed = creator.getPaidUsers();
+        if(!usersSubscribed.contains(user.getEmail())){
+            usersSubscribed.add(user.getEmail());
+        }
+
+        try{
+            int balance = creator.getMoneyRecieved();
+            balance = balance + 2;
+            creator.setMoneyRecieved(balance);
+        }catch (Exception e){
+            creator.setMoneyRecieved(2);
+        }
+        cdb.save(creator);
+        System.out.println("saved creator now to user");
+        udb.save(user);
         return "Payment Processed, Subscription Added";
     }
 }

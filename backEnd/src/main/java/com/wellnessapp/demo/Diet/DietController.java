@@ -200,10 +200,11 @@ public class DietController {
 //        }
 //        return returnDiets;
 //    }
-    @GetMapping("/findDietById")
-    public Diet findDietById(){
-        return this.ddb.findById(2);
-    }
+//    @GetMapping("/findDietById")
+//    public Diet findDietById(){
+//        return this.ddb.findById(2);
+//    }
+
     @GetMapping("/findDietByEmail/{email}")
     public List<Diet> getByUserID(@PathVariable String email){
         return this.ddb.findByEmail(email);
@@ -223,7 +224,7 @@ public class DietController {
         return data;
     }
     @GetMapping("/subscribeUserToDiet/{dietId, userEmail}")
-    public String setUserDietSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
+    public String setUserDietSubscription(@PathVariable ObjectId exersizeId, @PathVariable String userEmail){
         Diet diet = ddb.findById(exersizeId);
         User user =  udb.findByEmail(userEmail);
         int userId = user.getId();
@@ -235,7 +236,7 @@ public class DietController {
         return retState;
     }
     @GetMapping("/unsubscribeUserToDiet/{dietId, userId}")
-    public String unsetUserDietSubscription(@PathVariable int exersizeId, @PathVariable String userEmail){
+    public String unsetUserDietSubscription(@PathVariable ObjectId exersizeId, @PathVariable String userEmail){
         Diet diet = ddb.findById(exersizeId);
         User user =  udb.findByEmail(userEmail);
         int userId = user.getId();
@@ -254,18 +255,26 @@ public class DietController {
         String creatorEmail =  diet.getEmail();
         Creator creator = cdb.findByEmail(creatorEmail);
         User user = udb.findByEmail(userEmail);
-        int userId = user.getId();
+        String userId = user.getEmail();
 //        first check if user is already subscribed to creator
-        Integer creatorID = creator.getId();
+        String creatorID = creator.getEmail();
         List creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        if(creatorsSubscribed.isEmpty()){
+            return "Need Payment";
+        }
         if(creatorsSubscribed.contains(creatorID)){
+            udb.delete(user);
 //            add subscription to lists without charging the user
-            List exersizeSubscriptions = user.getExersizesSubscribed();
-            exersizeSubscriptions.add(dietId);
+            List dietsSubscriptions = user.getDietsSubscribed();
+            dietsSubscriptions.add(dietId);
             List subscribers = diet.getUserIdsToDietsSubscribed();
             subscribers.add(userId);
-            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             String retState = "Added user to Diet subscriber list";
+//            save in databases
+            udb.save(user);
+            cdb.save(creator);
+            ddb.save(diet);
             return retState;
         }
         else{

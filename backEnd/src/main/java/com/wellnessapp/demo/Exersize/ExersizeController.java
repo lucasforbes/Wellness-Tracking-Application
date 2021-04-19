@@ -135,11 +135,13 @@ public class ExersizeController {
         System.out.println("did 2");
 //        first check if user is already subscribed to creator
         List creatorsSubscribed = user.getPaidCreatorsSubscribed();
+        System.out.println("creators in creatorsSubscribedList:" + creatorsSubscribed);
         System.out.println("did 2.4");
         if(creatorsSubscribed.isEmpty()){
             return "Need Payment";
         }
         if(creatorsSubscribed.contains(creatorEmail)){
+            udb.delete(user);
             System.out.println("did 3");
 //            add subscription to lists without charging the user
             List exersizeSubscriptions = user.getExersizesSubscribed();
@@ -147,8 +149,12 @@ public class ExersizeController {
             List subscribers = exersize.getUserIdsToExersizesSubscribed();
             subscribers.add(userId);
             System.out.println("did 4");
-            creator.getUserIdsToExersizesSubscribed().add(user.getId());
+            creator.getUserIdsToExersizesSubscribed().add(user.getEmail());
             String retState = "Added user to Exersize subscriber list";
+//            save in databases
+            udb.save(user);
+            edb.save(exersize);
+            cdb.save(creator);
             return retState;
         }
         else{

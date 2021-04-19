@@ -46,8 +46,8 @@ export default function PreviousWorkouts(props){
 
                 return(
                     <>
-                    <div className={"col-md-5"} style={{margin:'10px'}}>
-                    <div className={"bg-success text-white card mb-3 popup"}  id={index}>
+                    <div className={"col-xl-4"} style={{marginTop: '5px',margin: '0 auto' , minHeight: '500px'}}>
+                    <div className={"bg-success text-white card mb-3 popup"}  id={index} style={{}}>
                         <Card.Body style={{backgroundColor:'lightblue', borderColor: 'blue', borderStyle: 'ridge'}} >
                             <div className={"row"} style={{backgroundColor:'lightblue'}} >
 
@@ -56,13 +56,13 @@ export default function PreviousWorkouts(props){
                                     <h4>{exercise.title}</h4>
                                 </div>
                                 <div className={"col-md-8"}>
-                                    <p>{exercise.description}</p>
+                                    <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{exercise.description}</p>
 
                                     <div className={"row"}>
                                         {exercise.activityList.map((activity,index3)=>{
                                             return(
                                                 <>
-                                                    <div className={ exercise.activityList.length == 1 ? "col-md-8 bg-dark" : "col-md-5 bg-dark "} id={index3}>
+                                                    <div className={ exercise.activityList.length == 1 ? "col-md-8" : "col-md-5 "} id={index3} style={{backgroundColor: 'lightblue'}}>
                                                         <b> {activity.activityName}</b> <br/>
                                                         <p> {activity.activityDescription?activity.activityDescription:""}</p> <br/>
                                                         <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "}
