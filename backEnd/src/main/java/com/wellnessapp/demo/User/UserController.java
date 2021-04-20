@@ -83,6 +83,9 @@ public class UserController {
         Clock cl = Clock.systemUTC();
         LocalDate currentDate = LocalDate.now(cl);
         user.setSignUpTime(currentDate);
+        user.setDietsSubscribed(new ArrayList<>());
+        user.setExersizesSubscribed(new ArrayList<>());
+        user.setPaidCreatorsSubscribed(new ArrayList<>());
         udb.save(user);
         return user;
     }
