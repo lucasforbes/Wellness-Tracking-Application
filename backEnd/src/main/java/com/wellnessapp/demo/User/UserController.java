@@ -86,6 +86,8 @@ public class UserController {
         user.setDietsSubscribed(new ArrayList<>());
         user.setExersizesSubscribed(new ArrayList<>());
         user.setPaidCreatorsSubscribed(new ArrayList<>());
+//        add 16 char token to database
+        user.setToken();
         udb.save(user);
         return user;
     }

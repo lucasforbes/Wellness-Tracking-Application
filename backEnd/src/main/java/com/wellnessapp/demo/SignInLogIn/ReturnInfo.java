@@ -36,6 +36,7 @@ public class ReturnInfo {
     private Boolean online;
     private String phone;
     private Boolean isDeleted;
+    private String token;
 //    JsonArray with the current user info to send to front end
     ObjectNode retInfo;
 
@@ -55,6 +56,7 @@ public class ReturnInfo {
         this.userType = user.getUserType();
         this.online = user.getOnline();
         this.isDeleted = user.getIsDeleted();
+        this.token = user.getToken();
     }
 //    constructor for Creators
     public ReturnInfo(Creator creator){
@@ -75,6 +77,7 @@ public class ReturnInfo {
         this.userType = creator.getUserType();
         this.online = creator.getOnline();
         this.isDeleted = creator.getDeleted();
+        this.token = creator.getToken();
     }
 //    constructor for Admins
     public ReturnInfo(Admin admin){
@@ -218,6 +221,14 @@ public class ReturnInfo {
 
     public void setTrainer(Boolean trainer) {
         this.trainer = trainer;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getLevel() {

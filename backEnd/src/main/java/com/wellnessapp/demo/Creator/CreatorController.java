@@ -89,6 +89,8 @@ public class CreatorController {
         creator.setUserIdsToDietsSubscribed(new ArrayList<>());
         creator.setUserIdsToExersizesSubscribed(new ArrayList<>());
         creator.setPaidUsers(new ArrayList<>());
+//        add 16 char token to db
+        creator.setToken();
         cdb.save(creator);
         return creator;
     }

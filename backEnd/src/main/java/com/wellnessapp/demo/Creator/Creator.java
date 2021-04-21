@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
@@ -46,6 +47,7 @@ public class Creator extends WellnessApplication {
     private List<String> userIdsToDietsSubscribed;
     private List<String> userIdsToExersizesSubscribed;
     private List<String> paidUsers;
+    private String token;
     private int moneyRecieved;
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
@@ -94,7 +96,30 @@ public class Creator extends WellnessApplication {
         String r = "Name: " + getFirstName() + " " + getLastName() + ", Email: " + getEmail();
         return r;
     }
+    public String getToken() {
+        return token;
+    }
 
+    public void setToken() {
+//        code for setting new token
+        String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+        String CHAR_UPPER = CHAR_LOWER.toUpperCase();
+        String NUMBER = "0123456789";
+
+        String DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER;
+        SecureRandom random = new SecureRandom();
+
+        StringBuilder sb = new StringBuilder(16);
+
+        for (int i = 0; i < 16; i++) {
+            // 0-62 (exclusive), random returns 0-61
+            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
+            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+
+            sb.append(rndChar);
+        }
+        this.token = sb.toString();
+    }
     public String getPhoneNumber() {
         return phoneNumber;
     }
