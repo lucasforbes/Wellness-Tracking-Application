@@ -98,8 +98,8 @@ export default function AddWorkout(props){
             'paid': paid
         });
 
-        // formData.append("photo",workoutImage);
-        // formData.append("exersize",json);
+        formData.append("file",workoutImage);
+        formData.append("exercise",json);
 
 
         // axios.post('https://bloom-wellness-back.herokuapp.com/addExersize', formData, {
@@ -118,7 +118,7 @@ export default function AddWorkout(props){
         //     console.log(error);
         // })
 
-        axios.post('https://bloom-flask-app.herokuapp.com/addExersize', json, {
+        axios.post('https://bloom-flask-app.herokuapp.com/addExersize', formData, {
             headers: {
                 // 'Content-type': 'multipart/form-data',
 
@@ -138,7 +138,7 @@ export default function AddWorkout(props){
 
         alert("Workout add request made");
 
-        setWorkoutImage(null);
+        // setWorkoutImage(null);
         setActivityList([{ activityName: "", activityDescription: "" , bodyPartsTargeted:"", totalDuration:1,
             activitySets:1, activityReps:1, equipmentNeeded:1, videoLink:1}])
         setWorkoutDescription("")
@@ -197,6 +197,12 @@ export default function AddWorkout(props){
 
                             </Select>
                         </FormControl>
+
+
+                        <input
+                            type="file"
+                            onChange={(e) => setWorkoutImage(e.target.files[0])}
+                        />
 
 
 
