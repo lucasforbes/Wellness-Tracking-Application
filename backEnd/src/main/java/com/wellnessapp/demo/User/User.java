@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Id;
+import java.security.SecureRandom;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.Period;
@@ -48,6 +49,7 @@ public class User {
     private List<ObjectId> dietsSubscribed;
     private List<ObjectId> exersizesSubscribed;
     private List<String> paidCreatorsSubscribed;
+    private String token;
 
     // need to figure out picture, for now taking out of constructor:
 //    GridFsObject profilePic,
@@ -110,6 +112,31 @@ public class User {
 
     public void setExersizesSubscribed(List<ObjectId> exersizesSubscribed) {
         this.exersizesSubscribed = exersizesSubscribed;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken() {
+//        code for setting new token
+        String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+        String CHAR_UPPER = CHAR_LOWER.toUpperCase();
+        String NUMBER = "0123456789";
+
+        String DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER;
+        SecureRandom random = new SecureRandom();
+
+        StringBuilder sb = new StringBuilder(16);
+
+        for (int i = 0; i < 16; i++) {
+            // 0-62 (exclusive), random returns 0-61
+            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
+            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+
+            sb.append(rndChar);
+        }
+        this.token = sb.toString();
     }
 
     public List<String> getPaidCreatorsSubscribed() {
