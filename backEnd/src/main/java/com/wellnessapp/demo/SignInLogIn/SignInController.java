@@ -1,6 +1,7 @@
 package com.wellnessapp.demo.SignInLogIn;
 
 import com.wellnessapp.demo.Admin.AdminRepository;
+import com.wellnessapp.demo.Creator.Creator;
 import com.wellnessapp.demo.Creator.CreatorRepository;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
@@ -46,8 +47,11 @@ public class SignInController {
                 String tempPassword = cdb.findByEmail(email).getPassword();
                 if(tempPassword.compareTo(password) == 0){
 //                    reset token to new 16 char token
+                    Creator creator = cdb.findByEmail(email);
+                    creator.setToken();
+                    cdb.save(creator);
                     System.out.println("Signed In");
-                    return new ReturnInfo(cdb.findByEmail(email));
+                    return new ReturnInfo(creator);
                 }
                 else{
                     return new ReturnInfo(0);
