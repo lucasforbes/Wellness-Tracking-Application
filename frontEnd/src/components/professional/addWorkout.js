@@ -2,10 +2,23 @@ import React,{useState,useEffect} from "react";
 import {TextField, TextareaAutosize, InputLabel, MenuItem, FormControl, Select} from "@material-ui/core";
 import {Button, Card} from "react-bootstrap";
 import axios from "axios";
-
-
+import { Zoom } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
 
 export default function AddWorkout(props){
+
+
+    const images = [
+        process.env.PUBLIC_URL + '/yogaLabel.jpg',
+        process.env.PUBLIC_URL + '/bodyBuilding.PNG',
+        process.env.PUBLIC_URL + '/cardioLogo.jpg',
+    ];
+
+    const [imageDisplayed,setImageDisplayed] = useState(images[Math.floor(Math.random() * 3)]);
+
+    // useEffect(()=>{
+    //     setInterval(()=> setImageDisplayed(images[Math.floor(Math.random() * 3)]),10000);
+    // },[])
 
 
     const styles = theme => ({
@@ -150,7 +163,9 @@ export default function AddWorkout(props){
 
 
     return (
-        <div>
+        <div className={"row"}>
+
+            <div className={"col-md-6"}>
 
             <Card
                 bg={'Light'.toLowerCase()}
@@ -417,6 +432,30 @@ export default function AddWorkout(props){
 
             </form>
             </Card>
+
+            </div>
+
+
+            {workoutImage?
+                <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
+                    <div style={{float:"left"}} >
+                <img style={{maxWidth:'500px',maxHeight:'600px'}} src={URL.createObjectURL(workoutImage)} alt={"Not able to disaply Image"}/>
+
+
+                        <div className={"card-header bg-primary text-white"} style={{paddingTop:'20px'}}> Image Selected </div>
+                     </div>
+
+                </div>
+
+                :
+
+            <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
+                <div style={{float:"left"}} onClick={()=>setImageDisplayed(images[Math.floor(Math.random() * 3)])}>
+                    <img style={{width:'400px',height:'400px'}} src={imageDisplayed}/>
+                </div>
+            </div>
+
+            }
 
 
         </div>
