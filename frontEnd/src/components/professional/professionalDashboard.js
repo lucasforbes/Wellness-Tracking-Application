@@ -452,40 +452,61 @@ export default function ProfessionalDashboard(props){
 
                         </Tab>
 
-                        <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white'}}>
-                            Stats
+                        <Tab eventKey="stats" title="Statistics" style={{backgroundColor: 'lightgreen', border: 'solid', borderColor: 'white', fontFamily: 'Cursive',color:'white',paddingTop:'10px',paddingLeft:'20px'}}>
 
-                            <Card>
-                                <Card.Body style={{backgroundColor: 'lightgreen'}}>
+                            <div className={"row"}>
+                                <div className={"col-md-3"}>
+                                    <Card  style={{ width: '18rem',fontSize:'20px'}}
+                                           className="mb-2"
+                                           bg={'primary'}
+                                    >
 
-                                    <h5 > Total Subscribers for Workout {stats? stats.totalUsers:""}
-                                        <br/>
-                                        <p>
-                                            <br/> Total Workouts {" "} {stats ? stats.countWorkouts:""}
-                                            <br/>Average users per workout {" "}
-                                            {stats ? stats.averageUsers:""}
-                                        </p>
+                                        <Card.Body>
 
-                                    </h5>
-                                </Card.Body>
-                            </Card>
+                                            <div className={"card-header"}>Workout Stats</div>
+
+                                            <div className={"card-header text-white bg-warning"} > Total Subscribers {stats? stats.totalUsers:""} </div>
+                                            <br/>
+
+                                            <div className={"card-header text-white bg-success"} >
+                                                 Plans Added {" "} {stats ? stats.countWorkouts:""}
+                                                <br/>Average Count{" "}
+                                                {stats ? parseFloat(stats.averageUsers).toFixed(2):""}
+                                            </div>
+
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                                <div className={"col-md-3"}>
+                                    <Card style={{ width: '18rem',fontSize:'20px'}}
+                                          className="mb-2"
+                                          bg={'primary'}>
+                                        <Card.Body>
+
+                                            <div className={"card-header"}>Diet Stats</div>
+
+                                            <div className={"card-header bg-danger"} > Total Subscribers {statsDiet? statsDiet.totalUsers:""} </div>
+                                                <br/>
+
+                                                <div className={"card-header text-white bg-success"}>
+                                                     Total Diet Plans {" "} {statsDiet ? statsDiet.countDiet:""}
+                                                    <br/>Average users per Diet {" "}
+                                                    {statsDiet ? parseFloat(statsDiet.averageUsers).toFixed(2):""}
+                                                </div>
+
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                                <div className={"col-md-4"}>
+
+                                </div>
+                            </div>
+
+
 
                             <br/>
 
-                            <Card>
-                                <Card.Body style={{backgroundColor: 'lightgreen'}}>
 
-                                    <h5 > Total Subscribers for Diet {statsDiet? statsDiet.totalUsers:""}
-                                        <br/>
-                                        <p>
-                                            <br/> Total Diets {" "} {statsDiet ? statsDiet.countDiet:""}
-                                            <br/>Average users per workout {" "}
-                                            {statsDiet ? statsDiet.averageUsers:""}
-                                        </p>
-
-                                    </h5>
-                                </Card.Body>
-                            </Card>
 
                         </Tab>
 
