@@ -23,6 +23,9 @@ export default function AddWorkout(props){
     const [paid,setPaid] = useState(false);
 
 
+
+    const [dietImage,setDietImage] = useState();
+
     // //Image upload
     // const [workoutImage,setWorkoutImage] = useState();
     // const fileChangedHandler = event => {
@@ -90,8 +93,14 @@ export default function AddWorkout(props){
             'paid': paid
         });
 
+        formData.append("diet",json);
 
-        axios.post('https://bloom-flask-app.herokuapp.com/addDiet', json, {
+        if(dietImage){
+            formData.append("file",dietImage);
+        }
+
+
+        axios.post('https://bloom-flask-app.herokuapp.com/addDiet', formData, {
             headers: {
                 // 'Content-type': 'multipart/form-data',
 
@@ -171,13 +180,16 @@ export default function AddWorkout(props){
                                 </Select>
                             </FormControl>
 
-                            {/*<div className={"col-md-3"}>*/}
-                            {/*    <br/>*/}
-                            {/*    <input type="file"  required onChange={fileChangedHandler}/>*/}
-                            {/*</div>*/}
+                            <input
+                                type="file"
+                                onChange={(e) => setDietImage(e.target.files[0])}
+                            />
+
 
                             <br/>
                             <br/>
+
+                            
 
 
                         </div>

@@ -111,7 +111,14 @@ export default function AddWorkout(props){
             'paid': paid
         });
 
-        formData.append("file",workoutImage);
+
+        if(workoutImage){
+            formData.append("file",workoutImage);
+        }
+        // else{
+        //     formData.append("file","");
+        // }
+
         formData.append("exercise",json);
 
 
