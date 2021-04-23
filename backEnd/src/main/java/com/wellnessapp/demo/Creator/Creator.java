@@ -78,6 +78,7 @@ public class Creator extends WellnessApplication {
         this.paidUsers = new ArrayList<>();
         this.phoneNumber = "";
         this.moneyRecieved = 0;
+        this.token = "";
     }
 
     public Creator() {
@@ -97,7 +98,7 @@ public class Creator extends WellnessApplication {
         return r;
     }
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     public void setToken() {
