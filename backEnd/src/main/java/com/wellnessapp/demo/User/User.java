@@ -78,6 +78,7 @@ public class User {
         this.dietsSubscribed = new ArrayList<>();
         this.paidCreatorsSubscribed = new ArrayList<>();
         this.phoneNumber = "";
+        this.token = "";
     }
 
     public User() {
@@ -115,7 +116,7 @@ public class User {
     }
 
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     public void setToken() {

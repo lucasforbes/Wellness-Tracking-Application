@@ -35,10 +35,13 @@ public class SignInController {
                 System.out.println("Signing in user:" + currentUser);
 //                reset token to new 16 char token
                 currentUser.setToken();
+                System.out.println("1");
                 udb.save(currentUser);
-                ReturnInfo retInfo  = new ReturnInfo(currentUser);
+                System.out.println("2");
+                User user = udb.findByEmail(email);
+                System.out.println("3");
                 System.out.println("Signed In");
-                return retInfo;
+                return new ReturnInfo(user);
             }
             else{
                 return new ReturnInfo(0);
@@ -49,11 +52,15 @@ public class SignInController {
                 if(tempPassword.compareTo(password) == 0){
 //                    reset token to new 16 char token
                     Creator creator = cdb.findByEmail(email);
-                    System.out.println("Signing in creator:" + creator);
+                    System.out.println("Signing in creatorz:" + creator.getFirstName() + creator.getEmail());
                     creator.setToken();
+                    System.out.println("1");
                     cdb.save(creator);
+                    System.out.println("2");
+                    Creator creator1 = cdb.findByEmail(email);
+                    System.out.println("3");
                     System.out.println("Signed In");
-                    return new ReturnInfo(creator);
+                    return new ReturnInfo(creator1);
                 }
                 else{
                     return new ReturnInfo(0);
