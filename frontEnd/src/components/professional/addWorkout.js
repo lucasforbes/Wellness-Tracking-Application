@@ -458,7 +458,7 @@ export default function AddWorkout(props){
 
             <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
                 <div style={{float:"left"}} onClick={()=>setImageDisplayed(images[Math.floor(Math.random() * 3)])}>
-                    <img style={{width:'400px',height:'400px'}} src={imageDisplayed}/>
+                    <img style={{borderColor:'royalblue',width:'400px',height:'400px',borderWidth:'5px',borderStyle:'outset'}} src={imageDisplayed}/>
                 </div>
             </div>
 

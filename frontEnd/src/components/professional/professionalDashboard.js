@@ -256,44 +256,117 @@ export default function ProfessionalDashboard(props){
 
                             <br/>
 
-                            {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{return(
-                                    <div id={index}>
-                                        <Card>
-                                            <Card.Body style={{backgroundColor: 'lightgreen'}}>
-                                                <div className={"row"} >
-                                                    <div className={"col-md-8"}>
-                                                        <h4 style={{color:'white'}}>{workouts.title}</h4>
+
+                            <div className={"row"}>
+
+                            {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{
+
+                                if(workouts.approved) {
+                                    return (
+
+                                        <div id={index} className={"col-4"}>
+                                            <Card>
+                                                <Card.Body style={{backgroundColor: 'lightblue'}}>
+
+                                                    <div className={"row"}>
+
+                                                        <div className={"col-md-3"}>
+
+                                                            {workouts.file ? <img style={{width: '100%', height: '95%'}}
+                                                                                  src={'https://bloom-flask-app.herokuapp.com/file/' + workouts.file}
+                                                                                  alt={"No image"}/> :
+                                                                <img style={{width: '90%', height: '80%'}}
+                                                                     src={process.env.PUBLIC_URL + 'Bloom.png'}
+                                                                     alt={"No image"}/>}
+
+                                                        </div>
+                                                        <div className={"col-md-9"}>
+                                                            <h4 style={{color: 'white'}}>{workouts.title}</h4>
+                                                            <br/>
+                                                            <p>{workouts.description}</p>
+                                                        </div>
+
+                                                        <div
+                                                            className={"card-header text-white bg-primary col-md-4"}> Subscribers {workouts.userIdsToExersizesSubscribed.length}</div>
+
+                                                        <div className={"col-md-8"}>
+                                                            <Button style={{width: "80px"}} variant="info"
+                                                                    type={"button"}
+                                                                    onClick={() => handleAction(workouts)}> View </Button>
+                                                            {" "}
+                                                            <Button style={{width: "80px"}} variant="danger"
+                                                                    type={"button"}
+                                                                    onClick={() => deleteWorkout(workouts._id)}> Delete </Button>
+                                                        </div>
+
+
                                                     </div>
+                                                </Card.Body>
 
-                                                    <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleAction(workouts)}> View </Button>
-                                                    </div>
-
-                                                    <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteWorkout(workouts._id)}> Delete </Button>
-                                                    </div>
+                                            </Card>
 
 
-                                                    <div className={"col-md-12"} style={{color: 'dodgerblue', fontSize:'80%'}}>
-                                                        <p>{workouts.description}</p>
-                                                    </div>
+                                        </div>
 
-                                                    <p></p>
-                                                </div>
-                                            </Card.Body>
+                                    )
+                                }
+                                else{
 
-                                        </Card>
+                                        return(
+
+                                            <div id={index} className={"col-4"}>
+
+                                                <Card>
+                                                    <Card.Body style={{backgroundColor: '#EF5350'}}>
+
+
+                                                        <div className={"row"} >
+
+                                                            <div className={"col-md-3"}>
+
+                                                                {workouts.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+workouts.file} alt={"No image"}/> :
+                                                                    <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+
+                                                            </div>
+                                                            <div className={"col-md-9"}>
+                                                                <div className={"bg-dark text-white"} style={{paddingLeft:'5px'}}> Not Approved </div>
+                                                                <h4 style={{color:'white'}}>{workouts.title}</h4>
+                                                                <br/>
+                                                                <p>{workouts.description}</p>
+                                                            </div>
+
+                                                            <div className={"card-header text-white bg-primary col-md-4"}> Subscribers  {workouts.userIdsToExersizesSubscribed.length}</div>
+
+                                                            <div className={"col-md-8"}>
+                                                                <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleAction(workouts)}> View </Button>
+                                                                {" "}
+                                                                <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteWorkout(workouts._id)}> Delete </Button>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </Card.Body>
+
+                                                </Card>
 
 
 
 
-                                    </div>
-                                )
+                                            </div>
+
+                                        )
+                                    }
+
+
                                 }):
                                 <>
                                     <h4 style={{ position:'relative',right:'-30px',fontSize: '200%', fontWeight: '420'}}> No previously added Workouts </h4>
                                 </>
                             }
+
+                            </div>
+
+
 
                             <Modal  isOpen={modalIsOpen}
                                     onRequestClose={closeModal}
@@ -304,6 +377,8 @@ export default function ProfessionalDashboard(props){
 
                                     <div className={"row"}>
                                         <div className={"col-md-5"}>
+
+                                            <div className={"bg-warning text-white"}> Note: {" "+ selectedExercise.notes?selectedExercise.notes:""}</div>
                                             <h4>  {selectedExercise.title} </h4>
                                         </div>
 
