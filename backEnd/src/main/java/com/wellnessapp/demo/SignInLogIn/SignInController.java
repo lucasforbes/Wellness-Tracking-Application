@@ -36,6 +36,7 @@ public class SignInController {
 //                reset token to new 16 char token
                 currentUser.setToken();
                 System.out.println("1");
+                udb.delete(currentUser);
                 udb.save(currentUser);
                 System.out.println("2");
                 User user = udb.findByEmail(email);
@@ -55,6 +56,7 @@ public class SignInController {
                     System.out.println("Signing in creatorz:" + creator.getFirstName() + creator.getEmail());
                     creator.setToken();
                     System.out.println("1");
+                    cdb.delete(creator);
                     cdb.save(creator);
                     System.out.println("2");
                     Creator creator1 = cdb.findByEmail(email);
