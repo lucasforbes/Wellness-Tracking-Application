@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-export default function AddWorkout(props){
+export default function AddDiet(props){
 
 
     const styles = theme => ({
@@ -13,6 +13,16 @@ export default function AddWorkout(props){
             color:'red'
         }
     });
+
+
+    const images = [
+        process.env.PUBLIC_URL + '/dietmeal1.jpg',
+        process.env.PUBLIC_URL + '/dietmeal2.jpg',
+        process.env.PUBLIC_URL + '/dietmeal3.jpg',
+    ];
+
+    const [imageDisplayed,setImageDisplayed] = useState(images[Math.floor(Math.random() * 3)]);
+
 
 
     const [dietList, setDietList] = useState([{"item": "", "servingSize": "", "fat": 0, "carbs": 0,
@@ -134,7 +144,9 @@ export default function AddWorkout(props){
 
 
     return (
-        <div>
+        <div className={"row"}>
+
+            <div className={"col-md-6"}>
 
             <Card
                 bg={'Light'.toLowerCase()}
@@ -189,7 +201,7 @@ export default function AddWorkout(props){
                             <br/>
                             <br/>
 
-                            
+
 
 
                         </div>
@@ -373,6 +385,29 @@ export default function AddWorkout(props){
 
                 </form>
             </Card>
+
+            </div>
+
+            {dietImage?
+                <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
+                    <div style={{float:"left"}} >
+                        <img style={{maxWidth:'400px',maxHeight:'500px'}} src={URL.createObjectURL(dietImage)} alt={"Not able to disaply Image"}/>
+
+
+                        <div className={"card-header bg-primary text-white"} style={{paddingTop:'20px'}}> Image Selected </div>
+                    </div>
+
+                </div>
+
+                :
+
+                <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
+                    <div style={{float:"left"}} onClick={()=>setImageDisplayed(images[Math.floor(Math.random() * 3)])}>
+                        <img style={{width:'400px',height:'400px'}} src={imageDisplayed}/>
+                    </div>
+                </div>
+
+            }
 
 
         </div>

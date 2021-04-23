@@ -9,9 +9,9 @@ export default function AddWorkout(props){
 
 
     const images = [
-        process.env.PUBLIC_URL + '/yogaLabel.jpg',
-        process.env.PUBLIC_URL + '/bodyBuilding.PNG',
-        process.env.PUBLIC_URL + '/cardioLogo.jpg',
+        process.env.PUBLIC_URL + '/action1.jpg',
+        process.env.PUBLIC_URL + '/action2.jpg',
+        process.env.PUBLIC_URL + '/action3.jpg',
     ];
 
     const [imageDisplayed,setImageDisplayed] = useState(images[Math.floor(Math.random() * 3)]);
