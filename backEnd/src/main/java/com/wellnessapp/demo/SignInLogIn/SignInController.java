@@ -32,6 +32,7 @@ public class SignInController {
             String tempPassword = udb.findByEmail(email).getPassword();
             if(tempPassword.compareTo(password) == 0){
                 User currentUser = udb.findByEmail(email);
+                System.out.println("Signing in user:" + currentUser);
 //                reset token to new 16 char token
                 currentUser.setToken();
                 udb.save(currentUser);
@@ -48,6 +49,7 @@ public class SignInController {
                 if(tempPassword.compareTo(password) == 0){
 //                    reset token to new 16 char token
                     Creator creator = cdb.findByEmail(email);
+                    System.out.println("Signing in creator:" + creator);
                     creator.setToken();
                     cdb.save(creator);
                     System.out.println("Signed In");
