@@ -49,7 +49,7 @@ public class SignInController {
                 if(tempPassword.compareTo(password) == 0){
 //                    reset token to new 16 char token
                     Creator creator = cdb.findByEmail(email);
-                    System.out.println("Signing in creator:" + creator.getFirstName() + creator.getEmail());
+                    System.out.println("Signing in creatorz:" + creator.getFirstName() + creator.getEmail());
                     creator.setToken();
                     cdb.save(creator);
                     Creator creator1 = cdb.findByEmail(email);

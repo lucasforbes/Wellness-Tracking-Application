@@ -57,6 +57,7 @@ public class ReturnInfo {
         this.online = user.getOnline();
         this.isDeleted = user.getIsDeleted();
         this.token = user.getToken();
+        System.out.println("Got return info for user");
     }
 //    constructor for Creators
     public ReturnInfo(Creator creator){
@@ -78,6 +79,7 @@ public class ReturnInfo {
         this.online = creator.getOnline();
         this.isDeleted = creator.getDeleted();
         this.token = creator.getToken();
+        System.out.println("Got return info for creator");
     }
 //    constructor for Admins
     public ReturnInfo(Admin admin){
