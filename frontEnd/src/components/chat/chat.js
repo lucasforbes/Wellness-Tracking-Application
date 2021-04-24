@@ -122,12 +122,12 @@ export default function Chat(props){
                 <div className={"row"}>
 
                     <div className={"col-md-2"}>
-                        <div className={"card-header"}>Professional and Dietitians </div>
+                        <div className={"card-header"} style={{fontWeight: '600',color: 'white',fontFamily: 'cursive', textDecoration: 'underline' , fontSize: '120%',backgroundColor: 'lightgreen', borderBottom: 'inset 5px green',borderTop: 'solid 7px white', borderRight: 'inset 5px dodgerblue', borderLeft: 'inset 5px dodgerblue'}}>Users </div>
                         {allCreators && allCreators.length > 0 ? allCreators.map((creator,index)=> {
 
                             let image = images[index%4]
                                 return (
-                                    <div className={"card text-white bg-primary"} onClick={()=>setCreatorSelected(creator.email)}>
+                                    <div className={"card text-white bg-primary"}  style={{marginTop: '10px', borderRight: 'solid 5px white',borderTop: 'solid 5px lightgreen',borderLeft: 'solid 5px blue', borderBottom: 'solid 5px lightgreen'}} onClick={()=>setCreatorSelected(creator.email)}>
                                         <img style={{width:'100px',height:'100px'}} src={process.env.PUBLIC_URL + image} />
                                         {creator.email}
                                     </div>
