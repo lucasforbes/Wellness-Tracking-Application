@@ -136,8 +136,8 @@ export default function Chat(props){
                         }
                     </div>
 
-                    <div className={"cols-md-8 card bg-light"}>
-                        <div className={"card-header text-white bg-danger overflowY:'scroll',height:'100px',width:'1200px'"}>Contact: {creatorSelected?creatorSelected:""} </div>
+                    <div className={"cols-md-8 card bg-grey"} style={{fontFamily: 'cursive', backgroundColor: 'floralwhite'}}>
+                        <div className={"card-header text-white bg-danger overflowY:'scroll',height:'100px',width:'1200px'"} style={{color: 'white'}}>Contact: {creatorSelected?creatorSelected:""} </div>
 
                         {creatorSelected && chatHistory[creatorSelected] &&
 
@@ -148,7 +148,8 @@ export default function Chat(props){
                                 float: 'right',
                                 backgroundColor:'dodgerblue',
                                 width:'70%',
-                                paddingLeft:'10px'
+                                paddingLeft:'10px',
+                                marginTop: '5px'
                             }
 
                             const styleCreator={
@@ -156,7 +157,9 @@ export default function Chat(props){
                                 float: 'left',
                                 backgroundColor: 'coral',
                                 width:'70%',
-                                paddingLeft:'10px'
+                                paddingLeft:'10px',
+                                marginTop: '5px'
+
                             }
 
                             return(
@@ -181,7 +184,7 @@ export default function Chat(props){
 
                         <TextField placeholder={"Enter Message ...."} value={enteredMessage} onChange={(e)=>{
                             setEnteredMessage(e.target.value)
-                        }} style={{minWidth:"200px"}}/>
+                        }} style={{minWidth:"200px",marginTop: 'auto'}}/>
 
                         {creatorSelected?<Button className={"bg-success"} onClick={()=>{
                             sendMessage()
@@ -189,7 +192,7 @@ export default function Chat(props){
                                 function() {
                                     setEnteredMessage("")
                                 }, 2000);
-                        }}> Send Message </Button>:""}
+                        }} style={{height: '60px'}}> Send Message </Button>:""}
                             </div>
 
 
