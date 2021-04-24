@@ -195,15 +195,15 @@ export default function Statistics(){
 
                 <div className={"row"} style={{paddingLeft:"20px",paddingTop:"10px"}}>
 
-                    <div className={"card col-md-6"}>
+                    <div className={"card col-md-6"} style={{backgroundColor: 'lightblue', border: 'none'}}>
 
                         <div>
 
 
 
-                            <div className={"card-body"}>
+                            <div className={"card-body"} style={{ borderLeft: 'inset 5px dodgerblue',borderRight: 'inset 5px dodgerBlue',borderBottom: 'outset 5px lightGreen',backgroundColor: 'lightblue', marginTop: '20px', borderTop: 'outset 5px white'}}>
 
-                               <div className={"card-header"} style={{paddingTop:'10px',paddingLeft:'10px'}}> Todays Data: </div>
+                               <div className={"card-header"} style={{fontSize: '120%',paddingTop:'10px',paddingLeft:'10px', color: 'white', fontFamily: 'cursive', textDecoration: 'underline'}}> Todays Data: </div>
 
                                 {todaysData ?
                                     <table>
@@ -250,26 +250,26 @@ export default function Statistics(){
                                         <tr>
                                             <td>
                                                 <center>
-                                                <div className={"card-header text-white bg-info"} style={{borderRadius:'30px'}}> {todaysData?todaysData.yoga:""} minutes</div>
+                                                <div className={"card-header text-white"} style={{borderRadius:'30px',backgroundColor: 'lightgreen', fontSize: '110%', fontFamily: 'cursive'}}> {todaysData?todaysData.yoga:""} minutes</div>
                                                 </center>
                                             </td>
 
 
                                             <td>
-                                                <div className={"card-header text-white bg-warning"} style={{borderRadius:'30px'}}> {todaysData?todaysData.cardio:""} minutes </div>
+                                                <div className={"card-header text-white"} style={{borderRadius:'30px',backgroundColor: 'lightgreen', fontSize: '110%', fontFamily: 'cursive'}}> {todaysData?todaysData.cardio:""} minutes </div>
                                             </td>
 
                                             <td>
-                                                <div className={"card-header text-white bg-info"} style={{borderRadius:'30px'}}> {todaysData?todaysData.bodyBuilding:""} minutes</div>
+                                                <div className={"card-header text-white"} style={{borderRadius:'30px',backgroundColor: 'lightgreen', fontSize: '110%', fontFamily: 'cursive'}}> {todaysData?todaysData.bodyBuilding:""} minutes</div>
                                             </td>
 
 
                                             <td>
-                                                <div className={"card-header text-white bg-warning"} style={{borderRadius:'30px'}}> {todaysData?todaysData.caloriesBurned:""} kCal</div>
+                                                <div className={"card-header text-white"} style={{borderRadius:'30px',backgroundColor: 'lightgreen', fontSize: '110%', fontFamily: 'cursive'}}> {todaysData?todaysData.caloriesBurned:""} kCal</div>
                                             </td>
 
                                             <td>
-                                                <div className={"card-header text-white bg-info"} style={{borderRadius:'30px'}}> {todaysData?todaysData.caloriesIntake:""} kCal</div>
+                                                <div className={"card-header text-white"} style={{borderRadius:'30px',backgroundColor: 'lightgreen', fontSize: '110%', fontFamily: 'cursive'}}> {todaysData?todaysData.caloriesIntake:""} kCal</div>
                                             </td>
 
                                         </tr>
@@ -281,7 +281,7 @@ export default function Statistics(){
                                 <br/>
                                 <br/>
 
-                                <div className={"card-header text-white bg-primary"}>  Add New Activity </div>
+                                <div className={"card-header text-white bg"} style={{fontFamily: 'cursive', fontSize: '110%', textDecoration: 'underline'}}>  Add New Activity </div>
 
                                 <form>
 
@@ -290,7 +290,7 @@ export default function Statistics(){
                                     <div className={"col-md-2"}>
 
 
-                                    <InputLabel className={"card-header text-white bg-danger"} style={{height:'30px',paddingTop:'5px'}}> Yoga</InputLabel>
+                                    <InputLabel className={"card-header text-white "} style={{height:'30px',paddingTop:'5px', backgroundColor: 'dodgerblue', fontSize: '110%',  fontFamily: 'cursive'}}> Yoga</InputLabel>
 
                                     </div>
 
@@ -305,7 +305,7 @@ export default function Statistics(){
 
                                     <div className={"col-md-2"}>
 
-                                        <InputLabel className={"card-header text-white bg-info"} style={{height:'30px',paddingTop:'5px'}}> Cardio </InputLabel>
+                                        <InputLabel className={"card-header text-white "} style={{height:'30px',paddingTop:'5px', backgroundColor: 'dodgerblue', fontSize: '110%',  fontFamily: 'cursive'}}> Cardio </InputLabel>
 
                                     </div>
 
@@ -323,7 +323,7 @@ export default function Statistics(){
 
                                     <div className={"col-md-2"}>
 
-                                        <InputLabel className={"card-header text-white bg-danger"} style={{height:'50px',paddingTop:'5px'}}> Body Building </InputLabel>
+                                        <InputLabel className={"card-header text-white"} style={{height:'50px',paddingTop:'5px', backgroundColor: 'dodgerblue', fontSize: '110%',  fontFamily: 'cursive'}}> Body Building </InputLabel>
 
                                     </div>
 
@@ -339,7 +339,7 @@ export default function Statistics(){
 
                                     <div className={"col-md-2"}>
 
-                                        <InputLabel className={"card-header text-white bg-info"} style={{height:'50px',paddingTop:'5px'}}> Calories Burned </InputLabel>
+                                        <InputLabel className={"card-header text-white"} style={{height:'50px',paddingTop:'5px', backgroundColor: 'dodgerblue', fontSize: '110%',  fontFamily: 'cursive'}}> Calories Burned </InputLabel>
 
                                     </div>
 
@@ -353,7 +353,7 @@ export default function Statistics(){
                                     </div>
 
                                     <div className={"col-md-2"}>
-                                        <InputLabel className={"card-header text-white bg-danger"} style={{height:'50px',paddingTop:'5px'}}> Calories Intake </InputLabel>
+                                        <InputLabel className={"card-header text-white"} style={{height:'50px',paddingTop:'5px', backgroundColor: 'dodgerblue', fontSize: '110%',  fontFamily: 'cursive'}}> Calories Intake </InputLabel>
                                     </div>
 
                                     <div className={"col-md-2"}>
@@ -400,7 +400,7 @@ export default function Statistics(){
 
 
 
-                        <div className={"card-header text-white bg-primary"}> Last Week </div>
+                        <div className={"card-header text-white "} style={{fontWeight: '600',marginTop: '17px', backgroundColor: "forestgreen", fontFamily: 'cursive', fontSize: '120%', textDecoration: 'underline'}}> Last Week </div>
 
                         <div
                             style={{
@@ -421,7 +421,7 @@ export default function Statistics(){
                         <br/>
                         <br/>
 
-                        <div className={"card-header text-white bg-danger"}>   <CSVLink data={csvData} style={{color:'white'}}>Export all data <BiDownload/> </CSVLink> </div>
+                        <div className={"card-header text-white "}  style={{backgroundColor: 'dodgerblue', fontFamily: 'cursive', fontSize: '100%'}}>   <CSVLink data={csvData} style={{color:'white'}}>Export all data <BiDownload/> </CSVLink> </div>
 
                         <div>
                             <div style={{float:"right"}}>
