@@ -123,9 +123,13 @@ public class CreatorController {
             return 0;
         }
     }
-    @GetMapping("/withdrawBalance/{creatorEmail}/")
+    @PostMapping("/withdrawBalance")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public String withdrawBalance(@PathVariable("creatorEmail") String creatorEmail, @PathVariable("routingNumber") String routingNumber, @PathVariable("accountNumber") String accountNumber){
+    @ResponseBody
+    public String withdrawBalance(@RequestBody WithdrawDetails wd){
+        String creatorEmail = wd.getEmail();
+        String accountNumber = wd.getAccountNumber();
+        String routingNumber = wd.getRoutingNumber();
         Creator creator = cdb.findByEmail(creatorEmail);
         if(accountNumber.length() != 10){
             return "Please enter account number that is 10 digits";
