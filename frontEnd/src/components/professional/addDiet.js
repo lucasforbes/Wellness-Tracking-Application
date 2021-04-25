@@ -389,6 +389,7 @@ export default function AddDiet(props){
             </div>
 
             {dietImage?
+
                 <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
                     <div style={{float:"left"}} >
                         <img style={{maxWidth:'400px',maxHeight:'500px',borderWidth:'5px',borderColor:'blue'}} src={URL.createObjectURL(dietImage)} alt={"Not able to disaply Image"}/>
