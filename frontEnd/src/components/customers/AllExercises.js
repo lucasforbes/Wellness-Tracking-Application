@@ -216,6 +216,35 @@ export default function AllExercises(props){
     }
 
 
+    const validateCard =()=>{
+
+        var numbers = /^[0-9]+$/;
+
+        if(creditCardNumber != "" && creditCardNumber.length == 16 && creditCardNumber.match(numbers)){
+
+        }else{
+            alert("Invalid Credit Card Number")
+            return false
+        }
+
+        if(cvv != "" && cvv.length == 3 && cvv.match(numbers)){
+
+        }else{
+            alert("Invalid CVV")
+            return false
+
+        }
+
+        if(new Date(cardDate)  >= new Date()){
+
+        }else{
+            alert("Card has expired")
+            return false
+        }
+
+        return true
+    }
+
     const submitCard=()=>{
 
         let json = JSON.stringify({
@@ -414,22 +443,28 @@ export default function AllExercises(props){
                                                 </div>
 
                                         )
-                                    }):""
+                                    }):
+
+                                    <>
+                                        <div className={"col-md-12"}>
+
+                                        </div>
+                                        <div className={"col-md-3"}>
+                                            {selectedExercise['paid'] ?
+
+                                                <div className={"card-header text-white bg-success"}>
+                                                    Subscribe to view the content
+                                                </div>
+                                                :""
+                                            }
+                                        </div>
+                                    </>
+
+
                                 }
 
 
-                                <div className={"col-md-12"}>
 
-                                </div>
-                                <div className={"col-md-3"}>
-                                {selectedExercise['paid'] ?
-
-                                    <div className={"card-header text-white bg-success"}>
-                                        Subscribe to view the content
-                                    </div>
-                                :""
-                                }
-                                </div>
 
 
                                 <br/>
@@ -570,7 +605,11 @@ export default function AllExercises(props){
                                     </tr>
                                     <tr>
                                         <td>
-                                            <Button variant={"success"} type={"button"} onClick={submitCard}> Submit </Button>
+                                            <Button variant={"success"} type={"button"} onClick={()=>{
+                                                if(validateCard()) {
+                                                    submitCard()
+                                                }
+                                            }}> Submit </Button>
                                         </td>
                                     </tr>
                                 </table>
