@@ -142,9 +142,11 @@ public class CreatorController {
             System.out.println("Got Balance");
             System.out.println("Balance Withdrawn");
             creator.setMoneyRecieved(0);
+            cdb.save(creator);
             return "Balance Succesfully Withdrawn";
         }catch (Exception e){
             creator.setMoneyRecieved(0);
+            cdb.save(creator);
             System.out.println("Balance is 0");
             return "Balance is 0, No Money to Withdraw";
         }
