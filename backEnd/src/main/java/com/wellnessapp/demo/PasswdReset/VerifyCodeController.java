@@ -24,7 +24,7 @@ public class VerifyCodeController{
 
     VerifyCode verifyCode = new VerifyCode();
 
-
+//adding comment to make change to file so heroku will build quickly
 
     @PostMapping("/findcode")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
