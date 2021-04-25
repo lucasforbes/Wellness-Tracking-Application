@@ -5,6 +5,7 @@ import axios from "axios";
 import AddDiet from "./addDiet";
 import Modal from 'react-modal';
 import Creatorchat from "../chat/CreatorChat";
+import GetMoney from "./GetMoney";
 
 
 
@@ -633,7 +634,7 @@ export default function ProfessionalDashboard(props){
 
                                             <div className={"card-header"}>Diet Stats</div>
 
-                                            <div className={"card-header bg-danger"} > Total Subscribers {statsDiet? statsDiet.totalUsers:""} </div>
+                                            <div className={"card-header bg-warning"} > Total Subscribers {statsDiet? statsDiet.totalUsers:""} </div>
                                                 <br/>
 
                                                 <div className={"card-header text-white bg-success"}>
@@ -645,8 +646,8 @@ export default function ProfessionalDashboard(props){
                                         </Card.Body>
                                     </Card>
                                 </div>
-                                <div className={"col-md-4"}>
-
+                                <div className={"col-md-3"}>
+                                    <GetMoney/>
                                 </div>
                             </div>
 

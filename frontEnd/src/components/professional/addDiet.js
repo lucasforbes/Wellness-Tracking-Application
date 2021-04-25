@@ -391,8 +391,7 @@ export default function AddDiet(props){
             {dietImage?
                 <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
                     <div style={{float:"left"}} >
-                        <img style={{maxWidth:'400px',maxHeight:'500px'}} src={URL.createObjectURL(dietImage)} alt={"Not able to disaply Image"}/>
-
+                        <img style={{maxWidth:'400px',maxHeight:'500px',borderWidth:'5px',borderColor:'blue'}} src={URL.createObjectURL(dietImage)} alt={"Not able to disaply Image"}/>
 
                         <div className={"card-header bg-primary text-white"} style={{paddingTop:'20px'}}> Image Selected </div>
                     </div>
@@ -401,9 +400,10 @@ export default function AddDiet(props){
 
                 :
 
-                <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}}>
+                <div className={"col-md-4"} style={{paddingTop:'100px',paddingLeft:'100px',paddingRight:'100px'}} >
                     <div style={{float:"left"}} onClick={()=>setImageDisplayed(images[Math.floor(Math.random() * 3)])}>
-                        <img style={{width:'400px',height:'400px'}} src={imageDisplayed}/>
+                        <div className={"card-header bg-primary text-white"} style={{paddingTop:'20px'}}> <i> Add some delicious meals like </i>  </div>
+                        <img style={{width:'400px',height:'400px',borderWidth:'5px',borderColor:'blue'}} src={imageDisplayed}/>
                     </div>
                 </div>
 
