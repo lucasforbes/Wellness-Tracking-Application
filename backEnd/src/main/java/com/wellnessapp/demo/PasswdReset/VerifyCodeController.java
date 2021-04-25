@@ -3,6 +3,7 @@ package com.wellnessapp.demo.PasswdReset;
 import com.google.gson.Gson;
 import com.wellnessapp.demo.User.User;
 import com.wellnessapp.demo.User.UserRepository;
+import com.wellnessapp.demo.tools.Encrypt;
 import com.wellnessapp.demo.tools.UnifiedReturnValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class VerifyCodeController{
         for(VerifyCode verifyCode: codeCollection) {
             if (verifyCode.getState() == 1 && code.equals(verifyCode.getVerifyCode())) {
                 User user = udb.findByEmail(email);
-                user.setPassword(password);
+                user.setPassword(Encrypt.md5Encrypt(user.getPassword()));
                 verifyCode.setState(0);
                 vcdb.save(verifyCode);
                 udb.save(user);

@@ -3,6 +3,7 @@ package com.wellnessapp.demo.Creator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellnessapp.demo.User.User;
+import com.wellnessapp.demo.tools.Encrypt;
 import com.wellnessapp.demo.tools.Image;
 import com.wellnessapp.demo.tools.ImageRepository;
 import org.bson.types.Binary;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.time.Clock;
 import java.time.LocalDate;
@@ -71,6 +73,7 @@ public class CreatorController {
         System.out.println("got here");
         int count = cdb.findAll().size();
         creator.setId(count);
+        creator.setPassword(Encrypt.md5Encrypt(creator.getPassword()));
         creator.setUserType("Creator");
         creator.setDeleted(false);
         creator.setOnline(true);

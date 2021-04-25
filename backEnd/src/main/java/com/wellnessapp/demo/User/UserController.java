@@ -1,26 +1,23 @@
 package com.wellnessapp.demo.User;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wellnessapp.demo.tools.Encrypt;
 import com.wellnessapp.demo.tools.Image;
 import com.wellnessapp.demo.tools.ImageRepository;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.time.Clock;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.Date;
 
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.spi.LocaleServiceProvider;
 
 @RestController
 @Document("Images")
@@ -45,7 +42,7 @@ public class UserController {
         user.setGender(ud.getGender());
         user.setAge(ud.getAge());
         user.setPhoneNumber(ud.getPhoneNumber());
-        try{
+        try {
             MultipartFile file = photo;
             int count2 = idb.findAll().size();
             Image image = new Image();
@@ -61,19 +58,21 @@ public class UserController {
             Image savedFile = idb.save(image);
             String url = "https://bloom-wellness-back.herokuapp.com/file/image/" + savedFile.getId();
             user.setProfilePic(url);
-        }catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
         udb.delete(del);
         udb.save(user);
         return user;
     }
+
     @PostMapping("/addUser")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public User saveUser(@RequestBody User user) {
         System.out.println("trying to add user");
         int count = udb.findAll().size();
         user.setId(count);
+        user.setPassword(Encrypt.md5Encrypt(user.getPassword()));
         user.setUserType("User");
         user.setDeleted(false);
         user.setOnline(true);
@@ -91,15 +90,17 @@ public class UserController {
         udb.save(user);
         return user;
     }
+
     @GetMapping("/findAllUsers")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         System.out.println("Got users");
         return this.udb.findAll();
     }
+
     @GetMapping("/findUser/{id}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public Optional<User> getUsers(@PathVariable int id){
+    public Optional<User> getUsers(@PathVariable int id) {
         System.out.println("Trying to get user with id: " + id);
         return this.udb.findById(id);
     }
@@ -124,12 +125,13 @@ public class UserController {
 
     @GetMapping("/findUserByEmail/{email}")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public User getUsers(@PathVariable String email){
+    public User getUsers(@PathVariable String email) {
         System.out.println("username: " + email);
         System.out.println(udb.findByEmail(email));
         return this.udb.findByEmail(email);
     }
-//    @GetMapping(value = "/findUserPic/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+
+    //    @GetMapping(value = "/findUserPic/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 //    public byte[] getImage(@PathVariable int id){
 //        Image file = idb.findByOtherDbId(id);
 //        byte[] data = null;
@@ -157,7 +159,7 @@ public class UserController {
         return data;
     }
 
-    public List<User> getUsersByName(String name){
+    public List<User> getUsersByName(String name) {
         return this.udb.findByFirstNameOrLastName(name, name);
     }
 }

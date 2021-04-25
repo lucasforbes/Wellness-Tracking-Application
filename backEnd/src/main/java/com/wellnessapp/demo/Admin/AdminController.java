@@ -1,5 +1,6 @@
 package com.wellnessapp.demo.Admin;
 
+import com.wellnessapp.demo.tools.Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ public class AdminController {
         @ResponseBody
         public String saveAdmin(@RequestBody Admin admin){
         System.out.println("");
+        admin.setPassword(Encrypt.md5Encrypt(admin.getPassword()));
         adb.save(admin);
         return "Admin added to database: " + admin.getId();
     }
