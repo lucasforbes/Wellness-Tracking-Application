@@ -26,8 +26,8 @@ public class VerifyCodeController{
 
 
 
-    @PostMapping("/findcode/{email}")
-    public String isInvalidCode(@RequestParam String email, @RequestParam("code") String code, @RequestParam("pwd")String password){
+    @PostMapping("/findcode")
+    public String isInvalidCode(@RequestParam("email") String email, @RequestParam("code") String code, @RequestParam("pwd")String password){
         List<VerifyCode> codeCollection = vcdb.findAllByEmail(email);
         for(VerifyCode verifyCode: codeCollection) {
             if (verifyCode.getState() == 1 && code.equals(verifyCode.getVerifyCode())) {
