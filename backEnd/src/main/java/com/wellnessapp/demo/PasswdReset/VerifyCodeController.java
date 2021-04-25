@@ -27,6 +27,7 @@ public class VerifyCodeController{
 
 
     @PostMapping("/findcode")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public String isInvalidCode(@RequestParam("email") String email, @RequestParam("code") String code, @RequestParam("pwd")String password){
         List<VerifyCode> codeCollection = vcdb.findAllByEmail(email);
         for(VerifyCode verifyCode: codeCollection) {
