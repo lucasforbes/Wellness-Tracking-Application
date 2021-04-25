@@ -257,7 +257,7 @@ export default function ProfessionalDashboard(props){
                             <br/>
 
 
-                            <div className={"row"}>
+                            <div className={"row"} style={{paddingBottom:'10px'}}>
 
                             {previouslyAddedWorkouts && previouslyAddedWorkouts.length > 0 ?previouslyAddedWorkouts.map((workouts,index)=>{
 
@@ -329,7 +329,7 @@ export default function ProfessionalDashboard(props){
 
                                                             </div>
                                                             <div className={"col-md-9"}>
-                                                                <div className={"bg-dark text-white"} style={{paddingLeft:'5px'}}> Not Approved </div>
+                                                                <div className={"bg-dark text-white"}  style={{paddingLeft:'2px'}}> Not Approved </div>
                                                                 <h4 style={{color:'white'}}>{workouts.title}</h4>
                                                                 <br/>
                                                                 <p>{workouts.description}</p>
@@ -383,34 +383,35 @@ export default function ProfessionalDashboard(props){
                                             <div className={"bg-warning text-white"}> Note: {" "+ selectedExercise.notes?selectedExercise.notes:""}</div>
                                             <h4>  {selectedExercise.title} </h4>
                                             <b> Description: </b>    {" "+selectedExercise.description}
-                                        </div>
-
-                                        <div className={"col-md-6"}>
                                             {selectedExercise.file ?  <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> :
                                                 <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
 
                                         </div>
 
-                                        {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+                                        <div className={"col-md-6"}>
+                                            {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
 
-                                            selectedExercise.activityList.map((item,id)=>{
-                                                return (
-                                                    <>
+                                                selectedExercise.activityList.map((item,id)=>{
+                                                    return (
+                                                        <>
 
-                                                        <div className={"col-md-5 card bg-transparent"}  >
+                                                            <div className={"col-md-12 card bg-transparent"}  >
 
-                                                            <i>Activity: </i> {item.activityName} <br/>
-                                                            {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
-                                                            {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
-                                                            {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
+                                                                <i>Activity: </i> {item.activityName} <br/>
+                                                                {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
+                                                                {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
+                                                                {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
 
-                                                            {"videoLink :"}< a href={item.videoLink?item.videoLink:""} target={"_blank"}> here</a>
+                                                                {"videoLink :"}< a href={item.videoLink?item.videoLink:""} target={"_blank"}> here</a>
 
-                                                        </div>
-                                                    </>
-                                                )
-                                            }):""
-                                        }
+                                                            </div>
+                                                        </>
+                                                    )
+                                                }):""
+                                            }
+
+                                        </div>
+
 
 
                                         <br/>
@@ -436,43 +437,107 @@ export default function ProfessionalDashboard(props){
 
                             <br/>
 
-                            {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?previouslyAddedDiets.map((diets,index)=>{return(
-                                    <div id={index}>
+
+                            <div className={"row"} style={{paddingBottom:'10px'}}>
+
+                            {previouslyAddedDiets && previouslyAddedDiets.length > 0 ?previouslyAddedDiets.map((diets,index)=>{
+
+
+                                    if(diets.approved) {
+                                        return (
+                                            <div id={index} className={"col-4"}>
+
                                         <Card>
-                                            <Card.Body style={{backgroundColor:'lightgreen'}}>
-                                                <div className={"row"}>
+
+                                            <Card.Body style={{backgroundColor: 'lightblue'}}>
+
+
+                                                <div className={"row"} >
+
+                                                    <div className={"col-md-3"}>
+
+                                                        {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
+                                                            <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+
+                                                    </div>
+
+                                                        <div className={"col-md-8"}>
+                                                            <h4>{diets.title}</h4>
+                                                            <p>{diets.description}</p>
+                                                        </div>
+
+                                                        <div
+                                                        className={"card-header text-white bg-primary col-md-4"}> Subscribers {diets.userIdsToExersizesSubscribed.length}</div>
+
                                                     <div className={"col-md-8"}>
-                                                        <h4>{diets.title}</h4>
-                                                    </div>
-
-                                                    <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleActionDiet(diets)}> View </Button>
-                                                    </div>
-
-                                                    <div className={"col-md-1"}>
-                                                        <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteDiet(diets._id)}> Delete </Button>
-                                                    </div>
+                                                            <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleActionDiet(diets)}> View </Button>
+                                                            {" "}
+                                                            <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteDiet(diets._id)}> Delete </Button>
+                                                        </div>
 
 
-                                                    <div className={"col-md-12"}>
-                                                        <p>{diets.description}</p>
-                                                    </div>
-
-                                                    <p></p>
                                                 </div>
-                                            </Card.Body>
+                                                </Card.Body>
 
-                                        </Card>
+                                            </Card>
 
 
 
-                                    </div>
-                                )
-                                }):
+                                        </div>
+                                        )
+                                }
+                                else{
+                                        return (
+                                            <div id={index} className={"col-4"}>
+
+                                                <Card>
+
+                                                    <Card.Body style={{backgroundColor: '#EF5350'}}>
+
+
+                                                        <div className={"row"} >
+
+                                                            <div className={"col-md-3"}>
+
+                                                                {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
+                                                                    <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+
+                                                            </div>
+
+                                                            <div className={"col-md-8"}>
+                                                                <div className={"bg-dark text-white"}  style={{paddingLeft:'2px'}}> Not Approved </div>
+                                                                <h4>{diets.title}</h4>
+                                                                <p>{diets.description}</p>
+                                                            </div>
+
+                                                            <div
+                                                                className={"card-header text-white bg-primary col-md-4"}> Subscribers {diets.userIdsToExersizesSubscribed.length}</div>
+
+                                                            <div className={"col-md-8"}>
+                                                                <Button style={{width:"80px"}} variant="info" type={"button"} onClick={()=>handleActionDiet(diets)}> View </Button>
+                                                                {" "}
+                                                                <Button style={{width:"80px"}} variant="danger" type={"button"} onClick={()=>deleteDiet(diets._id)}> Delete </Button>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </Card.Body>
+
+                                                </Card>
+
+
+
+                                            </div>
+                                        )
+                                    }
+
+                            }):
                                 <>
                                     <h4 style={{fontSize: '200%',fontWeight:'420', position:'relative',right:'-30px'}}>No previously added Diet Plans </h4>
                                 </>
                             }
+
+                            </div>
 
 
                             <Modal  isOpen={modalIsOpenDiet}
@@ -481,34 +546,37 @@ export default function ProfessionalDashboard(props){
                             >
                                 <>
 
-                                    <div className={"row"}>
-                                        <div className={"col-md-12"}>
+                                    <div className={"row"} style={{overflowY:'scroll',height:'400px'}}>
+                                        <div className={"col-md-4"}>
                                             <h4>  {selectedDiet.title} </h4>
-                                        </div>
-
-                                        <div className={"col-md-12"}>
                                             <b> Description: </b>    {" "+selectedDiet.description}
+                                            {selectedDiet.file ?  <img  style={{maxWidth:'400px',maxHeight:'400px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedDiet.file} alt={"No image"}/> :
+                                                <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
                                         </div>
 
-                                        {selectedDiet.dietList && selectedDiet.dietList.length > 0 ?
+                                        <div className={"col-md-6"}>
+                                            {selectedDiet.dietList && selectedDiet.dietList.length > 0 ?
 
-                                            selectedDiet.dietList.map((diet,id)=>{
-                                                return (
-                                                    <div id={index} className={"col-md-12"}>
+                                                selectedDiet.dietList.map((diet,id)=>{
+                                                    return (
+                                                        <div id={index} className={"col-md-12 card"} style={{borderWidth:'5px'}}>
+
+                                                            <i>Item: </i> {diet.item}
+                                                            <p>Serving Size {" "+diet.servingSize+" "} <br/>
+                                                                Fat Contains {" "+diet.fat+" "} <br/>
+                                                                Carbs Contains {" "+diet.carbs+" "} <br/>
+                                                                Total Calories {" "+diet.calories+" "} <br/>
+                                                                Protein Contains {" "+diet.protein+" "}<br/>
+                                                            </p>
+
+                                                        </div>
+                                                    )
+                                                }):""
+                                            }
+                                        </div>
 
 
-                                                        <i>Item: </i> {diet.item}
-                                                        <p>Serving Size {" "+diet.servingSize+" "}</p>
-                                                        <p> Fat Contains {" "+diet.fat+" "} </p>
-                                                        <p> Carbs Contains {" "+diet.carbs+" "}</p>
-                                                        <p> Total Calories {" "+diet.calories+" "}</p>
-                                                        <p> Protein Contains {" "+diet.protein+" "}</p>
 
-
-                                                    </div>
-                                                )
-                                            }):""
-                                        }
 
 
                                         <br/>
