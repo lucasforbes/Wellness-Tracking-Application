@@ -149,6 +149,8 @@ export default function Login(props){
 
                                     <br/>
 
+                                    <div className={"card-body"} style={{color:'blue'}}> Forgot Password </div>
+
                                 </Card.Body>
                             </div>
 
