@@ -277,7 +277,7 @@ export default function ProfessionalDashboard(props){
                                                                                   src={'https://bloom-flask-app.herokuapp.com/file/' + workouts.file}
                                                                                   alt={"No image"}/> :
                                                                 <img style={{width:'100px',height:'90px'}}
-                                                                     src={process.env.PUBLIC_URL + 'Bloom.png'}
+                                                                     src={process.env.PUBLIC_URL + 'exe1.jpg'}
                                                                      alt={"No image"}/>}
 
                                                         </div>
@@ -327,7 +327,7 @@ export default function ProfessionalDashboard(props){
                                                             <div className={"col-md-3"}>
 
                                                                 {workouts.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+workouts.file} alt={"No image"}/> :
-                                                                    <img style={{width:'100px',height:'90px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+                                                                    <img style={{width:'100px',height:'90px'}} src={process.env.PUBLIC_URL + 'exe2.jpg'} alt={"No image"}/>}
 
                                                             </div>
                                                             <div className={"col-md-9"}>
@@ -460,7 +460,7 @@ export default function ProfessionalDashboard(props){
                                                     <div className={"col-md-3"}>
 
                                                         {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
-                                                            <img style={{width:'100px',height:'90px', marginBottom: '10px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+                                                            <img style={{width:'100px',height:'90px', marginBottom: '10px'}} src={process.env.PUBLIC_URL + 'diet1.jpg'} alt={"No image"}/>}
 
                                                     </div>
 
@@ -503,7 +503,7 @@ export default function ProfessionalDashboard(props){
                                                             <div className={"col-md-3"}>
 
                                                                 {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
-                                                                    <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+                                                                    <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'diet2.jpg'} alt={"No image"}/>}
 
                                                             </div>
 

@@ -166,7 +166,7 @@ export default function Login(props){
     })
 
     const sendNewPassword=()=> {
-        axios.post('https://bloom-wellness-back.herokuapp.com/findcode',json ,{
+        axios.post('https://bloom-flask-app.herokuapp.com/passwdReset',json ,{
             headers: {
                 // Overwrite Axios's automatically set Content-Type
                 'Content-Type': 'application/json',
@@ -175,8 +175,13 @@ export default function Login(props){
         })
             .then((res) => {
                 console.log("res", res)
-                alert("Password Updated")
-                setIsOpen(false)
+                if(res.data=="Updated") {
+                    alert("Password Updated")
+                    setIsOpen(false)
+                }
+                else{
+                    alert("Error Check Your Code")
+                }
             })
             .catch((err) => {
                 alert("Error reseting password")
