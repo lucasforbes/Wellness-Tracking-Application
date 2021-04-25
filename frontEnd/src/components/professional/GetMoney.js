@@ -97,7 +97,7 @@ export default function GetMoney(){
     return(
         <>
 
-            <div className={"card bg-light"} style={{paddingTop:'10px',paddingLeft:'5px',paddingRight:'5px'}}>
+            <div className={"card bg-light"} style={{marginTop: '10px',paddingLeft:'0px',paddingRight:'0px'}}>
 
                 <div className={"card-header bg-success"}> Your current earnings $ {balance} </div>
                 <br/>
