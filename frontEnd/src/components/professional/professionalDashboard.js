@@ -375,15 +375,20 @@ export default function ProfessionalDashboard(props){
                                 <>
 
 
-                                    <div className={"row"}>
+                                    <div className={"row"} style={{overflowY:'scroll',height:'400px'}}>
+
+
                                         <div className={"col-md-5"}>
 
                                             <div className={"bg-warning text-white"}> Note: {" "+ selectedExercise.notes?selectedExercise.notes:""}</div>
                                             <h4>  {selectedExercise.title} </h4>
+                                            <b> Description: </b>    {" "+selectedExercise.description}
                                         </div>
 
-                                        <div className={"col-md-8"}>
-                                            <b> Description: </b>    {" "+selectedExercise.description}
+                                        <div className={"col-md-6"}>
+                                            {selectedExercise.file ?  <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> :
+                                                <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+
                                         </div>
 
                                         {selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
@@ -392,14 +397,14 @@ export default function ProfessionalDashboard(props){
                                                 return (
                                                     <>
 
-                                                        <div className={"col-md-5"}>
+                                                        <div className={"col-md-5 card bg-transparent"}  >
 
                                                             <i>Activity: </i> {item.activityName} <br/>
                                                             {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
                                                             {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
                                                             {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
 
-                                                            {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+                                                            {"videoLink :"}< a href={item.videoLink?item.videoLink:""} target={"_blank"}> here</a>
 
                                                         </div>
                                                     </>
@@ -411,9 +416,9 @@ export default function ProfessionalDashboard(props){
                                         <br/>
 
 
-
                                     </div>
 
+                                    <br/>
                                     <Button onClick={closeModal} variant={'danger'}> Close </Button>
                                 </>
                             </Modal>
