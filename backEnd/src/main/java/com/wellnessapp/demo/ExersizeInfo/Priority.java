@@ -29,6 +29,7 @@ public class Priority {
 
     public String getSecond() {
         return second;
+
     }
 
     public void setSecond(String second) {

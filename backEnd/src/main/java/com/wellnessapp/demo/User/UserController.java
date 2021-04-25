@@ -75,7 +75,7 @@ public class UserController {
         int count = udb.findAll().size();
         user.setId(count);
         user.setUserType("User");
-        user.setIsDeleted(false);
+        user.setDeleted(false);
         user.setOnline(true);
         user.setFirstName("firstName");
         user.setLastName("lastName");
