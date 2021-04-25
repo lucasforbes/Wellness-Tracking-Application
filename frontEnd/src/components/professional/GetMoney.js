@@ -14,7 +14,7 @@ export default function GetMoney(){
     const [modalIsOpen,setIsOpen] = React.useState(false);
 
     useEffect(()=>{
-        axios.post('https://bloom-wellness-back.herokuapp.com/getCreatorBalance?email='+localStorage.getItem('email'), {
+        axios.get('https://bloom-wellness-back.herokuapp.com/getCreatorBalance/'+localStorage.getItem('email')+'/', {
             headers: {
                 // Overwrite Axios's automatically set Content-Type
                 'Content-Type': 'application/json',
@@ -87,10 +87,11 @@ export default function GetMoney(){
 
         })
             .catch(function (error) {
-                alert("Error making withdrawl")
+                // alert("Error making withdrawl")
                 console.log(error);
             })
 
+        setBalance(0)
         setIsOpen(false)
     }
 
