@@ -300,6 +300,11 @@ export default function Statistics(){
                                         onChange={(e)=>setYoga(e.target.value)}
                                         placeholder={"minutes..."}
                                         name={"yoga"}
+                                        InputProps={{
+                                            inputProps: {
+                                                min: 0
+                                            }
+                                        }}
                                         />
                                     </div>
 
@@ -317,6 +322,11 @@ export default function Statistics(){
                                         onChange={(e)=>setCardio(e.target.value)}
                                         placeholder={"minutes..."}
                                         name={"Cardio"}
+                                        InputProps={{
+                                            inputProps: {
+                                                min: 0
+                                            }
+                                        }}
                                     />
 
                                     </div>
@@ -334,6 +344,11 @@ export default function Statistics(){
                                         onChange={(e)=>setBodyBuilding(e.target.value)}
                                         placeholder={"minutes..."}
                                         name={"BodyBuilding"}
+                                        InputProps={{
+                                            inputProps: {
+                                                min: 0
+                                            }
+                                        }}
                                     />
                                     </div>
 
@@ -349,6 +364,11 @@ export default function Statistics(){
                                         onChange={(e)=>setCaloriesBurnedForm(e.target.value)}
                                         placeholder={"minutes..."}
                                         name={"CaloriesBurned"}
+                                        InputProps={{
+                                            inputProps: {
+                                                min: 0
+                                            }
+                                        }}
                                     />
                                     </div>
 
@@ -363,6 +383,11 @@ export default function Statistics(){
                                         onChange={(e)=>setCaloriesForm(e.target.value)}
                                         placeholder={"minutes..."}
                                         name={"CaloriesIntake"}
+                                        InputProps={{
+                                            inputProps: {
+                                                min: 0
+                                            }
+                                        }}
                                     />
                                     </div>
 
