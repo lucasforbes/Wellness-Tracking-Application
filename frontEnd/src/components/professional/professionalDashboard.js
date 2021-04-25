@@ -265,9 +265,9 @@ export default function ProfessionalDashboard(props){
                                 if(workouts.approved) {
                                     return (
 
-                                        <div id={index} className={"col-4"}>
-                                            <Card>
-                                                <Card.Body style={{backgroundColor: 'lightblue'}}>
+                                        <div id={index} className={"col-4"} >
+                                            <Card style={{minHeight: '250px', margin: '10px'}}>
+                                                <Card.Body style={{backgroundColor: 'lightblue' }}>
 
                                                     <div className={"row"}>
 
@@ -276,7 +276,7 @@ export default function ProfessionalDashboard(props){
                                                             {workouts.file ? <img style={{width: '100%', height: '95%'}}
                                                                                   src={'https://bloom-flask-app.herokuapp.com/file/' + workouts.file}
                                                                                   alt={"No image"}/> :
-                                                                <img style={{width: '90%', height: '80%'}}
+                                                                <img style={{width:'100px',height:'90px'}}
                                                                      src={process.env.PUBLIC_URL + 'Bloom.png'}
                                                                      alt={"No image"}/>}
 
@@ -317,8 +317,9 @@ export default function ProfessionalDashboard(props){
 
                                             <div id={index} className={"col-4"}>
 
-                                                <Card>
+                                                <Card style={{minHeight: '250px', margin: '10px'}}>
                                                     <Card.Body style={{backgroundColor: '#EF5350'}}>
+
 
 
                                                         <div className={"row"} >
@@ -326,11 +327,12 @@ export default function ProfessionalDashboard(props){
                                                             <div className={"col-md-3"}>
 
                                                                 {workouts.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+workouts.file} alt={"No image"}/> :
-                                                                    <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+                                                                    <img style={{width:'100px',height:'90px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
 
                                                             </div>
                                                             <div className={"col-md-9"}>
                                                                 <div className={"bg-dark text-white"}  style={{paddingLeft:'2px'}}> Not Approved </div>
+
                                                                 <h4 style={{color:'white'}}>{workouts.title}</h4>
                                                                 <br/>
                                                                 <p>{workouts.description}</p>
@@ -448,7 +450,7 @@ export default function ProfessionalDashboard(props){
                                         return (
                                             <div id={index} className={"col-4"}>
 
-                                        <Card>
+                                        <Card style={{minHeight: '250px', margin: '15px'}}>
 
                                             <Card.Body style={{backgroundColor: 'lightblue'}}>
 
@@ -458,7 +460,7 @@ export default function ProfessionalDashboard(props){
                                                     <div className={"col-md-3"}>
 
                                                         {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
-                                                            <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+                                                            <img style={{width:'100px',height:'90px', marginBottom: '10px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
 
                                                     </div>
 
@@ -491,7 +493,7 @@ export default function ProfessionalDashboard(props){
                                         return (
                                             <div id={index} className={"col-4"}>
 
-                                                <Card>
+                                                <Card style={{minHeight: '250px', margin: '15px'}}>
 
                                                     <Card.Body style={{backgroundColor: '#EF5350'}}>
 
@@ -605,16 +607,16 @@ export default function ProfessionalDashboard(props){
 
                             <div className={"row"}>
                                 <div className={"col-md-3"}>
-                                    <Card  style={{ width: '18rem',fontSize:'20px'}}
+                                    <Card  style={{ width: '18rem',fontSize:'20px', borderTop: 'solid 5px white', borderRight: 'inset 5px forestgreen', borderLeft: 'inset 5px forestgreen', borderBottom: 'inset 5px white'}}
                                            className="mb-2"
                                            bg={'primary'}
                                     >
 
                                         <Card.Body>
 
-                                            <div className={"card-header"}>Workout Stats</div>
+                                            <div className={"card-header"} style={{textDecoration: 'underline', fontWeight: '600', marginBottom: '5px'}}>Workout Stats</div>
 
-                                            <div className={"card-header text-white bg-warning"} > Total Subscribers {stats? stats.totalUsers:""} </div>
+                                            <div className={"card-header text-white bg"}style={{backgroundColor: 'lightgreen'}} > Total Subscribers {stats? stats.totalUsers:""} </div>
                                             <br/>
 
                                             <div className={"card-header text-white bg-success"} >
@@ -627,14 +629,14 @@ export default function ProfessionalDashboard(props){
                                     </Card>
                                 </div>
                                 <div className={"col-md-3"}>
-                                    <Card style={{ width: '18rem',fontSize:'20px'}}
+                                    <Card style={{ width: '18rem',fontSize:'20px', borderTop: 'solid 5px white', borderRight: 'inset 5px forestgreen', borderLeft: 'inset 5px forestgreen', borderBottom: 'inset 5px white'}}
                                           className="mb-2"
                                           bg={'primary'}>
                                         <Card.Body>
 
-                                            <div className={"card-header"}>Diet Stats</div>
+                                            <div className={"card-header"} style={{textDecoration: "underline", fontWeight: '600', marginBottom: '5px'}}>Diet Stats</div>
 
-                                            <div className={"card-header bg-warning"} > Total Subscribers {statsDiet? statsDiet.totalUsers:""} </div>
+                                            <div className={"card-header bg"} style={{backgroundColor: 'lightgreen'}}> Total Subscribers {statsDiet? statsDiet.totalUsers:""} </div>
                                                 <br/>
 
                                                 <div className={"card-header text-white bg-success"}>
