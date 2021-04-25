@@ -187,22 +187,6 @@ export default function AllExercises(props){
 
     const PaidsubscribeWorkout=(id)=>{
 
-        // let json = JSON.stringify({
-        //     'exersizeId' : id,
-        //     'userEmail':
-        // })
-
-        // const json = {
-        //     'userEmail': localStorage.getItem('email'),
-        //     'exersizeId': id
-        //
-        // };
-
-        // let json = new FormData();
-        // json.append("userEmail",localStorage.getItem("email"))
-        // json.append("exersizeId",id)
-
-        // let url2 = "https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidExersize/?exersizeId=605f9c2f597547bacce7504a&userEmail=jimmy@google.com"
         let url = "https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidExersize/?exersizeId="+id+"&userEmail="+localStorage.getItem('email')
 
         console.log("url1",url)
@@ -322,9 +306,6 @@ export default function AllExercises(props){
 
         <>
 
-
-
-
             <div className={'container-fluid'} style={{color: 'white', backgroundColor:'lightgreen',fontFamily: 'cursive'}}>
 
 
@@ -372,7 +353,7 @@ export default function AllExercises(props){
                     onRequestClose={closeModal}
                 >
 
-                    <Button variant="danger" onClick={closeModal}>close</Button>
+
 
                     <h2 >Workout Details </h2>
 
@@ -415,7 +396,7 @@ export default function AllExercises(props){
                                 </div>
 
 
-                                {selectedExercise['paid'] != true && selectedExercise.activityList && selectedExercise.activityList.length > 0 ?
+                                {selectedExercise['paid'] == false ||  selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem('email')) ?
 
                                     selectedExercise.activityList.map((item,index)=>{
                                         return (
@@ -462,52 +443,147 @@ export default function AllExercises(props){
                         ""
                     }
 
+                    <Button variant="danger" onClick={closeModal}>close</Button>
 
                 </Modal>
+
 
                 <Modal  isOpen={modalPaidSub}
                         onRequestClose={()=>setModalPaidSub(false)}
                         style={customStylesModal}
                 >
 
+
                     <div className={"card text-white bg-primary"}>
                         <div className={"card-header"}> Enter Credit Card Details </div>
                         <div className={"card-body"}>
 
-                            <div className={"row"}>
+
+                            <div className="row">
+                                <div className="col-md-5">
+                                    <h3>Billing Address</h3>
+                                    <table style={{paddingLeft:'10px',paddingRight:'10px'}}>
+                                        <tr>
+                                            <td>
+                                                <label htmlFor="fname"><i className="fa fa-user"></i> Full Name</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="fname" name="firstname" placeholder="John M. Doe" />
+                                            </td>
+                                            <td>
+                                                <label htmlFor="email"><i className="fa fa-envelope"></i> Email</label>
+
+                                            </td>
+                                            <td>
+                                            <input type="text" id="email" name="email"
+                                                       placeholder="john@example.com" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label htmlFor="adr"><i
+                                                    className="fa fa-address-card-o"></i> Address</label>
+                                            </td>
+
+                                            <td colSpan={"3"}>
+                                                <input type="text" id="adr" name="address"
+                                                       placeholder="542 W. 15th Street"  style={{width:'100%'}}/>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label htmlFor="city"><i className="fa fa-institution"></i> City</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="city" name="city" placeholder="New York"/>
+                                            </td>
+                                            <td>
+                                                <label htmlFor="state">State</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="state" name="state"
+                                                       placeholder="NY"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label htmlFor="zip">Zip</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="zip" name="zip"
+                                                       placeholder="10001"/>
+                                            </td>
+                                        </tr>
+
+
+                                    </table>
+
+
+                                </div>
+
+                                <div className={"col-md-1"}>
+
+                                </div>
                                 <div className={"col-md-6"}>
+                                    <h3>Payment</h3>
+                                    <label htmlFor="fname">Accepted Cards</label>
+                                    <div>
+                                        <img src={process.env.PUBLIC_URL + 'cards.jpg'} style={{height:'30px',width:'140px'}} alt={"Visa"}/>
+                                    </div>
 
-                                    <TextField style={{backgroundColor:'white',  width:'400px'}} placeholder={"Credit Card Number"}
-                                             value={creditCardNumber}
-                                             onChange={(e)=>{
-                                                 setCreditCardNumber(e.target.value)
-                                             }}
-                                    >
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label htmlFor="cname">Name on Card</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="cname" name="cardname" placeholder="John More Doe"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan={"2"}>
+                                        <TextField style={{backgroundColor:'white',  width:'400px'}} placeholder={"Credit Card Number"}
+                                                   value={creditCardNumber}
+                                                   onChange={(e)=>{
+                                                       setCreditCardNumber(e.target.value)
+                                                   }}
+                                        />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <TextField style={{backgroundColor:'white'}} placeholder={"CVV"}
+                                                       value={cvv}
+                                                       onChange={(e)=>{
+                                                           setCVV(e.target.value)
+                                                       }}
+                                            > </TextField>
+                                        </td>
+                                        <td>
+                                            <TextField style={{backgroundColor:'white'}} type={"date"}
+                                                       placeholder={"Credit Card Number"} value={cardDate} onChange={(e)=>setCardDate(e.target.value)}></TextField>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Button variant={"success"} type={"button"} onClick={submitCard}> Submit </Button>
+                                        </td>
+                                    </tr>
+                                </table>
 
-                                  </TextField>
-                                    <br/>
-                                    <br/>
-                                </div>
-                                <div className={"col-md-3"}>
-                                    <TextField style={{backgroundColor:'white'}} placeholder={"CVV"}
-                                    value={cvv}
-                                               onChange={(e)=>{
-                                                   setCVV(e.target.value)
-                                               }}
-                                    > </TextField>
-                                </div>
-
-                                <div className={"col-md-3"}>
-                                    <TextField style={{backgroundColor:'white'}} type={"date"}
-                                               placeholder={"Credit Card Number"} value={cardDate} onChange={(e)=>setCardDate(e.target.value)}></TextField>
-                                </div>
-
-                                <div className={"col-md-6"}>
-                                    <Button variant={"success"} type={"button"} onClick={submitCard}> Submit </Button>
                                 </div>
 
 
                             </div>
+
+                            <br/>
+
+                            <div className={"card-header bg-danger text-white"}> You will be charged $2.00 </div>
+
                         </div>
                     </div>
 

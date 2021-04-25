@@ -122,7 +122,7 @@ export default function Chat(props){
                 <div className={"row"}>
 
                     <div className={"col-md-2"}>
-                        <div className={"card-header"} style={{fontWeight: '600',color: 'white',fontFamily: 'cursive', textDecoration: 'underline' , fontSize: '120%',backgroundColor: 'lightgreen', borderBottom: 'inset 5px green',borderTop: 'solid 7px white', borderRight: 'inset 5px dodgerblue', borderLeft: 'inset 5px dodgerblue'}}>Users </div>
+                        <div className={"card-header"} style={{fontWeight: '600',color: 'white',fontFamily: 'cursive', textDecoration: 'underline' , fontSize: '120%',backgroundColor: 'lightgreen', borderBottom: 'inset 5px green',borderTop: 'solid 7px white', borderRight: 'inset 5px dodgerblue', borderLeft: 'inset 5px dodgerblue'}}> Professionals </div>
                         {allCreators && allCreators.length > 0 ? allCreators.map((creator,index)=> {
 
                             let image = images[index%4]
