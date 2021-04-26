@@ -37,7 +37,8 @@ export default function PreviousDiets(props){
         <>
 
 
-            <div className={"row"}>
+            <div className={"row"} style={{paddingRight:'3px'}}>
+
                 {props.data.map((diet,index)=>{
 
 
@@ -45,44 +46,57 @@ export default function PreviousDiets(props){
 
                     return(
                         <>
-                            <div className={"col-md-5"} id={index}>
+                            <div className={"col-md-12"}  id={index}>
                                 <div className={"bg-success text-white card mb-3 popup"}>
-                                    <Card.Body>
-                                        <div className={"row"} >
 
-                                            <div className={"col-md-4"}>
-                                                <img style={{width:'100px',height:'100px'}} src={process.env.PUBLIC_URL + image} />
-                                                <h4>{diet.title}</h4>
+                                    <Card.Body style={{backgroundColor:'lightblue', borderColor: 'blue', borderStyle: 'ridge'}} >
+
+                                        <div className={"row"} style={{backgroundColor:'lightblue'}} >
+
+
+
+                                            <div className={"col-md-12"}>
+                                                <div>
+                                                    <div style={{float:'left'}}>
+                                                        {diet.file ?
+                                                            <a href={'https://bloom-flask-app.herokuapp.com/file/'+diet.file} target="_blank">
+                                                                <img  style={{width:'200px',height:'200px',borderWidth:'3px',borderStyle:'outset'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diet.file} alt={"No image"}/>
+                                                            </a>:
+                                                            <img style={{width:'200px',height:'200px'}} src={process.env.PUBLIC_URL + 'diet1.jpg'} alt={"No image"}/>}
+                                                    </div>
+
+                                                    <div style={{float:'right'}}>
+                                                        <h4>{diet.title}</h4>
+                                                        <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{diet.description}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className={"col-md-8"}>
-                                                <p>{diet.description}</p>
 
-                                                <div className={"row"}>
+
                                                     {diet.dietList.map((dietItem,index3)=>{
                                                         return(
-                                                            <>
-                                                                <div className={ diet.dietList.length == 1 ? "col-md-8 bg-dark" : "col-md-5 bg-dark "} id={index3}>
+
+                                                                <div className={"col-md-6"} style={{paddingLeft:'5px',paddingTop:'5px',paddingRight:'5px'}}>
+                                                                    <div className={"card bg-warning text-white"}  id={index3} style={{color:'darkblue',fontSize:'20px',backgroundColor: 'lightblue'}}>
                                                                     <b> {dietItem.item}</b> <br/>
-                                                                    <p> Serving Size: {dietItem.servingSize+" "}
-                                                                        {"Fat(kg): "+dietItem.fat+" Carbs: "+
-                                                                        dietItem.carbs+ " Calories: "+ dietItem.calories+" Protein  "+
+                                                                        <p> Serving Size: {dietItem.servingSize+" "} </p>
+                                                                        <p>
+                                                                        {"Fat(g): "+dietItem.fat+" Carbs(g): "+
+                                                                        dietItem.carbs}
+                                                                        <br/>
+                                                                        {" Calories(g): "+ dietItem.calories+" Protein(g):  "+
                                                                         dietItem.protein+" "}
                                                                     </p>
+                                                                    </div>
                                                                 </div>
-                                                                <div className={"col-md-1"}>
-                                                                </div>
-                                                            </>
+
                                                         )
                                                     })}
                                                 </div>
 
                                                 <br/>
                                                 <Button onClick={()=>removeDietSubscription(diet._id)} style={{minWidth: '100px'}} variant="danger" type={"button"}> Unsubscribe </Button>
-                                            </div>
 
-
-                                            <p></p>
-                                        </div>
                                     </Card.Body>
 
                                 </div>

@@ -46,8 +46,8 @@ export default function PreviousWorkouts(props){
 
                 return(
                     <>
-                    <div className={"col-md-12"} style={{ minHeight: '499px'}}>
-                    <div className={"bg-success text-white card mb-3 popup"}  id={index} >
+                    <div className={"col-md-12"} style={{ minHeight: '499px'}} style={{ minHeight: '499px'}}>
+                    <div className={"bg-success text-white card mb-3 popup"} >
                         <Card.Body style={{backgroundColor:'lightblue', borderColor: 'blue', borderStyle: 'ridge'}} >
 
                             <div className={"row"} style={{backgroundColor:'lightblue'}} >
