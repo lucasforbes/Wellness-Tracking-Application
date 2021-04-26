@@ -387,7 +387,7 @@ export default function ProfessionalDashboard(props){
                                             <h4>  {selectedExercise.title} </h4>
                                             <b> Description: </b>    {" "+selectedExercise.description}
                                             {selectedExercise.file ?  <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> :
-                                                <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+                                                <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
 
                                         </div>
 

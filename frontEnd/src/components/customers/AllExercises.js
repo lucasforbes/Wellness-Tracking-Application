@@ -380,8 +380,10 @@ export default function AllExercises(props){
                 <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
+                    style={customStylesModal}
                 >
 
+                <div style={{overflowY:'scroll',height:'400px'}}>
 
 
                     <h2 >Workout Details </h2>
@@ -390,22 +392,32 @@ export default function AllExercises(props){
                         <>
 
                             <div className={"row"} >
-                                <div className={"col-md-5"} >
-                                    <h4>  {selectedExercise.title} </h4>
+
+                                <div className={"col-md-2"}>
+                                    {selectedExercise.file ? <a href={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file}  target={"_blank"}> <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> </a>:
+                                        <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
+
                                 </div>
 
-                                <div className={"col-md-1"}>
+                                <div className={"col-md-4"}>
+                                    <div style={{float:'right'}}>
+                                        <h4>  {selectedExercise.title} </h4>
+                                        <b> Description: </b>    {" "+selectedExercise.description}
+                                    </div>
+                                </div>
 
-                                    {console.log("Array",selectedExercise.userIdsToExersizesSubscribed)}
+                                <div className={"col-md-6"}>
+
+
 
                                     {selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
                                         <>
-                                            <Button onClick={()=>removeSubscription(selectedExercise._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
+                                            <Button onClick={()=>removeSubscription(selectedExercise._id)} style={{width:"120px"}} variant="danger" type={"button"}> Unsubscribe </Button>
                                         </>
 
                                         :
                                         <>
-                                        {selectedExercise.paid?
+                                            {selectedExercise.paid?
                                                 <Button onClick={() => PaidsubscribeWorkout(selectedExercise._id)}
                                                         style={{minWidth: "140px"}} variant="success"
                                                         type={"button"}> Paid Subscribe </Button>
@@ -413,16 +425,12 @@ export default function AllExercises(props){
                                                 <Button onClick={() => subscribeWorkout(selectedExercise._id)}
                                                         style={{width: "100px"}} variant="success"
                                                         type={"button"}> Subscribe </Button>
-                                        }
+                                            }
                                         </>
                                     }
-
                                 </div>
 
 
-                                <div className={"col-md-8"}>
-                                    <b> Description: </b>    {" "+selectedExercise.description}
-                                </div>
 
 
                                 {selectedExercise['paid'] == false ||  selectedExercise.userIdsToExersizesSubscribed.includes(localStorage.getItem('email')) ?
@@ -431,7 +439,7 @@ export default function AllExercises(props){
                                         return (
 
 
-                                                <div className={"col-md-5 card text-white bg-info"} id={index}>
+                                                <div className={"col-md-6 card bg-transparent"} id={index}>
 
                                                     <i>Activity: </i> {item.activityName} <br/>
                                                     {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
@@ -445,11 +453,8 @@ export default function AllExercises(props){
                                         )
                                     }):
 
-                                    <>
                                         <div className={"col-md-12"}>
 
-                                        </div>
-                                        <div className={"col-md-3"}>
                                             {selectedExercise['paid'] ?
 
                                                 <div className={"card-header text-white bg-success"}>
@@ -458,12 +463,10 @@ export default function AllExercises(props){
                                                 :""
                                             }
                                         </div>
-                                    </>
+
 
 
                                 }
-
-
 
 
 
@@ -478,8 +481,11 @@ export default function AllExercises(props){
                         ""
                     }
 
-                    <Button variant="danger" onClick={closeModal}>close</Button>
+                    <div style={{paddingTop:'10px',paddingBottom:'10px'}}>
+                        <Button variant="danger" onClick={closeModal}>close</Button>
+                    </div>
 
+                    </div>
                 </Modal>
 
 
