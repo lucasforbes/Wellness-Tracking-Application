@@ -64,16 +64,16 @@ export default function PreviousWorkouts(props){
                                                 <>
                                                     <div className={ exercise.activityList.length == 1 ? "col-md-8" : "col-md-5 "} id={index3} style={{backgroundColor: 'lightblue'}}>
                                                         <b> {activity.activityName}</b> <br/>
-                                                        <p> {activity.activityDescription?activity.activityDescription:""}</p> <br/>
-                                                        <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "}
-                                                            {"Duration: "+activity.totalDuration+" Sets: "+
-                                                            activity.activitySets+ " Reps: "+ activity.activityReps+" Equipment  "+
-                                                            activity.equipmentNeeded+" Video "+
-                                                            activity.videoLink+" "}
-                                                        </p>
+                                                        <t> {activity.activityDescription?activity.activityDescription:""}</t> <br/>
+                                                        <t> {" Sets: "+ activity.activitySets } </t>  <br/>
+                                                        <p> { " Reps: "+ activity.activityReps  }</p>  <br/>
+
+
+
+
+
                                                     </div>
-                                                    <div className={"col-md-1"}>
-                                                    </div>
+
                                                 </>
                                             )
                                         })}
