@@ -38,7 +38,7 @@ export default function PreviousWorkouts(props){
         <>
 
 
-            <div className={"row"}>
+            <div className={"row"} style={{paddingRight:'3px'}}>
             {props.data.map((exercise,index)=>{
 
 
@@ -62,9 +62,8 @@ export default function PreviousWorkouts(props){
                                         <div style={{float:'right',paddingRight:'10px',paddingTop:'10px'}}>
                                     {exercise.file ?
                                         <a href={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} target="_blank">
-
-                                        <img  style={{width:'200px',height:'200px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} alt={"No image"}/>
-                                         </a>:
+                                        <img  style={{width:'200px',height:'200px',borderWidth:'3px',borderStyle:'outset'}} src={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} alt={"No image"}/>
+                                        </a>:
                                         <img style={{width:'200px',height:'200px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
                                         </div>
                                     </div>
