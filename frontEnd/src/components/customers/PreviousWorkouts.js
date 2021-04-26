@@ -52,22 +52,29 @@ export default function PreviousWorkouts(props){
 
                             <div className={"row"} style={{backgroundColor:'lightblue'}} >
 
-                                <div className={"col-md-8"}>
-                                    <h4>{exercise.title}</h4>
-                                    <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{exercise.description}</p>
-                                </div>
 
-                                <div className={"col-md-4"}>
+                                <div className={"col-md-12"}>
                                     <div>
-                                        <div style={{float:'right',paddingRight:'10px',paddingTop:'10px'}}>
-                                    {exercise.file ?
-                                        <a href={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} target="_blank">
-                                        <img  style={{width:'200px',height:'200px',borderWidth:'3px',borderStyle:'outset'}} src={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} alt={"No image"}/>
-                                        </a>:
-                                        <img style={{width:'200px',height:'200px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
+                                          <div style={{float:'left'}}>
+                                                {exercise.file ?
+                                                    <a href={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} target="_blank">
+                                                        <img  style={{width:'200px',height:'200px',borderWidth:'3px',borderStyle:'outset'}} src={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} alt={"No image"}/>
+                                                    </a>:
+                                                    <img style={{width:'200px',height:'200px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
+                                            </div>
+
+                                        <div style={{float:'right'}}>
+                                            <h4>{exercise.title}</h4>
+                                            <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{exercise.description}</p>
                                         </div>
                                     </div>
                                 </div>
+
+                                {/*<div className={"col-md-8"} style={{alignContent:'right'}}>*/}
+
+                                {/*</div>*/}
+
+
 
                                 {exercise.activityList.map((activity,index3)=>{
                                     return(
@@ -78,9 +85,13 @@ export default function PreviousWorkouts(props){
                                                 <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "} <br/>
                                                     {"Duration: "+activity.totalDuration+" Sets: "+
                                                     activity.activitySets+ " Reps: "+ activity.activityReps+" Equipment  "+
-                                                    activity.equipmentNeeded+" Video "+
-                                                    activity.videoLink+" "}
+                                                    activity.equipmentNeeded}
                                                 </p>
+
+                                                {activity.videoLink ?
+                                                 <a href={activity.videoLink} target={"_blank"}> Video </a>
+                                                : ""}
+
                                             </div>
                                         </div>
                                     )
