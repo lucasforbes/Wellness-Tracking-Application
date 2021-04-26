@@ -19,6 +19,9 @@ public class Diet {
     Boolean paid;
     String picture;
     String videoLink;
+    String notes;
+    String[] comments;
+    Integer[] ratings;
     private List<String> userIdsToDietsSubscribed;
     public Diet(String email, String title, String description, SingleDiet[] dietList, Boolean paid) {
         this.email = email;
@@ -26,6 +29,9 @@ public class Diet {
         this.description = description;
         this.dietList = dietList;
         this.paid = paid;
+        this.notes = "";
+        this.comments = new String[100];
+        this.ratings = new Integer[100];
     }
 
     public ObjectId getId() {
