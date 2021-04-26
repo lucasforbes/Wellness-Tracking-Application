@@ -394,8 +394,8 @@ export default function AllExercises(props){
                             <div className={"row"} >
 
                                 <div className={"col-md-2"}>
-                                    {selectedExercise.file ? <a href={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file}  target={"_blank"}> <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> </a>:
-                                        <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
+                                    {selectedExercise.file ? <a href={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file}  target={"_blank"}> <img  style={{maxWidth:'200px',maxHeight:'200px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> </a>:
+                                        <img style={{maxWidth:'200px',maxHeight:'200px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
 
                                 </div>
 
@@ -439,15 +439,14 @@ export default function AllExercises(props){
                                         return (
 
 
-                                                <div className={"col-md-6 card bg-transparent"} id={index}>
-
-                                                    <i>Activity: </i> {item.activityName} <br/>
-                                                    {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
-                                                    {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
-                                                    {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
-
-                                                    {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
-
+                                                <div className={"col-md-6"} style={{paddingLeft:'25px',paddingTop:'5px',paddingRight:'5px'}}>
+                                                    <div className={"card bg-info text-white"} id={index}>
+                                                        <i>Activity: </i> {item.activityName} <br/>
+                                                        {"Description: " +item.activityDescription + "  Total Duration: "+item.totalDuration} <br/>
+                                                        {"Sets: "+item.activitySets +" "+ "Reps:  "+item.activityReps} <br/>
+                                                        {"Body Parts Targeted: "+item.bodyPartsTargeted+" Tools: "+item.equipmentNeeded} <br/>
+                                                        {"videoLink :"}< a href={item.videoLink?item.videoLink:""} > here</a>
+                                                    </div>
                                                 </div>
 
                                         )

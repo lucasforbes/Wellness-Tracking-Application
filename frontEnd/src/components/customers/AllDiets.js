@@ -76,6 +76,18 @@ export default function AllDiets(props){
 
     ];
 
+
+    const customStylesModal = {
+        content : {
+            top                   : '50%',
+            left                  : '50%',
+            right                 : 'auto',
+            bottom                : 'auto',
+            marginRight           : '-50%',
+            transform             : 'translate(-50%, -50%)'
+        }
+    };
+
     const customStyles = {
 
         header: {
@@ -263,27 +275,42 @@ export default function AllDiets(props){
                 <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
+                    style={customStylesModal}
                 >
 
-                    <Button variant="danger" onClick={closeModal}>close</Button>
+
+                    <div style={{overflowY:'scroll',height:'400px'}}>
+
+
 
                     <h2 >Diet Details </h2>
+
 
                     {selectedDiet?
                         <>
 
-                            <div className={"row"} >
-                                <div className={"col-md-5"} >
-                                    <h4>  {selectedDiet.title} </h4>
+                            <div className={"row"}>
+
+                                <div className={"col-md-2"} style={{paddingBottom:'10px'}}>
+                                    {selectedDiet.file ? <a href={'https://bloom-flask-app.herokuapp.com/file/'+selectedDiet.file}  target={"_blank"}> <img  style={{maxWidth:'200px',maxHeight:'200px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedDiet.file} alt={"No image"}/> </a>:
+                                        <img style={{maxWidth:'200px',maxHeight:'200px',paddingRight:'20px'}} src={process.env.PUBLIC_URL + 'diet1.jpg'} alt={"No image"}/>}
+
                                 </div>
 
-                                <div className={"col-md-1"}>
+                                <div className={"col-md-4"} style={{paddingBottom:'10px'}}>
+                                    <div style={{float:'right'}}>
+                                        <h4>  {selectedDiet.title} </h4>
+                                        <b> Description: </b>    {" "+selectedDiet.description}
+                                    </div>
+                                </div>
+
+                                <div className={"col-md-6"}>
 
 
                                     {selectedDiet.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
                                         <>
 
-                                            <Button onClick={()=>removeDietSubscription(selectedDiet._id)} style={{width:"100px"}} variant="danger" type={"button"}> Unsubscribe </Button>
+                                            <Button onClick={()=>removeDietSubscription(selectedDiet._id)} style={{width:"120px"}} variant="danger" type={"button"}> Unsubscribe </Button>
 
                                         </>
 
@@ -294,17 +321,14 @@ export default function AllDiets(props){
                                 </div>
 
 
-                                <div className={"col-md-8"}>
-                                    <b> Description: </b>    {" "+selectedDiet.description}
-                                </div>
 
                                 {selectedDiet.dietList && selectedDiet.dietList.length > 0 ?
 
                                     selectedDiet.dietList.map((dietItem,id)=>{
                                         return (
-                                            <>
 
-                                                <div className={"col-md-5 text-white bg-info"}>
+                                            <div className={"col-md-6"}>
+                                                <div className={"text-white bg-info "} style={{paddingLeft:'25px',paddingTop:'5px',paddingRight:'5px'}}>
 
                                                     <i>Item: </i> {dietItem.item}
                                                     <p>Serving Size {" "+dietItem.servingSize+" "}</p>
@@ -312,16 +336,15 @@ export default function AllDiets(props){
                                                     <p> Carbs Contains {" "+dietItem.carbs+" "}</p>
                                                     <p> Total Calories {" "+dietItem.calories+" "}</p>
                                                     <p> Protein Contains {" "+dietItem.protein+" "}</p>
-
                                                 </div>
-                                            </>
+
+                                            </div>
                                         )
                                     }):""
                                 }
 
 
                                 <br/>
-
 
 
                             </div>
@@ -331,6 +354,9 @@ export default function AllDiets(props){
                         ""
                     }
 
+                    <Button variant="danger" onClick={closeModal}>close</Button>
+
+                </div>
 
                 </Modal>
 
