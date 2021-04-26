@@ -72,7 +72,7 @@ export default function GetMoney(){
     const withdraw=()=>{
 
         let json=JSON.stringify({
-            'creatorEmail':localStorage.getItem('email'),
+            'email':localStorage.getItem('email'),
             'accountNumber': accountNumber,
             'routingNumber': routingNumber
         })

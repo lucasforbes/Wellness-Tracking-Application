@@ -46,46 +46,54 @@ export default function PreviousWorkouts(props){
 
                 return(
                     <>
-                    <div className={"col-xl-4"} style={{marginTop: '5px',margin: '0 auto' , minHeight: '499px'}}>
-                    <div className={"bg-success text-white card mb-3 popup"}  id={index} style={{}}>
+                    <div className={"col-md-12"} style={{marginTop: '10px',marginLeft:'10px',marginRight:'10px', minHeight: '499px'}}>
+                    <div className={"bg-success text-white card mb-3 popup"}  id={index} >
                         <Card.Body style={{backgroundColor:'lightblue', borderColor: 'blue', borderStyle: 'ridge'}} >
+
                             <div className={"row"} style={{backgroundColor:'lightblue'}} >
 
-                                <div className={"col-md-4"}>
-                                    <img style={{width:'100px',height:'100px'}} src={process.env.PUBLIC_URL + image} />
-                                    <h4>{exercise.title}</h4>
-                                </div>
                                 <div className={"col-md-8"}>
+                                    <h4>{exercise.title}</h4>
                                     <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{exercise.description}</p>
+                                </div>
 
-                                    <div className={"row"}>
-                                        {exercise.activityList.map((activity,index3)=>{
-                                            return(
-                                                <>
-                                                    <div className={ exercise.activityList.length == 1 ? "col-md-8" : "col-md-5 "} id={index3} style={{backgroundColor: 'lightblue'}}>
-                                                        <b> {activity.activityName}</b> <br/>
-                                                        <p> {activity.activityDescription?activity.activityDescription:""}</p> <br/>
-                                                        <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "}
-                                                            {"Duration: "+activity.totalDuration+" Sets: "+
-                                                            activity.activitySets+ " Reps: "+ activity.activityReps+" Equipment  "+
-                                                            activity.equipmentNeeded+" Video "+
-                                                            activity.videoLink+" "}
-                                                        </p>
-                                                    </div>
-                                                    <div className={"col-md-1"}>
-                                                    </div>
-                                                </>
-                                            )
-                                        })}
+                                <div className={"col-md-4"}>
+                                    <div>
+                                        <div style={{float:'right',paddingRight:'10px',paddingTop:'10px'}}>
+                                    {exercise.file ?
+                                        <a href={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} target="_blank">
+
+                                        <img  style={{width:'200px',height:'200px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file} alt={"No image"}/>
+                                         </a>:
+                                        <img style={{width:'200px',height:'200px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
+                                        </div>
                                     </div>
+                                </div>
+
+                                {exercise.activityList.map((activity,index3)=>{
+                                    return(
+                                        <div className={"col-md-6"} style={{paddingLeft:'5px',paddingTop:'5px',paddingRight:'5px'}}>
+                                            <div className={"card bg-warning text-white"}  id={index3} style={{color:'darkblue',fontSize:'20px',backgroundColor: 'lightblue'}}>
+                                                <b> {activity.activityName}</b>
+                                                <p> {activity.activityDescription?activity.activityDescription:""} </p>
+                                                <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "} <br/>
+                                                    {"Duration: "+activity.totalDuration+" Sets: "+
+                                                    activity.activitySets+ " Reps: "+ activity.activityReps+" Equipment  "+
+                                                    activity.equipmentNeeded+" Video "+
+                                                    activity.videoLink+" "}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                                </div>
 
                                     <br/>
                                     <Button onClick={()=>removeSubscription(exercise._id)} style={{minWidth: '100px'}} variant="danger" type={"button"}> Unsubscribe </Button>
-                                </div>
 
 
                                 <p></p>
-                            </div>
+
                         </Card.Body>
 
                     </div>
