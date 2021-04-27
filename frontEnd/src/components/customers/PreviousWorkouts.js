@@ -6,7 +6,10 @@ import {Link} from "react-router-dom";
 import isMACAddress from "validator/es/lib/isMACAddress";
 import '../../App.css';
 
+import Rating from "react-rating";
+
 export default function PreviousWorkouts(props){
+
 
 
 
@@ -33,9 +36,36 @@ export default function PreviousWorkouts(props){
     }
 
 
+    const [rating,setRating] = useState(0);
+
+    function handleRatingChange(value,id) {
+        setRating(value)
+        // console.log("value",value,"id",id)
+
+
+        axios.post("https://bloom-flask-app.herokuapp.com/addRatingsWorkout",{
+            id: id,
+            stars : value,
+        }).
+        then((res)=>{
+            alert("Thanks for Rating")
+        })
+            .catch((err)=>{
+                // alert("Error while unsubscribing")
+                console.log(err);
+            })
+            .finally(()=>{
+                setRating(0)
+            })
+
+    }
+
+
     return(
 
         <>
+
+            {rating}
 
 
             <div className={"row"} style={{paddingRight:'3px'}}>
@@ -66,6 +96,15 @@ export default function PreviousWorkouts(props){
                                         <div style={{float:'right'}}>
                                             <h4>{exercise.title}</h4>
                                             <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{exercise.description}</p>
+
+
+                                            <div className={"card-header text-white bg-success"} style={{width:'200px',float:'right'}}>
+                                            Rate <Rating initialRating={rating}
+                                                         onChange={(value)=>handleRatingChange(value,exercise._id)}
+                                                         emptySymbol={<img style={{width:'20px',height:'20px'}}  src={process.env.PUBLIC_URL+'starempty.jpg'} className="icon" />}
+                                                           fullSymbol={<img style={{width:'20px',height:'20px'}} src={process.env.PUBLIC_URL+'starfull.jpg'} className="icon" />}/>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
