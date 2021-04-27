@@ -424,9 +424,6 @@ export default function AllExercises(props){
 
                                                         </div>
                                                             {comment}
-                                                        <div style={{width:'100%',height:'3px',backgroundColor:'black'}}>
-
-                                                        </div>
                                                         </div>
                                                     )
                                                 })

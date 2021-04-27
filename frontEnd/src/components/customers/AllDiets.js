@@ -9,6 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import DataTable from 'react-data-table-component';
 
 import { makeStyles } from "@material-ui/core/styles";
+import Rating from "react-rating";
 
 
 export default function AllDiets(props){
@@ -301,6 +302,36 @@ export default function AllDiets(props){
                                     <div style={{float:'right'}}>
                                         <h4>  {selectedDiet.title} </h4>
                                         <b> Description: </b>    {" "+selectedDiet.description}
+
+                                        <br/>
+                                        Ratings: {" "}
+                                        <Rating initialRating={selectedDiet.AvgRatings?selectedDiet.AvgRatings:0}
+                                                readonly
+                                                emptySymbol={<img style={{width:'20px',height:'20px'}}  src={process.env.PUBLIC_URL+'starempty.jpg'} className="icon" />}
+                                                fullSymbol={<img style={{width:'20px',height:'20px'}} src={process.env.PUBLIC_URL+'starfull.jpg'} className="icon" />}/>
+
+                                        <br/>
+
+                                        Comments: {" "}
+
+                                        <div style={{overflowY:'scroll',height:'60px'}}>
+                                            {selectedDiet.comments && selectedDiet.comments.length > 0 ?
+                                                selectedDiet.comments.map((comment,index)=>{
+                                                    return(
+                                                        <div id={index}>
+                                                            <div style={{width:'100%',height:'3px',backgroundColor:'blue'}}>
+
+                                                            </div>
+                                                            {comment}
+                                                        </div>
+                                                    )
+                                                })
+
+                                                :
+                                                ""
+                                            }
+                                        </div>
+
                                     </div>
                                 </div>
 

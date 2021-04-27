@@ -253,7 +253,7 @@ export default function AddDiet(props){
 
                                                 name={"servingSize"}
                                                 style={{background:'black !important'}}
-                                                label="Serving Size"
+                                                label="Serving Size (g)"
                                                 value={diet.servingSize}
                                                 onChange={e=>handleInputChange(e,i)}
                                             />
@@ -279,7 +279,7 @@ export default function AddDiet(props){
                                                 type={"number"}
                                                 name={"fat"}
                                                 style={{background:'black !important'}}
-                                                label="Fats in kg"
+                                                label="Fats (g)"
                                                 value={diet.fat}
                                                 onChange={e=>handleInputChange(e,i)}
                                             />
@@ -296,7 +296,7 @@ export default function AddDiet(props){
                                                 type={"number"}
                                                 name={"carbs"}
                                                 style={{background:'black !important'}}
-                                                label="Carbs in kg"
+                                                label="Carbs (g)"
                                                 value={diet.carbs}
                                                 onChange={e=>handleInputChange(e,i)}
                                             />
@@ -318,7 +318,7 @@ export default function AddDiet(props){
                                                 type={"number"}
                                                 name={"calories"}
                                                 style={{background:'black !important'}}
-                                                label="Calories"
+                                                label="Calories (g)"
                                                 value={diet.calories}
                                                 onChange={e=>handleInputChange(e,i)}
                                             />
@@ -335,7 +335,7 @@ export default function AddDiet(props){
                                                 type={"number"}
                                                 name={"protein"}
                                                 style={{background:'black !important'}}
-                                                label="Carbs in kg"
+                                                label="Protein (g)"
                                                 value={diet.protein}
                                                 onChange={e=>handleInputChange(e,i)}
                                             />

@@ -6,6 +6,7 @@ import AddDiet from "./addDiet";
 import Modal from 'react-modal';
 import Creatorchat from "../chat/CreatorChat";
 import GetMoney from "./GetMoney";
+import Rating from "react-rating";
 
 
 
@@ -386,8 +387,42 @@ export default function ProfessionalDashboard(props){
                                             <div className={"bg-warning text-white"}> Note: {" "+ selectedExercise.notes?selectedExercise.notes:""}</div>
                                             <h4>  {selectedExercise.title} </h4>
                                             <b> Description: </b>    {" "+selectedExercise.description}
-                                            {selectedExercise.file ?  <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/> :
+                                            {selectedExercise.file ?
+                                                <a href={"https://bloom-flask-app.herokuapp.com/file/"+selectedExercise.file} target={"_blank"}>
+                                                <img  style={{maxWidth:'600px',maxHeight:'800px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedExercise.file} alt={"No image"}/>
+                                                </a>
+                                                :
                                                 <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'exe1.jpg'} alt={"No image"}/>}
+
+                                            <br/>
+                                            Ratings: {" "}
+
+                                            <Rating initialRating={selectedExercise.AvgRatings?selectedExercise.AvgRatings:0}
+                                                    readonly
+                                                    emptySymbol={<img style={{width:'20px',height:'20px'}}  src={process.env.PUBLIC_URL+'starempty.jpg'} className="icon" />}
+                                                    fullSymbol={<img style={{width:'20px',height:'20px'}} src={process.env.PUBLIC_URL+'starfull.jpg'} className="icon" />}/>
+
+                                            <br/>
+
+                                            Comments: {" "}
+
+                                            <div style={{overflowY:'scroll',height:'60px'}}>
+                                                {selectedExercise.comments && selectedExercise.comments.length > 0 ?
+                                                    selectedExercise.comments.map((comment,index)=>{
+                                                        return(
+                                                            <div id={index}>
+                                                                <div style={{width:'100%',height:'3px',backgroundColor:'blue'}}>
+
+                                                                </div>
+                                                                {comment}
+                                                            </div>
+                                                        )
+                                                    })
+
+                                                    :
+                                                    ""
+                                                }
+                                            </div>
 
                                         </div>
 
@@ -423,8 +458,9 @@ export default function ProfessionalDashboard(props){
                                     </div>
 
                                     <br/>
+                                    <br/>
                                     <Button onClick={closeModal} variant={'danger'}> Close </Button>
-                                </>
+                                </><br/>
                             </Modal>
 
                         </Tab>
@@ -461,6 +497,7 @@ export default function ProfessionalDashboard(props){
 
                                                         {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
                                                             <img style={{width:'100px',height:'90px', marginBottom: '10px'}} src={process.env.PUBLIC_URL + 'diet1.jpg'} alt={"No image"}/>}
+
 
                                                     </div>
 
@@ -502,7 +539,10 @@ export default function ProfessionalDashboard(props){
 
                                                             <div className={"col-md-3"}>
 
-                                                                {diets.file ?  <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/> :
+                                                                {diets.file ?
+                                                                    <img style={{width:'100%',height:'95%'}} src={'https://bloom-flask-app.herokuapp.com/file/'+diets.file} alt={"No image"}/>
+                                                                    :
+
                                                                     <img style={{width:'90%',height:'80%'}} src={process.env.PUBLIC_URL + 'diet2.jpg'} alt={"No image"}/>}
 
                                                             </div>
@@ -553,8 +593,43 @@ export default function ProfessionalDashboard(props){
                                         <div className={"col-md-4"}>
                                             <h4>  {selectedDiet.title} </h4>
                                             <b> Description: </b>    {" "+selectedDiet.description}
-                                            {selectedDiet.file ?  <img  style={{maxWidth:'400px',maxHeight:'400px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedDiet.file} alt={"No image"}/> :
+                                            {selectedDiet.file ?
+                                                <a href={"https://bloom-flask-app.herokuapp.com/file/"+selectedDiet.file} target={"_blank"}>
+                                                <img  style={{maxWidth:'400px',maxHeight:'400px'}} src={'https://bloom-flask-app.herokuapp.com/file/'+selectedDiet.file} alt={"No image"}/>
+                                                </a>
+                                                :
+
                                                 <img style={{maxWidth:'600px',maxHeight:'800px'}} src={process.env.PUBLIC_URL + 'Bloom.png'} alt={"No image"}/>}
+
+                                            <br/>
+                                            Ratings: {" "}
+                                            <Rating initialRating={selectedDiet.AvgRatings?selectedDiet.AvgRatings:0}
+                                                    readonly
+                                                    emptySymbol={<img style={{width:'20px',height:'20px'}}  src={process.env.PUBLIC_URL+'starempty.jpg'} className="icon" />}
+                                                    fullSymbol={<img style={{width:'20px',height:'20px'}} src={process.env.PUBLIC_URL+'starfull.jpg'} className="icon" />}/>
+
+                                            <br/>
+
+                                            Comments: {" "}
+
+                                            <div style={{overflowY:'scroll',height:'60px'}}>
+                                                {selectedDiet.comments && selectedDiet.comments.length > 0 ?
+                                                    selectedDiet.comments.map((comment,index)=>{
+                                                        return(
+                                                            <div id={index}>
+                                                                <div style={{width:'100%',height:'3px',backgroundColor:'blue'}}>
+
+                                                                </div>
+                                                                {comment}
+                                                            </div>
+                                                        )
+                                                    })
+
+                                                    :
+                                                    ""
+                                                }
+                                            </div>
+
                                         </div>
 
                                         <div className={"col-md-6"}>
