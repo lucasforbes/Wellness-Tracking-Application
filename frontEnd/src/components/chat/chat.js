@@ -184,7 +184,7 @@ export default function Chat(props){
 
                         <TextField placeholder={"Enter Message ...."} value={enteredMessage} onChange={(e)=>{
                             setEnteredMessage(e.target.value)
-                        }} style={{minWidth:"200px",marginTop: 'auto'}}/>
+                        }} style={{minWidth:"200px"}}/>
 
                         {creatorSelected?<Button className={"bg-success"} onClick={()=>{
                             sendMessage()

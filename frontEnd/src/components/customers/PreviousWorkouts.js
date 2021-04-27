@@ -143,7 +143,7 @@ export default function PreviousWorkouts(props){
                                 {exercise.activityList.map((activity,index3)=>{
                                     return(
                                         <div className={"col-md-6"} style={{paddingLeft:'5px',paddingTop:'5px',paddingRight:'5px'}}>
-                                            <div className={"card bg-warning text-white"}  id={index3} style={{color:'darkblue',fontSize:'20px',backgroundColor: 'lightblue'}}>
+                                            <div className={"card bg text-white"}  id={index3} style={{color:'darkblue',fontSize:'20px',backgroundColor: 'lightblue', border: 'none'}}>
                                                 <b> {activity.activityName}</b>
                                                 <p> {activity.activityDescription?activity.activityDescription:""} </p>
                                                 <p> Targeted Body Parts: {activity.bodyPartsTargeted+" "} <br/>
