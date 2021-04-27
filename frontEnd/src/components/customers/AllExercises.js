@@ -9,7 +9,7 @@ import DataTable from 'react-data-table-component';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {FcSearch} from "react-icons/fc";
 
-
+import Rating from "react-rating";
 
 export default function AllExercises(props){
 
@@ -403,6 +403,40 @@ export default function AllExercises(props){
                                     <div style={{float:'right'}}>
                                         <h4>  {selectedExercise.title} </h4>
                                         <b> Description: </b>    {" "+selectedExercise.description}
+
+                                        <br/>
+                                        Ratings: {" "}
+                                            <Rating initialRating={selectedExercise.AvgRatings?selectedExercise.AvgRatings:0}
+                                                    readonly
+                                                    emptySymbol={<img style={{width:'20px',height:'20px'}}  src={process.env.PUBLIC_URL+'starempty.jpg'} className="icon" />}
+                                                    fullSymbol={<img style={{width:'20px',height:'20px'}} src={process.env.PUBLIC_URL+'starfull.jpg'} className="icon" />}/>
+
+                                            <br/>
+
+                                        Comments: {" "}
+
+                                        <div style={{overflowY:'scroll',height:'60px'}}>
+                                            {selectedExercise.comments && selectedExercise.comments.length > 0 ?
+                                                selectedExercise.comments.map((comment,index)=>{
+                                                    return(
+                                                        <div id={index}>
+                                                        <div style={{width:'100%',height:'3px',backgroundColor:'blue'}}>
+
+                                                        </div>
+                                                            {comment}
+                                                        <div style={{width:'100%',height:'3px',backgroundColor:'black'}}>
+
+                                                        </div>
+                                                        </div>
+                                                    )
+                                                })
+
+                                                :
+                                                ""
+                                            }
+                                        </div>
+
+
                                     </div>
                                 </div>
 
