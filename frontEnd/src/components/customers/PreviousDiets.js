@@ -131,7 +131,7 @@ export default function PreviousDiets(props){
                                                         return(
 
                                                                 <div className={"col-md-6"} style={{paddingLeft:'5px',paddingTop:'5px',paddingRight:'5px'}}>
-                                                                    <div className={"card bg-warning text-white"}  id={index3} style={{color:'darkblue',fontSize:'20px',backgroundColor: 'lightblue'}}>
+                                                                    <div className={"card bg text-white"}  id={index3} style={{border: 'none',color:'darkblue',fontSize:'20px',backgroundColor: 'lightblue'}}>
                                                                     <b> {dietItem.item}</b> <br/>
                                                                         <p> Serving Size: {dietItem.servingSize+" "} </p>
                                                                         <p>
