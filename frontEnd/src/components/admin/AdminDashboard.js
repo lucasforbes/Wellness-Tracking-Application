@@ -184,6 +184,10 @@ export default function AdminDashboard(props){
                                                                 <div className={"row"}>
                                                                     <div className={"col-md-4"}> <br/> <label>Title: </label> {exercise.title}
                                                                         <p>  {exercise.description} </p>
+
+                                                                        {exercise.file ? <a href={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file}  target={"_blank"}>  File </a>:""}
+
+
                                                                     </div>
                                                                     <div className={"col-md-6"}>
                                                                         <br/>
@@ -241,6 +245,8 @@ export default function AdminDashboard(props){
                                                                 <div className={"row"}>
                                                                     <div className={"col-md-6"}> <br/> <label>Title: </label> {exercise.title}
                                                                         <p>  {exercise.description} </p>
+                                                                        {exercise.file ? <a href={'https://bloom-flask-app.herokuapp.com/file/'+exercise.file}  target={"_blank"}>  File </a>:""}
+
                                                                     </div>
                                                                     <div className={"col-md-6"}>
                                                                         <br/>
