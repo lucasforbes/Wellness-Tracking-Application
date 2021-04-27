@@ -240,6 +240,110 @@ export default function AllDiets(props){
 
     }
 
+    const [modalPaidSub,setModalPaidSub] = useState(false);
+
+    const [creditCardNumber,setCreditCardNumber] = useState("");
+    const [cvv,setCVV] = useState("");
+    const [cardDate,setCardDate] = useState(new Date().toISOString().split("T")[0]);
+
+    const PaidsubscribeWorkout=(id)=>{
+
+        let url = "https://bloom-wellness-back.herokuapp.com/subscribeUserToPaidDiet/?dietId="+id+"&userEmail="+localStorage.getItem('email')
+
+        console.log("url1",url)
+
+        axios.get(url,{
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+            .then((res)=>{
+
+                if(res.data == "Added user to Exersize subscriber list"){
+                    alert("Successfully added")
+                    props.callBack()
+                }
+                if(res.data == "Need Payment"){
+                    setModalPaidSub(true)
+                }
+
+            })
+            .catch((err)=>{
+                alert("Error while subscribing")
+                console.log(err);
+            })
+    }
+
+
+    const validateCard =()=>{
+
+        var numbers = /^[0-9]+$/;
+
+        if(creditCardNumber != "" && creditCardNumber.length == 16 && creditCardNumber.match(numbers)){
+
+        }else{
+            alert("Invalid Credit Card Number")
+            return false
+        }
+
+        if(cvv != "" && cvv.length == 3 && cvv.match(numbers)){
+
+        }else{
+            alert("Invalid CVV")
+            return false
+
+        }
+
+        if(new Date(cardDate)  >= new Date()){
+
+        }else{
+            alert("Card has expired")
+            return false
+        }
+
+        return true
+    }
+
+    const submitCard=()=>{
+
+        let json = JSON.stringify({
+            'userEmail':localStorage.getItem('email'),
+            'obj': selectedDiet._id,
+            'payment': {
+                'cardNumber': creditCardNumber,
+                'cvv': cvv,
+                'date': cardDate
+            }
+        })
+
+        axios.post('https://bloom-wellness-back.herokuapp.com/makePayment',json,{
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+            .then((res)=>{
+
+                if(res.data == "Payment Processed, Subscription Added"){
+                    alert("Successfully added")
+                    props.callBack()
+                }else{
+                    alert(res.data)
+                }
+
+            })
+            .catch((err)=>{
+                alert("Error while subscribing")
+                console.log(err);
+            })
+    }
+
+
+
+
     return(
 
         <>
@@ -338,15 +442,39 @@ export default function AllDiets(props){
                                 <div className={"col-md-6"}>
 
 
+                                    {/*{selectedDiet.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?*/}
+                                    {/*    <>*/}
+
+                                    {/*        <Button onClick={()=>removeDietSubscription(selectedDiet._id)} style={{width:"120px"}} variant="danger" type={"button"}> Unsubscribe </Button>*/}
+
+                                    {/*    </>*/}
+
+                                    {/*    :*/}
+                                    {/*    <Button onClick={()=>subscribeDiet(selectedDiet._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>*/}
+                                    {/*}*/}
+
                                     {selectedDiet.userIdsToExersizesSubscribed.includes(localStorage.getItem("email")) ?
                                         <>
-
                                             <Button onClick={()=>removeDietSubscription(selectedDiet._id)} style={{width:"120px"}} variant="danger" type={"button"}> Unsubscribe </Button>
-
                                         </>
 
                                         :
-                                        <Button onClick={()=>subscribeDiet(selectedDiet._id)} style={{width:"100px"}} variant="success" type={"button"}> Subscribe </Button>
+                                        <>
+                                            {/*{selectedDiet.paid?*/}
+                                            {/*    <Button onClick={() => PaidsubscribeWorkout(selectedDiet._id)}*/}
+                                            {/*            style={{minWidth: "140px"}} variant="success"*/}
+                                            {/*            type={"button"}> Paid Subscribe </Button>*/}
+                                            {/*    :*/}
+                                            {/*    <Button onClick={() => subscribeDiet(selectedDiet._id)}*/}
+                                            {/*            style={{width: "100px"}} variant="success"*/}
+                                            {/*            type={"button"}> Subscribe </Button>*/}
+                                            {/*}*/}
+
+                                            <Button onClick={() => subscribeDiet(selectedDiet._id)}
+                                                    style={{width: "100px"}} variant="success"
+                                                    type={"button"}> Subscribe </Button>
+
+                                        </>
                                     }
 
                                 </div>
@@ -379,6 +507,154 @@ export default function AllDiets(props){
 
 
                             </div>
+
+                            <Modal  isOpen={modalPaidSub}
+                                    onRequestClose={()=>setModalPaidSub(false)}
+                                    style={customStylesModal}
+                            >
+
+
+                                <div className={"card text-white bg-primary"}>
+                                    <div className={"card-header"}> Enter Credit Card Details </div>
+                                    <div className={"card-body"}>
+
+
+                                        <div className="row">
+                                            <div className="col-md-5">
+                                                <h3>Billing Address</h3>
+                                                <table style={{paddingLeft:'10px',paddingRight:'10px'}}>
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="fname"><i className="fa fa-user"></i> Full Name</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe" />
+                                                        </td>
+                                                        <td>
+                                                            <label htmlFor="email"><i className="fa fa-envelope"></i> Email</label>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="email" name="email"
+                                                                   placeholder="john@example.com" />
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="adr"><i
+                                                                className="fa fa-address-card-o"></i> Address</label>
+                                                        </td>
+
+                                                        <td colSpan={"3"}>
+                                                            <input type="text" id="adr" name="address"
+                                                                   placeholder="542 W. 15th Street"  style={{width:'100%'}}/>
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="city"><i className="fa fa-institution"></i> City</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="city" name="city" placeholder="New York"/>
+                                                        </td>
+                                                        <td>
+                                                            <label htmlFor="state">State</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="state" name="state"
+                                                                   placeholder="NY"/>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="zip">Zip</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="zip" name="zip"
+                                                                   placeholder="10001"/>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </table>
+
+
+                                            </div>
+
+                                            <div className={"col-md-1"}>
+
+                                            </div>
+                                            <div className={"col-md-6"}>
+                                                <h3>Payment</h3>
+                                                <label htmlFor="fname">Accepted Cards</label>
+                                                <div>
+                                                    <img src={process.env.PUBLIC_URL + 'cards.jpg'} style={{height:'30px',width:'140px'}} alt={"Visa"}/>
+                                                </div>
+
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <label htmlFor="cname">Name on Card</label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="cname" name="cardname" placeholder="John More Doe"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colSpan={"2"}>
+                                                            <TextField style={{backgroundColor:'white',  width:'400px'}} placeholder={"Credit Card Number"}
+                                                                       value={creditCardNumber}
+                                                                       onChange={(e)=>{
+                                                                           setCreditCardNumber(e.target.value)
+                                                                       }}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <TextField style={{backgroundColor:'white'}} placeholder={"CVV"}
+                                                                       value={cvv}
+                                                                       onChange={(e)=>{
+                                                                           setCVV(e.target.value)
+                                                                       }}
+                                                            > </TextField>
+                                                        </td>
+                                                        <td>
+                                                            <TextField style={{backgroundColor:'white'}} type={"date"}
+                                                                       placeholder={"Credit Card Number"} value={cardDate} onChange={(e)=>setCardDate(e.target.value)}></TextField>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <Button variant={"success"} type={"button"} onClick={()=>{
+                                                                if(validateCard()) {
+                                                                    submitCard()
+                                                                }
+                                                            }}> Submit </Button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <br/>
+
+                                        <div className={"card-header bg-danger text-white"}> You will be charged $2.00 </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </Modal>
 
                         </>
                         :
