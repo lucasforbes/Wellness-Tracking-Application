@@ -16,11 +16,53 @@ import {
 import {TextField} from '@material-ui/core/';
 import {CardHeader} from "@material-ui/core";
 import Login from "./registeration/login";
+import validator from 'validator';
+import axios from "axios";
 
 export default function Homepage() {
 
-    const [email, setEmail] = useState();
-    const [message, setMessage] = useState();
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+
+    const submitQuery=(e)=>{
+
+        e.preventDefault()
+
+        if (validator.isEmail(email) && message!="") {
+
+            let json= JSON.stringify({
+                'email': email,
+                'message': message
+            })
+
+            axios.post('https://bloom-flask-app.herokuapp.com/addCustomerSupport',json,{
+                headers: {
+                    // Overwrite Axios's automatically set Content-Type
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+                }).then((res)=>{
+                        alert("Submitted")
+                })
+                .catch((err)=>{
+                    console.log("submitting message",err)
+                })
+                .finally(()=>{
+                    setMessage("")
+                    setEmail("")
+                })
+
+        }
+        else {
+            alert("Invalid Email")
+        }
+
+    }
+
+
+
+
 //test
     return (
         <>
@@ -107,16 +149,18 @@ export default function Homepage() {
 
                         <Form.Group  controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email"/>
+                            <Form.Control type="email" placeholder="Enter email" value={email}  onChange={(e)=>setEmail(e.target.value)}/>
                             <Form.Text className="text-muted"> We will respond to this email when you inquiry is processed</Form.Text>
                         </Form.Group>
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Message</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder={"Enter message here"}/>
+                            <Form.Control as="textarea" rows={3} placeholder={"Enter message here"} value={message}
+                                          onChange={(e)=>setMessage(e.target.value)}
+                            />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">Submit</Button>
+                        <Button variant="primary" type="submit" onClick={submitQuery}>Submit</Button>
                     </Form>
                 </div>
 

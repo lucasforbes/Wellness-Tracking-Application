@@ -298,7 +298,7 @@ export default function Signup(props){
                                                     >
                                                         <MenuItem value={"User"}>User</MenuItem>
                                                         <MenuItem value={"Creator"}>Creator</MenuItem>
-                                                        <MenuItem value={"Admin"}>Admin</MenuItem>
+                                                        {/*<MenuItem value={"Admin"}>Admin</MenuItem>*/}
                                                     </Select>
                                                 </FormControl>
 
