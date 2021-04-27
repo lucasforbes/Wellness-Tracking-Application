@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import isMACAddress from "validator/es/lib/isMACAddress";
 import '../../App.css';
 
+import Rating from "react-rating";
+
 export default function PreviousDiets(props){
 
     const images=["diet1.jpg","diet2.jpg","diet3.jpg"];
@@ -27,6 +29,48 @@ export default function PreviousDiets(props){
             .catch((err)=>{
                 alert("Error while unsubscribing")
                 console.log(err);
+            })
+    }
+
+    const [rating,setRating] = useState(0);
+    const [comment,setComment] = useState("");
+
+    function handleRatingChange(value,id) {
+        setRating(value)
+        // console.log("value",value,"id",id)
+
+
+        axios.post("https://bloom-flask-app.herokuapp.com/addRatingsDiet",{
+            id: id,
+            stars : value,
+        }).
+        then((res)=>{
+            alert("Thanks for Rating")
+        })
+            .catch((err)=>{
+                // alert("Error while unsubscribing")
+                console.log(err);
+            })
+            .finally(()=>{
+                setRating(0)
+            })
+
+    }
+
+    const saveComment=(id)=>{
+        axios.post("https://bloom-flask-app.herokuapp.com/addRatingsDiet",{
+            id: id,
+            comment : comment,
+        }).
+        then((res)=>{
+            alert("Thanks for your comment")
+        })
+            .catch((err)=>{
+                // alert("Error while unsubscribing")
+                console.log(err);
+            })
+            .finally(()=>{
+                setComment("")
             })
     }
 
@@ -68,6 +112,16 @@ export default function PreviousDiets(props){
                                                     <div style={{float:'right'}}>
                                                         <h4>{diet.title}</h4>
                                                         <p style={{fontWeight: '600', fontSize: '150%', color: 'dodgerblue', textDecoration: 'underline'}}>{diet.description}</p>
+
+                                                        <div className={"card-header text-white bg-success"} style={{float:'right'}}>
+
+                                                            Rate {" "}
+                                                            <Rating initialRating={rating}
+                                                                    onChange={(value)=>handleRatingChange(value,diet._id)}
+                                                                    emptySymbol={<img style={{width:'20px',height:'20px'}}  src={process.env.PUBLIC_URL+'starempty.jpg'} className="icon" />}
+                                                                    fullSymbol={<img style={{width:'20px',height:'20px'}} src={process.env.PUBLIC_URL+'starfull.jpg'} className="icon" />}/>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,6 +149,15 @@ export default function PreviousDiets(props){
                                                 </div>
 
                                                 <br/>
+
+                                        <div style={{float:'right',color:'white'}}>
+
+                                            <TextField  value={comment} style={{width:'400px'}} onChange={(e)=>setComment(e.target.value)} placeholder={"Add Comments"} />
+
+                                            <Button variant={"success"} onClick={()=>saveComment(diet._id)} > Add </Button>
+
+                                        </div>
+
                                                 <Button onClick={()=>removeDietSubscription(diet._id)} style={{minWidth: '100px'}} variant="danger" type={"button"}> Unsubscribe </Button>
 
                                     </Card.Body>
