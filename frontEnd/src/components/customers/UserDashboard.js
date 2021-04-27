@@ -310,7 +310,7 @@ export default function UserDashboard(props){
                        </Tab>
 
                        <Tab eventKey="Chat"  title={"Chat"}>
-                           {/*<Chat/>*/}
+                           <Chat/>
                        </Tab>
 
                    </Tabs>

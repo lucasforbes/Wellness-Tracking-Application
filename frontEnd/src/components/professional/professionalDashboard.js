@@ -737,7 +737,7 @@ export default function ProfessionalDashboard(props){
                         </Tab>
 
                         <Tab title={"Chat"} eventKey={"Chat"}>
-                            {/*<Creatorchat/>*/}
+                            <Creatorchat/>
 
                         </Tab>
 

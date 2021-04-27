@@ -9,7 +9,7 @@ export default function AddWorkout(props){
 
 
     const images = [
-        process.env.PUBLIC_URL + '/action1.jpg',
+        process.env.PUBLIC_URL + '/action3.jpg',
         process.env.PUBLIC_URL + '/action2.jpg',
         process.env.PUBLIC_URL + '/action3.jpg',
     ];
